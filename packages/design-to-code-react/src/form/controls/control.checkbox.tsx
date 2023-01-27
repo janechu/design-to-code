@@ -1,26 +1,20 @@
 import React from "react";
-import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
-import { ManagedClasses } from "@microsoft/fast-components-class-name-contracts-base";
-import styles, { CheckboxControlClassNameContract } from "./control.checkbox.style";
 import { CheckboxControlProps } from "./control.checkbox.props";
 import { classNames } from "@microsoft/fast-web-utilities";
 import { isDefault } from "./utilities/form";
+import cssVariables from "../../style/css-variables.css";
+import style from "./control.checkbox.style.css";
+
+// tree-shaking
+cssVariables;
+style;
 
 /**
  * Form control definition
  * @extends React.Component
  */
-class CheckboxControl extends React.Component<
-    CheckboxControlProps & ManagedClasses<CheckboxControlClassNameContract>,
-    {}
-> {
+class CheckboxControl extends React.Component<CheckboxControlProps, {}> {
     public static displayName: string = "CheckboxControl";
-
-    public static defaultProps: Partial<
-        CheckboxControlProps & ManagedClasses<CheckboxControlClassNameContract>
-    > = {
-        managedClasses: {},
-    };
 
     public render(): JSX.Element {
         const value: boolean =
@@ -33,19 +27,16 @@ class CheckboxControl extends React.Component<
         return (
             <div
                 className={classNames(
-                    this.props.managedClasses.checkboxControl,
+                    "dtc-checkbox-control",
+                    ["dtc-checkbox-control__disabled", this.props.disabled],
                     [
-                        this.props.managedClasses.checkboxControl__disabled,
-                        this.props.disabled,
-                    ],
-                    [
-                        this.props.managedClasses.checkboxControl__default,
+                        "dtc-checkbox-control__default",
                         isDefault(this.props.value, this.props.default),
                     ]
                 )}
             >
                 <input
-                    className={this.props.managedClasses.checkboxControl_input}
+                    className={"dtc-checkbox-control_input"}
                     id={this.props.dataLocation}
                     type={"checkbox"}
                     value={value.toString()}
@@ -56,7 +47,7 @@ class CheckboxControl extends React.Component<
                     onFocus={this.props.reportValidity}
                     onBlur={this.props.updateValidity}
                 />
-                <span className={this.props.managedClasses.checkboxControl_checkmark} />
+                <span className={"dtc-checkbox-control_checkmark"} />
             </div>
         );
     }
@@ -69,4 +60,4 @@ class CheckboxControl extends React.Component<
 }
 
 export { CheckboxControl };
-export default manageJss(styles)(CheckboxControl);
+export default CheckboxControl;

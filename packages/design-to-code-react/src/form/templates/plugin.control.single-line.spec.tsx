@@ -1,12 +1,5 @@
 import React from "react";
-import Adapter from "enzyme-adapter-react-16";
-import { configure, mount, shallow } from "enzyme";
 import { SingleLineControlPlugin } from "./plugin.control.single-line";
-
-/*
- * Configure Enzyme
- */
-configure({ adapter: new Adapter() });
 
 describe("SingleLineControlPlugin", () => {
     test("should not throw", () => {

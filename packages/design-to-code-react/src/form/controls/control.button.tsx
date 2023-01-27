@@ -1,39 +1,34 @@
 import React from "react";
-import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
-import { ManagedClasses } from "@microsoft/fast-components-class-name-contracts-base";
-import styles, { ButtonControlClassNameContract } from "./control.button.style";
 import { ButtonControlProps } from "./control.button.props";
 import { classNames } from "@microsoft/fast-web-utilities";
 import { isDefault } from "./utilities/form";
+import cssVariables from "../../style/css-variables.css";
+import inputStyle from "../../style/input-style.css";
+import defaultFontStyle from "../../style/default-font-style.css";
+import style from "./control.button.style.css";
+
+// tree-shaking
+cssVariables;
+inputStyle;
+defaultFontStyle;
+style;
 
 /**
  * Form control definition
  * @extends React.Component
  */
-class ButtonControl extends React.Component<
-    ButtonControlProps & ManagedClasses<ButtonControlClassNameContract>,
-    {}
-> {
+class ButtonControl extends React.Component<ButtonControlProps, {}> {
     public static displayName: string = "ButtonControl";
-
-    public static defaultProps: Partial<
-        ButtonControlProps & ManagedClasses<ButtonControlClassNameContract>
-    > = {
-        managedClasses: {},
-    };
 
     public render(): React.ReactNode {
         return (
             <React.Fragment>
                 <button
                     className={classNames(
-                        this.props.managedClasses.buttonControl,
+                        "dtc-button-control dtc-common-input",
+                        ["dtc-button-control__disabled", this.props.disabled],
                         [
-                            this.props.managedClasses.buttonControl__disabled,
-                            this.props.disabled,
-                        ],
-                        [
-                            this.props.managedClasses.buttonControl__default,
+                            "dtc-button-control__default dtc-common-default-font",
                             isDefault(this.props.value, this.props.default),
                         ]
                     )}
@@ -78,4 +73,4 @@ class ButtonControl extends React.Component<
 }
 
 export { ButtonControl };
-export default manageJss(styles)(ButtonControl);
+export default ButtonControl;

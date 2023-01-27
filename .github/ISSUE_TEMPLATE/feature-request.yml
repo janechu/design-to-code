@@ -13,9 +13,9 @@ body:
       label: What package(s) should this feature be added to?
       multiple: true
       options:
-        - "@microsoft/design-to-code"
-        - "@microsoft/design-to-code-react"
-        - "@microsoft/design-to-code-wasm"
+        - "design-to-code"
+        - "design-to-code-react"
+        - "design-to-code-wasm"
   - type: textarea
     id: summary
     attributes:

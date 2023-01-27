@@ -6,7 +6,7 @@ import {
     mapDataDictionary,
     MessageSystemType,
     SchemaDictionary,
-} from "@microsoft/design-to-code";
+} from "design-to-code";
 import FancyButton from "./fancy-button";
 
 interface WebComponentViewerContentState {

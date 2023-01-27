@@ -1,7 +1,5 @@
 import React from "react";
-import Adapter from "enzyme-adapter-react-16";
 import "../../../__tests__/mocks/match-media";
-import { configure, mount, render, shallow } from "enzyme";
 import ControlSwitch, { ControlSwitchProps } from "./control-switch";
 import { DndProvider } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend";
@@ -117,11 +115,6 @@ const TestControlSwitch: React.FC<ControlSwitchProps> = (
         </DndProvider>
     );
 };
-
-/*
- * Configure Enzyme
- */
-configure({ adapter: new Adapter() });
 
 const formControlSwitchProps: ControlSwitchProps = {
     index: 0,

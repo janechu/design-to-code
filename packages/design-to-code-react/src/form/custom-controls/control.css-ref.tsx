@@ -4,12 +4,12 @@ import {
     CombinatorType,
     CSSPropertiesDictionary,
     CSSPropertyRef,
-} from "@microsoft/design-to-code/dist/esm/data-utilities/mapping.mdn-data";
+} from "design-to-code/dist/esm/data-utilities/mapping.mdn-data";
 import { renderTypeControl } from "./control.css.utilities.type";
 import { renderSyntaxControl } from "./control.css.utilities.syntax";
 import { renderValueControl } from "./control.css.utilities.value";
 import { renderPropertyControl } from "./control.css.utilities.property";
-import { properties } from "@microsoft/design-to-code/dist/esm/css-data";
+import { properties } from "design-to-code/dist/esm/css-data";
 import { renderSelection } from "./control.css.utilities";
 
 /**
@@ -149,12 +149,12 @@ export class CSSRef extends React.Component<CSSRefProps, CSSRefState> {
                     const propertyKey: string = this.props.syntax.ref.slice(2, -2);
 
                     if (
-                        ((properties as unknown) as CSSPropertiesDictionary)[
+                        (properties as unknown as CSSPropertiesDictionary)[
                             propertyKey
                         ] !== undefined
                     ) {
                         return renderPropertyControl({
-                            syntax: ((properties as unknown) as CSSPropertiesDictionary)[
+                            syntax: (properties as unknown as CSSPropertiesDictionary)[
                                 propertyKey
                             ].syntax,
                             property: propertyKey,

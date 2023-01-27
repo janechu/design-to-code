@@ -7,7 +7,7 @@ import {
     StandardControlPlugin,
 } from "./templates";
 import { DndProvider } from "react-dnd";
-import HTML5Backend from "react-dnd-html5-backend";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
 const Form: React.FC<any> = (props: React.PropsWithChildren<any>): React.ReactElement => {
     return (

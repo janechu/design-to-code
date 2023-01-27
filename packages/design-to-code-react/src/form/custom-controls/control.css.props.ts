@@ -1,4 +1,4 @@
-import { CSSPropertiesDictionary } from "@microsoft/design-to-code/dist/esm/data-utilities/mapping.mdn-data";
+import { CSSPropertiesDictionary } from "design-to-code/dist/esm/data-utilities/mapping.mdn-data";
 import { ControlConfig } from "../templates";
 import { CSSStandardControlPlugin } from "./css";
 

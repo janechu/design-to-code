@@ -1,12 +1,5 @@
 import React from "react";
-import Adapter from "enzyme-adapter-react-16";
-import { configure, mount, shallow } from "enzyme";
 import { BareControlPlugin } from "./plugin.control.bare";
-
-/*
- * Configure Enzyme
- */
-configure({ adapter: new Adapter() });
 
 describe("BareControlPlugin", () => {
     test("should not throw", () => {

@@ -12,6 +12,7 @@ const appDir = path.resolve(__dirname, "./");
 const outDir = path.resolve(__dirname, "../www");
 
 module.exports = {
+    name: "root",
     entry: {
         main: path.resolve(appDir, "index.ts"),
     },
@@ -83,7 +84,7 @@ module.exports = {
         new CopyWebpackPlugin({
             patterns: [
                 {
-                    from: path.resolve(__dirname, "./server.js"),
+                    from: path.resolve(__dirname, "./server.cjs"),
                     to: path.resolve(__dirname, "../www/"),
                 },
             ],

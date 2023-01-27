@@ -1,10 +1,10 @@
 import {
     CSSPropertyRef,
     CSSSyntaxRef,
-} from "@microsoft/design-to-code/dist/esm/data-utilities/mapping.mdn-data";
-import { XOR } from "@microsoft/design-to-code/dist/esm/data-utilities/type.utilities";
-import { Type } from "@microsoft/design-to-code/dist/esm/css-data.types";
-import { Syntax } from "@microsoft/design-to-code/dist/esm/css-data.syntax";
+} from "design-to-code/dist/esm/data-utilities/mapping.mdn-data";
+import { XOR } from "design-to-code/dist/esm/data-utilities/type.utilities";
+import { Type } from "design-to-code/dist/esm/css-data.types";
+import { Syntax } from "design-to-code/dist/esm/css-data.syntax";
 
 export interface RenderControlConfig {
     /**

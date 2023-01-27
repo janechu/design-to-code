@@ -1,5 +1,5 @@
 import React from "react";
-import { MessageSystemType } from "@microsoft/design-to-code";
+import { MessageSystemType } from "design-to-code";
 import { ViewerCustomAction } from "../../../src";
 
 interface ViewerContentState {

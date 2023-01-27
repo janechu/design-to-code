@@ -1,14 +1,7 @@
 import React from "react";
-import Adapter from "enzyme-adapter-react-16";
-import { configure, mount, render, shallow } from "enzyme";
 import { Orientation, RotateHandledProps } from "./";
 import { Rotate } from "./rotate.base";
 import { RotateClassNameContract } from "./rotate";
-
-/*
- * Configure Enzyme
- */
-configure({ adapter: new Adapter() });
 
 describe("Rotate", (): void => {
     const managedClasses: RotateClassNameContract = {

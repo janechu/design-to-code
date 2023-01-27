@@ -1,16 +1,18 @@
 import React from "react";
-import styles, { CSSControlClassNameContract } from "./control.css.style";
 import { CSSControlProps } from "./control.css.props";
-import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
-import { ManagedClasses } from "@microsoft/fast-components-class-name-contracts-base";
 import { classNames } from "@microsoft/fast-web-utilities";
 import {
     CSSProperty,
     mapCSSInlineStyleToCSSPropertyDictionary,
-} from "@microsoft/design-to-code/dist/esm/data-utilities/mapping.mdn-data";
+} from "design-to-code/dist/esm/data-utilities/mapping.mdn-data";
 import { CSSRef } from "./control.css-ref";
 import { CSSStandardControlPlugin } from "./css";
 import { memoize } from "lodash-es";
+
+import cssStyle from "./control.align.style.css";
+
+// tree-shaking
+cssStyle;
 
 /**
  * This is currently experimental, any use of the CSS control must include the following
@@ -26,7 +28,7 @@ import { memoize } from "lodash-es";
  * } from "@microsoft/fast-components";
  * import {
  *     colorPickerComponent,
- * } from "@microsoft/design-to-code/dist/esm/web-components";
+ * } from "design-to-code/dist/esm/web-components";
  *
  * DesignSystem.getOrCreate().register(
  *    fastCheckbox(),
@@ -41,15 +43,12 @@ import { memoize } from "lodash-es";
 /**
  * Custom form control definition for CSS
  */
-class CSSControl extends React.Component<
-    CSSControlProps & ManagedClasses<CSSControlClassNameContract>,
-    {}
-> {
-    private memoizeMappedStyleToCSSPropertyDictionary: (
-        value: string
-    ) => { [key: string]: string };
+class CSSControl extends React.Component<CSSControlProps, {}> {
+    private memoizeMappedStyleToCSSPropertyDictionary: (value: string) => {
+        [key: string]: string;
+    };
 
-    constructor(props: CSSControlProps & ManagedClasses<CSSControlClassNameContract>) {
+    constructor(props: CSSControlProps) {
         super(props);
 
         this.memoizeMappedStyleToCSSPropertyDictionary = memoize(
@@ -58,11 +57,7 @@ class CSSControl extends React.Component<
     }
 
     public render(): React.ReactNode {
-        return (
-            <div className={classNames(this.props.managedClasses.css)}>
-                {this.renderCSSProperties()}
-            </div>
-        );
+        return <div className={classNames("dtc-css")}>{this.renderCSSProperties()}</div>;
     }
 
     private renderCSSProperties(): React.ReactNode {
@@ -171,4 +166,4 @@ class CSSControl extends React.Component<
 }
 
 export { CSSControl };
-export default manageJss(styles)(CSSControl);
+export default CSSControl;

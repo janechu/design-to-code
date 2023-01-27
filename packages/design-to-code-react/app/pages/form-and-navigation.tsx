@@ -1,5 +1,4 @@
 import React from "react";
-import { DesignSystemProvider } from "@microsoft/fast-jss-manager-react";
 import { ModularForm, ModularNavigation } from "../../src";
 import { FormProps } from "../../src/form/form.props";
 import {
@@ -13,7 +12,7 @@ import {
     MessageSystem,
     MessageSystemType,
     SchemaDictionary,
-} from "@microsoft/design-to-code";
+} from "design-to-code";
 
 export type componentDataOnChange = (e: React.ChangeEvent<HTMLFormElement>) => void;
 
@@ -94,74 +93,72 @@ class FormAndNavigationTestPage extends React.Component<{}, FormTestPageState> {
 
     public render(): JSX.Element {
         return (
-            <DesignSystemProvider designSystem={designSystemDefaults}>
-                <div>
-                    <div
-                        style={{
-                            width: "300px",
-                            height: "100vh",
-                            float: "left",
-                            fontFamily:
-                                "Segoe UI, SegoeUI, Helvetica Neue, Helvetica, Arial, sans-serif",
-                        }}
-                    >
-                        {this.renderNavigation()}
-                    </div>
-                    <div
-                        style={{
-                            float: "left",
-                            marginLeft: "8px",
-                        }}
-                    >
-                        <div>
-                            <select onChange={this.handleComponentUpdate}>
-                                {this.getComponentOptions()}
-                            </select>
-                            <br />
-                            <br />
-                            <input
-                                id={"showInlineErrors"}
-                                type="checkbox"
-                                value={(!!this.state.inlineErrors).toString()}
-                                onChange={this.handleShowInlineErrors}
-                            />
-                            <label htmlFor={"showInlineErrors"}>Show inline errors</label>
-                            <br />
-                            <input
-                                id={"showBrowserErrors"}
-                                type="checkbox"
-                                value={(!!this.state.defaultBrowserErrors).toString()}
-                                onChange={this.handleShowBrowserErrors}
-                            />
-                            <label htmlFor={"showBrowserErrors"}>
-                                Show default browser errors
-                            </label>
-                            <br />
-                        </div>
-                        <pre
-                            style={{
-                                padding: "12px",
-                                background: "rgb(244, 245, 246)",
-                                borderRadius: "4px",
-                            }}
-                        >
-                            {JSON.stringify(this.state.dataDictionary, null, 2)}
-                        </pre>
-                        <pre>{this.state.dataLocation}</pre>
-                    </div>
-                    <div
-                        style={{
-                            width: "300px",
-                            height: "100vh",
-                            float: "left",
-                            fontFamily:
-                                "Segoe UI, SegoeUI, Helvetica Neue, Helvetica, Arial, sans-serif",
-                        }}
-                    >
-                        <ModularForm {...this.coerceFormProps()} />
-                    </div>
+            <div>
+                <div
+                    style={{
+                        width: "300px",
+                        height: "100vh",
+                        float: "left",
+                        fontFamily:
+                            "Segoe UI, SegoeUI, Helvetica Neue, Helvetica, Arial, sans-serif",
+                    }}
+                >
+                    {this.renderNavigation()}
                 </div>
-            </DesignSystemProvider>
+                <div
+                    style={{
+                        float: "left",
+                        marginLeft: "8px",
+                    }}
+                >
+                    <div>
+                        <select onChange={this.handleComponentUpdate}>
+                            {this.getComponentOptions()}
+                        </select>
+                        <br />
+                        <br />
+                        <input
+                            id={"showInlineErrors"}
+                            type="checkbox"
+                            value={(!!this.state.inlineErrors).toString()}
+                            onChange={this.handleShowInlineErrors}
+                        />
+                        <label htmlFor={"showInlineErrors"}>Show inline errors</label>
+                        <br />
+                        <input
+                            id={"showBrowserErrors"}
+                            type="checkbox"
+                            value={(!!this.state.defaultBrowserErrors).toString()}
+                            onChange={this.handleShowBrowserErrors}
+                        />
+                        <label htmlFor={"showBrowserErrors"}>
+                            Show default browser errors
+                        </label>
+                        <br />
+                    </div>
+                    <pre
+                        style={{
+                            padding: "12px",
+                            background: "rgb(244, 245, 246)",
+                            borderRadius: "4px",
+                        }}
+                    >
+                        {JSON.stringify(this.state.dataDictionary, null, 2)}
+                    </pre>
+                    <pre>{this.state.dataLocation}</pre>
+                </div>
+                <div
+                    style={{
+                        width: "300px",
+                        height: "100vh",
+                        float: "left",
+                        fontFamily:
+                            "Segoe UI, SegoeUI, Helvetica Neue, Helvetica, Arial, sans-serif",
+                    }}
+                >
+                    <ModularForm {...this.coerceFormProps()} />
+                </div>
+            </div>
         );
     }
 

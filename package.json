@@ -1,11 +1,8 @@
 {
-  "name": "@microsoft/design-to-code-repository",
+  "name": "design-to-code-repository",
   "description": "A system of development tools, and utilities used à la carte or as a suite to build enterprise-grade websites and applications.",
   "version": "0.1.0",
-  "author": {
-    "name": "Microsoft",
-    "url": "https://discord.gg/FcSNfg4"
-  },
+  "author": "Jane Chu",
   "license": "MIT",
   "private": true,
   "workspaces": [
@@ -16,10 +13,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/microsoft/design-to-code.git"
+    "url": "git+https://github.com/janechu/design-to-code.git"
   },
   "bugs": {
-    "url": "https://github.com/microsoft/design-to-code/issues/new/choose"
+    "url": "https://github.com/janechu/design-to-code/issues/new/choose"
   },
   "scripts": {
     "bump": "beachball bump",

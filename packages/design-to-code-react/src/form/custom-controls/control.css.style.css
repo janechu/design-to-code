@@ -1,0 +1,6 @@
+.dtc-css fast-select,
+.dtc-css fast-text-field,
+.dtc-css fast-number-field {
+    min-width: unset;
+    width: 100%;
+}

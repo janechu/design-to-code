@@ -1,2 +1,2 @@
-const ghPagesBaseUrl = "https://microsoft.github.io/design-to-code";
+const ghPagesBaseUrl = "https://janechu.github.io/design-to-code";
 export { ghPagesBaseUrl };

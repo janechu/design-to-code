@@ -19,12 +19,10 @@ import { MonacoAdapterAction } from "../../../src/message-system-service/monaco-
 import dataDictionaryConfig from "./data-dictionary-config.js";
 import monacoEditorConfig from "./monaco-editor-config.js";
 import schemaDictionary from "./schema-dictionary.js";
-
-/* eslint-disable-next-line @typescript-eslint/no-var-requires */
-const MessageSystemWorker = require("../../../dist/message-system.min.js");
+import MessageSystemWorker from "worker-loader!../../../dist/message-system.min.js";
 
 document.body.setAttribute("style", "margin: 0");
-const root = document.getElementById("root");
+const root = document.getElementById("root") as HTMLElement;
 const setPosition = document.getElementById("setPosition");
 const setPositionInput: HTMLSelectElement = document.getElementById(
     "setPositionValue"

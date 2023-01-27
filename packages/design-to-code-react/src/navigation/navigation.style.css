@@ -1,0 +1,96 @@
+.dtc-navigation {
+    background: var(--dtc-l4-color);
+    color: var(--dtc-text-color);
+    height: 100%;
+    padding: 0 calc(var(--dtc-gutter) / 2);
+    overflow: auto;
+    font-size: var(--dtc-text-size-default);
+    text-indent: 1em;
+
+
+}
+
+.dtc-navigation .dtc-navigation_itemRegion::before {
+    content: '';
+    height: 100%;
+    position: absolute;
+    left: calc(1em - 12px);
+    z-index: 1;
+}
+
+.dtc-navigation_item-region {
+    position: relative;
+    text-indent: 1em;
+    line-height: 28px;
+}
+
+.dtc-navigation_item-region[aria-expanded='true'] > .dtc-navigation_item > .dtc-navigation_item-expand-trigger {
+    transform: rotate(45deg);
+}
+
+.dtc-navigation_item-region[aria-expanded='true'] > .dtc-navigation_item-list {
+    display: block;
+}
+
+.dtc-navigation_item-display-text-input {
+    width: 160px;
+}
+
+.dtc-navigation_item-expand-trigger {
+    content: '';
+    display: inline-block;
+    margin-left: -2px;
+    margin-right: 2px;
+    border-top: 4px solid transparent;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    vertical-align: middle;
+}
+
+.dtc-navigation_item {
+    font-size: var(--dtc-text-size-default);
+    display: block;
+    cursor: pointer;
+    border: 1px solid transparent;
+    color: var(--dtc-inactive-text-color);
+}
+
+.dtc-navigation_item > [data-dictionaryid] {
+    padding: 6px 8px;
+    border-radius: var(--dtc-border-radius);
+}
+
+.dtc-navigation_item > [data-dictionaryid]:focus-visible {
+    box-shadow: inset 0 0 0 1 var(--dtc-accent-color);
+}
+
+.dtc-navigation_item__draggable {
+    cursor: grab;
+}
+
+.dtc-navigation_item__hover {
+    border-color: L3OutlineColorProperty;
+}
+
+.dtc-navigation_item__hover-after {
+    border-bottom-color: L3OutlineColorProperty;
+}
+
+.dtc-navigation_item__hover-before {
+    border-top-color: L3OutlineColorProperty;
+}
+
+.dtc-navigation_item__expandable > .dtc-navigation_item-expand-trigger {
+    border-left: 4px solid var(--dtc-text-color);
+}
+
+.dtc-navigation_item__active {
+    color: var(--dtc-text-color);
+    font-weight: 600;
+}
+
+.dtc-navigation_item-list {
+    display: none;
+    font-size: calc(100% + 20px);
+}

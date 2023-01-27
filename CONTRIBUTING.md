@@ -21,12 +21,12 @@ The above steps are a one-time setup for your machine and do not need to be repe
 Now that your machine is setup, you can clone the Design to Code repository. Open a terminal and run this command:
 
 ```shell
-git clone https://github.com/microsoft/design-to-code.git
+git clone https://github.com/janechu/design-to-code.git
 ```
 Cloning via SSH:
 
 ```shell
-git clone git@github.com:microsoft/design-to-code.git
+git clone git@github.com:janechu/design-to-code.git
 ```
 
 ### Installing and building
@@ -42,6 +42,15 @@ After the initial install, you can re-build all workspaces in the future with:
 ```bash
 npm run prepare --workspaces
 ```
+
+#### Linux
+
+You may run into an issue with latest Node v18 and the following error:
+```bash
+Error: error:0308010C:digital envelope routines::unsupported
+```
+
+To correct this follow the advice in this stack overflow answer: https://stackoverflow.com/a/69699772
 
 ### Testing
 
@@ -103,10 +112,6 @@ Example of how to format `MIGRATION.md`:
 You can use any code editor you like when working with the Design to Code monorepo. One of our favorites is [Visual Studio Code](https://code.visualstudio.com/). VS Code has great autocomplete support for TypeScript and JavaScript APIs, as well as a rich ecosystem of plugins.
 
 Default VS Code settings for this project are configured as [Workspace settings](https://code.visualstudio.com/docs/getstarted/settings) in the `.vscode` directory. These settings override user settings for the workspace and are configured to ensure consistent code formatting across different environments. We also include a list of [Workspace recommended extensions](https://code.visualstudio.com/docs/editor/extension-marketplace#_workspace-recommended-extensions) for VS Code for syntax highlighting and code linting.
-
-## FAST guidance
-
-The Design to Code project follows the contribution policy outlined in the FAST project for their [governance](https://github.com/microsoft/fast/blob/master/CONTRIBUTING.md#governance), [acceptance and consensus seeking process](https://github.com/microsoft/fast/blob/master/CONTRIBUTING.md#acceptance-and-consensus-seeking-process), and [stability policy](https://github.com/microsoft/fast/blob/master/CONTRIBUTING.md#stability-policy).
 
 ## Developer's Certificate of Origin 1.1
 

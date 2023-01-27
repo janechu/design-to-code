@@ -1,12 +1,23 @@
 import React from "react";
-import Foundation, { HandledProps } from "@microsoft/fast-components-foundation-react";
 import { SelectDeviceProps } from "./select-device.props";
 import { Device } from "./devices";
+import cssVariables from "../../style/css-variables.css";
+import ellipsisStyle from "../../style/ellipsis-style.css";
+import selectSpanStyle from "../../style/select-span-style.css";
+import selectInputStyle from "../../style/select-input-style.css";
+import style from "./select-device.style.css";
 
-export class SelectDevice extends Foundation<SelectDeviceProps, {}, {}> {
+// tree-shaking
+cssVariables;
+ellipsisStyle;
+selectSpanStyle;
+selectInputStyle;
+style;
+
+export class SelectDevice extends React.Component<SelectDeviceProps, {}, {}> {
     public static displayName: string = "SelectDevice";
 
-    protected handledProps: HandledProps<SelectDeviceProps> = {
+    protected handledProps: SelectDeviceProps = {
         devices: void 0,
         activeDeviceId: void 0,
         onUpdateDevice: void 0,
@@ -15,13 +26,15 @@ export class SelectDevice extends Foundation<SelectDeviceProps, {}, {}> {
     public render(): JSX.Element {
         if (this.props.devices) {
             return (
-                <div className={this.props.managedClasses.selectDevice}>
+                <div className={"dtc-select-device"}>
                     {this.renderLabel()}
                     <span
-                        className={this.props.managedClasses.selectDevice_contentRegion}
+                        className={
+                            "dtc-select-device_content-region dtc-common-select-span"
+                        }
                     >
                         <select
-                            className={this.props.managedClasses.selectDevice_select}
+                            className={"dtc-select-device_select dtc-common-select-input"}
                             onChange={this.handleOnChange}
                             value={this.props.activeDeviceId}
                             disabled={this.props.disabled}
@@ -39,7 +52,7 @@ export class SelectDevice extends Foundation<SelectDeviceProps, {}, {}> {
     private renderLabel(): React.ReactNode {
         if (this.props.label) {
             return (
-                <label className={this.props.managedClasses.selectDevice_label}>
+                <label className={"dtc-select-device_label dtc-common-ellipsis"}>
                     {this.props.label}
                 </label>
             );

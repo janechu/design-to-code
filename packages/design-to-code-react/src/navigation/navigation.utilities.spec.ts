@@ -3,7 +3,7 @@ import {
     MessageSystemDataTypeAction,
     MessageSystemType,
     NavigationConfigDictionary,
-} from "@microsoft/design-to-code";
+} from "design-to-code";
 import { DragDropItemType } from "./navigation-tree-item.props";
 import { HoverLocation } from "./navigation.props";
 import {

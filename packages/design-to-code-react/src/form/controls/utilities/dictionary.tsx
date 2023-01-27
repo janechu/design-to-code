@@ -1,26 +1,37 @@
 import React from "react";
 import { isPlainObject, uniqueId } from "lodash-es";
-import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
-import { ManagedClasses } from "@microsoft/fast-components-class-name-contracts-base";
 import { keyEnter } from "@microsoft/fast-web-utilities";
-import { PropertyKeyword } from "@microsoft/design-to-code";
-import styles, { DictionaryClassNameContract } from "./dictionary.style";
+import { PropertyKeyword } from "design-to-code";
 import { DictionaryProps, DictionaryState } from "./dictionary.props";
 import ControlSwitch from "./control-switch";
 import { generateExampleData, getErrorFromDataLocation } from "./form";
+import cssVariables from "../../../style/css-variables.css";
+import controlStyle from "../../../style/control-style.css";
+import labelStyle from "../../../style/label-style.css";
+import controlRegionStyle from "../../../style/control-region-style.css";
+import inputStyle from "../../../style/input-style.css";
+import removeItemStyle from "../../../style/remove-item-style.css";
+import addItemStyle from "../../../style/add-item-style.css";
+import style from "./dictionary.style.css";
+
+// tree-shaking
+cssVariables;
+controlStyle;
+labelStyle;
+controlRegionStyle;
+inputStyle;
+removeItemStyle;
+addItemStyle;
+style;
 
 /**
  *  control definition
  */
-class Dictionary extends React.Component<
-    DictionaryProps & ManagedClasses<DictionaryClassNameContract>,
-    DictionaryState
-> {
+class Dictionary extends React.Component<DictionaryProps, DictionaryState> {
     public static displayName: string = "Dictionary";
 
-    private rootElementRef: React.RefObject<HTMLDivElement> = React.createRef<
-        HTMLDivElement
-    >();
+    private rootElementRef: React.RefObject<HTMLDivElement> =
+        React.createRef<HTMLDivElement>();
 
     constructor(props: DictionaryProps) {
         super(props);
@@ -33,10 +44,7 @@ class Dictionary extends React.Component<
 
     public render(): React.ReactNode {
         return (
-            <div
-                className={this.props.managedClasses.dictionary}
-                ref={this.rootElementRef}
-            >
+            <div className={"dtc-dictionary"} ref={this.rootElementRef}>
                 {this.renderControl()}
                 {this.renderControls()}
             </div>
@@ -53,12 +61,10 @@ class Dictionary extends React.Component<
 
     private updateValidity(): void {
         if (this.props.additionalProperties === false) {
-            const {
-                dictionary_itemControlInput,
-            }: DictionaryClassNameContract = this.props.managedClasses;
-
             this.rootElementRef.current
-                .querySelectorAll<HTMLInputElement>(`.${dictionary_itemControlInput}`)
+                .querySelectorAll<HTMLInputElement>(
+                    `.${"dtc-dictionary_item-control-input dtc-common-input"}`
+                )
                 .forEach((itemControlInput: HTMLInputElement) => {
                     itemControlInput.setCustomValidity(
                         "should NOT have additional properties"
@@ -68,23 +74,22 @@ class Dictionary extends React.Component<
     }
 
     private renderControl(): React.ReactNode {
-        const {
-            dictionary_controlAddTrigger,
-            dictionary_controlLabel,
-            dictionary_control,
-            dictionary_controlRegion,
-        }: DictionaryClassNameContract = this.props.managedClasses;
-
         if (isPlainObject(this.props.additionalProperties)) {
             return (
-                <div className={dictionary_controlRegion}>
-                    <div className={dictionary_control}>
-                        <label className={dictionary_controlLabel}>
+                <div
+                    className={"dtc-dictionary_control-region dtc-common-control-region"}
+                >
+                    <div className={"dtc-dictionary_control dtc-common-control"}>
+                        <label
+                            className={"dtc-dictionary_control-label dtc-common-label"}
+                        >
                             {this.props.label}
                         </label>
                     </div>
                     <button
-                        className={dictionary_controlAddTrigger}
+                        className={
+                            "dtc-dictionary_control-add-trigger dtc-common-add-item"
+                        }
                         aria-label={"Select to add item"}
                         onClick={this.handleOnAddItem}
                     />
@@ -94,22 +99,18 @@ class Dictionary extends React.Component<
     }
 
     private renderItemControl(propertyName: string): React.ReactNode {
-        const {
-            dictionary_itemControlRegion,
-            dictionary_itemControl,
-            dictionary_itemControlLabel,
-            dictionary_itemControlInput,
-            dictionary_itemControlRemoveTrigger,
-        }: DictionaryClassNameContract = this.props.managedClasses;
-
         return (
-            <div className={dictionary_itemControlRegion}>
-                <div className={dictionary_itemControl}>
-                    <label className={dictionary_itemControlLabel}>
+            <div
+                className={"dtc-dictionary_item-control-region dtc-common-control-region"}
+            >
+                <div className={"dtc-dictionary_item-control dtc-common-control"}>
+                    <label
+                        className={"dtc-dictionary_item-control-label dtc-common-label"}
+                    >
                         {this.props.propertyLabel}
                     </label>
                     <input
-                        className={dictionary_itemControlInput}
+                        className={"dtc-dictionary_item-control-input dtc-common-input"}
                         type={"text"}
                         value={
                             this.state.focusedPropertyKey === propertyName
@@ -123,7 +124,9 @@ class Dictionary extends React.Component<
                         readOnly={this.props.additionalProperties === false}
                     />
                     <button
-                        className={dictionary_itemControlRemoveTrigger}
+                        className={
+                            "dtc-dictionary_item-control-remove-trigger dtc-common-remove-item"
+                        }
                         onClick={this.handleOnRemoveItem(propertyName)}
                     />
                 </div>
@@ -132,9 +135,8 @@ class Dictionary extends React.Component<
     }
 
     private renderControls(): React.ReactNode {
-        return (typeof this.props.data !== "undefined"
-            ? Object.keys(this.props.data)
-            : []
+        return (
+            typeof this.props.data !== "undefined" ? Object.keys(this.props.data) : []
         ).reduce(
             (
                 accumulator: React.ReactNode,
@@ -284,9 +286,8 @@ class Dictionary extends React.Component<
             const data: any = {};
 
             dataKeys.forEach((dataKey: string) => {
-                data[
-                    dataKey === propertyName ? e.target.value : dataKey
-                ] = this.props.data[dataKey];
+                data[dataKey === propertyName ? e.target.value : dataKey] =
+                    this.props.data[dataKey];
             });
 
             this.props.onChange({
@@ -327,4 +328,4 @@ class Dictionary extends React.Component<
 }
 
 export { Dictionary };
-export default manageJss(styles)(Dictionary);
+export default Dictionary;

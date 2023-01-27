@@ -12,7 +12,7 @@ import {
 import { ArrayAction } from "./types";
 import { DragItem, DragItemProps, ItemType } from "./drag-item.props";
 
-const DragItem: React.FC<DragItemProps> = ({
+const DragItem: React.FC<React.PropsWithChildren<DragItemProps>> = ({
     children,
     itemRemoveClassName,
     itemClassName,
@@ -33,13 +33,11 @@ const DragItem: React.FC<DragItemProps> = ({
         DragElementWrapper<DragSourceOptions>,
         DragElementWrapper<DragPreviewOptions>
     ] = useDrag({
-        item: {
+        type: ItemType.ListItem,
+        item: dragStart({
             type: ItemType.ListItem,
             index,
-        },
-        begin(): void {
-            dragStart();
-        },
+        }),
         end(): void {
             dragEnd();
         },

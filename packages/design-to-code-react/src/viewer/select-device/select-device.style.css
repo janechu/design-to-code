@@ -1,0 +1,14 @@
+.dtc-select-device {
+    display: inline-block;
+    vertical-align: text-bottom;
+}
+
+.dtc-select-device_label {
+    line-height: 16px;
+    font-size: 14px;
+    margin-right: 16px;
+}
+
+.dtc-select-device_select {
+    padding-right: 15px;
+}

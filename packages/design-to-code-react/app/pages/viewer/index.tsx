@@ -1,5 +1,5 @@
 import React from "react";
-import { MessageSystem, MessageSystemType } from "@microsoft/design-to-code";
+import { MessageSystem, MessageSystemType } from "design-to-code";
 import {
     defaultDevices,
     Device,
@@ -70,11 +70,11 @@ class ViewerPage extends React.Component<{}, PageState> {
                         devices={defaultDevices}
                         onUpdateDevice={this.handleDeviceUpdate}
                         activeDeviceId={this.state.activeDevice.id}
-                        jssStyleSheet={{
-                            selectDevice: {
-                                paddingRight: "10px",
-                            },
-                        }}
+                        // jssStyleSheet={{
+                        //     selectDevice: {
+                        //         paddingRight: "10px",
+                        //     },
+                        // }}
                     />
                     <Rotate
                         orientation={this.state.orientation}

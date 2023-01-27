@@ -1,6 +1,6 @@
 import { linkedDataPluginId, pluginIdKeyword } from "./keywords.js";
 
-export const dictionaryLink: string = "@microsoft/design-to-code/dictionary-link";
+export const dictionaryLink: string = "design-to-code/dictionary-link";
 
 export default {
     [dictionaryLink]: true,

@@ -8,13 +8,9 @@ import {
     updateControlSectionState,
 } from "./utilities/form";
 import React from "react";
-import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
-import { ManagedClasses } from "@microsoft/fast-components-class-name-contracts-base";
-import styles from "./control.section.style";
 import { get, uniqueId } from "lodash-es";
 import {
     CategoryState,
-    SectionControlClassNameContract,
     SectionControlProps,
     SectionControlState,
 } from "./control.section.props";
@@ -29,23 +25,18 @@ import {
     SchemaSetValidationAction,
     SchemaSetValidationMessageRequest,
     TreeNavigationItem,
-} from "@microsoft/design-to-code";
+} from "design-to-code";
+import style from "./control.section.style.css";
+
+// tree-shaking
+style;
 
 /**
  * Schema form component definition
  * @extends React.Component
  */
-class SectionControl extends React.Component<
-    SectionControlProps & ManagedClasses<SectionControlClassNameContract>,
-    SectionControlState
-> {
+class SectionControl extends React.Component<SectionControlProps, SectionControlState> {
     public static displayName: string = "SectionControl";
-
-    public static defaultProps: Partial<
-        SectionControlProps & ManagedClasses<SectionControlClassNameContract>
-    > = {
-        managedClasses: {},
-    };
 
     public static getDerivedStateFromProps(
         props: SectionControlProps,
@@ -68,9 +59,7 @@ class SectionControl extends React.Component<
      */
     private oneOfAnyOfValidationRequestId: string;
 
-    constructor(
-        props: SectionControlProps & ManagedClasses<SectionControlClassNameContract>
-    ) {
+    constructor(props: SectionControlProps) {
         super(props);
 
         this.messageSystemConfig = {
@@ -93,8 +82,8 @@ class SectionControl extends React.Component<
 
         return (
             <fieldset
-                className={classNames(this.props.managedClasses.sectionControl, [
-                    this.props.managedClasses.sectionControl__disabled,
+                className={classNames("dtc-section-control", [
+                    "dtc-section-control__disabled",
                     isDisabled,
                 ])}
                 disabled={isDisabled}
@@ -237,13 +226,11 @@ class SectionControl extends React.Component<
     };
 
     private getFormControl(item: string, index: number): React.ReactNode {
-        const splitDataLocation: string[] = this.props.navigation[
-            item
-        ].relativeDataLocation.split(".");
+        const splitDataLocation: string[] =
+            this.props.navigation[item].relativeDataLocation.split(".");
         const propertyName: string = splitDataLocation[splitDataLocation.length - 1];
-        const requiredArray: string[] | void = this.props.navigation[
-            this.props.navigationConfigId
-        ].schema.required;
+        const requiredArray: string[] | void =
+            this.props.navigation[this.props.navigationConfigId].schema.required;
         const isRequired: boolean =
             Array.isArray(requiredArray) && requiredArray.includes(propertyName);
 
@@ -282,48 +269,31 @@ class SectionControl extends React.Component<
 
             this.state.categories.forEach(
                 (categoryItem: CategoryState, index: number) => {
-                    const category = this.props.categories[
-                        this.props.dataDictionary[0][this.props.dictionaryId].schemaId
-                    ][this.props.dataLocation][index];
+                    const category =
+                        this.props.categories[
+                            this.props.dataDictionary[0][this.props.dictionaryId].schemaId
+                        ][this.props.dataLocation][index];
                     formControls.push(
                         <fieldset
                             key={index}
-                            className={classNames(
-                                this.props.managedClasses.sectionControl_category,
-                                [
-                                    this.props.managedClasses
-                                        .sectionControl_category__expanded,
-                                    categoryItem.expanded,
-                                ]
-                            )}
+                            className={classNames("dtc-section-control_category", [
+                                "dtc-section-control_category__expanded",
+                                categoryItem.expanded,
+                            ])}
                         >
-                            <div
-                                className={
-                                    this.props.managedClasses
-                                        .sectionControl_categoryTitleRegion
-                                }
-                            >
-                                <legend
-                                    className={
-                                        this.props.managedClasses
-                                            .sectionControl_categoryTitle
-                                    }
-                                >
+                            <div className={"dtc-section-control_category-title-region"}>
+                                <legend className={"dtc-section-control_category-title"}>
                                     {category.title}
                                 </legend>
                                 <button
                                     className={
-                                        this.props.managedClasses
-                                            .sectionControl_categoryExpandTrigger
+                                        "dtc-section-control_category-expand-trigger"
                                     }
                                     onClick={this.handleCategoryExpandTriggerClick(index)}
                                 />
                             </div>
                             <div
-                                className={
-                                    this.props.managedClasses
-                                        .sectionControl_categoryContentRegion
-                                }
+                                className={"dtc-section-control_category-content-region"}
                             >
                                 {category.dataLocations.map(
                                     (dataLocation: string, index: number) => {
@@ -544,4 +514,4 @@ class SectionControl extends React.Component<
 }
 
 export { SectionControl };
-export default manageJss(styles)(SectionControl);
+export default SectionControl;

@@ -1,4 +1,4 @@
-import { CombiningKeyword } from "@microsoft/design-to-code";
+import { CombiningKeyword } from "design-to-code";
 import { FormStrings } from "../form.props";
 import { SectionControlConfig } from "../templates";
 

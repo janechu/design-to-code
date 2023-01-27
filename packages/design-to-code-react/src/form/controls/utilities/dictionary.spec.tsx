@@ -1,5 +1,3 @@
-import { configure, mount, shallow } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
 import "../../../__tests__/mocks/match-media";
 import React from "react";
 import defaultStrings from "../../form.strings";
@@ -18,11 +16,6 @@ import { controls } from "./control-switch.spec";
 import { Dictionary } from "./dictionary";
 import type { DictionaryProps } from "./dictionary.props";
 import type { DictionaryClassNameContract } from "./dictionary.style";
-
-/*
- * Configure Enzyme
- */
-configure({ adapter: new Adapter() });
 
 const managedClasses: DictionaryClassNameContract = {
     dictionary: "dictionary-class",

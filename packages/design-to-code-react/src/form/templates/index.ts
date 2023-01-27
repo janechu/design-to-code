@@ -20,9 +20,7 @@ export {
 
 export * from "./template.control.utilities.props";
 export * from "./template.control.single-line.props";
-export * from "./template.control.single-line.style";
 export * from "./template.control.standard.props";
-export * from "./template.control.standard.style";
 
 import DragItem from "./drag-item";
 export { DragItem };

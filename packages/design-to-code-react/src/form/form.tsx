@@ -22,16 +22,12 @@ import { BreadcrumbItem, getDictionaryBreadcrumbs } from "./utilities";
 import {
     BreadcrumbItemEventHandler,
     ControlPluginConfig,
-    FormClassNameContract,
     FormProps,
     FormState,
     FormStrings,
 } from "./form.props";
 import { cloneDeep, get } from "lodash-es";
-import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
-import { ManagedClasses } from "@microsoft/fast-components-class-name-contracts-base";
 import React from "react";
-import styles from "./form.style";
 import defaultStrings from "./form.strings";
 import { classNames } from "@microsoft/fast-web-utilities";
 import {
@@ -46,7 +42,13 @@ import {
     SchemaDictionary,
     TreeNavigationItem,
     Validation,
-} from "@microsoft/design-to-code";
+} from "design-to-code";
+import cleanListStyle from "../style/clean-list-style.css";
+import style from "./form.style.css";
+
+// tree-shaking
+cleanListStyle;
+style;
 
 export const formId: string = "dtc-react::form";
 
@@ -58,10 +60,7 @@ interface FormRegisterConfig {
  * Schema form component definition
  * @extends React.Component
  */
-class Form extends React.Component<
-    FormProps & ManagedClasses<FormClassNameContract>,
-    FormState
-> {
+class Form extends React.Component<FormProps, FormState> {
     public static displayName: string = "Form";
 
     public static defaultProps: Partial<FormProps> = {
@@ -99,7 +98,7 @@ class Form extends React.Component<
     private messageSystemConfig: Register<FormRegisterConfig>;
     private strings: FormStrings = defaultStrings;
 
-    constructor(props: FormProps & ManagedClasses<FormClassNameContract>) {
+    constructor(props: FormProps) {
         super(props);
 
         this.untitled = "Untitled";
@@ -136,11 +135,7 @@ class Form extends React.Component<
     }
 
     public render(): React.ReactNode {
-        return (
-            <div className={classNames(this.props.managedClasses.form)}>
-                {this.renderForm()}
-            </div>
-        );
+        return <div className={classNames("dtc-form")}>{this.renderForm()}</div>;
     }
 
     public componentWillUnmount(): void {
@@ -384,7 +379,7 @@ class Form extends React.Component<
 
         if (breadcrumbs.length > 1) {
             return (
-                <ul className={this.props.managedClasses.form_breadcrumbs}>
+                <ul className={"dtc-form_breadcrumbs dtc-common-clean-list"}>
                     {this.renderBreadcrumbItems(breadcrumbs)}
                 </ul>
             );
@@ -392,25 +387,23 @@ class Form extends React.Component<
     }
 
     private renderBreadcrumbItems(items: BreadcrumbItem[]): React.ReactNode {
-        return items.map(
-            (item: BreadcrumbItem, index: number): JSX.Element => {
-                if (index === items.length - 1) {
-                    return (
-                        <li key={index}>
-                            <span>{item.text}</span>
-                        </li>
-                    );
-                }
-
+        return items.map((item: BreadcrumbItem, index: number): JSX.Element => {
+            if (index === items.length - 1) {
                 return (
                     <li key={index}>
-                        <a href={item.href} onClick={item.onClick}>
-                            {item.text}
-                        </a>
+                        <span>{item.text}</span>
                     </li>
                 );
             }
-        );
+
+            return (
+                <li key={index}>
+                    <a href={item.href} onClick={item.onClick}>
+                        {item.text}
+                    </a>
+                </li>
+            );
+        });
     }
 
     /**
@@ -418,9 +411,10 @@ class Form extends React.Component<
      */
     private renderSection(): React.ReactNode {
         let control: BareControlPlugin = this.sectionControl;
-        const navigationItem: TreeNavigationItem = this.state.navigationDictionary[0][
-            this.state.activeDictionaryId
-        ][0][this.state.activeNavigationConfigId];
+        const navigationItem: TreeNavigationItem =
+            this.state.navigationDictionary[0][this.state.activeDictionaryId][0][
+                this.state.activeNavigationConfigId
+            ];
 
         // Check to see if there is any associated `formControlId`
         // then check for the id within the passed controlPlugins
@@ -465,15 +459,15 @@ class Form extends React.Component<
             schemaLocation: navigationItem.schemaLocation,
             default: get(navigationItem, "schema.default"),
             disabled: navigationItem.disabled,
-            dataLocation: this.state.navigationDictionary[0][
-                this.state.activeDictionaryId
-            ][0][navigationItem.self].relativeDataLocation,
+            dataLocation:
+                this.state.navigationDictionary[0][this.state.activeDictionaryId][0][
+                    navigationItem.self
+                ].relativeDataLocation,
             navigationConfigId: navigationItem.self,
             dictionaryId: this.state.activeDictionaryId,
             dataDictionary: this.state.dataDictionary,
-            navigation: this.state.navigationDictionary[0][
-                this.state.activeDictionaryId
-            ][0],
+            navigation:
+                this.state.navigationDictionary[0][this.state.activeDictionaryId][0],
             untitled: this.untitled,
             validationErrors: this.state.validationErrors[this.state.activeDictionaryId],
             displayValidationBrowserDefault: this.props.displayValidationBrowserDefault,
@@ -612,5 +606,4 @@ class Form extends React.Component<
     };
 }
 
-export { FormClassNameContract };
-export default manageJss(styles)(Form);
+export default Form;

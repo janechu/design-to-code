@@ -4,10 +4,11 @@ import {
     ControlConfig,
     StandardControlPlugin,
     TextAlignControl,
+    ThemeControl,
     FileControl,
 } from "../../src";
 import CSSControl from "../../src/form/custom-controls/control.css";
-import { properties as allCSSProperties } from "@microsoft/design-to-code/dist/esm/css-data";
+import { properties as allCSSProperties } from "design-to-code/dist/esm/css-data";
 import { FormProps } from "../../src/form/form.props";
 import {
     FormAttributeSettingsMappingToPropertyNames,
@@ -21,7 +22,7 @@ import {
     MessageSystem,
     MessageSystemType,
     SchemaDictionary,
-} from "@microsoft/design-to-code";
+} from "design-to-code";
 import {
     accentColorName,
     L1ColorName,
@@ -31,7 +32,7 @@ import {
     errorColorName,
     FloatingColorName,
 } from "../../src/style";
-import { CSSPropertiesDictionary } from "@microsoft/design-to-code/dist/esm/data-utilities/mapping.mdn-data";
+import { CSSPropertiesDictionary } from "design-to-code/dist/esm/data-utilities/mapping.mdn-data";
 import { ControlContext } from "../../src/form/templates/types";
 import { CSSStandardControlPlugin } from "../../src/form/custom-controls/css";
 import { CSSControlConfig } from "../../src/form/custom-controls/css/css.template.control.standard.props";
@@ -48,7 +49,7 @@ import {
     colorPickerComponent,
     fileComponent,
     fileActionObjectUrlComponent,
-} from "@microsoft/design-to-code/dist/esm/web-components";
+} from "design-to-code/dist/esm/web-components";
 
 DesignSystem.getOrCreate().register(
     fastButton(),
@@ -178,12 +179,18 @@ class FormTestPage extends React.Component<{}, FormTestPageState> {
                 },
             }),
             new StandardControlPlugin({
+                id: testConfigs.customControl.schema.properties.theme.formControlId,
+                control: (config: ControlConfig): React.ReactNode => {
+                    return <ThemeControl {...config} />;
+                },
+            }),
+            new StandardControlPlugin({
                 id: testConfigs.controlPluginCss.schema.properties.css.formControlId,
                 context: ControlContext.fill,
                 control: (config: ControlConfig): React.ReactNode => {
                     return (
                         <CSSControl
-                            css={(properties as unknown) as CSSPropertiesDictionary}
+                            css={properties as unknown as CSSPropertiesDictionary}
                             {...config}
                             key={`${config.dictionaryId}::${config.dataLocation}`}
                         />
@@ -191,13 +198,12 @@ class FormTestPage extends React.Component<{}, FormTestPageState> {
                 },
             }),
             new StandardControlPlugin({
-                id:
-                    testConfigs.controlPluginCssWithOverrides.schema.properties
-                        .cssWithOverrides.formControlId,
+                id: testConfigs.controlPluginCssWithOverrides.schema.properties
+                    .cssWithOverrides.formControlId,
                 control: (config: ControlConfig): React.ReactNode => {
                     return (
                         <CSSControl
-                            css={(properties as unknown) as CSSPropertiesDictionary}
+                            css={properties as unknown as CSSPropertiesDictionary}
                             key={`${config.dictionaryId}::${config.dataLocation}`}
                             cssControls={[
                                 new CSSStandardControlPlugin({

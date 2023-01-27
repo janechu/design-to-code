@@ -1,37 +1,32 @@
 import React from "react";
-import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
-import { ManagedClasses } from "@microsoft/fast-components-class-name-contracts-base";
-import styles, { DisplayControlClassNameContract } from "./control.display.style";
 import { DisplayControlProps } from "./control.display.props";
 import { classNames } from "@microsoft/fast-web-utilities";
 import { isDefault } from "./utilities/form";
+import cssVariables from "../../style/css-variables.css";
+import inputStyle from "../../style/input-style.css";
+import defaultFontStyle from "../../style/default-font-style.css";
+import style from "./control.display.style.css";
+
+// tree-shaking
+cssVariables;
+inputStyle;
+defaultFontStyle;
+style;
 
 /**
  * Form control definition
  */
-class DisplayControl extends React.Component<
-    DisplayControlProps & ManagedClasses<DisplayControlClassNameContract>,
-    {}
-> {
+class DisplayControl extends React.Component<DisplayControlProps, {}> {
     public static displayName: string = "DisplayControl";
-
-    public static defaultProps: Partial<
-        DisplayControlProps & ManagedClasses<DisplayControlClassNameContract>
-    > = {
-        managedClasses: {},
-    };
 
     public render(): React.ReactNode {
         return (
             <input
                 className={classNames(
-                    this.props.managedClasses.displayControl,
+                    "dtc-display-control dtc-common-input",
+                    ["dtc-display-control__disabled", this.props.disabled],
                     [
-                        this.props.managedClasses.displayControl__disabled,
-                        this.props.disabled,
-                    ],
-                    [
-                        this.props.managedClasses.displayControl__default,
+                        "dtc-display-control__default dtc-common-default-font",
                         isDefault(this.props.value, this.props.default),
                     ]
                 )}
@@ -78,4 +73,4 @@ class DisplayControl extends React.Component<
 }
 
 export { DisplayControl };
-export default manageJss(styles)(DisplayControl);
+export default DisplayControl;

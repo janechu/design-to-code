@@ -1,14 +1,12 @@
 import React from "react";
-import Adapter from "enzyme-adapter-react-16";
 import "../../__tests__/mocks/match-media";
-import { configure, mount } from "enzyme";
 import ArrayControlStyled, { ArrayControl } from "./control.array";
 import { ArrayControlProps } from "./control.array.props";
 import { ArrayControlClassNameContract } from "./control.array.style";
-import HTML5Backend from "react-dnd-html5-backend";
+import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
 import { ControlType } from "../templates";
-import { DataType, ValidationError } from "@microsoft/design-to-code";
+import { DataType, ValidationError } from "design-to-code";
 import defaultStrings from "../form.strings";
 
 const TestArrayControl: React.FC<any> = (
@@ -20,11 +18,6 @@ const TestArrayControl: React.FC<any> = (
         </DndProvider>
     );
 };
-
-/*
- * Configure Enzyme
- */
-configure({ adapter: new Adapter() });
 
 const arrayProps: ArrayControlProps = {
     type: ControlType.array,

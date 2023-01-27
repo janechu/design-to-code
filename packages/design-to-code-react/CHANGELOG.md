@@ -1,4 +1,4 @@
-# Change Log - @microsoft/design-to-code-react
+# Change Log - design-to-code-react
 
 This log was last generated on Wed, 13 Jul 2022 07:07:28 GMT and should not be manually modified.
 
@@ -11,7 +11,7 @@ Wed, 13 Jul 2022 07:07:28 GMT
 ### Patches
 
 - Deprecate published packages in favor of renamed packages (7559015+janechu@users.noreply.github.com)
-- Bump @microsoft/design-to-code to v0.37.10
+- Bump design-to-code to v0.37.10
 
 ## 2.13.12
 
@@ -19,7 +19,7 @@ Wed, 06 Apr 2022 00:54:27 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.37.9
+- Bump design-to-code to v0.37.9
 
 ## 2.13.11
 
@@ -27,7 +27,7 @@ Tue, 05 Apr 2022 17:46:00 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.37.8
+- Bump design-to-code to v0.37.8
 
 ## 2.13.10
 
@@ -36,7 +36,7 @@ Wed, 30 Mar 2022 07:08:59 GMT
 ### Patches
 
 - Bump lodash-es from 4.17.15 to 4.17.21 (7559015+janechu@users.noreply.github.com)
-- Bump @microsoft/design-to-code to v0.37.7
+- Bump design-to-code to v0.37.7
 
 ## 2.13.9
 
@@ -44,7 +44,7 @@ Wed, 09 Feb 2022 07:09:11 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.37.6
+- Bump design-to-code to v0.37.6
 
 ## 2.13.8
 
@@ -52,7 +52,7 @@ Sun, 06 Feb 2022 07:07:35 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.37.5
+- Bump design-to-code to v0.37.5
 
 ## 2.13.7
 
@@ -60,7 +60,7 @@ Fri, 21 Jan 2022 21:47:33 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.37.4
+- Bump design-to-code to v0.37.4
 
 ## 2.13.6
 
@@ -68,7 +68,7 @@ Thu, 20 Jan 2022 07:08:23 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.37.3
+- Bump design-to-code to v0.37.3
 
 ## 2.13.5
 
@@ -76,7 +76,7 @@ Wed, 19 Jan 2022 07:09:03 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.37.2
+- Bump design-to-code to v0.37.2
 
 ## 2.13.4
 
@@ -85,7 +85,7 @@ Sun, 16 Jan 2022 07:07:11 GMT
 ### Patches
 
 - Fixed an issue where the React Form would error when recieving a custom message (7559015+janechu@users.noreply.github.com)
-- Bump @microsoft/design-to-code to v0.37.1
+- Bump design-to-code to v0.37.1
 
 ## 2.13.3
 
@@ -93,7 +93,7 @@ Thu, 13 Jan 2022 07:07:24 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.37.0
+- Bump design-to-code to v0.37.0
 
 ## 2.13.2
 
@@ -101,7 +101,7 @@ Sun, 09 Jan 2022 07:08:26 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.36.0
+- Bump design-to-code to v0.36.0
 
 ## 2.13.1
 
@@ -109,7 +109,7 @@ Wed, 15 Dec 2021 07:09:06 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.35.0
+- Bump design-to-code to v0.35.0
 
 ## 2.13.0
 
@@ -118,7 +118,7 @@ Sun, 12 Dec 2021 07:08:23 GMT
 ### Minor changes
 
 - Simplify the handling of messages sent to the Form and Navigation components (7559015+janechu@users.noreply.github.com)
-- Bump @microsoft/design-to-code to v0.34.0
+- Bump design-to-code to v0.34.0
 
 ## 2.12.8
 
@@ -126,7 +126,7 @@ Wed, 08 Dec 2021 07:08:31 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.33.0
+- Bump design-to-code to v0.33.0
 
 ## 2.12.7
 
@@ -134,7 +134,7 @@ Sun, 05 Dec 2021 07:08:17 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.32.0
+- Bump design-to-code to v0.32.0
 
 ## 2.12.6
 
@@ -142,7 +142,7 @@ Tue, 09 Nov 2021 07:08:13 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.31.4
+- Bump design-to-code to v0.31.4
 
 ## 2.12.5
 
@@ -150,7 +150,7 @@ Fri, 05 Nov 2021 21:03:19 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.31.3
+- Bump design-to-code to v0.31.3
 
 ## 2.12.4
 
@@ -158,7 +158,7 @@ Fri, 05 Nov 2021 16:36:26 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.31.2
+- Bump design-to-code to v0.31.2
 
 ## 2.12.3
 
@@ -167,7 +167,7 @@ Thu, 04 Nov 2021 07:07:24 GMT
 ### Patches
 
 - Added a missing originator ID broadcasted by the Form component (7559015+janechu@users.noreply.github.com)
-- Bump @microsoft/design-to-code to v0.31.1
+- Bump design-to-code to v0.31.1
 
 ## 2.12.2
 
@@ -176,7 +176,7 @@ Wed, 03 Nov 2021 07:07:37 GMT
 ### Patches
 
 - Remove the soft remove UI for linked data as this should only be for regular JSON schema defined data types (7559015+janechu@users.noreply.github.com)
-- Bump @microsoft/design-to-code to v0.31.0
+- Bump design-to-code to v0.31.0
 
 ## 2.12.1
 
@@ -186,7 +186,7 @@ Thu, 28 Oct 2021 07:06:12 GMT
 
 - Updates to package scripts to prevent needing to use --ignore-scripts to install the package (7559015+janechu@users.noreply.github.com)
 - Update TypeScript dependency to 4.3.x (7559015+janechu@users.noreply.github.com)
-- Bump @microsoft/design-to-code to v0.30.2
+- Bump design-to-code to v0.30.2
 
 ## 2.12.0
 
@@ -203,7 +203,7 @@ Wed, 13 Oct 2021 07:04:21 GMT
 ### Patches
 
 - Update the package json file to point to the new repository (7559015+janechu@users.noreply.github.com)
-- Bump @microsoft/design-to-code to v0.30.1
+- Bump design-to-code to v0.30.1
 
 ## 2.11.5
 
@@ -211,7 +211,7 @@ Tue, 12 Oct 2021 02:04:42 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.30.0
+- Bump design-to-code to v0.30.0
 
 ## 2.11.4
 
@@ -219,7 +219,7 @@ Tue, 14 Sep 2021 07:16:47 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.29.0 (jumarroq@microsoft.com)
+- Bump design-to-code to v0.29.0 (jumarroq@microsoft.com)
 
 ## 2.11.4
 
@@ -237,7 +237,7 @@ Thu, 09 Sep 2021 07:21:36 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.28.0 (chhol@microsoft.com)
+- Bump design-to-code to v0.28.0 (chhol@microsoft.com)
 
 ## 2.11.2
 
@@ -245,7 +245,7 @@ Wed, 08 Sep 2021 07:16:17 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.27.11 (roeisenb@microsoft.com)
+- Bump design-to-code to v0.27.11 (roeisenb@microsoft.com)
 
 ## 2.11.1
 
@@ -253,7 +253,7 @@ Thu, 02 Sep 2021 17:17:56 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.27.10 (roeisenb@microsoft.com)
+- Bump design-to-code to v0.27.10 (roeisenb@microsoft.com)
 
 ## 2.11.0
 
@@ -267,7 +267,7 @@ Thu, 02 Sep 2021 07:15:21 GMT
 
 - Removed remaining 'use-defaults' which no longer exists (47367562+bheston@users.noreply.github.com)
 - Bump @microsoft/fast-components to v2.8.1 (47367562+bheston@users.noreply.github.com)
-- Bump @microsoft/design-to-code to v0.27.9 (47367562+bheston@users.noreply.github.com)
+- Bump design-to-code to v0.27.9 (47367562+bheston@users.noreply.github.com)
 - Bump @microsoft/fast-foundation to v2.9.1 (nicholasrice@users.noreply.github.com)
 
 ## 2.10.15
@@ -276,7 +276,7 @@ Wed, 01 Sep 2021 07:18:34 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.27.8 (scomea@microsoft.com)
+- Bump design-to-code to v0.27.8 (scomea@microsoft.com)
 
 ## 2.10.14
 
@@ -284,7 +284,7 @@ Mon, 30 Aug 2021 22:30:39 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.27.7 (nicholasrice@users.noreply.github.com)
+- Bump design-to-code to v0.27.7 (nicholasrice@users.noreply.github.com)
 
 ## 2.10.13
 
@@ -292,7 +292,7 @@ Fri, 27 Aug 2021 14:14:26 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.27.6 (nicholasrice@users.noreply.github.com)
+- Bump design-to-code to v0.27.6 (nicholasrice@users.noreply.github.com)
 
 ## 2.10.12
 
@@ -316,7 +316,7 @@ Mon, 23 Aug 2021 07:14:54 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.27.3 (ben@platform5.ch)
+- Bump design-to-code to v0.27.3 (ben@platform5.ch)
 
 ## 2.10.9
 
@@ -332,7 +332,7 @@ Thu, 19 Aug 2021 07:15:21 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.27.1 (sethdonohue@Admins-MBP.guest.corp.microsoft.com)
+- Bump design-to-code to v0.27.1 (sethdonohue@Admins-MBP.guest.corp.microsoft.com)
 
 ## 2.10.7
 
@@ -348,7 +348,7 @@ Tue, 17 Aug 2021 07:14:05 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.26.6 (44823142+williamw2@users.noreply.github.com)
+- Bump design-to-code to v0.26.6 (44823142+williamw2@users.noreply.github.com)
 
 ## 2.10.5
 
@@ -372,7 +372,7 @@ Wed, 11 Aug 2021 07:14:31 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.26.3 (44823142+williamw2@users.noreply.github.com)
+- Bump design-to-code to v0.26.3 (44823142+williamw2@users.noreply.github.com)
 
 ## 2.10.2
 
@@ -388,7 +388,7 @@ Thu, 05 Aug 2021 07:17:32 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.26.1 (khamu@microsoft.com)
+- Bump design-to-code to v0.26.1 (khamu@microsoft.com)
 
 ## 2.10.0
 
@@ -401,7 +401,7 @@ Wed, 04 Aug 2021 07:15:14 GMT
 ### Patches
 
 - Bump @microsoft/fast-foundation to v2.6.3 (chhol@microsoft.com)
-- Bump @microsoft/design-to-code to v0.26.0 (44823142+williamw2@users.noreply.github.com)
+- Bump design-to-code to v0.26.0 (44823142+williamw2@users.noreply.github.com)
 - Bump @microsoft/fast-components to v2.5.5 (chhol@microsoft.com)
 
 ## 2.9.10
@@ -410,7 +410,7 @@ Tue, 03 Aug 2021 07:17:33 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.25.7 (mathieu.lavoie@logmein.com)
+- Bump design-to-code to v0.25.7 (mathieu.lavoie@logmein.com)
 
 ## 2.9.9
 
@@ -426,7 +426,7 @@ Thu, 29 Jul 2021 07:18:18 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.25.5 (47367562+bheston@users.noreply.github.com)
+- Bump design-to-code to v0.25.5 (47367562+bheston@users.noreply.github.com)
 
 ## 2.9.7
 
@@ -434,7 +434,7 @@ Wed, 28 Jul 2021 07:17:22 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.25.4 (nicholasrice@users.noreply.github.com)
+- Bump design-to-code to v0.25.4 (nicholasrice@users.noreply.github.com)
 
 ## 2.9.6
 
@@ -442,7 +442,7 @@ Sun, 25 Jul 2021 07:17:41 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.25.3 (scomea@microsoft.com)
+- Bump design-to-code to v0.25.3 (scomea@microsoft.com)
 
 ## 2.9.5
 
@@ -450,7 +450,7 @@ Thu, 22 Jul 2021 07:19:53 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.25.2 (chhol@microsoft.com)
+- Bump design-to-code to v0.25.2 (chhol@microsoft.com)
 
 ## 2.9.4
 
@@ -458,7 +458,7 @@ Wed, 21 Jul 2021 07:14:48 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.25.1 (roeisenb@microsoft.com)
+- Bump design-to-code to v0.25.1 (roeisenb@microsoft.com)
 
 ## 2.9.3
 
@@ -466,7 +466,7 @@ Sun, 18 Jul 2021 07:16:22 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.25.0 (ben@platform5.ch)
+- Bump design-to-code to v0.25.0 (ben@platform5.ch)
 
 ## 2.9.2
 
@@ -474,7 +474,7 @@ Thu, 15 Jul 2021 01:41:48 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.24.2 (chhol@microsoft.com)
+- Bump design-to-code to v0.24.2 (chhol@microsoft.com)
 
 ## 2.9.1
 
@@ -482,7 +482,7 @@ Wed, 14 Jul 2021 07:15:36 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.24.1 (44823142+williamw2@users.noreply.github.com)
+- Bump design-to-code to v0.24.1 (44823142+williamw2@users.noreply.github.com)
 
 ## 2.9.0
 
@@ -495,7 +495,7 @@ Tue, 13 Jul 2021 07:14:52 GMT
 ### Patches
 
 - Bump @microsoft/fast-components to v2.2.1 (ben@platform5.ch)
-- Bump @microsoft/design-to-code to v0.24.0 (7559015+janechu@users.noreply.github.com)
+- Bump design-to-code to v0.24.0 (7559015+janechu@users.noreply.github.com)
 - Bump @microsoft/fast-foundation to v2.4.0 (roeisenb@microsoft.com)
 
 ## 2.8.26
@@ -512,7 +512,7 @@ Wed, 07 Jul 2021 07:19:51 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.23.6 (scomea@microsoft.com)
+- Bump design-to-code to v0.23.6 (scomea@microsoft.com)
 
 ## 2.8.24
 
@@ -520,7 +520,7 @@ Sun, 04 Jul 2021 07:15:28 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.23.5 (john.kreitlow@microsoft.com)
+- Bump design-to-code to v0.23.5 (john.kreitlow@microsoft.com)
 
 ## 2.8.23
 
@@ -528,7 +528,7 @@ Thu, 01 Jul 2021 07:15:57 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.23.4 (nicholasrice@users.noreply.github.com)
+- Bump design-to-code to v0.23.4 (nicholasrice@users.noreply.github.com)
 
 ## 2.8.22
 
@@ -536,7 +536,7 @@ Tue, 29 Jun 2021 07:14:52 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.23.3 (7559015+janechu@users.noreply.github.com)
+- Bump design-to-code to v0.23.3 (7559015+janechu@users.noreply.github.com)
 
 ## 2.8.21
 
@@ -544,7 +544,7 @@ Fri, 25 Jun 2021 02:02:57 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.23.2 (roeisenb@microsoft.com)
+- Bump design-to-code to v0.23.2 (roeisenb@microsoft.com)
 
 ## 2.8.20
 
@@ -561,7 +561,7 @@ Sun, 20 Jun 2021 07:21:25 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.23.0 (robarb@microsoft.com)
+- Bump design-to-code to v0.23.0 (robarb@microsoft.com)
 
 ## 2.8.18
 
@@ -577,7 +577,7 @@ Tue, 08 Jun 2021 07:29:18 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.22.2 (scomea@microsoft.com)
+- Bump design-to-code to v0.22.2 (scomea@microsoft.com)
 
 ## 2.8.16
 
@@ -585,7 +585,7 @@ Sun, 06 Jun 2021 07:35:11 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.22.1 (khamu@microsoft.com)
+- Bump design-to-code to v0.22.1 (khamu@microsoft.com)
 
 ## 2.8.15
 
@@ -617,7 +617,7 @@ Thu, 27 May 2021 07:34:58 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.21.1 (44823142+williamw2@users.noreply.github.com)
+- Bump design-to-code to v0.21.1 (44823142+williamw2@users.noreply.github.com)
 
 ## 2.8.11
 
@@ -634,7 +634,7 @@ Tue, 25 May 2021 07:27:43 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.20.1 (scomea@microsoft.com)
+- Bump design-to-code to v0.20.1 (scomea@microsoft.com)
 
 ## 2.8.9
 
@@ -651,7 +651,7 @@ Thu, 20 May 2021 07:24:10 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.19.2 (john.kreitlow@microsoft.com)
+- Bump design-to-code to v0.19.2 (john.kreitlow@microsoft.com)
 
 ## 2.8.7
 
@@ -667,7 +667,7 @@ Sun, 02 May 2021 07:18:00 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.19.0 (44823142+williamw2@users.noreply.github.com)
+- Bump design-to-code to v0.19.0 (44823142+williamw2@users.noreply.github.com)
 
 ## 2.8.5
 
@@ -675,7 +675,7 @@ Thu, 29 Apr 2021 07:19:40 GMT
 
 ### Patches
 
-- Bump @microsoft/design-to-code to v0.18.3 (7559015+janechu@users.noreply.github.com)
+- Bump design-to-code to v0.18.3 (7559015+janechu@users.noreply.github.com)
 
 ## 2.8.4
 
@@ -702,15 +702,15 @@ Fri, 16 Apr 2021 01:19:08 GMT
 
 - fix: update styling to fit the width of the area the form is placed in (7559015+janechu@users.noreply.github.com)
 
-## [2.7.1](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@2.7.0...@microsoft/design-to-code-react@2.7.1) (2021-03-18)
+## [2.7.1](https://github.com/Microsoft/fast/compare/design-to-code-react@2.7.0...design-to-code-react@2.7.1) (2021-03-18)
 
-**Note:** Version bump only for package @microsoft/design-to-code-react
-
-
+**Note:** Version bump only for package design-to-code-react
 
 
 
-# [2.7.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@2.6.0...@microsoft/design-to-code-react@2.7.0) (2021-03-16)
+
+
+# [2.7.0](https://github.com/Microsoft/fast/compare/design-to-code-react@2.6.0...design-to-code-react@2.7.0) (2021-03-16)
 
 
 ### Bug Fixes
@@ -726,7 +726,7 @@ Fri, 16 Apr 2021 01:19:08 GMT
 
 
 
-# [2.6.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@2.5.5...@microsoft/design-to-code-react@2.6.0) (2021-03-06)
+# [2.6.0](https://github.com/Microsoft/fast/compare/design-to-code-react@2.5.5...design-to-code-react@2.6.0) (2021-03-06)
 
 
 ### Bug Fixes
@@ -744,47 +744,47 @@ Fri, 16 Apr 2021 01:19:08 GMT
 
 
 
-## [2.5.5](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@2.5.3...@microsoft/design-to-code-react@2.5.5) (2021-02-08)
+## [2.5.5](https://github.com/Microsoft/fast/compare/design-to-code-react@2.5.3...design-to-code-react@2.5.5) (2021-02-08)
 
-**Note:** Version bump only for package @microsoft/design-to-code-react
-
-
-
-
-
-## [2.5.4](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@2.5.3...@microsoft/design-to-code-react@2.5.4) (2021-02-08)
-
-**Note:** Version bump only for package @microsoft/design-to-code-react
+**Note:** Version bump only for package design-to-code-react
 
 
 
 
 
-## [2.5.3](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@2.5.2...@microsoft/design-to-code-react@2.5.3) (2021-01-30)
+## [2.5.4](https://github.com/Microsoft/fast/compare/design-to-code-react@2.5.3...design-to-code-react@2.5.4) (2021-02-08)
 
-**Note:** Version bump only for package @microsoft/design-to-code-react
-
-
-
-
-
-## [2.5.2](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@2.5.1...@microsoft/design-to-code-react@2.5.2) (2020-12-16)
-
-**Note:** Version bump only for package @microsoft/design-to-code-react
+**Note:** Version bump only for package design-to-code-react
 
 
 
 
 
-## [2.5.1](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@2.5.0...@microsoft/design-to-code-react@2.5.1) (2020-12-02)
+## [2.5.3](https://github.com/Microsoft/fast/compare/design-to-code-react@2.5.2...design-to-code-react@2.5.3) (2021-01-30)
 
-**Note:** Version bump only for package @microsoft/design-to-code-react
-
-
+**Note:** Version bump only for package design-to-code-react
 
 
 
-# [2.5.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@2.4.1...@microsoft/design-to-code-react@2.5.0) (2020-11-19)
+
+
+## [2.5.2](https://github.com/Microsoft/fast/compare/design-to-code-react@2.5.1...design-to-code-react@2.5.2) (2020-12-16)
+
+**Note:** Version bump only for package design-to-code-react
+
+
+
+
+
+## [2.5.1](https://github.com/Microsoft/fast/compare/design-to-code-react@2.5.0...design-to-code-react@2.5.1) (2020-12-02)
+
+**Note:** Version bump only for package design-to-code-react
+
+
+
+
+
+# [2.5.0](https://github.com/Microsoft/fast/compare/design-to-code-react@2.4.1...design-to-code-react@2.5.0) (2020-11-19)
 
 
 ### Bug Fixes
@@ -805,7 +805,7 @@ Fri, 16 Apr 2021 01:19:08 GMT
 
 
 
-## [2.4.1](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@2.4.0...@microsoft/design-to-code-react@2.4.1) (2020-10-14)
+## [2.4.1](https://github.com/Microsoft/fast/compare/design-to-code-react@2.4.0...design-to-code-react@2.4.1) (2020-10-14)
 
 
 ### Bug Fixes
@@ -816,7 +816,7 @@ Fri, 16 Apr 2021 01:19:08 GMT
 
 
 
-# [2.4.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@2.3.5...@microsoft/design-to-code-react@2.4.0) (2020-09-28)
+# [2.4.0](https://github.com/Microsoft/fast/compare/design-to-code-react@2.3.5...design-to-code-react@2.4.0) (2020-09-28)
 
 
 ### Features
@@ -827,23 +827,23 @@ Fri, 16 Apr 2021 01:19:08 GMT
 
 
 
-## [2.3.5](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@2.3.4...@microsoft/design-to-code-react@2.3.5) (2020-09-10)
+## [2.3.5](https://github.com/Microsoft/fast/compare/design-to-code-react@2.3.4...design-to-code-react@2.3.5) (2020-09-10)
 
-**Note:** Version bump only for package @microsoft/design-to-code-react
-
-
-
-
-
-## [2.3.4](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@2.3.3...@microsoft/design-to-code-react@2.3.4) (2020-08-27)
-
-**Note:** Version bump only for package @microsoft/design-to-code-react
+**Note:** Version bump only for package design-to-code-react
 
 
 
 
 
-## [2.3.3](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@2.3.2...@microsoft/design-to-code-react@2.3.3) (2020-08-13)
+## [2.3.4](https://github.com/Microsoft/fast/compare/design-to-code-react@2.3.3...design-to-code-react@2.3.4) (2020-08-27)
+
+**Note:** Version bump only for package design-to-code-react
+
+
+
+
+
+## [2.3.3](https://github.com/Microsoft/fast/compare/design-to-code-react@2.3.2...design-to-code-react@2.3.3) (2020-08-13)
 
 
 ### Bug Fixes
@@ -859,7 +859,7 @@ Fri, 16 Apr 2021 01:19:08 GMT
 
 
 
-## [2.3.2](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@2.3.1...@microsoft/design-to-code-react@2.3.2) (2020-07-31)
+## [2.3.2](https://github.com/Microsoft/fast/compare/design-to-code-react@2.3.1...design-to-code-react@2.3.2) (2020-07-31)
 
 
 ### Bug Fixes
@@ -870,15 +870,15 @@ Fri, 16 Apr 2021 01:19:08 GMT
 
 
 
-## [2.3.1](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@2.3.0...@microsoft/design-to-code-react@2.3.1) (2020-07-23)
+## [2.3.1](https://github.com/Microsoft/fast/compare/design-to-code-react@2.3.0...design-to-code-react@2.3.1) (2020-07-23)
 
-**Note:** Version bump only for package @microsoft/design-to-code-react
-
-
+**Note:** Version bump only for package design-to-code-react
 
 
 
-# [2.3.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@2.2.5...@microsoft/design-to-code-react@2.3.0) (2020-07-14)
+
+
+# [2.3.0](https://github.com/Microsoft/fast/compare/design-to-code-react@2.2.5...design-to-code-react@2.3.0) (2020-07-14)
 
 
 ### Features
@@ -890,7 +890,7 @@ Fri, 16 Apr 2021 01:19:08 GMT
 
 
 
-## [2.2.5](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@2.2.4...@microsoft/design-to-code-react@2.2.5) (2020-07-02)
+## [2.2.5](https://github.com/Microsoft/fast/compare/design-to-code-react@2.2.4...design-to-code-react@2.2.5) (2020-07-02)
 
 
 ### Bug Fixes
@@ -902,7 +902,7 @@ Fri, 16 Apr 2021 01:19:08 GMT
 
 
 
-## [2.2.4](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@2.2.3...@microsoft/design-to-code-react@2.2.4) (2020-06-26)
+## [2.2.4](https://github.com/Microsoft/fast/compare/design-to-code-react@2.2.3...design-to-code-react@2.2.4) (2020-06-26)
 
 
 ### Bug Fixes
@@ -913,23 +913,23 @@ Fri, 16 Apr 2021 01:19:08 GMT
 
 
 
-## [2.2.3](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@2.2.2...@microsoft/design-to-code-react@2.2.3) (2020-06-15)
+## [2.2.3](https://github.com/Microsoft/fast/compare/design-to-code-react@2.2.2...design-to-code-react@2.2.3) (2020-06-15)
 
-**Note:** Version bump only for package @microsoft/design-to-code-react
-
-
-
-
-
-## [2.2.1](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@2.2.0...@microsoft/design-to-code-react@2.2.1) (2020-06-09)
-
-**Note:** Version bump only for package @microsoft/design-to-code-react
+**Note:** Version bump only for package design-to-code-react
 
 
 
 
 
-# [2.2.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@2.1.0...@microsoft/design-to-code-react@2.2.0) (2020-06-05)
+## [2.2.1](https://github.com/Microsoft/fast/compare/design-to-code-react@2.2.0...design-to-code-react@2.2.1) (2020-06-09)
+
+**Note:** Version bump only for package design-to-code-react
+
+
+
+
+
+# [2.2.0](https://github.com/Microsoft/fast/compare/design-to-code-react@2.1.0...design-to-code-react@2.2.0) (2020-06-05)
 
 
 ### Features
@@ -940,7 +940,7 @@ Fri, 16 Apr 2021 01:19:08 GMT
 
 
 
-# [2.1.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@2.0.4...@microsoft/design-to-code-react@2.1.0) (2020-05-18)
+# [2.1.0](https://github.com/Microsoft/fast/compare/design-to-code-react@2.0.4...design-to-code-react@2.1.0) (2020-05-18)
 
 
 ### Bug Fixes
@@ -956,7 +956,7 @@ Fri, 16 Apr 2021 01:19:08 GMT
 
 
 
-## [2.0.4](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@2.0.3...@microsoft/design-to-code-react@2.0.4) (2020-04-29)
+## [2.0.4](https://github.com/Microsoft/fast/compare/design-to-code-react@2.0.3...design-to-code-react@2.0.4) (2020-04-29)
 
 
 ### Bug Fixes
@@ -967,23 +967,23 @@ Fri, 16 Apr 2021 01:19:08 GMT
 
 
 
-## [2.0.3](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@2.0.2...@microsoft/design-to-code-react@2.0.3) (2020-04-27)
+## [2.0.3](https://github.com/Microsoft/fast/compare/design-to-code-react@2.0.2...design-to-code-react@2.0.3) (2020-04-27)
 
-**Note:** Version bump only for package @microsoft/design-to-code-react
-
-
-
-
-
-## [2.0.2](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@2.0.1...@microsoft/design-to-code-react@2.0.2) (2020-04-22)
-
-**Note:** Version bump only for package @microsoft/design-to-code-react
+**Note:** Version bump only for package design-to-code-react
 
 
 
 
 
-# [2.0.1](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.32.3...@microsoft/design-to-code-react@2.0.1) (2020-04-10)
+## [2.0.2](https://github.com/Microsoft/fast/compare/design-to-code-react@2.0.1...design-to-code-react@2.0.2) (2020-04-22)
+
+**Note:** Version bump only for package design-to-code-react
+
+
+
+
+
+# [2.0.1](https://github.com/Microsoft/fast/compare/design-to-code-react@1.32.3...design-to-code-react@2.0.1) (2020-04-10)
 
 **Note**: This is the production start of version 2, do not use v2.0.0 as that version is tagged as *canary* and should be treated as an alpha release.
 
@@ -1038,39 +1038,39 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-## [1.32.4](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.32.3...@microsoft/design-to-code-react@1.32.4) (2020-04-10)
+## [1.32.4](https://github.com/Microsoft/fast/compare/design-to-code-react@1.32.3...design-to-code-react@1.32.4) (2020-04-10)
 
-**Note:** Version bump only for package @microsoft/design-to-code-react
-
-
-
-
-
-## [1.32.3](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.32.2...@microsoft/design-to-code-react@1.32.3) (2020-03-25)
-
-**Note:** Version bump only for package @microsoft/design-to-code-react
+**Note:** Version bump only for package design-to-code-react
 
 
 
 
 
-## [1.32.2](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.32.1...@microsoft/design-to-code-react@1.32.2) (2020-03-13)
+## [1.32.3](https://github.com/Microsoft/fast/compare/design-to-code-react@1.32.2...design-to-code-react@1.32.3) (2020-03-25)
 
-**Note:** Version bump only for package @microsoft/design-to-code-react
-
-
-
-
-
-## [1.32.1](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.32.0...@microsoft/design-to-code-react@1.32.1) (2020-02-07)
-
-**Note:** Version bump only for package @microsoft/design-to-code-react
+**Note:** Version bump only for package design-to-code-react
 
 
 
 
 
-# [1.32.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.31.0...@microsoft/design-to-code-react@1.32.0) (2020-01-29)
+## [1.32.2](https://github.com/Microsoft/fast/compare/design-to-code-react@1.32.1...design-to-code-react@1.32.2) (2020-03-13)
+
+**Note:** Version bump only for package design-to-code-react
+
+
+
+
+
+## [1.32.1](https://github.com/Microsoft/fast/compare/design-to-code-react@1.32.0...design-to-code-react@1.32.1) (2020-02-07)
+
+**Note:** Version bump only for package design-to-code-react
+
+
+
+
+
+# [1.32.0](https://github.com/Microsoft/fast/compare/design-to-code-react@1.31.0...design-to-code-react@1.32.0) (2020-01-29)
 
 
 ### Features
@@ -1081,7 +1081,7 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-# [1.31.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.30.0...@microsoft/design-to-code-react@1.31.0) (2020-01-24)
+# [1.31.0](https://github.com/Microsoft/fast/compare/design-to-code-react@1.30.0...design-to-code-react@1.31.0) (2020-01-24)
 
 
 ### Bug Fixes
@@ -1102,7 +1102,7 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-# [1.30.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.29.0...@microsoft/design-to-code-react@1.30.0) (2020-01-21)
+# [1.30.0](https://github.com/Microsoft/fast/compare/design-to-code-react@1.29.0...design-to-code-react@1.30.0) (2020-01-21)
 
 
 ### Bug Fixes
@@ -1118,7 +1118,7 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-# [1.29.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.28.1...@microsoft/design-to-code-react@1.29.0) (2020-01-09)
+# [1.29.0](https://github.com/Microsoft/fast/compare/design-to-code-react@1.28.1...design-to-code-react@1.29.0) (2020-01-09)
 
 
 ### Bug Fixes
@@ -1136,7 +1136,7 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-## [1.28.1](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.28.0...@microsoft/design-to-code-react@1.28.1) (2020-01-07)
+## [1.28.1](https://github.com/Microsoft/fast/compare/design-to-code-react@1.28.0...design-to-code-react@1.28.1) (2020-01-07)
 
 
 ### Bug Fixes
@@ -1149,7 +1149,7 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-# [1.28.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.27.2...@microsoft/design-to-code-react@1.28.0) (2020-01-07)
+# [1.28.0](https://github.com/Microsoft/fast/compare/design-to-code-react@1.27.2...design-to-code-react@1.28.0) (2020-01-07)
 
 
 ### Features
@@ -1161,7 +1161,7 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-## [1.27.2](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.27.1...@microsoft/design-to-code-react@1.27.2) (2020-01-06)
+## [1.27.2](https://github.com/Microsoft/fast/compare/design-to-code-react@1.27.1...design-to-code-react@1.27.2) (2020-01-06)
 
 
 ### Bug Fixes
@@ -1172,15 +1172,15 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-## [1.27.1](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.27.0...@microsoft/design-to-code-react@1.27.1) (2019-12-23)
+## [1.27.1](https://github.com/Microsoft/fast/compare/design-to-code-react@1.27.0...design-to-code-react@1.27.1) (2019-12-23)
 
-**Note:** Version bump only for package @microsoft/design-to-code-react
-
-
+**Note:** Version bump only for package design-to-code-react
 
 
 
-# [1.27.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.26.1...@microsoft/design-to-code-react@1.27.0) (2019-12-18)
+
+
+# [1.27.0](https://github.com/Microsoft/fast/compare/design-to-code-react@1.26.1...design-to-code-react@1.27.0) (2019-12-18)
 
 
 ### Features
@@ -1191,7 +1191,7 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-## [1.26.1](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.26.0...@microsoft/design-to-code-react@1.26.1) (2019-12-13)
+## [1.26.1](https://github.com/Microsoft/fast/compare/design-to-code-react@1.26.0...design-to-code-react@1.26.1) (2019-12-13)
 
 
 ### Bug Fixes
@@ -1202,7 +1202,7 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-# [1.26.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.25.0...@microsoft/design-to-code-react@1.26.0) (2019-12-13)
+# [1.26.0](https://github.com/Microsoft/fast/compare/design-to-code-react@1.25.0...design-to-code-react@1.26.0) (2019-12-13)
 
 
 ### Bug Fixes
@@ -1221,7 +1221,7 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-# [1.25.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.24.1...@microsoft/design-to-code-react@1.25.0) (2019-12-11)
+# [1.25.0](https://github.com/Microsoft/fast/compare/design-to-code-react@1.24.1...design-to-code-react@1.25.0) (2019-12-11)
 
 
 ### Bug Fixes
@@ -1240,7 +1240,7 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-## [1.24.1](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.24.0...@microsoft/design-to-code-react@1.24.1) (2019-12-05)
+## [1.24.1](https://github.com/Microsoft/fast/compare/design-to-code-react@1.24.0...design-to-code-react@1.24.1) (2019-12-05)
 
 
 ### Bug Fixes
@@ -1251,7 +1251,7 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-# [1.24.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.23.1...@microsoft/design-to-code-react@1.24.0) (2019-11-19)
+# [1.24.0](https://github.com/Microsoft/fast/compare/design-to-code-react@1.23.1...design-to-code-react@1.24.0) (2019-11-19)
 
 
 ### Bug Fixes
@@ -1267,7 +1267,7 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-## [1.23.1](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.23.0...@microsoft/design-to-code-react@1.23.1) (2019-11-11)
+## [1.23.1](https://github.com/Microsoft/fast/compare/design-to-code-react@1.23.0...design-to-code-react@1.23.1) (2019-11-11)
 
 
 ### Bug Fixes
@@ -1278,7 +1278,7 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-# [1.23.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.22.2...@microsoft/design-to-code-react@1.23.0) (2019-11-07)
+# [1.23.0](https://github.com/Microsoft/fast/compare/design-to-code-react@1.22.2...design-to-code-react@1.23.0) (2019-11-07)
 
 
 ### Bug Fixes
@@ -1296,7 +1296,7 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-## [1.22.2](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.22.1...@microsoft/design-to-code-react@1.22.2) (2019-10-25)
+## [1.22.2](https://github.com/Microsoft/fast/compare/design-to-code-react@1.22.1...design-to-code-react@1.22.2) (2019-10-25)
 
 
 ### Bug Fixes
@@ -1309,15 +1309,15 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-## [1.22.1](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.22.0...@microsoft/design-to-code-react@1.22.1) (2019-10-24)
+## [1.22.1](https://github.com/Microsoft/fast/compare/design-to-code-react@1.22.0...design-to-code-react@1.22.1) (2019-10-24)
 
-**Note:** Version bump only for package @microsoft/design-to-code-react
-
-
+**Note:** Version bump only for package design-to-code-react
 
 
 
-# [1.22.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.21.1...@microsoft/design-to-code-react@1.22.0) (2019-10-18)
+
+
+# [1.22.0](https://github.com/Microsoft/fast/compare/design-to-code-react@1.21.1...design-to-code-react@1.22.0) (2019-10-18)
 
 
 ### Features
@@ -1328,15 +1328,15 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-## [1.21.1](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.21.0...@microsoft/design-to-code-react@1.21.1) (2019-10-17)
+## [1.21.1](https://github.com/Microsoft/fast/compare/design-to-code-react@1.21.0...design-to-code-react@1.21.1) (2019-10-17)
 
-**Note:** Version bump only for package @microsoft/design-to-code-react
-
-
+**Note:** Version bump only for package design-to-code-react
 
 
 
-# [1.21.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.20.0...@microsoft/design-to-code-react@1.21.0) (2019-10-16)
+
+
+# [1.21.0](https://github.com/Microsoft/fast/compare/design-to-code-react@1.20.0...design-to-code-react@1.21.0) (2019-10-16)
 
 
 ### Bug Fixes
@@ -1354,7 +1354,7 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-# [1.20.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.19.0...@microsoft/design-to-code-react@1.20.0) (2019-10-07)
+# [1.20.0](https://github.com/Microsoft/fast/compare/design-to-code-react@1.19.0...design-to-code-react@1.20.0) (2019-10-07)
 
 
 ### Bug Fixes
@@ -1370,7 +1370,7 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-# [1.19.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.18.6...@microsoft/design-to-code-react@1.19.0) (2019-10-07)
+# [1.19.0](https://github.com/Microsoft/fast/compare/design-to-code-react@1.18.6...design-to-code-react@1.19.0) (2019-10-07)
 
 
 ### Bug Fixes
@@ -1388,23 +1388,23 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-## [1.18.6](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.18.5...@microsoft/design-to-code-react@1.18.6) (2019-10-02)
+## [1.18.6](https://github.com/Microsoft/fast/compare/design-to-code-react@1.18.5...design-to-code-react@1.18.6) (2019-10-02)
 
-**Note:** Version bump only for package @microsoft/design-to-code-react
-
-
-
-
-
-## [1.18.5](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.18.4...@microsoft/design-to-code-react@1.18.5) (2019-09-17)
-
-**Note:** Version bump only for package @microsoft/design-to-code-react
+**Note:** Version bump only for package design-to-code-react
 
 
 
 
 
-## [1.18.4](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.18.3...@microsoft/design-to-code-react@1.18.4) (2019-09-10)
+## [1.18.5](https://github.com/Microsoft/fast/compare/design-to-code-react@1.18.4...design-to-code-react@1.18.5) (2019-09-17)
+
+**Note:** Version bump only for package design-to-code-react
+
+
+
+
+
+## [1.18.4](https://github.com/Microsoft/fast/compare/design-to-code-react@1.18.3...design-to-code-react@1.18.4) (2019-09-10)
 
 
 ### Bug Fixes
@@ -1415,15 +1415,15 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-## [1.18.3](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.18.2...@microsoft/design-to-code-react@1.18.3) (2019-09-09)
+## [1.18.3](https://github.com/Microsoft/fast/compare/design-to-code-react@1.18.2...design-to-code-react@1.18.3) (2019-09-09)
 
-**Note:** Version bump only for package @microsoft/design-to-code-react
-
-
+**Note:** Version bump only for package design-to-code-react
 
 
 
-## [1.18.2](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.18.1...@microsoft/design-to-code-react@1.18.2) (2019-09-05)
+
+
+## [1.18.2](https://github.com/Microsoft/fast/compare/design-to-code-react@1.18.1...design-to-code-react@1.18.2) (2019-09-05)
 
 
 ### Bug Fixes
@@ -1434,15 +1434,15 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-## [1.18.1](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.18.0...@microsoft/design-to-code-react@1.18.1) (2019-08-29)
+## [1.18.1](https://github.com/Microsoft/fast/compare/design-to-code-react@1.18.0...design-to-code-react@1.18.1) (2019-08-29)
 
-**Note:** Version bump only for package @microsoft/design-to-code-react
-
-
+**Note:** Version bump only for package design-to-code-react
 
 
 
-# [1.18.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.17.1...@microsoft/design-to-code-react@1.18.0) (2019-08-24)
+
+
+# [1.18.0](https://github.com/Microsoft/fast/compare/design-to-code-react@1.17.1...design-to-code-react@1.18.0) (2019-08-24)
 
 
 ### Features
@@ -1453,15 +1453,15 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-## [1.17.1](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.17.0...@microsoft/design-to-code-react@1.17.1) (2019-08-22)
+## [1.17.1](https://github.com/Microsoft/fast/compare/design-to-code-react@1.17.0...design-to-code-react@1.17.1) (2019-08-22)
 
-**Note:** Version bump only for package @microsoft/design-to-code-react
-
-
+**Note:** Version bump only for package design-to-code-react
 
 
 
-# [1.17.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.16.0...@microsoft/design-to-code-react@1.17.0) (2019-08-22)
+
+
+# [1.17.0](https://github.com/Microsoft/fast/compare/design-to-code-react@1.16.0...design-to-code-react@1.17.0) (2019-08-22)
 
 
 ### Features
@@ -1473,7 +1473,7 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-# [1.16.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.15.3...@microsoft/design-to-code-react@1.16.0) (2019-08-16)
+# [1.16.0](https://github.com/Microsoft/fast/compare/design-to-code-react@1.15.3...design-to-code-react@1.16.0) (2019-08-16)
 
 
 ### Features
@@ -1484,23 +1484,23 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-## [1.15.3](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.15.2...@microsoft/design-to-code-react@1.15.3) (2019-08-14)
+## [1.15.3](https://github.com/Microsoft/fast/compare/design-to-code-react@1.15.2...design-to-code-react@1.15.3) (2019-08-14)
 
-**Note:** Version bump only for package @microsoft/design-to-code-react
-
-
-
-
-
-## [1.15.2](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.15.1...@microsoft/design-to-code-react@1.15.2) (2019-08-09)
-
-**Note:** Version bump only for package @microsoft/design-to-code-react
+**Note:** Version bump only for package design-to-code-react
 
 
 
 
 
-## [1.15.1](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.15.0...@microsoft/design-to-code-react@1.15.1) (2019-08-01)
+## [1.15.2](https://github.com/Microsoft/fast/compare/design-to-code-react@1.15.1...design-to-code-react@1.15.2) (2019-08-09)
+
+**Note:** Version bump only for package design-to-code-react
+
+
+
+
+
+## [1.15.1](https://github.com/Microsoft/fast/compare/design-to-code-react@1.15.0...design-to-code-react@1.15.1) (2019-08-01)
 
 
 ### Bug Fixes
@@ -1511,7 +1511,7 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-# [1.15.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.14.0...@microsoft/design-to-code-react@1.15.0) (2019-08-01)
+# [1.15.0](https://github.com/Microsoft/fast/compare/design-to-code-react@1.14.0...design-to-code-react@1.15.0) (2019-08-01)
 
 
 ### Features
@@ -1522,7 +1522,7 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-# [1.14.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.13.0...@microsoft/design-to-code-react@1.14.0) (2019-08-01)
+# [1.14.0](https://github.com/Microsoft/fast/compare/design-to-code-react@1.13.0...design-to-code-react@1.14.0) (2019-08-01)
 
 
 ### Bug Fixes
@@ -1540,7 +1540,7 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-# [1.13.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.12.3...@microsoft/design-to-code-react@1.13.0) (2019-07-31)
+# [1.13.0](https://github.com/Microsoft/fast/compare/design-to-code-react@1.12.3...design-to-code-react@1.13.0) (2019-07-31)
 
 
 ### Bug Fixes
@@ -1568,7 +1568,7 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-## [1.12.3](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.12.2...@microsoft/design-to-code-react@1.12.3) (2019-07-24)
+## [1.12.3](https://github.com/Microsoft/fast/compare/design-to-code-react@1.12.2...design-to-code-react@1.12.3) (2019-07-24)
 
 
 ### Bug Fixes
@@ -1579,7 +1579,7 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-## [1.12.2](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.12.1...@microsoft/design-to-code-react@1.12.2) (2019-07-24)
+## [1.12.2](https://github.com/Microsoft/fast/compare/design-to-code-react@1.12.1...design-to-code-react@1.12.2) (2019-07-24)
 
 
 ### Bug Fixes
@@ -1591,7 +1591,7 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-## [1.12.1](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.12.0...@microsoft/design-to-code-react@1.12.1) (2019-07-23)
+## [1.12.1](https://github.com/Microsoft/fast/compare/design-to-code-react@1.12.0...design-to-code-react@1.12.1) (2019-07-23)
 
 
 ### Bug Fixes
@@ -1602,7 +1602,7 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-# [1.12.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.11.1...@microsoft/design-to-code-react@1.12.0) (2019-07-23)
+# [1.12.0](https://github.com/Microsoft/fast/compare/design-to-code-react@1.11.1...design-to-code-react@1.12.0) (2019-07-23)
 
 
 ### Bug Fixes
@@ -1619,7 +1619,7 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-## [1.11.1](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.11.0...@microsoft/design-to-code-react@1.11.1) (2019-07-16)
+## [1.11.1](https://github.com/Microsoft/fast/compare/design-to-code-react@1.11.0...design-to-code-react@1.11.1) (2019-07-16)
 
 
 ### Bug Fixes
@@ -1631,7 +1631,7 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-# [1.11.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.10.1...@microsoft/design-to-code-react@1.11.0) (2019-07-09)
+# [1.11.0](https://github.com/Microsoft/fast/compare/design-to-code-react@1.10.1...design-to-code-react@1.11.0) (2019-07-09)
 
 
 ### Bug Fixes
@@ -1651,15 +1651,15 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-## [1.10.1](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.10.0...@microsoft/design-to-code-react@1.10.1) (2019-07-01)
+## [1.10.1](https://github.com/Microsoft/fast/compare/design-to-code-react@1.10.0...design-to-code-react@1.10.1) (2019-07-01)
 
-**Note:** Version bump only for package @microsoft/design-to-code-react
-
-
+**Note:** Version bump only for package design-to-code-react
 
 
 
-# [1.10.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.9.0...@microsoft/design-to-code-react@1.10.0) (2019-06-25)
+
+
+# [1.10.0](https://github.com/Microsoft/fast/compare/design-to-code-react@1.9.0...design-to-code-react@1.10.0) (2019-06-25)
 
 
 ### Bug Fixes
@@ -1677,7 +1677,7 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-# [1.9.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.8.5...@microsoft/design-to-code-react@1.9.0) (2019-06-17)
+# [1.9.0](https://github.com/Microsoft/fast/compare/design-to-code-react@1.8.5...design-to-code-react@1.9.0) (2019-06-17)
 
 
 ### Bug Fixes
@@ -1694,23 +1694,23 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-## [1.8.5](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.8.4...@microsoft/design-to-code-react@1.8.5) (2019-06-12)
+## [1.8.5](https://github.com/Microsoft/fast/compare/design-to-code-react@1.8.4...design-to-code-react@1.8.5) (2019-06-12)
 
-**Note:** Version bump only for package @microsoft/design-to-code-react
-
-
-
-
-
-## [1.8.4](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.8.3...@microsoft/design-to-code-react@1.8.4) (2019-06-11)
-
-**Note:** Version bump only for package @microsoft/design-to-code-react
+**Note:** Version bump only for package design-to-code-react
 
 
 
 
 
-## [1.8.3](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.8.2...@microsoft/design-to-code-react@1.8.3) (2019-06-07)
+## [1.8.4](https://github.com/Microsoft/fast/compare/design-to-code-react@1.8.3...design-to-code-react@1.8.4) (2019-06-11)
+
+**Note:** Version bump only for package design-to-code-react
+
+
+
+
+
+## [1.8.3](https://github.com/Microsoft/fast/compare/design-to-code-react@1.8.2...design-to-code-react@1.8.3) (2019-06-07)
 
 
 ### Bug Fixes
@@ -1722,7 +1722,7 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-## [1.8.2](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.8.1...@microsoft/design-to-code-react@1.8.2) (2019-06-05)
+## [1.8.2](https://github.com/Microsoft/fast/compare/design-to-code-react@1.8.1...design-to-code-react@1.8.2) (2019-06-05)
 
 
 ### Bug Fixes
@@ -1733,7 +1733,7 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-## [1.8.1](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.8.0...@microsoft/design-to-code-react@1.8.1) (2019-06-05)
+## [1.8.1](https://github.com/Microsoft/fast/compare/design-to-code-react@1.8.0...design-to-code-react@1.8.1) (2019-06-05)
 
 
 ### Bug Fixes
@@ -1744,7 +1744,7 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-# [1.8.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.7.0...@microsoft/design-to-code-react@1.8.0) (2019-06-05)
+# [1.8.0](https://github.com/Microsoft/fast/compare/design-to-code-react@1.7.0...design-to-code-react@1.8.0) (2019-06-05)
 
 
 ### Bug Fixes
@@ -1760,7 +1760,7 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-# [1.7.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.6.0...@microsoft/design-to-code-react@1.7.0) (2019-05-31)
+# [1.7.0](https://github.com/Microsoft/fast/compare/design-to-code-react@1.6.0...design-to-code-react@1.7.0) (2019-05-31)
 
 
 ### Bug Fixes
@@ -1780,7 +1780,7 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-# [1.6.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.5.0...@microsoft/design-to-code-react@1.6.0) (2019-05-17)
+# [1.6.0](https://github.com/Microsoft/fast/compare/design-to-code-react@1.5.0...design-to-code-react@1.6.0) (2019-05-17)
 
 
 ### Features
@@ -1792,7 +1792,7 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-# [1.5.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.4.0...@microsoft/design-to-code-react@1.5.0) (2019-05-08)
+# [1.5.0](https://github.com/Microsoft/fast/compare/design-to-code-react@1.4.0...design-to-code-react@1.5.0) (2019-05-08)
 
 
 ### Bug Fixes
@@ -1808,7 +1808,7 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-# [1.4.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.3.1...@microsoft/design-to-code-react@1.4.0) (2019-05-01)
+# [1.4.0](https://github.com/Microsoft/fast/compare/design-to-code-react@1.3.1...design-to-code-react@1.4.0) (2019-05-01)
 
 
 ### Bug Fixes
@@ -1825,15 +1825,15 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-## [1.3.1](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.3.0...@microsoft/design-to-code-react@1.3.1) (2019-04-26)
+## [1.3.1](https://github.com/Microsoft/fast/compare/design-to-code-react@1.3.0...design-to-code-react@1.3.1) (2019-04-26)
 
-**Note:** Version bump only for package @microsoft/design-to-code-react
-
-
+**Note:** Version bump only for package design-to-code-react
 
 
 
-# [1.3.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.2.5...@microsoft/design-to-code-react@1.3.0) (2019-04-23)
+
+
+# [1.3.0](https://github.com/Microsoft/fast/compare/design-to-code-react@1.2.5...design-to-code-react@1.3.0) (2019-04-23)
 
 
 ### Bug Fixes
@@ -1852,7 +1852,7 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-## [1.2.5](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.2.4...@microsoft/design-to-code-react@1.2.5) (2019-04-17)
+## [1.2.5](https://github.com/Microsoft/fast/compare/design-to-code-react@1.2.4...design-to-code-react@1.2.5) (2019-04-17)
 
 
 ### Bug Fixes
@@ -1863,7 +1863,7 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-## [1.2.4](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.2.3...@microsoft/design-to-code-react@1.2.4) (2019-04-17)
+## [1.2.4](https://github.com/Microsoft/fast/compare/design-to-code-react@1.2.3...design-to-code-react@1.2.4) (2019-04-17)
 
 
 ### Bug Fixes
@@ -1874,31 +1874,31 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-## [1.2.3](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.2.2...@microsoft/design-to-code-react@1.2.3) (2019-04-15)
+## [1.2.3](https://github.com/Microsoft/fast/compare/design-to-code-react@1.2.2...design-to-code-react@1.2.3) (2019-04-15)
 
-**Note:** Version bump only for package @microsoft/design-to-code-react
-
-
-
-
-
-## [1.2.2](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.2.1...@microsoft/design-to-code-react@1.2.2) (2019-04-11)
-
-**Note:** Version bump only for package @microsoft/design-to-code-react
+**Note:** Version bump only for package design-to-code-react
 
 
 
 
 
-## [1.2.1](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.2.0...@microsoft/design-to-code-react@1.2.1) (2019-04-10)
+## [1.2.2](https://github.com/Microsoft/fast/compare/design-to-code-react@1.2.1...design-to-code-react@1.2.2) (2019-04-11)
 
-**Note:** Version bump only for package @microsoft/design-to-code-react
-
-
+**Note:** Version bump only for package design-to-code-react
 
 
 
-# [1.2.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.1.1...@microsoft/design-to-code-react@1.2.0) (2019-04-09)
+
+
+## [1.2.1](https://github.com/Microsoft/fast/compare/design-to-code-react@1.2.0...design-to-code-react@1.2.1) (2019-04-10)
+
+**Note:** Version bump only for package design-to-code-react
+
+
+
+
+
+# [1.2.0](https://github.com/Microsoft/fast/compare/design-to-code-react@1.1.1...design-to-code-react@1.2.0) (2019-04-09)
 
 
 ### Bug Fixes
@@ -1915,15 +1915,15 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-## [1.1.1](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.1.0...@microsoft/design-to-code-react@1.1.1) (2019-04-03)
+## [1.1.1](https://github.com/Microsoft/fast/compare/design-to-code-react@1.1.0...design-to-code-react@1.1.1) (2019-04-03)
 
-**Note:** Version bump only for package @microsoft/design-to-code-react
-
-
+**Note:** Version bump only for package design-to-code-react
 
 
 
-# [1.1.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.0.1...@microsoft/design-to-code-react@1.1.0) (2019-04-03)
+
+
+# [1.1.0](https://github.com/Microsoft/fast/compare/design-to-code-react@1.0.1...design-to-code-react@1.1.0) (2019-04-03)
 
 
 ### Features
@@ -1934,7 +1934,7 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-## [1.0.1](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@1.0.0...@microsoft/design-to-code-react@1.0.1) (2019-03-25)
+## [1.0.1](https://github.com/Microsoft/fast/compare/design-to-code-react@1.0.0...design-to-code-react@1.0.1) (2019-03-25)
 
 
 ### Bug Fixes
@@ -1945,7 +1945,7 @@ component due to the update of react-dnd to 9.0.0
 
 
 
-# [1.0.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@0.3.0...@microsoft/design-to-code-react@1.0.0) (2019-03-25)
+# [1.0.0](https://github.com/Microsoft/fast/compare/design-to-code-react@0.3.0...design-to-code-react@1.0.0) (2019-03-25)
 
 
 ### Bug Fixes
@@ -1971,7 +1971,7 @@ consumers
 
 
 
-# [0.3.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@0.2.0...@microsoft/design-to-code-react@0.3.0) (2019-03-22)
+# [0.3.0](https://github.com/Microsoft/fast/compare/design-to-code-react@0.2.0...design-to-code-react@0.3.0) (2019-03-22)
 
 
 ### Bug Fixes
@@ -1987,7 +1987,7 @@ consumers
 
 
 
-# [0.2.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-react@0.1.0...@microsoft/design-to-code-react@0.2.0) (2019-03-19)
+# [0.2.0](https://github.com/Microsoft/fast/compare/design-to-code-react@0.1.0...design-to-code-react@0.2.0) (2019-03-19)
 
 
 ### Bug Fixes

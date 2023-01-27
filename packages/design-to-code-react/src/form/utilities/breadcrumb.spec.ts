@@ -1,5 +1,5 @@
 import "../../__tests__/mocks/match-media";
-import { DataType } from "@microsoft/design-to-code";
+import { DataType } from "design-to-code";
 import { BreadcrumbItem, getBreadcrumbs, getDictionaryBreadcrumbs } from "./breadcrumb";
 
 /**

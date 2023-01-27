@@ -1,4 +1,3 @@
-import { ManagedClasses } from "@microsoft/fast-jss-manager-react";
 import { MenuItem } from "./navigation-menu.props";
 
 export interface NavigationMenuItemClassNameContract {
@@ -15,9 +14,7 @@ export interface NavigationMenuItemState {
 
 export type NavigationMenuItemUnhandledProps = React.HTMLAttributes<HTMLElement>;
 
-export interface NavigationMenuItemHandledProps
-    extends ManagedClasses<NavigationMenuItemClassNameContract>,
-        MenuItem {
+export interface NavigationMenuItemHandledProps extends MenuItem {
     /**
      * The expanded option that will determine
      * if the sub menus can be controlled

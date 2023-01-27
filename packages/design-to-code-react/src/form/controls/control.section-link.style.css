@@ -1,0 +1,14 @@
+.dtc-section-link-control {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    width: 100%;
+    cursor: pointer;
+    line-height: 23px;
+    border-bottom: 1px solid transparent;
+}
+
+.dtc-section-link-control__invalid {
+    border-color: var(--dtc-error-color);
+}

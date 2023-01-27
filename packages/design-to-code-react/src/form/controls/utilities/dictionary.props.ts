@@ -1,4 +1,4 @@
-import { ValidationError } from "@microsoft/design-to-code";
+import { ValidationError } from "design-to-code";
 import { ControlTemplateUtilitiesProps, StandardControlPlugin } from "../../templates";
 import { Controls } from "./types";
 

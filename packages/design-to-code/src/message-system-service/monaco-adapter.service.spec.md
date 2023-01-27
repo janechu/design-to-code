@@ -31,7 +31,7 @@ Example of an implementation that triggers a Monaco editor update when a `DataDi
 const adapter = new MonacoAdapter({
     /**
      * the message system web worker
-     * as defined in https://github.com/microsoft/design-to-code/tree/main/packages/design-to-code/README.md#message-system
+     * as defined in https://github.com/janechu/design-to-code/tree/main/packages/design-to-code/README.md#message-system
      */
     messageSystem: fastMessageSystem,
     actions: [

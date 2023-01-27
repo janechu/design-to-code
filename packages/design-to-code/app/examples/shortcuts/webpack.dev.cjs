@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable no-undef */
-const merge = require("webpack-merge");
+const merge = require("webpack-merge").merge;
 const baseConfig = require("./webpack.common.cjs");
 
 module.exports = merge(baseConfig, {
     devServer: {
-        port: 3000,
+        port: 7776,
     },
     mode: "development",
     output: {

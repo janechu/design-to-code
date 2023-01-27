@@ -1,4 +1,4 @@
-# Change Log - @microsoft/design-to-code
+# Change Log - design-to-code
 
 This log was last generated on Wed, 13 Jul 2022 07:07:28 GMT and should not be manually modified.
 
@@ -719,7 +719,7 @@ Thu, 22 Apr 2021 07:21:10 GMT
 - Moving Color Picker (44823142+williamw2@users.noreply.github.com)
 - Moving native definitions to fast-tooling (44823142+williamw2@users.noreply.github.com)
 
-## [0.16.1](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code@0.16.0...@microsoft/design-to-code@0.16.1) (2021-03-16)
+## [0.16.1](https://github.com/Microsoft/fast/compare/design-to-code@0.16.0...design-to-code@0.16.1) (2021-03-16)
 
 
 ### Bug Fixes
@@ -730,7 +730,7 @@ Thu, 22 Apr 2021 07:21:10 GMT
 
 
 
-# [0.16.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code@0.15.2...@microsoft/design-to-code@0.16.0) (2021-03-06)
+# [0.16.0](https://github.com/Microsoft/fast/compare/design-to-code@0.15.2...design-to-code@0.16.0) (2021-03-06)
 
 
 ### Bug Fixes
@@ -749,23 +749,23 @@ Thu, 22 Apr 2021 07:21:10 GMT
 
 
 
-## [0.15.2](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code@0.15.0...@microsoft/design-to-code@0.15.2) (2021-02-08)
+## [0.15.2](https://github.com/Microsoft/fast/compare/design-to-code@0.15.0...design-to-code@0.15.2) (2021-02-08)
 
-**Note:** Version bump only for package @microsoft/design-to-code
-
-
-
-
-
-## [0.15.1](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code@0.15.0...@microsoft/design-to-code@0.15.1) (2021-02-08)
-
-**Note:** Version bump only for package @microsoft/design-to-code
+**Note:** Version bump only for package design-to-code
 
 
 
 
 
-# [0.15.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code@0.14.0...@microsoft/design-to-code@0.15.0) (2021-01-30)
+## [0.15.1](https://github.com/Microsoft/fast/compare/design-to-code@0.15.0...design-to-code@0.15.1) (2021-02-08)
+
+**Note:** Version bump only for package design-to-code
+
+
+
+
+
+# [0.15.0](https://github.com/Microsoft/fast/compare/design-to-code@0.14.0...design-to-code@0.15.0) (2021-01-30)
 
 
 ### Bug Fixes
@@ -783,7 +783,7 @@ Thu, 22 Apr 2021 07:21:10 GMT
 
 
 
-# [0.14.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code@0.13.0...@microsoft/design-to-code@0.14.0) (2020-12-16)
+# [0.14.0](https://github.com/Microsoft/fast/compare/design-to-code@0.13.0...design-to-code@0.14.0) (2020-12-16)
 
 
 ### Bug Fixes
@@ -799,7 +799,7 @@ Thu, 22 Apr 2021 07:21:10 GMT
 
 
 
-# [0.13.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code@0.12.0...@microsoft/design-to-code@0.13.0) (2020-12-02)
+# [0.13.0](https://github.com/Microsoft/fast/compare/design-to-code@0.12.0...design-to-code@0.13.0) (2020-12-02)
 
 
 ### Features
@@ -810,7 +810,7 @@ Thu, 22 Apr 2021 07:21:10 GMT
 
 
 
-# [0.12.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code@0.11.1...@microsoft/design-to-code@0.12.0) (2020-11-19)
+# [0.12.0](https://github.com/Microsoft/fast/compare/design-to-code@0.11.1...design-to-code@0.12.0) (2020-11-19)
 
 
 ### Bug Fixes
@@ -828,7 +828,7 @@ Thu, 22 Apr 2021 07:21:10 GMT
 
 
 
-## [0.11.1](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code@0.11.0...@microsoft/design-to-code@0.11.1) (2020-10-14)
+## [0.11.1](https://github.com/Microsoft/fast/compare/design-to-code@0.11.0...design-to-code@0.11.1) (2020-10-14)
 
 
 ### Bug Fixes
@@ -845,7 +845,7 @@ Thu, 22 Apr 2021 07:21:10 GMT
 
 
 
-# [0.11.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code@0.10.0...@microsoft/design-to-code@0.11.0) (2020-09-28)
+# [0.11.0](https://github.com/Microsoft/fast/compare/design-to-code@0.10.0...design-to-code@0.11.0) (2020-09-28)
 
 
 ### Bug Fixes
@@ -869,7 +869,7 @@ Thu, 22 Apr 2021 07:21:10 GMT
 
 
 
-# [0.10.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code@0.9.1...@microsoft/design-to-code@0.10.0) (2020-09-10)
+# [0.10.0](https://github.com/Microsoft/fast/compare/design-to-code@0.9.1...design-to-code@0.10.0) (2020-09-10)
 
 
 ### Features
@@ -880,15 +880,15 @@ Thu, 22 Apr 2021 07:21:10 GMT
 
 
 
-## [0.9.1](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code@0.9.0...@microsoft/design-to-code@0.9.1) (2020-08-27)
+## [0.9.1](https://github.com/Microsoft/fast/compare/design-to-code@0.9.0...design-to-code@0.9.1) (2020-08-27)
 
-**Note:** Version bump only for package @microsoft/design-to-code
-
-
+**Note:** Version bump only for package design-to-code
 
 
 
-# [0.9.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code@0.8.0...@microsoft/design-to-code@0.9.0) (2020-08-13)
+
+
+# [0.9.0](https://github.com/Microsoft/fast/compare/design-to-code@0.8.0...design-to-code@0.9.0) (2020-08-13)
 
 
 ### Features
@@ -904,7 +904,7 @@ Thu, 22 Apr 2021 07:21:10 GMT
 
 
 
-# [0.8.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code@0.7.0...@microsoft/design-to-code@0.8.0) (2020-07-31)
+# [0.8.0](https://github.com/Microsoft/fast/compare/design-to-code@0.7.0...design-to-code@0.8.0) (2020-07-31)
 
 
 ### Bug Fixes
@@ -920,7 +920,7 @@ Thu, 22 Apr 2021 07:21:10 GMT
 
 
 
-# [0.7.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code@0.6.1...@microsoft/design-to-code@0.7.0) (2020-07-14)
+# [0.7.0](https://github.com/Microsoft/fast/compare/design-to-code@0.6.1...design-to-code@0.7.0) (2020-07-14)
 
 
 ### Bug Fixes
@@ -937,15 +937,15 @@ Thu, 22 Apr 2021 07:21:10 GMT
 
 
 
-## [0.6.1](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code@0.6.0...@microsoft/design-to-code@0.6.1) (2020-06-26)
+## [0.6.1](https://github.com/Microsoft/fast/compare/design-to-code@0.6.0...design-to-code@0.6.1) (2020-06-26)
 
-**Note:** Version bump only for package @microsoft/design-to-code
-
-
+**Note:** Version bump only for package design-to-code
 
 
 
-# [0.6.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code@0.5.1...@microsoft/design-to-code@0.6.0) (2020-06-15)
+
+
+# [0.6.0](https://github.com/Microsoft/fast/compare/design-to-code@0.5.1...design-to-code@0.6.0) (2020-06-15)
 
 
 ### Bug Fixes
@@ -963,7 +963,7 @@ Thu, 22 Apr 2021 07:21:10 GMT
 
 
 
-# [0.5.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code@0.4.0...@microsoft/design-to-code@0.5.0) (2020-06-05)
+# [0.5.0](https://github.com/Microsoft/fast/compare/design-to-code@0.4.0...design-to-code@0.5.0) (2020-06-05)
 
 
 ### Bug Fixes
@@ -981,7 +981,7 @@ Thu, 22 Apr 2021 07:21:10 GMT
 
 
 
-# [0.4.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code@0.3.1...@microsoft/design-to-code@0.4.0) (2020-05-18)
+# [0.4.0](https://github.com/Microsoft/fast/compare/design-to-code@0.3.1...design-to-code@0.4.0) (2020-05-18)
 
 
 ### Bug Fixes
@@ -999,15 +999,15 @@ Thu, 22 Apr 2021 07:21:10 GMT
 
 
 
-## [0.3.1](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code@0.3.0...@microsoft/design-to-code@0.3.1) (2020-04-29)
+## [0.3.1](https://github.com/Microsoft/fast/compare/design-to-code@0.3.0...design-to-code@0.3.1) (2020-04-29)
 
-**Note:** Version bump only for package @microsoft/design-to-code
-
-
+**Note:** Version bump only for package design-to-code
 
 
 
-# [0.3.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code@0.2.0...@microsoft/design-to-code@0.3.0) (2020-04-27)
+
+
+# [0.3.0](https://github.com/Microsoft/fast/compare/design-to-code@0.2.0...design-to-code@0.3.0) (2020-04-27)
 
 
 ### Bug Fixes
@@ -1024,7 +1024,7 @@ Thu, 22 Apr 2021 07:21:10 GMT
 
 
 
-# [0.2.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code@0.1.0...@microsoft/design-to-code@0.2.0) (2020-04-22)
+# [0.2.0](https://github.com/Microsoft/fast/compare/design-to-code@0.1.0...design-to-code@0.2.0) (2020-04-22)
 
 
 ### Features

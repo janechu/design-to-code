@@ -48,20 +48,11 @@ module.exports = {
                 use: [
                     {
                         loader: MiniCssExtractPlugin.loader,
-                        options: {
-                            hmr: process.env.NODE_ENV === "development",
-                        },
                     },
                     {
                         loader: "css-loader",
                     },
                 ],
-            },
-            {
-                test: /message\-system\.min\.js/,
-                use: {
-                    loader: "worker-loader",
-                },
             },
         ],
     },

@@ -7,14 +7,14 @@ import {
     StandardControlPlugin,
 } from "../../templates";
 import { generateExampleData, isConst, isSelect } from "./form";
-import { ItemConstraints } from "@microsoft/design-to-code";
+import { ItemConstraints } from "design-to-code";
 import { SingleLineControlPlugin } from "../../templates/plugin.control.single-line";
 import ControlPluginUtilities, {
     ControlPluginUtilitiesProps,
 } from "../../templates/plugin.control.utilities";
 import { ControlType } from "../../index";
-import { dictionaryLink } from "@microsoft/design-to-code";
-import { XOR } from "@microsoft/design-to-code/dist/dts/data-utilities/type.utilities";
+import { dictionaryLink } from "design-to-code";
+import { XOR } from "design-to-code/dist/dts/data-utilities/type.utilities";
 
 class ControlSwitch extends React.Component<ControlSwitchProps, {}> {
     public static displayName: string = "ControlSwitch";

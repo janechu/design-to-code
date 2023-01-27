@@ -1,9 +1,12 @@
 import React from "react";
-import styles, { ThemeControlClassNameContract } from "./control.theme.style";
 import { ThemeControlProps } from "./control.theme.props";
-import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
-import { ManagedClasses } from "@microsoft/fast-components-class-name-contracts-base";
 import { classNames } from "@microsoft/fast-web-utilities";
+import cssVariables from "../../style/css-variables.css";
+import themeStyle from "./control.theme.style.css";
+
+// tree-shaking
+cssVariables;
+themeStyle;
 
 enum Theme {
     Light = "light",
@@ -13,23 +16,14 @@ enum Theme {
 /**
  * Custom form control definition
  */
-class ThemeControl extends React.Component<
-    ThemeControlProps & ManagedClasses<ThemeControlClassNameContract>,
-    {}
-> {
+class ThemeControl extends React.Component<ThemeControlProps, {}> {
     public static displayName: string = "ThemeControl";
-
-    public static defaultProps: Partial<
-        ThemeControlProps & ManagedClasses<ThemeControlClassNameContract>
-    > = {
-        managedClasses: {},
-    };
 
     public render(): React.ReactNode {
         return (
             <div
-                className={classNames(this.props.managedClasses.themeControl, [
-                    this.props.managedClasses.themeControl__disabled,
+                className={classNames("dtc-theme-control", [
+                    "dtc-theme-control__disabled",
                     this.props.disabled,
                 ])}
             >
@@ -52,8 +46,8 @@ class ThemeControl extends React.Component<
 
     private getInputClassName(theme: Theme): string {
         return theme === Theme.Dark
-            ? this.props.managedClasses.themeControl_input__dark
-            : this.props.managedClasses.themeControl_input__light;
+            ? "dtc-theme-control_input__dark"
+            : "dtc-theme-control_input__light";
     }
 
     private getThemeLabel(theme: Theme): string {
@@ -75,7 +69,7 @@ class ThemeControl extends React.Component<
                 return (
                     <input
                         className={classNames(
-                            this.props.managedClasses.themeControl_input,
+                            "dtc-theme-control_input",
                             this.getInputClassName(theme)
                         )}
                         id={this.props.dataLocation}
@@ -94,4 +88,4 @@ class ThemeControl extends React.Component<
 }
 
 export { ThemeControl };
-export default manageJss(styles)(ThemeControl);
+export default ThemeControl;

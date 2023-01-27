@@ -3,31 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.1.4](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-wasm@1.1.3...@microsoft/design-to-code-wasm@1.1.4) (2021-03-06)
+## [1.1.4](https://github.com/Microsoft/fast/compare/design-to-code-wasm@1.1.3...design-to-code-wasm@1.1.4) (2021-03-06)
 
-**Note:** Version bump only for package @microsoft/design-to-code-wasm
-
-
-
-
-
-## [1.1.3](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-wasm@1.1.2...@microsoft/design-to-code-wasm@1.1.3) (2020-09-28)
-
-**Note:** Version bump only for package @microsoft/design-to-code-wasm
+**Note:** Version bump only for package design-to-code-wasm
 
 
 
 
 
-## [1.1.2](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-wasm@1.1.1...@microsoft/design-to-code-wasm@1.1.2) (2020-08-27)
+## [1.1.3](https://github.com/Microsoft/fast/compare/design-to-code-wasm@1.1.2...design-to-code-wasm@1.1.3) (2020-09-28)
 
-**Note:** Version bump only for package @microsoft/design-to-code-wasm
-
-
+**Note:** Version bump only for package design-to-code-wasm
 
 
 
-## [1.1.1](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-wasm@1.1.0...@microsoft/design-to-code-wasm@1.1.1) (2020-08-13)
+
+
+## [1.1.2](https://github.com/Microsoft/fast/compare/design-to-code-wasm@1.1.1...design-to-code-wasm@1.1.2) (2020-08-27)
+
+**Note:** Version bump only for package design-to-code-wasm
+
+
+
+
+
+## [1.1.1](https://github.com/Microsoft/fast/compare/design-to-code-wasm@1.1.0...design-to-code-wasm@1.1.1) (2020-08-13)
 
 
 ### Bug Fixes
@@ -43,7 +43,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [1.1.0](https://github.com/Microsoft/fast/compare/@microsoft/design-to-code-wasm@1.0.1...@microsoft/design-to-code-wasm@1.1.0) (2020-07-31)
+# [1.1.0](https://github.com/Microsoft/fast/compare/design-to-code-wasm@1.0.1...design-to-code-wasm@1.1.0) (2020-07-31)
 
 
 ### Features
@@ -56,4 +56,4 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## 1.0.1 (2020-07-14)
 
-**Note:** Version bump only for package @microsoft/design-to-code-wasm
+**Note:** Version bump only for package design-to-code-wasm

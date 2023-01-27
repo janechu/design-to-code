@@ -1,4 +1,3 @@
-import { ManagedClasses } from "@microsoft/fast-jss-manager-react";
 import { NavigationMenuClassNameContract } from "./navigation-menu.style";
 
 export interface MenuItem {
@@ -21,8 +20,7 @@ export interface MenuItem {
 
 export type NavigationMenuUnhandledProps = React.HTMLAttributes<HTMLElement>;
 
-export interface NavigationMenuHandledProps
-    extends ManagedClasses<NavigationMenuClassNameContract> {
+export interface NavigationMenuHandledProps {
     /**
      * The menu
      */

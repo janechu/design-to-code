@@ -1,21 +1,31 @@
 import React from "react";
-import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
-import { ManagedClasses } from "@microsoft/fast-components-class-name-contracts-base";
 import {
-    SectionValidationClassNameContract,
     SectionValidationProps,
     SectionValidationState,
 } from "./section.validation.props";
-import styles from "./section.validation.style";
-import { ValidationError } from "@microsoft/design-to-code";
+import { ValidationError } from "design-to-code";
 import { classNames } from "@microsoft/fast-web-utilities";
+import cssVariables from "../../../style/css-variables.css";
+import invalidMessageStyle from "../../../style/invalid-message-style.css";
+import ellipsisStyle from "../../../style/ellipsis-style.css";
+import chevronStyle from "../../../style/chevron-style.css";
+import chevronUpStyle from "../../../style/chevron-up-style.css";
+import style from "./section.validation.style.css";
+
+// tree-shaking
+cssVariables;
+invalidMessageStyle;
+ellipsisStyle;
+chevronStyle;
+chevronUpStyle;
+style;
 
 /**
  * Schema form component definition
  * @extends React.Component
  */
 class SectionValidation extends React.Component<
-    SectionValidationProps & ManagedClasses<SectionValidationClassNameContract>,
+    SectionValidationProps,
     SectionValidationState
 > {
     private validationIdentifier: string = "validation";
@@ -30,10 +40,12 @@ class SectionValidation extends React.Component<
 
     public render(): React.ReactNode {
         return (
-            <div className={this.props.managedClasses.sectionValidation}>
+            <div className={"dtc-section-validation"}>
                 {this.renderExpandTrigger()}
                 <div
-                    className={this.props.managedClasses.sectionValidation_controlRegion}
+                    className={
+                        "dtc-section-validation_control-region dtc-common-invalid-message"
+                    }
                 >
                     {this.renderInvalidMessage()}
                     {this.renderValidationErrorContainer()}
@@ -45,7 +57,7 @@ class SectionValidation extends React.Component<
     private renderInvalidMessage(): React.ReactNode {
         return (
             <div
-                className={this.props.managedClasses.sectionValidation_message}
+                className={"dtc-section-validation_message dtc-common-ellipsis"}
                 title={this.props.invalidMessage}
             >
                 {this.props.invalidMessage}
@@ -58,10 +70,9 @@ class SectionValidation extends React.Component<
             return (
                 <button
                     className={classNames(
-                        this.props.managedClasses.sectionValidation_expandTrigger,
+                        "dtc-section-validation_expand-trigger dtc-common-chevron",
                         [
-                            this.props.managedClasses
-                                .sectionValidation_expandTrigger__active,
+                            "dtc-section-validation_expand-trigger__active dtc-common-chevron dtc-common-chevron-up",
                             this.state.expanded,
                         ]
                     )}
@@ -76,10 +87,7 @@ class SectionValidation extends React.Component<
 
     private renderValidationErrorContainer(): React.ReactNode {
         return (
-            <ul
-                id={this.getId()}
-                className={this.props.managedClasses.sectionValidation_errorList}
-            >
+            <ul id={this.getId()} className={"dtc-section-validation_error-list"}>
                 {this.renderAllValidationErrors()}
             </ul>
         );
@@ -93,7 +101,7 @@ class SectionValidation extends React.Component<
                         <li
                             key={`${this.props.dataLocation}${index}`}
                             className={
-                                this.props.managedClasses.sectionValidation_errorListItem
+                                "dtc-section-validation_error-list-item dtc-common-ellipsis"
                             }
                         >
                             <span title={validationError.invalidMessage}>
@@ -101,8 +109,7 @@ class SectionValidation extends React.Component<
                             </span>
                             <div
                                 className={
-                                    this.props.managedClasses
-                                        .sectionValidation_errorListItemDetails
+                                    "dtc-section-validation_error-list-item-details dtc-common-ellipsis"
                                 }
                                 title={`data location: ${validationError.dataLocation}`}
                             >
@@ -129,4 +136,4 @@ class SectionValidation extends React.Component<
 }
 
 export { SectionValidation };
-export default manageJss(styles)(SectionValidation);
+export default SectionValidation;

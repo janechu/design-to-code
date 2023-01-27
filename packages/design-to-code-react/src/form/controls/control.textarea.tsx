@@ -1,11 +1,13 @@
 import React from "react";
-import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
-import { ManagedClasses } from "@microsoft/fast-components-class-name-contracts-base";
-import styles from "./control.textarea.style";
 import { TextareaControlProps } from "./control.textarea.props";
-import { TextareaControlClassNameContract } from "./control.textarea.style";
 import { classNames } from "@microsoft/fast-web-utilities";
 import { isDefault } from "./utilities/form";
+import cssVariables from "../../style/css-variables.css";
+import style from "./control.textarea.style.css";
+
+// tree-shaking
+cssVariables;
+style;
 
 export interface TextareaControlState {
     isFocused: boolean;
@@ -15,20 +17,12 @@ export interface TextareaControlState {
  * Form control definition
  */
 class TextareaControl extends React.Component<
-    TextareaControlProps & ManagedClasses<TextareaControlClassNameContract>,
+    TextareaControlProps,
     TextareaControlState
 > {
     public static displayName: string = "TextareaControl";
 
-    public static defaultProps: Partial<
-        TextareaControlProps & ManagedClasses<TextareaControlClassNameContract>
-    > = {
-        managedClasses: {},
-    };
-
-    constructor(
-        props: TextareaControlProps & ManagedClasses<TextareaControlClassNameContract>
-    ) {
+    constructor(props: TextareaControlProps) {
         super(props);
 
         this.state = {
@@ -40,13 +34,10 @@ class TextareaControl extends React.Component<
         return (
             <textarea
                 className={classNames(
-                    this.props.managedClasses.textareaControl,
+                    "dtc-textarea-control",
+                    ["dtc-textarea-control__disabled", this.props.disabled],
                     [
-                        this.props.managedClasses.textareaControl__disabled,
-                        this.props.disabled,
-                    ],
-                    [
-                        this.props.managedClasses.textareaControl__default,
+                        "dtc-textarea-control__default",
                         isDefault(this.props.value, this.props.default),
                     ]
                 )}
@@ -106,4 +97,4 @@ class TextareaControl extends React.Component<
 }
 
 export { TextareaControl };
-export default manageJss(styles)(TextareaControl);
+export default TextareaControl;

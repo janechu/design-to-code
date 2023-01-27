@@ -1,0 +1,137 @@
+.dtc-viewer {
+    display: flex;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.dtc-viewer_content-region {
+    position: relative;
+    background: #FFF;
+    border-radius: 4px;
+    margin: 0 auto;
+    height: 100%;
+    box-shadow: 0 0 22px rgba(0,0,0,0.22), 0 2px 5px rgba(0,0,0,0.18);
+}
+
+.dtc-viewer_content-region__preview {
+    border-radius: 0;
+}
+
+.dtc-viewer_iframe {
+    border-radius: 4px;
+    border: none;
+    width: 100%;
+    height: 100%;
+}
+
+.dtc-viewer_content-region__disabled::before {
+    content: '';
+    background: transparent;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+}
+
+.dtc-viewer-handle {
+    --dtc-handle-fixed-size: 20px;
+    --dtc-handle-background-color: #999;
+    position: absolute;
+    background: transparent;
+    border-radius: 0;
+    padding: 0;
+}
+
+.dtc-viewer-handle:focus {
+    outline: none;
+}
+
+.dtc-viewer-handle__bottom {
+    cursor: ns-resize;
+    bottom: -1px;
+    left: var(--dtc-handle-fixed-size);
+    width: calc(100% - var(--dtc-handle-fixed-size) * 2);
+    height: 0;
+    border: none;
+}
+
+.dtc-viewer-handle__bottom-left {
+    cursor: nesw-resize;
+    bottom: -1px;
+    left: -1px;
+    height: var(--dtc-handle-fixed-size) + 1px;
+    width: var(--dtc-handle-fixed-size) + 1px;
+    border: none;
+}
+
+.dtc-viewer-handle__bottom-left::before,
+.dtc-viewer-handle__bottom-left::after {
+    content: '';
+    position: absolute;
+    background: var(--dtc-handle-background-color);
+    transform: rotate(-45deg);
+}
+
+.dtc-viewer-handle__bottom-left::before {
+    left: 6px;
+    bottom: 1px;
+    height: 10px;
+    width: 1px;
+}
+
+.dtc-viewer-handle__bottom-left::after {
+    left: 4px;
+    bottom: 2px;
+    height: 4px;
+    width: 1px;
+}
+
+.dtc-viewer-handle__bottom-right {
+    cursor: nwse-resize;
+    bottom: -1px;
+    right: -1px;
+    height: var(--dtc-handle-fixed-size) + 1px;
+    width: var(--dtc-handle-fixed-size) + 1px;
+    border: none;
+}
+
+.dtc-viewer-handle__bottom-right::before,
+.dtc-viewer-handle__bottom-right::after {
+    content: '';
+    position: absolute;
+    background: var(--dtc-handle-background-color);
+    transform: rotate(45deg);
+}
+
+.dtc-viewer-handle__bottom-right::before {
+    right: 6px;
+    bottom: 1px;
+    height: 10px;
+    width: 1px;
+}
+
+.dtc-viewer-handle__bottom-right::after {
+    right: 4px;
+    bottom: 2px;
+    height: 4px;
+    width: 1px;
+}
+
+.dtc-viewer-handle__left {
+    cursor: ew-resize;
+    left: -1px;
+    top: 0;
+    height: calc(100% - var(--dtc-handle-fixed-size));
+    width: 0;
+    border: none;
+}
+
+.dtc-viewer-handle__right {
+    cursor: ew-resize;
+    top: 0;
+    right: -1px;
+    height: calc(100% - var(--dtc-handle-fixed-size));
+    width: 0;
+    border: none;
+}

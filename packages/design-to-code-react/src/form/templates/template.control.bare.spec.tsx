@@ -1,7 +1,5 @@
 import React from "react";
-import Adapter from "enzyme-adapter-react-16";
 import "../../__tests__/mocks/match-media";
-import { configure, mount, shallow } from "enzyme";
 import { BareControlTemplate } from "./template.control.bare";
 import { BareControlTemplateProps } from "./template.control.bare.props";
 import { BareControlTemplateClassNameContract } from "./template.control.bare.style";
@@ -18,11 +16,6 @@ import {
     TextareaControl,
 } from "../controls";
 import defaultStrings from "../form.strings";
-
-/*
- * Configure Enzyme
- */
-configure({ adapter: new Adapter() });
 
 const managedClasses: BareControlTemplateClassNameContract = {
     bareControlTemplate: "bareControlTemplate",

@@ -1,17 +1,10 @@
 import React from "react";
-import Adapter from "enzyme-adapter-react-16";
 import "../../__tests__/mocks/match-media";
-import { configure, mount, shallow } from "enzyme";
 import { ButtonControl } from "./control.button";
 import { ButtonControlProps } from "./control.button.props";
 import { ButtonControlClassNameContract } from "./control.button.style";
 import { ControlType } from "../templates";
 import defaultStrings from "../form.strings";
-
-/*
- * Configure Enzyme
- */
-configure({ adapter: new Adapter() });
 
 const managedClasses: ButtonControlClassNameContract = {
     buttonControl: "buttonControl-class",

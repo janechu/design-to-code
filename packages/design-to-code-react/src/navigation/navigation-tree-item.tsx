@@ -4,7 +4,6 @@ import {
     ConnectDragSource,
     ConnectDropTarget,
     DragElementWrapper,
-    DragObjectWithType,
     DragPreviewOptions,
     DragSourceOptions,
     DropTargetMonitor,
@@ -12,7 +11,7 @@ import {
     useDrop,
 } from "react-dnd";
 import { getHoverLocation, refNode } from "./navigation-tree-item.utilities";
-import { XOR } from "@microsoft/design-to-code/dist/dts/data-utilities/type.utilities";
+import { XOR } from "design-to-code/dist/dts/data-utilities/type.utilities";
 
 function editableOverlay(
     className: string,
@@ -213,12 +212,8 @@ export const DraggableNavigationTreeItem: React.FC<NavigationTreeItemProps> = ({
         DragElementWrapper<DragSourceOptions>,
         DragElementWrapper<DragPreviewOptions>
     ] = useDrag({
-        item: {
-            type,
-        },
-        begin(): void {
-            dragStart(dictionaryId);
-        },
+        type,
+        item: dragStart(dictionaryId, type),
         end(): void {
             // TODO: investigate why when not dropped on a drop target this takes extra time to respond
             // see issue: https://github.com/microsoft/fast/issues/2867
@@ -228,7 +223,7 @@ export const DraggableNavigationTreeItem: React.FC<NavigationTreeItemProps> = ({
     const dragSource: ConnectDragSource = drag[1];
     const drop: [{}, DragElementWrapper<any>] = useDrop({
         accept: [DragDropItemType.linkedData, DragDropItemType.linkedDataUndroppable],
-        hover(item: DragObjectWithType, monitor: DropTargetMonitor): void {
+        hover(item, monitor: DropTargetMonitor): void {
             /**
              * When the hovered element changes, reset the cached ref and
              * the cached bounding client rect to reduce performance cost

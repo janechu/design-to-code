@@ -1,6 +1,6 @@
 import "jest";
 import "../../../__tests__/mocks/match-media";
-import { CombiningKeyword, MessageSystem } from "@microsoft/design-to-code";
+import { CombiningKeyword, MessageSystem } from "design-to-code";
 import {
     childrenSchema,
     mergedOneOfSchema,

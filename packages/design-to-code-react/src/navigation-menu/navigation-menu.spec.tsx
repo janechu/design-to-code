@@ -1,14 +1,7 @@
 import React from "react";
-import Adapter from "enzyme-adapter-react-16";
-import { configure, mount, render, shallow } from "enzyme";
 import NavigationMenu from "./navigation-menu";
 import { MenuItem, NavigationMenuHandledProps } from "./navigation-menu.props";
 import { NavigationMenuClassNameContract } from "./navigation-menu.style";
-
-/*
- * Configure Enzyme
- */
-configure({ adapter: new Adapter() });
 
 const managedClasses: NavigationMenuClassNameContract = {
     navigationMenu: "navigationMenu-class",

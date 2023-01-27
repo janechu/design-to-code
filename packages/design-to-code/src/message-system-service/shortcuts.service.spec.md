@@ -7,7 +7,7 @@ The shortcuts service accepts an instance of the `MessageSystem` and through thi
 All the `Shortcuts` class needs to instantiate is an instance of the `MessageSystem`. It should then fire a custom event notifying all other items registered to the message system that shortcuts are available, with a listener that will capture keypress and identify which shortcut action to execute.
 
 ```typescript
-import { Shortcut } from "@microsoft/design-to-code"
+import { Shortcut } from "design-to-code"
 
 new Shortcuts({
     messageSystem: fastMessageSystem
@@ -51,7 +51,7 @@ shortcuts.action("random").run();
 Shortcut actions can either be custom or imported from a set of actions available.
 
 ```typescript
-import { DuplicateShortcutsAction, ShortcutsAction, Shortcuts } from "@microsoft/design-to-code"
+import { DuplicateShortcutsAction, ShortcutsAction, Shortcuts } from "design-to-code"
 
 new Shortcuts({
     messageSystem: fastMessageSystem,

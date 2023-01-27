@@ -1,0 +1,22 @@
+.dtc-section-validation {
+    overflow: visible;
+    position: relative;
+}
+
+.dtc-section-validation_control-region {
+    border: 1px solid var(--dtc-error-color);
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: var(--dtc-border-radius);
+    background: var(--dtc-l1-color);
+}
+
+.dtc-section-validation_errorList {
+    margin: 10px 0 5px 0;
+    padding: 0;
+    list-style: inside;
+}
+
+.dtc-section-validation_errorListItemDetails {
+    font-style: italic;
+}

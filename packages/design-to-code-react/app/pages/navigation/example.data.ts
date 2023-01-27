@@ -1,4 +1,4 @@
-import { DataDictionary } from "@microsoft/design-to-code";
+import { DataDictionary } from "design-to-code";
 import noChildrenSchema from "./no-children.schema";
 import childrenSchema from "./children.schema";
 

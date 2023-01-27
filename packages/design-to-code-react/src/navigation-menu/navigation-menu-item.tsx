@@ -1,9 +1,5 @@
 import React from "react";
 import { get, uniqueId } from "lodash-es";
-import Foundation, {
-    FoundationProps,
-    HandledProps,
-} from "@microsoft/fast-components-foundation-react";
 import {
     NavigationMenuItemHandledProps,
     NavigationMenuItemProps,
@@ -12,9 +8,8 @@ import {
 } from "./navigation-menu-item.props";
 import { MenuItem } from "./navigation-menu.props";
 
-export default class NavigationMenuItem extends Foundation<
-    NavigationMenuItemHandledProps,
-    NavigationMenuItemUnhandledProps,
+export default class NavigationMenuItem extends React.Component<
+    NavigationMenuItemHandledProps & NavigationMenuItemUnhandledProps,
     NavigationMenuItemState
 > {
     public static displayName: string = "NavigationMenuItem";
@@ -64,9 +59,7 @@ export default class NavigationMenuItem extends Foundation<
     }
 
     protected generateClassNames(): string {
-        const classes: string = get(this.props, "managedClasses.navigationMenuItem");
-
-        return super.generateClassNames(classes);
+        return "dtc-navigation-menu-item";
     }
 
     private renderMenuItemDisplayName(): React.ReactNode {
@@ -124,20 +117,17 @@ export default class NavigationMenuItem extends Foundation<
     }
 
     private renderMenuItem(items: MenuItem[]): React.ReactNode {
-        return items.map(
-            (menuItem: MenuItem, index: number): React.ReactNode => {
-                return (
-                    <NavigationMenuItem
-                        key={index}
-                        managedClasses={this.props.managedClasses}
-                        expanded={this.props.expanded}
-                        activeLocation={this.props.activeLocation}
-                        onLocationUpdate={this.props.onLocationUpdate}
-                        {...menuItem}
-                    />
-                );
-            }
-        );
+        return items.map((menuItem: MenuItem, index: number): React.ReactNode => {
+            return (
+                <NavigationMenuItem
+                    key={index}
+                    expanded={this.props.expanded}
+                    activeLocation={this.props.activeLocation}
+                    onLocationUpdate={this.props.onLocationUpdate}
+                    {...menuItem}
+                />
+            );
+        });
     }
 
     private generateListItemClassNames(): string {

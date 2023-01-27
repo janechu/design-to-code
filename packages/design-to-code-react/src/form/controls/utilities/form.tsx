@@ -18,7 +18,7 @@ import {
     MessageSystemType,
     normalizeDataLocationToDotNotation,
     ValidationError,
-} from "@microsoft/design-to-code";
+} from "design-to-code";
 import stringify from "fast-json-stable-stringify";
 
 const containsInvalidDataMessage: string = "Contains invalid data";
@@ -414,9 +414,8 @@ export function getErrorFromDataLocation(
     let error: string = "";
 
     if (Array.isArray(validationErrors)) {
-        const normalizedDataLocation: string = normalizeDataLocationToDotNotation(
-            dataLocation
-        );
+        const normalizedDataLocation: string =
+            normalizeDataLocationToDotNotation(dataLocation);
 
         for (const validationError of validationErrors) {
             if (normalizedDataLocation === validationError.dataLocation) {
@@ -427,9 +426,8 @@ export function getErrorFromDataLocation(
                 if (normalizedDataLocation === "") {
                     containsInvalidData = true;
                 } else {
-                    const dataLocations: string[] = validationError.dataLocation.split(
-                        "."
-                    );
+                    const dataLocations: string[] =
+                        validationError.dataLocation.split(".");
 
                     containsInvalidData = dataLocations.some(
                         (value: string, index: number) => {

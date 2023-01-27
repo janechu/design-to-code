@@ -1,13 +1,12 @@
 import { Form, Viewer } from "../../src";
 import { FormProps } from "../../src/form/form.props";
-import { DesignSystemProvider } from "@microsoft/fast-jss-manager-react";
 import React from "react";
 import {
     getDataFromSchema,
     MessageSystem,
     MessageSystemType,
     SchemaDictionary,
-} from "@microsoft/design-to-code";
+} from "design-to-code";
 import FancyButton from "./web-components/fancy-button";
 import { webComponentSchemas } from "./web-components/index";
 import fancyButtonSchema from "./web-components/fancy-button.schema";
@@ -26,6 +25,7 @@ export interface GroupItem {
     type: string;
 }
 
+// TODO: just convert these to regular CSS variables
 const designSystemDefaults: any = {
     foregroundColor: "#000",
     backgroundColor: "#FFF",
@@ -65,62 +65,60 @@ class WebComponentTestPage extends React.Component<{}, WebComponentTestPageState
 
     public render(): JSX.Element {
         return (
-            <DesignSystemProvider designSystem={designSystemDefaults}>
-                <div>
-                    <div
-                        style={{
-                            width: "250px",
-                            height: "100vh",
-                            float: "left",
-                            fontFamily:
-                                "Segoe UI, SegoeUI, Helvetica Neue, Helvetica, Arial, sans-serif",
-                        }}
-                    >
-                        <Form {...this.coerceFormProps()} />
-                    </div>
-                    <div
-                        style={{
-                            float: "left",
-                            marginLeft: "8px",
-                        }}
-                    >
-                        <div>
-                            <select onChange={this.handleComponentUpdate}>
-                                {this.getComponentOptions()}
-                            </select>
-                        </div>
-                        <Viewer
-                            messageSystem={fastMessageSystem}
-                            iframeSrc={"/web-components/content"}
-                            responsive={true}
-                            onUpdateHeight={this.handleViewerUpdateHeight}
-                            onUpdateWidth={this.handleViewerUpdateWidth}
-                            height={this.state.height}
-                            width={this.state.width}
-                        />
-                        <h2>Data</h2>
-                        <pre
-                            style={{
-                                padding: "12px",
-                                background: "rgb(244, 245, 246)",
-                                borderRadius: "4px",
-                            }}
-                        >
-                            {JSON.stringify(this.state.data, null, 2)}
-                        </pre>
-                        <h2>Navigation</h2>
-                        <pre
-                            style={{
-                                padding: "12px",
-                                background: "rgb(244, 245, 246)",
-                                borderRadius: "4px",
-                            }}
-                        >
-                            {JSON.stringify(this.state.navigation, null, 2)}
-                        </pre>
-                    </div>
+            <div>
+                <div
+                    style={{
+                        width: "250px",
+                        height: "100vh",
+                        float: "left",
+                        fontFamily:
+                            "Segoe UI, SegoeUI, Helvetica Neue, Helvetica, Arial, sans-serif",
+                    }}
+                >
+                    <Form {...this.coerceFormProps()} />
                 </div>
-            </DesignSystemProvider>
+                <div
+                    style={{
+                        float: "left",
+                        marginLeft: "8px",
+                    }}
+                >
+                    <div>
+                        <select onChange={this.handleComponentUpdate}>
+                            {this.getComponentOptions()}
+                        </select>
+                    </div>
+                    <Viewer
+                        messageSystem={fastMessageSystem}
+                        iframeSrc={"/web-components/content"}
+                        responsive={true}
+                        onUpdateHeight={this.handleViewerUpdateHeight}
+                        onUpdateWidth={this.handleViewerUpdateWidth}
+                        height={this.state.height}
+                        width={this.state.width}
+                    />
+                    <h2>Data</h2>
+                    <pre
+                        style={{
+                            padding: "12px",
+                            background: "rgb(244, 245, 246)",
+                            borderRadius: "4px",
+                        }}
+                    >
+                        {JSON.stringify(this.state.data, null, 2)}
+                    </pre>
+                    <h2>Navigation</h2>
+                    <pre
+                        style={{
+                            padding: "12px",
+                            background: "rgb(244, 245, 246)",
+                            borderRadius: "4px",
+                        }}
+                    >
+                        {JSON.stringify(this.state.navigation, null, 2)}
+                    </pre>
+                </div>
+            </div>
         );
     }
 

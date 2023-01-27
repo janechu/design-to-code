@@ -1,9 +1,12 @@
 import React from "react";
-import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
-import { ManagedClasses } from "@microsoft/fast-components-class-name-contracts-base";
-import styles, { TextAlignControlClassNameContract } from "./control.text-align.style";
 import { TextAlignControlProps } from "./control.text-align.props";
 import { classNames } from "@microsoft/fast-web-utilities";
+import cssVariables from "../../style/css-variables.css";
+import textAlignStyle from "./control.text-align.style.css";
+
+// tree-shaking
+cssVariables;
+textAlignStyle;
 
 enum Direction {
     Left = "left",
@@ -15,23 +18,14 @@ enum Direction {
 /**
  * Custom form control definition
  */
-class TextAlignControl extends React.Component<
-    TextAlignControlProps & ManagedClasses<TextAlignControlClassNameContract>,
-    {}
-> {
+class TextAlignControl extends React.Component<TextAlignControlProps, {}> {
     public static displayName: string = "TextAlignControl";
-
-    public static defaultProps: Partial<
-        TextAlignControlProps & ManagedClasses<TextAlignControlClassNameContract>
-    > = {
-        managedClasses: {},
-    };
 
     public render(): React.ReactNode {
         return (
             <div
-                className={classNames(this.props.managedClasses.textAlignControl, [
-                    this.props.managedClasses.textAlignControl__disabled,
+                className={classNames("dtc-text-align-control", [
+                    "dtc-text-align-control__disabled",
                     this.props.disabled,
                 ])}
             >
@@ -57,13 +51,13 @@ class TextAlignControl extends React.Component<
     private getInputClassName(direction: Direction): string {
         switch (direction) {
             case Direction.Left:
-                return this.props.managedClasses.textAlignControl_input__left;
+                return "dtc-text-align-control_input__left";
             case Direction.Center:
-                return this.props.managedClasses.textAlignControl_input__center;
+                return "dtc-text-align-control_input__center";
             case Direction.Right:
-                return this.props.managedClasses.textAlignControl_input__right;
+                return "dtc-text-align-control_input__right";
             case Direction.Justify:
-                return this.props.managedClasses.textAlignControl_input__justify;
+                return "dtc-text-align-control_input__justify";
         }
     }
 
@@ -91,7 +85,7 @@ class TextAlignControl extends React.Component<
                     <span>
                         <input
                             className={classNames(
-                                this.props.managedClasses.textAlignControl_input,
+                                "dtc-text-align-control_input dtc-common-input-backplate",
                                 this.getInputClassName(direction)
                             )}
                             id={this.props.dataLocation}
@@ -111,4 +105,4 @@ class TextAlignControl extends React.Component<
 }
 
 export { TextAlignControl };
-export default manageJss(styles)(TextAlignControl);
+export default TextAlignControl;

@@ -1,8 +1,6 @@
 import React from "react";
-import Adapter from "enzyme-adapter-react-16";
 import "../../__tests__/mocks/match-media";
-import { configure, mount, ReactWrapper } from "enzyme";
-import HTML5Backend from "react-dnd-html5-backend";
+import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
 import {
     keyArrowDown,
@@ -26,11 +24,6 @@ const LinkedDataFormControlWithDragAndDrop: React.FC<any> = (
         </DndProvider>
     );
 };
-
-/*
- * Configure Enzyme
- */
-configure({ adapter: new Adapter() });
 
 const managedClasses: LinkedDataControlClassNameContract = {
     linkedDataControl: "linkedDataFormControl-class",

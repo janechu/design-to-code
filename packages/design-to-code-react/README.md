@@ -70,7 +70,7 @@ Example:
 ```jsx
 import { DndProvider } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend";
-import { ModularForm, ModularViewer } from "@microsoft/design-to-code-react";
+import { ModularForm, ModularViewer } from "design-to-code-react";
 
 // See details on implementation from the standalone
 // versions of Form and Viewer
@@ -82,19 +82,19 @@ import { ModularForm, ModularViewer } from "@microsoft/design-to-code-react";
 
 ## Installation
 
-`npm i --save @microsoft/design-to-code-react`
+`npm i --save design-to-code-react`
 
 ## Requirements
 
-The `@microsoft/design-to-code-react` package will be installed with `@microsoft/design-to-code`. The `@microsoft/design-to-code` package includes exports required for implementing the React specific components, namely the `MessageSystem` and the minified webworker which handles data manipulation. Please refer to the documentation for `@microsoft/design-to-code` for a better understanding of these systems.
+The `design-to-code-react` package will be installed with `design-to-code`. The `design-to-code` package includes exports required for implementing the React specific components, namely the `MessageSystem` and the minified webworker which handles data manipulation. Please refer to the documentation for `design-to-code` for a better understanding of these systems.
 
 ## Form
 
-The required property is the `messageSystem`, see `@microsoft/design-to-code` for details on setting this up.
+The required property is the `messageSystem`, see `design-to-code` for details on setting this up.
 
 Example:
 ```jsx
-import { Form } from "@microsoft/design-to-code-react";
+import { Form } from "design-to-code-react";
 
 /**
  * Add to your render function
@@ -106,7 +106,7 @@ import { Form } from "@microsoft/design-to-code-react";
 
 ### Validation
 
-Validation is treated as optional, there is a validation utility provided by the `@microsoft/design-to-code` package that will give basic JSON schema validation errors. Refer to the `@microsoft/design-to-code` README for details.
+Validation is treated as optional, there is a validation utility provided by the `design-to-code` package that will give basic JSON schema validation errors. Refer to the `design-to-code` README for details.
 
 ### Drag and drop
 
@@ -121,7 +121,7 @@ To make a custom control, use the secondary export `StandardControlPlugin` which
 When the plugin instance is passed to the `<Form />` 
 either the id or the type is then referenced and will cause the control to render.
 
-A config is passed to the control, the specifications of this can be found [here](https://github.com/microsoft/design-to-code/blob/main/packages/design-to-code-react/src/form/templates/template.control.utilities.props.tsx). Note that the `ControlConfig` interface may include extra properties depending on the control type being used.
+A config is passed to the control, the specifications of this can be found [here](https://github.com/janechu/design-to-code/blob/main/packages/design-to-code-react/src/form/templates/template.control.utilities.props.tsx). Note that the `ControlConfig` interface may include extra properties depending on the control type being used.
 
 Example id plugin:
 
@@ -183,7 +183,7 @@ Example type plugin:
 Control types are available as an enum provided as a secondary export `ControlType` and consist of the following:
 
 ```js
-import { ControlType } from "@microsoft/design-to-code-react";
+import { ControlType } from "design-to-code-react";
 
 // Available types
 ControlType.select
@@ -216,7 +216,7 @@ These control types can be paired with our default controls, the following of wh
 Example of a replacement type:
 
 ```jsx
-import { ControlType, TextareaControl } from "@microsoft/design-to-code-react";
+import { ControlType, TextareaControl } from "design-to-code-react";
 
 ...
 
@@ -269,7 +269,7 @@ To assist in the creation of a custom control plugin template, another secondary
 Example:
 
 ```jsx
-import { ControlTemplateUtilities } from "@microsoft/design-to-code-react";
+import { ControlTemplateUtilities } from "design-to-code-react";
 
 export class MyControlTemplate extends ControlTemplateUtilities {
     public render() {
@@ -623,7 +623,7 @@ Example:
 
 ## Navigation
 
-The required property is the `messageSystem`, see `@microsoft/design-to-code` for details on setting this up.
+The required property is the `messageSystem`, see `design-to-code` for details on setting this up.
 
 Example:
 
@@ -714,7 +714,7 @@ handleLocationUpdate = (location) => {
 
 The `Viewer` component creates an iframe, it can have a fixed or adjustable width and height and can be used independently or as a set with the `SelectDevice` and `Rotate` components.
 
-The required property is the `messageSystem`, see `@microsoft/design-to-code` for details on setting this up and the `iframeSrc`.
+The required property is the `messageSystem`, see `design-to-code` for details on setting this up and the `iframeSrc`.
 
 Example:
 
@@ -772,12 +772,12 @@ handleUpdateViewerWidth = (newViewerWidth) => {
 
 ### Sending custom messages
 
-Sending custom messages through from the iframe can be done with a `postMessage` to the iframe window. The custom message should define the `type` and `action`. The type should be `MessageSystemType.custom` imported from the `@microsoft/design-to-code` package and the `action` is defined as the enum value `ViewerCustomAction.call` provided as an export.
+Sending custom messages through from the iframe can be done with a `postMessage` to the iframe window. The custom message should define the `type` and `action`. The type should be `MessageSystemType.custom` imported from the `design-to-code` package and the `action` is defined as the enum value `ViewerCustomAction.call` provided as an export.
 
 Example:
 ```javascript
-import { MessageSystemType } from "@microsoft/design-to-code";
-import { ViewerCustomAction } from "@microsoft/design-to-code-react";
+import { MessageSystemType } from "design-to-code";
+import { ViewerCustomAction } from "design-to-code-react";
 
 window.postMessage({
     type: MessageSystemType.custom,
@@ -800,7 +800,7 @@ Example:
 import {
     defaultDevices,
     SelectDevice,
-} from "@microsoft/design-to-code-react";
+} from "design-to-code-react";
 
 <SelectDevice
     devices={defaultDevices}
@@ -841,7 +841,7 @@ Example:
 ```jsx
 import {
     Rotate,
-} from "@microsoft/design-to-code-react";
+} from "design-to-code-react";
 
 <Rotate
     orientation={this.state.orientation}
@@ -855,13 +855,13 @@ import {
 
 As data from the dictionary of data is intended to be mapped to JSON schema, it may need to be transformed to be useful as, for instance, a React component.
 
-Assuming that each JSON schema represents React props for a given component, a mapper has been provided which can be used in conjunction with the `@microsoft/design-to-code` export `mapDataDictionary`.
+Assuming that each JSON schema represents React props for a given component, a mapper has been provided which can be used in conjunction with the `design-to-code` export `mapDataDictionary`.
 
 Example:
 
 ```js
-import { mapDataDictionary } from "@microsoft/design-to-code";
-import { reactMapper } from "@microsoft/design-to-code-react";
+import { mapDataDictionary } from "design-to-code";
+import { reactMapper } from "design-to-code-react";
 
 const componentDictionary = {
     "button-schema-id": MyButton

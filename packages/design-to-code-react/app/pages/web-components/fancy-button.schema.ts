@@ -1,7 +1,4 @@
-import {
-    linkedDataSchema,
-    ReservedElementMappingKeyword,
-} from "@microsoft/design-to-code";
+import { linkedDataSchema, ReservedElementMappingKeyword } from "design-to-code";
 
 export default {
     $schema: "http://json-schema.org/schema#",

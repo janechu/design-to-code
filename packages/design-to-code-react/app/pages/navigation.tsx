@@ -2,7 +2,7 @@ import React from "react";
 import { ModularNavigation } from "../../src";
 import childrenSchema from "./navigation/children.schema";
 import { children } from "./navigation/example.data";
-import { DataType, MessageSystem, MessageSystemType } from "@microsoft/design-to-code";
+import { DataType, MessageSystem, MessageSystemType } from "design-to-code";
 import noChildrenSchema from "./navigation/no-children.schema";
 import {
     accentColorName,
@@ -13,8 +13,8 @@ import {
     inactiveTextColorName,
     L3OutlineColorName,
 } from "../../src/style";
-import { Data } from "@microsoft/design-to-code";
-import { MessageSystemNavigationTypeAction } from "@microsoft/design-to-code";
+import { Data } from "design-to-code";
+import { MessageSystemNavigationTypeAction } from "design-to-code";
 
 export interface NavigationTestPageState {
     navigation: any;
@@ -230,8 +230,8 @@ class NavigationTestPage extends React.Component<{}, NavigationTestPageState> {
 
     private handleSetDefaultLinkedDataDatalocation = (e: React.ChangeEvent): void => {
         this.setState({
-            defaultLinkedDataDroppableDataLocation: !this.state
-                .defaultLinkedDataDroppableDataLocation,
+            defaultLinkedDataDroppableDataLocation:
+                !this.state.defaultLinkedDataDroppableDataLocation,
         });
     };
 
