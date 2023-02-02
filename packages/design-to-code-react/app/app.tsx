@@ -5,7 +5,6 @@ import ViewerPage from "./pages/viewer";
 import ViewerContentPage from "./pages/viewer/content";
 import { FormTestPage } from "./pages/form";
 import { FormAndNavigationTestPage } from "./pages/form-and-navigation";
-import { NavigationMenuTestPage } from "./pages/navigation-menu";
 import { WebComponentTestPage } from "./pages/web-components";
 import WebComponentViewerContent from "./pages/web-components/web-component-viewer-content";
 
@@ -16,10 +15,6 @@ class App extends React.Component<{}, {}> {
                 <div>
                     {this.renderLinks()}
                     <Routes>
-                        <Route
-                            path={"/navigation-menu"}
-                            element={<NavigationMenuTestPage />}
-                        />
                         <Route path={"/navigation"} element={<NavigationTestPage />} />
                         <Route path={"/viewer"} element={<ViewerPage />} />
                         <Route path={"/viewer/content"} element={<ViewerContentPage />} />
@@ -48,9 +43,6 @@ class App extends React.Component<{}, {}> {
             return (
                 <React.Fragment>
                     <ul>
-                        <li>
-                            <Link to="/navigation-menu">Navigation Menu</Link>
-                        </li>
                         <li>
                             <Link to="/form">Form</Link>
                         </li>

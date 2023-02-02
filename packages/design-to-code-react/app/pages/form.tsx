@@ -23,15 +23,6 @@ import {
     MessageSystemType,
     SchemaDictionary,
 } from "design-to-code";
-import {
-    accentColorName,
-    L1ColorName,
-    L4ColorName,
-    textColorName,
-    L3FillColorName,
-    errorColorName,
-    FloatingColorName,
-} from "../../src/style";
 import { CSSPropertiesDictionary } from "design-to-code/dist/esm/data-utilities/mapping.mdn-data";
 import { ControlContext } from "../../src/form/templates/types";
 import { CSSStandardControlPlugin } from "../../src/form/custom-controls/css";
@@ -75,7 +66,6 @@ export interface FormTestPageState {
     defaultBrowserErrors?: boolean;
     inlineErrors?: boolean;
     dataSet?: any;
-    cssPropertyOverrides: boolean;
 }
 
 export interface GroupItem {
@@ -125,16 +115,6 @@ const dataSets: DataSet[] = [
         data: {},
     },
 ];
-
-const CSSpropertyOverrides = {
-    [accentColorName]: "blue",
-    [L1ColorName]: "white",
-    [L4ColorName]: "lightgray",
-    [textColorName]: "black",
-    [L3FillColorName]: "white",
-    [errorColorName]: "green",
-    [FloatingColorName]: "purple",
-};
 
 let fastMessageSystem: MessageSystem;
 let ajvMapper: AjvMapper;
@@ -301,13 +281,12 @@ class FormTestPage extends React.Component<{}, FormTestPageState> {
             inlineErrors: void 0,
             defaultBrowserErrors: void 0,
             dataSet: dataSets[0].data,
-            cssPropertyOverrides: false,
         };
     }
 
     public render(): JSX.Element {
         return (
-            <div style={this.state.cssPropertyOverrides ? CSSpropertyOverrides : {}}>
+            <div style={{}}>
                 <div
                     style={{
                         width: "300px",
@@ -335,12 +314,6 @@ class FormTestPage extends React.Component<{}, FormTestPageState> {
                         {this.renderDataSetComponentOptions()}
                         <br />
                         <br />
-                        <input
-                            id={"useCSSOverrides"}
-                            type={"checkbox"}
-                            value={this.state.cssPropertyOverrides.toString()}
-                            onChange={this.handleCSSOverrideUpdate}
-                        />
                         <label htmlFor={"useCSSOverrides"}>
                             Show CSS property overrides
                         </label>
@@ -518,12 +491,6 @@ class FormTestPage extends React.Component<{}, FormTestPageState> {
                     });
                 }
         }
-    };
-
-    private handleCSSOverrideUpdate = (): void => {
-        this.setState({
-            cssPropertyOverrides: !this.state.cssPropertyOverrides,
-        });
     };
 
     private handleDataSetUpdate = (e: React.ChangeEvent<HTMLSelectElement>): void => {
