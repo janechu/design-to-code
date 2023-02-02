@@ -1,12 +1,22 @@
 import React from "react";
-import Foundation, { HandledProps } from "@microsoft/fast-components-foundation-react";
-import { get } from "lodash-es";
 import { Orientation, RotateHandledProps, RotateUnhandledProps } from "./rotate.props";
+import cssVariables from "../../style/css-variables.css";
+import inputBackplateStyle from "../../style/input-backplate-style.css";
+import style from "./rotate.style.css";
 
-export class Rotate extends Foundation<RotateHandledProps, RotateUnhandledProps, {}> {
+// tree-shaking
+cssVariables;
+inputBackplateStyle;
+style;
+
+export class Rotate extends React.Component<
+    RotateHandledProps,
+    RotateUnhandledProps,
+    {}
+> {
     public static displayName: string = "Rotate";
 
-    protected handledProps: HandledProps<RotateHandledProps> = {
+    protected handledProps: RotateHandledProps = {
         onUpdateOrientation: void 0,
         landscapeDisabled: void 0,
         portraitDisabled: void 0,
@@ -15,8 +25,8 @@ export class Rotate extends Foundation<RotateHandledProps, RotateUnhandledProps,
 
     public render(): JSX.Element {
         return (
-            <div className={this.props.managedClasses.rotate}>
-                <div className={this.props.managedClasses.rotate_controlInputContainer}>
+            <div className={"dtc-rotate"}>
+                <div className={"dtc-rotate_control-input-container"}>
                     <span>
                         <input
                             type="radio"
@@ -53,30 +63,24 @@ export class Rotate extends Foundation<RotateHandledProps, RotateUnhandledProps,
     }
 
     private getInputClassName(orientation: Orientation): string {
-        let classes: string = get(this.props.managedClasses, "rotate_controlInput") || "";
+        let classes: string = "dtc-rotate_control-input dtc-common-input-backplate";
 
         switch (orientation) {
             case Orientation.landscape:
                 classes = classes.concat(
                     " ",
-                    get(this.props.managedClasses, "rotate_controlInput__landscape"),
+                    "dtc-rotate_control-input__landscape",
                     this.props.landscapeDisabled
-                        ? ` ${get(
-                              this.props.managedClasses,
-                              "rotate_controlInput__disabled"
-                          )}`
+                        ? ` dtc-rotate_control-input__disabled`
                         : ""
                 );
                 break;
             case Orientation.portrait:
                 classes = classes.concat(
                     " ",
-                    get(this.props.managedClasses, "rotate_controlInput__portrait"),
+                    "dtc-rotate_control-input__portrait",
                     this.props.portraitDisabled
-                        ? ` ${get(
-                              this.props.managedClasses,
-                              "rotate_controlInput__disabled"
-                          )}`
+                        ? ` dtc-rotate_control-input__disabled`
                         : ""
                 );
                 break;

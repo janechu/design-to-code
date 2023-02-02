@@ -1,17 +1,10 @@
 import React from "react";
-import Adapter from "enzyme-adapter-react-16";
 import "../../__tests__/mocks/match-media";
-import { configure, mount, shallow } from "enzyme";
 import { DisplayControl } from "./control.display";
 import { DisplayControlProps } from "./control.display.props";
 import { DisplayControlClassNameContract } from "./control.display.style";
 import { ControlType } from "../templates";
 import defaultStrings from "../form.strings";
-
-/*
- * Configure Enzyme
- */
-configure({ adapter: new Adapter() });
 
 const managedClasses: DisplayControlClassNameContract = {
     displayControl: "displayControl",

@@ -1,0 +1,21 @@
+.dtc-dictionary_item-control {
+    line-height: 20px;
+}
+
+.dtc-dictionary_item-control-label {
+    display: block;
+    padding-bottom: 10px;
+}
+
+.dtc-dictionary_item-control-input {
+    width: calc(100% - 4px);
+}
+
+.dtc-dictionary_item-control-remove-trigger {
+    bottom: 2px;
+    top: unset;
+}
+
+.dtc-dictionary_control-label {
+    width: 100%;
+}

@@ -10,9 +10,8 @@ import {
 import { Shortcuts } from "../../../src/message-system-service/shortcuts.service.js";
 import dataDictionaryConfig from "./data-dictionary-config.js";
 import schemaDictionary from "./schema-dictionary.js";
+import MessageSystemWorker from "worker-loader!../../../dist/message-system.min.js";
 
-/* eslint-disable-next-line @typescript-eslint/no-var-requires */
-const MessageSystemWorker = require("../../../dist/message-system.min.js");
 const dataElement = document.getElementById("data");
 const inputElement = document.getElementById("input");
 const activeIdElement = document.getElementById("activeid");

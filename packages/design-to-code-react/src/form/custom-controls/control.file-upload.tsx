@@ -1,7 +1,4 @@
 import React from "react";
-import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
-import { ManagedClasses } from "@microsoft/fast-components-class-name-contracts-base";
-import styles, { FileUploadControlClassNameContract } from "./control.file-upload.style";
 import { uniqueId } from "lodash-es";
 import {
     FileUploadControlProps,
@@ -13,16 +10,10 @@ import { classNames } from "@microsoft/fast-web-utilities";
  * Custom form control definition
  */
 class FileUploadControl extends React.Component<
-    FileUploadControlProps & ManagedClasses<FileUploadControlClassNameContract>,
+    FileUploadControlProps,
     FileUploadControlState
 > {
     public static displayName: string = "FileUploadControl";
-
-    public static defaultProps: Partial<
-        FileUploadControlProps & ManagedClasses<FileUploadControlClassNameContract>
-    > = {
-        managedClasses: {},
-    };
 
     /**
      * The id of the file input
@@ -50,8 +41,8 @@ class FileUploadControl extends React.Component<
     public render(): React.ReactNode {
         return (
             <div
-                className={classNames(this.props.managedClasses.fileUploadControl, [
-                    this.props.managedClasses.fileUploadControl__disabled,
+                className={classNames("dtc-file-upload-control", [
+                    "dtc-file-upload-control__disabled",
                     this.props.disabled,
                 ])}
                 onDragEnter={this.cancelEvent}
@@ -154,7 +145,7 @@ class FileUploadControl extends React.Component<
             ) : null,
             <input
                 key={"input"}
-                className={this.props.managedClasses.fileUploadControl_input}
+                className={"dtc-file-upload-control_input"}
                 type={"file"}
                 id={this.fileId}
                 onChange={this.handleInputOnChange}
@@ -174,4 +165,4 @@ class FileUploadControl extends React.Component<
 }
 
 export { FileUploadControl };
-export default manageJss(styles)(FileUploadControl);
+export default FileUploadControl;

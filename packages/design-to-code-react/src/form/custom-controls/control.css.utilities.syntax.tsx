@@ -1,6 +1,6 @@
 import React from "react";
-import { Syntax } from "@microsoft/design-to-code/dist/esm/css-data.syntax";
-import { syntaxes } from "@microsoft/design-to-code/dist/esm/css-data";
+import { Syntax } from "design-to-code/dist/esm/css-data.syntax";
+import { syntaxes } from "design-to-code/dist/esm/css-data";
 import { RenderRefControlConfig } from "./control.css.utilities.props";
 import { CSSRef } from "./control.css-ref";
 import { renderColorPicker } from "./control.css.utilities";
@@ -9,7 +9,7 @@ import { renderColorPicker } from "./control.css.utilities";
  * The syntax control, for a list of syntaxes available refer to:
  * https://github.com/mdn/data/blob/master/css/syntaxes.json
  *
- * These are provided from the @microsoft/design-to-code package
+ * These are provided from the design-to-code package
  * as TypeScript type.
  */
 export function renderSyntaxControl(config: RenderRefControlConfig): React.ReactNode {

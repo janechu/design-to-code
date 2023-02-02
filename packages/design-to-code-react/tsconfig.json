@@ -1,7 +1,8 @@
 {
     "extends": "../../tsconfig.json",
     "include": [
-        "src/**/*"
+        "src/**/*",
+        "types.d.ts"
     ],
     "compilerOptions": {
         "baseUrl": "./",
@@ -15,6 +16,7 @@
     },
     "exclude": [
         "app",
+        "node_modules",
         "**/*.spec.ts",
         "**/*.spec.tsx",
         "**/__tests__/**"

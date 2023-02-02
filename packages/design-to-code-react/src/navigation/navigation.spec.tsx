@@ -1,5 +1,4 @@
 import React from "react";
-import Adapter from "enzyme-adapter-react-16";
 import "../__tests__/mocks/match-media";
 import {
     DataDictionary,
@@ -10,20 +9,14 @@ import {
     NavigationConfig,
     NavigationConfigDictionary,
     Register,
-} from "@microsoft/design-to-code";
+} from "design-to-code";
 import { keyEnter } from "@microsoft/fast-web-utilities";
 import {
     linkedDataSchema,
     MessageSystemNavigationTypeAction,
-} from "@microsoft/design-to-code";
-import { configure, mount, render, shallow } from "enzyme";
+} from "design-to-code";
 import { NavigationProps } from "./navigation.props";
 import { ModularNavigation, Navigation } from "./index";
-
-/*
- * Configure Enzyme
- */
-configure({ adapter: new Adapter() });
 
 const navigationProps: NavigationProps = {
     messageSystem: void 0,
@@ -665,8 +658,8 @@ describe("Navigation", () => {
                                 properties: {
                                     children: {
                                         title: "Children",
-                                        "@microsoft/design-to-code/dictionary-link": true,
-                                        pluginId: "@microsoft/design-to-code/linked-data",
+                                        "design-to-code/dictionary-link": true,
+                                        pluginId: "design-to-code/linked-data",
                                         type: "array",
                                         items: {
                                             type: "object",
@@ -705,8 +698,8 @@ describe("Navigation", () => {
                             schemaLocation: "properties.children",
                             schema: {
                                 title: "Children",
-                                "@microsoft/design-to-code/dictionary-link": true,
-                                pluginId: "@microsoft/design-to-code/linked-data",
+                                "design-to-code/dictionary-link": true,
+                                pluginId: "design-to-code/linked-data",
                                 type: "array",
                                 items: {
                                     type: "object",
@@ -950,8 +943,8 @@ describe("Navigation", () => {
                                 properties: {
                                     children: {
                                         title: "Children",
-                                        "@microsoft/design-to-code/dictionary-link": true,
-                                        pluginId: "@microsoft/design-to-code/linked-data",
+                                        "design-to-code/dictionary-link": true,
+                                        pluginId: "design-to-code/linked-data",
                                         type: "array",
                                         items: {
                                             type: "object",
@@ -990,8 +983,8 @@ describe("Navigation", () => {
                             schemaLocation: "properties.children",
                             schema: {
                                 title: "Children",
-                                "@microsoft/design-to-code/dictionary-link": true,
-                                pluginId: "@microsoft/design-to-code/linked-data",
+                                "design-to-code/dictionary-link": true,
+                                pluginId: "design-to-code/linked-data",
                                 type: "array",
                                 items: {
                                     type: "object",

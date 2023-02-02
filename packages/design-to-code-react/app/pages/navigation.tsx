@@ -2,39 +2,19 @@ import React from "react";
 import { ModularNavigation } from "../../src";
 import childrenSchema from "./navigation/children.schema";
 import { children } from "./navigation/example.data";
-import { DataType, MessageSystem, MessageSystemType } from "@microsoft/design-to-code";
+import { DataType, MessageSystem, MessageSystemType } from "design-to-code";
 import noChildrenSchema from "./navigation/no-children.schema";
-import {
-    accentColorName,
-    L1ColorName,
-    L3ColorName,
-    textColorName,
-    L3FillColorName,
-    inactiveTextColorName,
-    L3OutlineColorName,
-} from "../../src/style";
-import { Data } from "@microsoft/design-to-code";
-import { MessageSystemNavigationTypeAction } from "@microsoft/design-to-code";
+import { Data } from "design-to-code";
+import { MessageSystemNavigationTypeAction } from "design-to-code";
 
 export interface NavigationTestPageState {
     navigation: any;
-    cssPropertyOverrides: boolean;
     types?: DataType[];
     activeDictionaryId: string;
     defaultLinkedDataDroppableDataLocation: boolean;
     droppableBlocklist: string[];
     scrollIntoView: boolean;
 }
-
-const CSSpropertyOverrides = {
-    [accentColorName]: "blue",
-    [L1ColorName]: "white",
-    [L3ColorName]: "lightslategray",
-    [textColorName]: "darkred",
-    [L3FillColorName]: "white",
-    [inactiveTextColorName]: "orange",
-    [L3OutlineColorName]: "orange",
-};
 
 let fastMessageSystem: MessageSystem;
 
@@ -59,7 +39,6 @@ class NavigationTestPage extends React.Component<{}, NavigationTestPageState> {
 
         this.state = {
             navigation: null,
-            cssPropertyOverrides: false,
             types: undefined,
             activeDictionaryId: children[1],
             defaultLinkedDataDroppableDataLocation: false,
@@ -70,13 +49,7 @@ class NavigationTestPage extends React.Component<{}, NavigationTestPageState> {
 
     public render(): React.ReactNode {
         return (
-            <div style={this.state.cssPropertyOverrides ? CSSpropertyOverrides : {}}>
-                <input
-                    id={"useCSSOverrides"}
-                    type={"checkbox"}
-                    value={this.state.cssPropertyOverrides.toString()}
-                    onChange={this.handleCSSOverrideUpdate}
-                />
+            <div style={{}}>
                 <label htmlFor={"useCSSOverrides"}>Show CSS property overrides</label>
                 <br />
                 <fieldset>
@@ -230,8 +203,8 @@ class NavigationTestPage extends React.Component<{}, NavigationTestPageState> {
 
     private handleSetDefaultLinkedDataDatalocation = (e: React.ChangeEvent): void => {
         this.setState({
-            defaultLinkedDataDroppableDataLocation: !this.state
-                .defaultLinkedDataDroppableDataLocation,
+            defaultLinkedDataDroppableDataLocation:
+                !this.state.defaultLinkedDataDroppableDataLocation,
         });
     };
 
@@ -293,12 +266,6 @@ class NavigationTestPage extends React.Component<{}, NavigationTestPageState> {
                 activeDictionaryId: e.data.activeDictionaryId,
             });
         }
-    };
-
-    private handleCSSOverrideUpdate = (): void => {
-        this.setState({
-            cssPropertyOverrides: !this.state.cssPropertyOverrides,
-        });
     };
 
     private handleScrollIntoView = (): void => {

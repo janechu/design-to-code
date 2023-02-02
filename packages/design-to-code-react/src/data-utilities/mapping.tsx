@@ -5,7 +5,7 @@ import {
     pluginIdKeyword,
     PropertyKeyword,
     ResolverConfig,
-} from "@microsoft/design-to-code";
+} from "design-to-code";
 
 export interface ReactMapDataDictionaryPlugin {
     /**
@@ -54,7 +54,7 @@ function mapPropertyWithPlugin(plugin: ReactMapDataDictionaryPlugin, value: any)
 
 /**
  * A mapping function intended to be used with the
- * `mapDataDictionary` export from the @microsoft/design-to-code library
+ * `mapDataDictionary` export from the design-to-code library
  */
 export function reactMapper(
     componentDictionary: ComponentDictionary
@@ -111,7 +111,7 @@ export function reactMapper(
 
 /**
  * A resolver function intended to be used with the
- * `mapDataDictionary` export from the @microsoft/design-to-code library
+ * `mapDataDictionary` export from the design-to-code library
  */
 export function reactResolver(config: ResolverConfig<unknown>): any {
     if (config.dataDictionary[1] !== config.dictionaryId) {

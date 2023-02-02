@@ -1,12 +1,5 @@
 import React from "react";
-import Adapter from "enzyme-adapter-react-16";
-import { configure, mount } from "enzyme";
 import SectionOneOfAnyOf, { SectionOneOfAnyOfProps } from "./section.one-of-any-of";
-
-/*
- * Configure Enzyme
- */
-configure({ adapter: new Adapter() });
 
 const sectionOneOfAnyOfProps: SectionOneOfAnyOfProps = {
     label: "Label",

@@ -1,16 +1,8 @@
 import React from "react";
-import Adapter from "enzyme-adapter-react-16";
 import "../../__tests__/mocks/match-media";
-import { configure, mount } from "enzyme";
 import { ViewerHandledProps } from "./";
 import { Viewer } from "./viewer.base";
 import { ResizeHandleLocation } from "./viewer.props";
-import { ViewerClassNameContract } from "./viewer.class-name-contract";
-
-/*
- * Configure Enzyme
- */
-configure({ adapter: new Adapter() });
 
 const props: ViewerHandledProps = {
     iframeSrc: "/test",

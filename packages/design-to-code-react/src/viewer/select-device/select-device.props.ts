@@ -1,10 +1,7 @@
-import { ManagedClasses } from "@microsoft/fast-components-class-name-contracts-base";
 import { Device } from "./devices";
-import { SelectDeviceClassNameContract } from "./select-device.class-name-contract";
 
-export type SelectDeviceManagedClasses = ManagedClasses<SelectDeviceClassNameContract>;
 export type SelectDeviceUnhandledProps = React.AllHTMLAttributes<HTMLElement>;
-export interface SelectDeviceHandledProps extends SelectDeviceManagedClasses {
+export interface SelectDeviceHandledProps {
     /**
      * The label for the select
      */

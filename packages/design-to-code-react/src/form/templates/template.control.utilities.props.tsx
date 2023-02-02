@@ -6,7 +6,7 @@ import {
     MessageSystem,
     TreeNavigation,
     ValidationError,
-} from "@microsoft/design-to-code";
+} from "design-to-code";
 import { FormCategoryDictionary, FormStrings } from "../form.props";
 
 export type UpdateNavigationCallback = (

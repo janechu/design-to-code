@@ -2,19 +2,22 @@ const path = require("path");
 const glob = require("glob");
 const rootAppWebpackConfig = require(path.resolve(__dirname, "app/webpack.dev.cjs"));
 const outDir = path.resolve(__dirname, "./www");
+let parallelism = 1;
 
 const configs = new Promise(resolver => {
     try {
         glob(
             `${path.resolve(__dirname, "./app/examples")}/*/webpack.dev.cjs`,
-            {},
+            {
+                mode: "development",
+            },
             function (err, files) {
                 if (err) {
                     throw err;
                 }
 
                 resolver(
-                    files.map(file => {
+                    files.map((file, index) => {
                         const webpackConfig = require(file);
                         const name = path.basename(path.dirname(file));
 
@@ -24,6 +27,7 @@ const configs = new Promise(resolver => {
                             path: path.resolve(outDir, name),
                             publicPath: `/${name}/`,
                         };
+                        parallelism++;
 
                         return webpackConfig;
                     })
@@ -39,3 +43,4 @@ const configs = new Promise(resolver => {
 });
 
 module.exports = configs;
+module.exports.parallelism = parallelism;

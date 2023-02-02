@@ -1,4 +1,4 @@
-import { Type } from "@microsoft/design-to-code/dist/esm/css-data.types";
+import { Type } from "design-to-code/dist/esm/css-data.types";
 import {
     renderColorPicker,
     renderDefault,
@@ -12,7 +12,7 @@ import React from "react";
  * The type control, for a list of available types refer to:
  * https://github.com/mdn/data/blob/master/css/types.json
  *
- * These are provided from the @microsoft/design-to-code package
+ * These are provided from the design-to-code package
  * as TypeScript type.
  */
 export function renderTypeControl(config: RenderRefControlConfig): React.ReactNode {

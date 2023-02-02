@@ -1,20 +1,13 @@
 import React from "react";
-import Foundation, {
-    FoundationProps,
-    HandledProps,
-} from "@microsoft/fast-components-foundation-react";
 import {
     MenuItem,
     NavigationMenuHandledProps,
-    NavigationMenuProps,
     NavigationMenuUnhandledProps,
 } from "./navigation-menu.props";
 import NavigationMenuItem from "./navigation-menu-item";
-import { get } from "lodash-es";
 
-export default class NavigationMenu extends Foundation<
-    NavigationMenuHandledProps,
-    NavigationMenuUnhandledProps,
+export default class NavigationMenu extends React.Component<
+    NavigationMenuHandledProps & NavigationMenuUnhandledProps,
     {}
 > {
     public static displayName: string = "NavigationMenu";
@@ -28,9 +21,7 @@ export default class NavigationMenu extends Foundation<
     }
 
     protected generateClassNames(): string {
-        const classes: string = get(this.props, "managedClasses.navigationMenu");
-
-        return super.generateClassNames(classes);
+        return "dtc-navigation-menu";
     }
 
     private renderNavigationMenuItem(menu: MenuItem[]): React.ReactNode {
@@ -38,7 +29,6 @@ export default class NavigationMenu extends Foundation<
             return (
                 <NavigationMenuItem
                     key={index}
-                    managedClasses={this.props.managedClasses}
                     expanded={this.props.expanded}
                     onLocationUpdate={this.props.onLocationUpdate}
                     activeLocation={this.props.activeLocation}

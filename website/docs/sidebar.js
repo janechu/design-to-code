@@ -1,6 +1,6 @@
 import versions from "./versions.json" assert { type: "json" };
-const toolingPackageName = "@microsoft/design-to-code";
-const toolingReactPackageName = "@microsoft/design-to-code-react";
+const toolingPackageName = "design-to-code";
+const toolingReactPackageName = "design-to-code-react";
 
 /**
  * The contents of the "documentation" property can either be a "doc" or "category".

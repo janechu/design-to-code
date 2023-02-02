@@ -1,3 +1,4 @@
+import React from "react";
 import { CommonControlConfig } from "../templates";
 
 export interface FileControlProps extends CommonControlConfig {

@@ -7,8 +7,8 @@ import {
     MessageSystemIncoming,
     MessageSystemType,
     NavigationConfigDictionary,
-} from "@microsoft/design-to-code";
-import { XOR } from "@microsoft/design-to-code/dist/dts/data-utilities/type.utilities";
+} from "design-to-code";
+import { XOR } from "design-to-code/dist/dts/data-utilities/type.utilities";
 import {
     HoveredItem,
     HoverLocation,

@@ -9,7 +9,6 @@ module.exports = {
         compress: false,
         historyApiFallback: true,
         open: true,
-        overlay: true,
         port: 7002,
     },
     devtool: process.env.NODE_ENV === "production" ? "none" : "inline-source-map",
@@ -21,7 +20,7 @@ module.exports = {
         ),
         "message-system": path.resolve(
             __dirname,
-            "../../node_modules/@microsoft/design-to-code/dist/message-system.min.js"
+            "../../node_modules/design-to-code/dist/message-system.min.js"
         ),
     },
     output: {
@@ -32,6 +31,10 @@ module.exports = {
     mode: process.env.NODE_ENV || "development",
     module: {
         rules: [
+            {
+                test: /\.css$/i,
+                use: ["style-loader", "css-loader"],
+            },
             {
                 test: /.tsx?$/,
                 use: [
@@ -54,5 +57,9 @@ module.exports = {
     ],
     resolve: {
         extensions: [".js", ".tsx", ".ts", ".json"],
+        alias: {
+            react: path.resolve("./node_modules/react"),
+            "react-dom": path.resolve("./node_modules/react-dom"),
+        },
     },
 };

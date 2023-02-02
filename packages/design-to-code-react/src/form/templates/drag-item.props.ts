@@ -60,7 +60,7 @@ export interface DragItemProps {
     /**
      * Callback for starting the drag
      */
-    dragStart: () => void;
+    dragStart: (config: { type: ItemType; index: number }) => { type: ItemType };
 
     /**
      * Callback for ending the drag

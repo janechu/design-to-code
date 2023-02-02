@@ -1,4 +1,4 @@
-import { XOR } from "@microsoft/design-to-code/dist/dts/data-utilities/type.utilities";
+import { XOR } from "design-to-code/dist/dts/data-utilities/type.utilities";
 import React from "react";
 import { HoverLocation } from "./navigation.props";
 
@@ -118,7 +118,7 @@ export interface NavigationTreeItemProps
     /**
      * Callback for starting the drag
      */
-    dragStart: (dictionaryId: string) => void;
+    dragStart: (dictionaryId: string, type: string) => { type: string };
 
     /**
      * Callback for ending the drag

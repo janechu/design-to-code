@@ -1,0 +1,3 @@
+.dtc-select-control_input option {
+    background: var(--dtc-floating-color);
+}

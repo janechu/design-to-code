@@ -1,27 +1,23 @@
 import React from "react";
-import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
-import { ManagedClasses } from "@microsoft/fast-components-class-name-contracts-base";
-import styles, {
-    NumberFieldControlClassNameContract,
-} from "./control.number-field.style";
 import { NumberFieldControlProps } from "./control.number-field.props";
 import { classNames } from "@microsoft/fast-web-utilities";
 import { isDefault } from "./utilities/form";
+import cssVariables from "../../style/css-variables.css";
+import inputStyle from "../../style/input-style.css";
+import defaultFontStyle from "../../style/default-font-style.css";
+import style from "./control.number-field.style.css";
+
+// tree-shaking
+cssVariables;
+inputStyle;
+defaultFontStyle;
+style;
 
 /**
  * Form control definition
  */
-class NumberFieldControl extends React.Component<
-    NumberFieldControlProps & ManagedClasses<NumberFieldControlClassNameContract>,
-    {}
-> {
+class NumberFieldControl extends React.Component<NumberFieldControlProps, {}> {
     public static displayName: string = "NumberFieldControl";
-
-    public static defaultProps: Partial<
-        NumberFieldControlProps & ManagedClasses<NumberFieldControlClassNameContract>
-    > = {
-        managedClasses: {},
-    };
 
     private hasFocus: boolean = false;
 
@@ -32,13 +28,10 @@ class NumberFieldControl extends React.Component<
         return (
             <input
                 className={classNames(
-                    this.props.managedClasses.numberFieldControl,
+                    "dtc-number-field-control dtc-common-input",
+                    ["dtc-number-field-control__disabled", this.props.disabled],
                     [
-                        this.props.managedClasses.numberFieldControl__disabled,
-                        this.props.disabled,
-                    ],
-                    [
-                        this.props.managedClasses.numberFieldControl__default,
+                        "dtc-number-field-control__default dtc-common-default-font",
                         isDefault(this.props.value, this.props.default),
                     ]
                 )}
@@ -99,4 +92,4 @@ class NumberFieldControl extends React.Component<
 }
 
 export { NumberFieldControl };
-export default manageJss(styles)(NumberFieldControl);
+export default NumberFieldControl;

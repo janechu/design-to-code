@@ -64,7 +64,7 @@ By default the number of history items will be unlimited. To impose a limit on s
 
 Example:
 ```ts
-import { MessageSystem } from "@microsoft/design-to-code";
+import { MessageSystem } from "design-to-code";
 
 new MessageSystem({
     messageSystem: fastMessageSystem,

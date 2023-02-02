@@ -1,17 +1,10 @@
 import React from "react";
-import Adapter from "enzyme-adapter-react-16";
-import { configure, mount, shallow, ShallowWrapper } from "enzyme";
 import { TextAlignControl as StyledTextAlignControl } from "./index";
 import { TextAlignControl } from "./control.text-align";
 import { TextAlignControlProps } from "./control.text-align.props";
 import { TextAlignControlClassNameContract } from "./control.text-align.style";
 import { ControlType } from "../templates";
 import defaultStrings from "../form.strings";
-
-/*
- * Configure Enzyme
- */
-configure({ adapter: new Adapter() });
 
 const textAlignControlProps: TextAlignControlProps = {
     type: ControlType.select,

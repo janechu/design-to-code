@@ -2,25 +2,23 @@ import React from "react";
 import { Viewer as BaseViewer } from "./viewer.base";
 import {
     ViewerCustomAction,
-    ViewerHandledProps as BaseViewerHandledProps,
-    ViewerManagedClasses,
-    ViewerProps as BaseViewerProps,
+    ViewerHandledProps,
+    ViewerProps,
     ViewerUnhandledProps,
 } from "./viewer.props";
-import { ViewerClassNameContract } from "./viewer.class-name-contract";
-import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
-import ViewerStyles from "./viewer.style";
+import cssVariables from "../../style/css-variables.css";
+import style from "./viewer.style.css";
+
+// tree-shaking
+cssVariables;
+style;
 
 /*
  * The type returned by manageJss type is very complicated so we'll let the
  * compiler infer the type instead of re-declaring just for the package export
  */
-const Viewer = manageJss(ViewerStyles)(BaseViewer);
+const Viewer = BaseViewer;
 type Viewer = InstanceType<typeof Viewer>;
-
-interface ViewerHandledProps
-    extends Omit<BaseViewerHandledProps, keyof ViewerManagedClasses> {}
-type ViewerProps = ManagedJSSProps<BaseViewerProps, ViewerClassNameContract, {}>;
 
 export {
     Viewer,
@@ -31,7 +29,6 @@ export {
     Viewer as ModularViewer,
     ViewerCustomAction,
     ViewerProps,
-    ViewerClassNameContract,
     ViewerHandledProps,
     ViewerUnhandledProps,
 };

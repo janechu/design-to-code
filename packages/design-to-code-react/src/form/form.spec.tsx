@@ -1,7 +1,5 @@
 import React from "react";
-import Adapter from "enzyme-adapter-react-16";
 import "../__tests__/mocks/match-media";
-import { configure, mount } from "enzyme";
 import { Form, ModularForm } from "./";
 import { FormProps } from "./form.props";
 import {
@@ -12,13 +10,8 @@ import {
     MessageSystemType,
     NavigationConfig,
     Register,
-} from "@microsoft/design-to-code";
+} from "design-to-code";
 import { ControlType, StandardControlPlugin } from "./templates";
-
-/*
- * Configure Enzyme
- */
-configure({ adapter: new Adapter() });
 
 const formProps: FormProps = {
     messageSystem: void 0,

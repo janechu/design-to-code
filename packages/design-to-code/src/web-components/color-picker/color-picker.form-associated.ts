@@ -4,7 +4,7 @@ class _ColorPicker extends FoundationElement {}
 interface _ColorPicker extends FormAssociated {}
 
 /**
- * A form-associated base class for the {@link @microsoft/design-to-code#(ColorPicker:class)} component.
+ * A form-associated base class for the {@link design-to-code#(ColorPicker:class)} component.
  *
  * @internal
  */

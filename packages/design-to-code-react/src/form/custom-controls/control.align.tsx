@@ -1,30 +1,24 @@
 import React from "react";
-import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
-import { ManagedClasses } from "@microsoft/fast-components-class-name-contracts-base";
-import styles, { AlignControlClassNameContract } from "./control.align.style";
 import { AlignControlProps, Alignment } from "./control.align.props";
 import { classNames } from "@microsoft/fast-web-utilities";
+import cssVariables from "../../style/css-variables.css";
+import alignStyle from "./control.align.style.css";
+
+// tree-shaking
+cssVariables;
+alignStyle;
 
 /**
  * Custom form control definition
  */
-class AlignControl extends React.Component<
-    AlignControlProps & ManagedClasses<AlignControlClassNameContract>,
-    {}
-> {
+class AlignControl extends React.Component<AlignControlProps, {}> {
     public static displayName: string = "AlignControl";
-
-    public static defaultProps: Partial<
-        AlignControlProps & ManagedClasses<AlignControlClassNameContract>
-    > = {
-        managedClasses: {},
-    };
 
     public render(): React.ReactNode {
         return (
             <div
-                className={classNames(this.props.managedClasses.alignControl, [
-                    this.props.managedClasses.alignControl__disabled,
+                className={classNames("dtc-align-control", [
+                    "dtc-align-control__disabled",
                     this.props.disabled,
                 ])}
             >
@@ -59,17 +53,17 @@ class AlignControl extends React.Component<
                     <span>
                         <input
                             className={classNames(
-                                this.props.managedClasses.alignControl_input,
+                                "dtc-align-control_input dtc-common-input-backplate",
                                 [
-                                    this.props.managedClasses.alignControl_input__bottom,
+                                    "dtc-align-control_input__bottom",
                                     direction === Alignment.bottom,
                                 ],
                                 [
-                                    this.props.managedClasses.alignControl_input__center,
+                                    "dtc-align-control_input__center",
                                     direction === Alignment.center,
                                 ],
                                 [
-                                    this.props.managedClasses.alignControl_input__top,
+                                    "dtc-align-control_input__top",
                                     direction === Alignment.top,
                                 ]
                             )}
@@ -90,4 +84,4 @@ class AlignControl extends React.Component<
 }
 
 export { AlignControl };
-export default manageJss(styles)(AlignControl);
+export default AlignControl;

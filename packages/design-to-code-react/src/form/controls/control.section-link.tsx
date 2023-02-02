@@ -1,44 +1,34 @@
 import React from "react";
-import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
-import { ManagedClasses } from "@microsoft/fast-components-class-name-contracts-base";
 import { classNames, format } from "@microsoft/fast-web-utilities";
-import styles, {
-    SectionLinkControlClassNameContract,
-} from "./control.section-link.style";
 import { SectionLinkControlProps } from "./control.section-link.props";
 import { isDefault } from "./utilities/form";
+import cssVariables from "../../style/css-variables.css";
+import defaultFontStyle from "../../style/default-font-style.css";
+import style from "./control.section-link.style.css";
+
+// tree-shaking
+cssVariables;
+defaultFontStyle;
+style;
 
 /**
  * Form control definition
  */
-class SectionLinkControl extends React.Component<
-    SectionLinkControlProps & ManagedClasses<SectionLinkControlClassNameContract>,
-    {}
-> {
+class SectionLinkControl extends React.Component<SectionLinkControlProps, {}> {
     public static displayName: string = "SectionLinkControl";
 
-    public static defaultProps: Partial<
-        SectionLinkControlProps & ManagedClasses<SectionLinkControlClassNameContract>
-    > = {
-        managedClasses: {},
-    };
-
     public render(): React.ReactNode {
-        const {
-            sectionLinkControl,
-            sectionLinkControl__disabled,
-            sectionLinkControl__default,
-            sectionLinkControl__invalid,
-        }: SectionLinkControlClassNameContract = this.props.managedClasses;
-
         return (
             <a
                 className={classNames(
-                    sectionLinkControl,
-                    [sectionLinkControl__disabled, this.props.disabled],
-                    [sectionLinkControl__invalid, this.props.invalidMessage !== ""],
+                    "dtc-section-link-control",
+                    ["dtc-section-link-control__disabled", this.props.disabled],
                     [
-                        sectionLinkControl__default,
+                        "dtc-section-link-control__invalid",
+                        this.props.invalidMessage !== "",
+                    ],
+                    [
+                        "dtc-section-link-control__default dtc-common-default-font",
                         isDefault(this.props.value, this.props.default),
                     ]
                 )}
@@ -58,4 +48,4 @@ class SectionLinkControl extends React.Component<
 }
 
 export { SectionLinkControl };
-export default manageJss(styles)(SectionLinkControl);
+export default SectionLinkControl;

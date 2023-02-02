@@ -1,14 +1,12 @@
 import React from "react";
-import Adapter from "enzyme-adapter-react-16";
 import "../../__tests__/mocks/match-media";
-import { configure, mount } from "enzyme";
 import StyledSectionControl, { SectionControl } from "./control.section";
 import {
     SectionControlClassNameContract,
     SectionControlProps,
 } from "./control.section.props";
 import { DndProvider } from "react-dnd";
-import HTML5Backend from "react-dnd-html5-backend";
+import { HTML5Backend } from "react-dnd-html5-backend";
 import { controls } from "./utilities/control-switch.spec";
 import {
     ArrayControl,
@@ -21,7 +19,7 @@ import {
     SelectControl,
     TextareaControl,
 } from "../index";
-import { DataType } from "@microsoft/design-to-code";
+import { DataType } from "design-to-code";
 import defaultStrings from "../form.strings";
 
 const TestSectionControl: any = (
@@ -33,11 +31,6 @@ const TestSectionControl: any = (
         </DndProvider>
     );
 };
-
-/*
- * Configure Enzyme
- */
-configure({ adapter: new Adapter() });
 
 const sectionControlProps: SectionControlProps = {
     type: ControlType.section,

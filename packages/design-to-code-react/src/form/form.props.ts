@@ -4,7 +4,7 @@ import {
     NavigationConfig,
     NavigationConfigDictionary,
     Validation,
-} from "@microsoft/design-to-code";
+} from "design-to-code";
 import { SingleLineControlPlugin, StandardControlPlugin } from "./templates";
 import { ControlContext } from "./templates/types";
 

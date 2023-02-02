@@ -1,19 +1,27 @@
 import React from "react";
-import { ManagedClasses } from "@microsoft/fast-components-class-name-contracts-base";
-import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
-import styles from "./section.one-of-any-of.style";
-import {
-    SectionOneOfAnyOfClassNameContract,
-    SectionOneOfAnyOfProps,
-} from "./section.one-of-any-of.props";
+import { SectionOneOfAnyOfProps } from "./section.one-of-any-of.props";
 import { uniqueId } from "lodash-es";
+import cssVariables from "../../../style/css-variables.css";
+import controlStyle from "../../../style/control-style.css";
+import controlWrapperStyle from "../../../style/control-wrapper-style.css";
+import selectSpanStyle from "../../../style/select-span-style.css";
+import selectInputStyle from "../../../style/select-input-style.css";
+import labelStyle from "../../../style/label-style.css";
+
+// tree-shaking
+cssVariables;
+controlStyle;
+controlWrapperStyle;
+selectSpanStyle;
+selectInputStyle;
+labelStyle;
 
 /**
  * Schema form component definition
  * @extends React.Component
  */
 class SectionOneOfAnyOf extends React.Component<
-    SectionOneOfAnyOfProps & ManagedClasses<SectionOneOfAnyOfClassNameContract>,
+    React.PropsWithChildren<SectionOneOfAnyOfProps>,
     {}
 > {
     public static displayName: string = "SectionOneOfAnyOf";
@@ -22,16 +30,26 @@ class SectionOneOfAnyOf extends React.Component<
         const id: string = uniqueId();
 
         return (
-            <div className={this.props.managedClasses.sectionOneOfAnyOf}>
+            <div
+                className={
+                    "dtc-section-one-of-any-of dtc-common-control dtc-common-control-wrapper"
+                }
+            >
                 <label
                     htmlFor={id}
-                    className={this.props.managedClasses.sectionOneOfAnyOf_label}
+                    className={"dtc-section-one-of-any-of_label dtc-common-label"}
                 >
                     {this.props.label}
                 </label>
-                <span className={this.props.managedClasses.sectionOneOfAnyOf_selectSpan}>
+                <span
+                    className={
+                        "dtc-section-one-of-any-of_select-span dtc-common-select-span"
+                    }
+                >
                     <select
-                        className={this.props.managedClasses.sectionOneOfAnyOf_select}
+                        className={
+                            "dtc-section-one-of-any-of_select dtc-common-select-input"
+                        }
                         id={id}
                         onChange={this.handleChange}
                         value={this.getActiveIndex()}
@@ -52,5 +70,5 @@ class SectionOneOfAnyOf extends React.Component<
     };
 }
 
-export default manageJss(styles)(SectionOneOfAnyOf);
+export default SectionOneOfAnyOf;
 export { SectionOneOfAnyOfProps };

@@ -9,10 +9,6 @@ import {
     keyHome,
     keySpace,
 } from "@microsoft/fast-web-utilities";
-import Foundation, {
-    FoundationProps,
-    HandledProps,
-} from "@microsoft/fast-components-foundation-react";
 import { get } from "lodash-es";
 import { canUseDOM } from "exenv-es6";
 import {
@@ -21,7 +17,8 @@ import {
     NavigationProps,
     NavigationState,
 } from "./navigation.props";
-import { DraggableNavigationTreeItem } from "./navigation-tree-item";
+// import { DraggableNavigationTreeItem } from "./navigation-tree-item";
+import { NavigationTreeItem } from "./navigation-tree-item";
 import { DragDropItemType } from "./navigation-tree-item.props";
 import {
     dataSetName,
@@ -34,9 +31,7 @@ import {
     DataType,
     DataDictionary,
     NavigationConfigDictionary,
-} from "@microsoft/design-to-code";
-import manageJss, { ManagedClasses } from "@microsoft/fast-jss-manager-react";
-import styles, { NavigationClassNameContract } from "./navigation.style";
+} from "design-to-code";
 import {
     getDraggableItemClassName,
     getDragStartMessage,
@@ -45,6 +40,16 @@ import {
     getDragHoverState,
     isActiveItem,
 } from "./navigation.utilities";
+import cssVariables from "../style/css-variables.css";
+import inputStyle from "../style/input-style.css";
+import ellipsisStyle from "../style/ellipsis-style.css";
+import style from "./navigation.style.css";
+
+// tree-shaking
+cssVariables;
+inputStyle;
+ellipsisStyle;
+style;
 
 export const navigationId = "dtc-react::navigation";
 
@@ -52,21 +57,15 @@ interface NavigationRegisterConfig {
     displayTextDataLocation: string;
 }
 
-class Navigation extends Foundation<
-    NavigationHandledProps & ManagedClasses<NavigationClassNameContract>,
-    {},
-    NavigationState
-> {
+class Navigation extends React.Component<NavigationHandledProps, NavigationState> {
     public static displayName: string = "Navigation";
 
-    public static defaultProps: NavigationHandledProps &
-        ManagedClasses<NavigationClassNameContract> = {
-        managedClasses: {},
+    public static defaultProps: NavigationHandledProps = {
         messageSystem: void 0,
         scrollIntoView: false,
     };
 
-    protected handledProps: HandledProps<NavigationHandledProps> = {
+    protected handledProps: NavigationHandledProps = {
         messageSystem: void 0,
     };
 
@@ -111,14 +110,10 @@ class Navigation extends Foundation<
 
     public render(): React.ReactNode {
         return (
-            <div
-                ref={this.rootElement}
-                role={"tree"}
-                className={this.props.managedClasses.navigation}
-            >
+            <div ref={this.rootElement} role={"tree"} className={"dtc-navigation"}>
                 <div
                     role={"treeitem"}
-                    className={this.props.managedClasses.navigation_item}
+                    className={"dtc-navigation_item dtc-common-ellipsis"}
                     aria-expanded={this.getExpandedState()}
                 >
                     {this.renderDictionaryItem(
@@ -245,9 +240,9 @@ class Navigation extends Foundation<
         navigationConfigId: string,
         index: number
     ): React.ReactNode {
-        const schema: any = this.state.navigationDictionary[0]?.[dictionaryId]?.[0]?.[
-            navigationConfigId
-        ]?.schema;
+        const schema: any =
+            this.state.navigationDictionary[0]?.[dictionaryId]?.[0]?.[navigationConfigId]
+                ?.schema;
         const isLinkedData: boolean =
             this.state.navigationDictionary[0][dictionaryId] !== undefined &&
             this.state.navigationDictionary[0][dictionaryId][1] === navigationConfigId;
@@ -261,7 +256,7 @@ class Navigation extends Foundation<
         const isDroppable: boolean =
             isBlockedFromBeingDroppable &&
             ((isLinkedData && schema?.type === DataType.object && !isRootLinkedData) || // a piece of linked data that is not the root and is an object type
-            schema?.[dictionaryLink] || // an identified dictionary link
+                schema?.[dictionaryLink] || // an identified dictionary link
                 (isRootLinkedData && this.props.defaultLinkedDataDroppableDataLocation)); // the root linked data with an defined droppable data location
 
         const isTriggerRenderable: boolean = this.shouldTriggerRender(
@@ -307,7 +302,7 @@ class Navigation extends Foundation<
         return (
             <div
                 role={"treeitem"}
-                className={this.props.managedClasses.navigation_itemRegion}
+                className={"dtc-navigation_item-region"}
                 aria-expanded={this.getExpandedState(dictionaryId, navigationConfigId)}
                 data-type={itemType}
                 key={index}
@@ -329,7 +324,7 @@ class Navigation extends Foundation<
         index: number
     ): React.ReactNode {
         return (
-            <DraggableNavigationTreeItem
+            <NavigationTreeItem
                 type={type}
                 index={index}
                 key={index}
@@ -356,21 +351,19 @@ class Navigation extends Foundation<
                     this.state.activeDictionaryId,
                     this.state.activeNavigationConfigId,
                     this.props.defaultLinkedDataDroppableDataLocation,
-                    this.props.managedClasses.navigation_item,
-                    this.props.managedClasses.navigation_item__expandable,
-                    this.props.managedClasses.navigation_item__active,
-                    this.props.managedClasses.navigation_item__draggable,
-                    this.props.managedClasses.navigation_item__droppable,
-                    this.props.managedClasses.navigation_item__hover,
-                    this.props.managedClasses.navigation_item__hoverAfter,
-                    this.props.managedClasses.navigation_item__hoverBefore
+                    "dtc-navigation_item",
+                    "dtc-navigation_item__expandable",
+                    "dtc-navigation_item__active",
+                    "dtc-navigation_item__draggable",
+                    "dtc-navigation_item__droppable",
+                    "dtc-navigation_item__hover",
+                    "dtc-navigation_item__hover-after",
+                    "dtc-navigation_item__hover-before"
                 )}
-                expandTriggerClassName={
-                    this.props.managedClasses.navigation_itemExpandTrigger
-                }
-                contentClassName={this.props.managedClasses.navigation_itemContent}
+                expandTriggerClassName={"dtc-navigation_item-expand-trigger"}
+                contentClassName={"dtc-navigation_item-content"}
                 displayTextInputClassName={
-                    this.props.managedClasses.navigation_itemDisplayTextInput
+                    "dtc-navigation_item-display-text-input dtc-common-input"
                 }
                 handleExpandClick={this.handleNavigationItemExpandClick(
                     dictionaryId,
@@ -404,9 +397,8 @@ class Navigation extends Foundation<
         navigationConfigId: string,
         isTriggerRendered: boolean
     ): React.ReactNode {
-        const navigationConfig: TreeNavigationItem = this.state.navigationDictionary[0][
-            dictionaryId
-        ][0][navigationConfigId];
+        const navigationConfig: TreeNavigationItem =
+            this.state.navigationDictionary[0][dictionaryId][0][navigationConfigId];
 
         if (Array.isArray(navigationConfig.items) && navigationConfig.items.length > 0) {
             const content: React.ReactNode[] = navigationConfig.items.map(
@@ -440,7 +432,7 @@ class Navigation extends Foundation<
                         <div
                             role={"group"}
                             key={"content"}
-                            className={this.props.managedClasses.navigation_itemList}
+                            className={"dtc-navigation_item-list"}
                         >
                             {content}
                         </div>
@@ -521,8 +513,8 @@ class Navigation extends Foundation<
 
     private getParentElement(dictionaryId: string): { [key: string]: Set<string> } {
         if (this.state.dataDictionary[0][dictionaryId].parent) {
-            const parentDictionaryId = this.state.dataDictionary[0][dictionaryId].parent
-                .id;
+            const parentDictionaryId =
+                this.state.dataDictionary[0][dictionaryId].parent.id;
             const parentDictionaryItem = this.state.expandedNavigationConfigItems[
                 parentDictionaryId
             ]
@@ -551,8 +543,10 @@ class Navigation extends Foundation<
      * Handler for the beginning of the drag
      * - This method removes the dragging item from the data
      */
-    private handleDragStart = (index: number): ((dictionaryId: string) => void) => {
-        return (dictionaryId: string): void => {
+    private handleDragStart = (
+        index: number
+    ): ((dictionaryId: string, type: string) => { type: string }) => {
+        return (dictionaryId: string, type: string): { type: string } => {
             this.setState(
                 getDragStartState(
                     dictionaryId,
@@ -569,6 +563,10 @@ class Navigation extends Foundation<
                     this.state.navigationDictionary
                 )
             );
+
+            return {
+                type,
+            };
         };
     };
 
@@ -963,4 +961,4 @@ class Navigation extends Foundation<
 }
 
 export { Navigation };
-export default manageJss(styles)(Navigation);
+export default Navigation;

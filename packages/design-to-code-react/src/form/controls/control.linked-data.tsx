@@ -1,34 +1,35 @@
-import { ManagedClasses } from "@microsoft/fast-components-class-name-contracts-base";
 import React from "react";
 import { keyEnter, keyTab } from "@microsoft/fast-web-utilities";
-import { getDataFromSchema } from "@microsoft/design-to-code";
-import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
-import { DragItem } from "../templates";
+import { getDataFromSchema } from "design-to-code";
+import { DragItem, ItemType } from "../templates";
 import { ArrayAction, LinkedDataActionType } from "../templates/types";
-import styles, { LinkedDataControlClassNameContract } from "./control.linked-data.style";
 import {
     LinkedDataControlProps,
     LinkedDataControlState,
 } from "./control.linked-data.props";
+import cssVariables from "../../style/css-variables.css";
+import cleanListStyle from "../../style/clean-list-style.css";
+import ellipsisStyle from "../../style/ellipsis-style.css";
+import softRemoveStyle from "../../style/soft-remove-style.css";
+import removeItemStyle from "../../style/remove-item-style.css";
+
+// tree-shaking
+cssVariables;
+cleanListStyle;
+ellipsisStyle;
+softRemoveStyle;
+removeItemStyle;
 
 /**
  * Form control definition
  */
 class LinkedDataControl extends React.Component<
-    LinkedDataControlProps & ManagedClasses<LinkedDataControlClassNameContract>,
+    LinkedDataControlProps,
     LinkedDataControlState
 > {
     public static displayName: string = "LinkedDataControl";
 
-    public static defaultProps: Partial<
-        LinkedDataControlProps & ManagedClasses<LinkedDataControlClassNameContract>
-    > = {
-        managedClasses: {},
-    };
-
-    constructor(
-        props: LinkedDataControlProps & ManagedClasses<LinkedDataControlClassNameContract>
-    ) {
+    constructor(props: LinkedDataControlProps) {
         super(props);
 
         this.state = {
@@ -41,7 +42,7 @@ class LinkedDataControl extends React.Component<
     public render(): React.ReactNode {
         // Convert to search component when #3006 has been completed
         return (
-            <div className={this.props.managedClasses.linkedDataControl}>
+            <div className={"dtc-linked-data-control"}>
                 {this.renderExistingLinkedData()}
                 {this.renderAddLinkedData()}
             </div>
@@ -53,21 +54,15 @@ class LinkedDataControl extends React.Component<
      */
     private renderAddLinkedData(): React.ReactNode {
         return (
-            <div
-                className={
-                    this.props.managedClasses.linkedDataControl_linkedDataListControl
-                }
-            >
+            <div className={"dtc-linked-data-control_linked-data-list-control"}>
                 <span
                     className={
-                        this.props.managedClasses
-                            .linkedDataControl_linkedDataListInputRegion
+                        "dtc-linked-data-control_linked-data-list-input-region dtc-common-select-span"
                     }
                 >
                     <input
                         className={
-                            this.props.managedClasses
-                                .linkedDataControl_linkedDataListInput
+                            "dtc-linked-data-control_linked-data-list-input dtc-common-select-input"
                         }
                         type={"text"}
                         aria-autocomplete={"list"}
@@ -110,7 +105,7 @@ class LinkedDataControl extends React.Component<
             return (
                 <ul
                     className={
-                        this.props.managedClasses.linkedDataControl_existingLinkedData
+                        "dtc-linked-data-control_existing-linked-data dtc-common-clean-list"
                     }
                 >
                     {childItems}
@@ -121,50 +116,51 @@ class LinkedDataControl extends React.Component<
 
     private renderExistingLinkedDataItem(): React.ReactNode {
         if (Array.isArray(this.props.value)) {
-            const {
-                linkedDataControl_existingLinkedDataItem,
-                linkedDataControl_existingLinkedDataItemLink,
-                linkedDataControl_deleteButton,
-            }: LinkedDataControlClassNameContract = this.props.managedClasses;
-
             return (this.state.isDragging ? this.state.data : this.props.value).map(
                 (value: any, index: number) => {
-                    return (
-                        <DragItem
-                            key={value + index}
-                            itemClassName={linkedDataControl_existingLinkedDataItem}
-                            itemLinkClassName={
-                                linkedDataControl_existingLinkedDataItemLink
-                            }
-                            itemRemoveClassName={linkedDataControl_deleteButton}
-                            minItems={0}
-                            itemLength={1}
-                            index={index}
-                            onClick={this.handleItemClick(value.id)}
-                            removeDragItem={this.handleRemoveItem}
-                            moveDragItem={this.handleMoveItem}
-                            dropDragItem={this.handleDropItem}
-                            dragStart={this.handleDragStart}
-                            dragEnd={this.handleDragEnd}
-                            strings={this.props.strings}
-                        >
-                            {
-                                this.props.schemaDictionary[
-                                    this.props.dataDictionary[0][value.id].schemaId
-                                ].title
-                            }
-                        </DragItem>
-                    );
+                    // return (
+                    //     <DragItem
+                    //         key={value + index}
+                    //         itemClassName={
+                    //             "dtc-linked-data-control_existing-linked-data-item"
+                    //         }
+                    //         itemLinkClassName={
+                    //             "dtc-linked-data-control_existing-linked-data-item-link dtc-common-ellipsis"
+                    //         }
+                    //         itemRemoveClassName={"dtc-linked-data-control_delete-button dtc-common-remove-item"}
+                    //         minItems={0}
+                    //         itemLength={1}
+                    //         index={index}
+                    //         onClick={this.handleItemClick(value.id)}
+                    //         removeDragItem={this.handleRemoveItem}
+                    //         moveDragItem={this.handleMoveItem}
+                    //         dropDragItem={this.handleDropItem}
+                    //         dragStart={this.handleDragStart}
+                    //         dragEnd={this.handleDragEnd}
+                    //         strings={this.props.strings}
+                    //     >
+                    //         {
+                    //             this.props.schemaDictionary[
+                    //                 this.props.dataDictionary[0][value.id].schemaId
+                    //             ].title
+                    //         }
+                    //     </DragItem>
+                    // );
+                    return this.props.schemaDictionary[
+                        this.props.dataDictionary[0][value.id].schemaId
+                    ].title;
                 }
             );
         }
     }
 
-    private handleDragStart = (): void => {
+    private handleDragStart = (config: { type: ItemType }): { type: ItemType } => {
         this.setState({
             isDragging: true,
             data: [].concat(this.props.value || []),
         });
+
+        return config;
     };
 
     private handleDragEnd = (): void => {
@@ -248,9 +244,8 @@ class LinkedDataControl extends React.Component<
                 // Tab performs an auto-complete if there is a single schema it can match to
             } else if (e.key === keyTab) {
                 const normalizedValue = e.currentTarget.value.toLowerCase();
-                const matchedSchema = this.lazyMatchValueWithASingleSchema(
-                    normalizedValue
-                );
+                const matchedSchema =
+                    this.lazyMatchValueWithASingleSchema(normalizedValue);
 
                 if (typeof matchedSchema === "string") {
                     // prevent navigating away by tab when single schema matched
@@ -302,12 +297,10 @@ class LinkedDataControl extends React.Component<
     };
 
     private addLinkedData(normalizedValue: string, originalValue: string): void {
-        const matchedNormalizedValue:
-            | string
-            | void = this.lazyMatchValueWithASingleSchema(normalizedValue);
-        const matchedOriginalValue: string | void = this.matchExactValueWithASingleSchema(
-            originalValue
-        );
+        const matchedNormalizedValue: string | void =
+            this.lazyMatchValueWithASingleSchema(normalizedValue);
+        const matchedOriginalValue: string | void =
+            this.matchExactValueWithASingleSchema(originalValue);
         const schemaId: string | void = matchedNormalizedValue || matchedOriginalValue;
 
         if (typeof schemaId !== "undefined") {
@@ -335,4 +328,4 @@ class LinkedDataControl extends React.Component<
 }
 
 export { LinkedDataControl };
-export default manageJss(styles)(LinkedDataControl);
+export default LinkedDataControl;

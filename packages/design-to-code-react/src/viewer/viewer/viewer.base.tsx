@@ -1,5 +1,4 @@
 import React from "react";
-import Foundation, { HandledProps } from "@microsoft/fast-components-foundation-react";
 import { get } from "lodash-es";
 import { canUseDOM } from "exenv-es6";
 import rafThrottle from "raf-throttle";
@@ -9,7 +8,7 @@ import {
     ViewerUnhandledProps,
     ViewerCustomAction,
 } from "./viewer.props";
-import { MessageSystemType, Register } from "@microsoft/design-to-code";
+import { MessageSystemType, Register } from "design-to-code";
 
 export interface ViewerState {
     /**
@@ -33,15 +32,13 @@ export interface ViewerState {
     dragHandleLocation: ResizeHandleLocation;
 }
 
-export class Viewer extends Foundation<
-    ViewerHandledProps,
-    ViewerUnhandledProps,
+export class Viewer extends React.Component<
+    ViewerHandledProps & ViewerUnhandledProps,
     ViewerState
 > {
     public static displayName: string = "Viewer";
 
-    protected handledProps: HandledProps<ViewerHandledProps> = {
-        managedClasses: void 0,
+    protected handledProps: ViewerHandledProps = {
         iframeSrc: void 0,
         height: void 0,
         width: void 0,
@@ -112,7 +109,7 @@ export class Viewer extends Foundation<
 
     public render(): JSX.Element {
         return (
-            <div className={this.props.managedClasses.viewer}>
+            <div className={"dtc-viewer"}>
                 <div
                     className={this.generateContentRegionClassNames()}
                     style={{
@@ -124,7 +121,7 @@ export class Viewer extends Foundation<
                     <base target="_blank" />
                     <iframe
                         ref={this.iframeRef}
-                        className={get(this.props, "managedClasses.viewer_iframe", "")}
+                        className={"dtc-viewer_iframe"}
                         src={this.props.iframeSrc}
                     >
                         Your browser does not support iframes.
@@ -140,7 +137,7 @@ export class Viewer extends Foundation<
         if (this.props.responsive) {
             return (
                 <button
-                    className={`${this.props.managedClasses.handle} ${this.props.managedClasses.handle__left}`}
+                    className={`dtc-viewer-handle dtc-viewer-handle__left`}
                     onMouseDown={this.handleMouseDown(ResizeHandleLocation.left)}
                 />
             );
@@ -151,7 +148,7 @@ export class Viewer extends Foundation<
         if (this.props.responsive) {
             return (
                 <button
-                    className={`${this.props.managedClasses.handle} ${this.props.managedClasses.handle__right}`}
+                    className={`dtc-viewer-handle dtc-viewer-handle__right`}
                     onMouseDown={this.handleMouseDown(ResizeHandleLocation.right)}
                 />
             );
@@ -163,18 +160,18 @@ export class Viewer extends Foundation<
             return (
                 <React.Fragment>
                     <button
-                        className={`${this.props.managedClasses.handle} ${this.props.managedClasses.handle__bottomLeft}`}
+                        className={`dtc-viewer-handle dtc-viewer-handle__bottom-left`}
                         onMouseDown={this.handleMouseDown(
                             ResizeHandleLocation.bottomLeft
                         )}
                     />
                     <button
-                        className={`${this.props.managedClasses.handle} ${this.props.managedClasses.handle__bottom}`}
+                        className={`dtc-viewer-handle dtc-viewer-handle__bottom`}
                         aria-hidden={true}
                         onMouseDown={this.handleMouseDown(ResizeHandleLocation.bottom)}
                     />
                     <button
-                        className={`${this.props.managedClasses.handle} ${this.props.managedClasses.handle__bottomRight}`}
+                        className={`dtc-viewer-handle dtc-viewer-handle__bottom-right`}
                         onMouseDown={this.handleMouseDown(
                             ResizeHandleLocation.bottomRight
                         )}
@@ -211,14 +208,14 @@ export class Viewer extends Foundation<
     }
 
     private generateContentRegionClassNames(): string {
-        let classes: string = this.props.managedClasses.viewer_contentRegion;
+        let classes: string = "dtc-viewer_content-region";
 
         if (this.props.preview) {
-            classes += ` ${this.props.managedClasses.viewer_contentRegion__preview}`;
+            classes += ` ${"dtc-viewer_content-region__preview"}`;
         }
 
         if (this.state.resizing) {
-            classes += ` ${this.props.managedClasses.viewer_contentRegion__disabled}`;
+            classes += ` ${"dtc-viewer_content-region__disabled"}`;
         }
 
         return classes;

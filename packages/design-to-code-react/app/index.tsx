@@ -1,7 +1,7 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import App from "./app";
-import HTML5Backend from "react-dnd-html5-backend";
+import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
 
 /**
@@ -15,9 +15,9 @@ document.body.setAttribute("style", "margin: 0");
 /**
  * Primary render function for app. Called on store updates
  */
-ReactDOM.render(
+const reactRoot = createRoot(root);
+reactRoot.render(
     <DndProvider backend={HTML5Backend}>
         <App />
-    </DndProvider>,
-    document.getElementById("root")
+    </DndProvider>
 );

@@ -1,6 +1,4 @@
-import { ManagedClasses } from "@microsoft/fast-components-class-name-contracts-base";
-import { CustomMessage, MessageSystem } from "@microsoft/design-to-code";
-import { ViewerClassNameContract } from "./viewer.class-name-contract";
+import { CustomMessage, MessageSystem } from "design-to-code";
 
 export enum ResizeHandleLocation {
     left,
@@ -15,9 +13,8 @@ export enum ViewerCustomAction {
     response = "response",
 }
 
-export type ViewerManagedClasses = ManagedClasses<ViewerClassNameContract>;
 export type ViewerUnhandledProps = React.AllHTMLAttributes<HTMLElement>;
-export interface ViewerHandledProps extends ViewerManagedClasses {
+export interface ViewerHandledProps {
     /**
      * The src route for the viewer iframe
      */

@@ -1,3 +1,3 @@
 # Description
 
-This folder contains the documentation for versions of the `@microsoft/design-to-code-react` package.
+This folder contains the documentation for versions of the `design-to-code-react` package.

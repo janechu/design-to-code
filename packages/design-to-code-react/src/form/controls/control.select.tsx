@@ -1,51 +1,43 @@
 import React from "react";
-import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
-import { ManagedClasses } from "@microsoft/fast-components-class-name-contracts-base";
-import styles from "./control.select.style";
 import { SelectControlProps } from "./control.select.props";
-import { SelectControlClassNameContract } from "./control.select.style";
 import { classNames } from "@microsoft/fast-web-utilities";
 import { isDefault } from "./utilities/form";
+import cssVariables from "../../style/css-variables.css";
+import selectSpanStyle from "../../style/select-span-style.css";
+import defaultFontStyle from "../../style/default-font-style.css";
+import selectInputStyle from "../../style/select-input-style.css";
+import style from "./control.select.style.css";
+
+// tree-shaking
+cssVariables;
+selectSpanStyle;
+defaultFontStyle;
+selectInputStyle;
+style;
 
 /**
  * Form control definition
  */
-class SelectControl extends React.Component<
-    SelectControlProps & ManagedClasses<SelectControlClassNameContract>,
-    {}
-> {
+class SelectControl extends React.Component<SelectControlProps, {}> {
     public static displayName: string = "SelectControl";
-
-    public static defaultProps: Partial<
-        SelectControlProps & ManagedClasses<SelectControlClassNameContract>
-    > = {
-        managedClasses: {},
-    };
 
     /**
      * Renders the component
      */
     public render(): React.ReactNode {
-        const {
-            selectControl,
-            selectControl__disabled,
-            selectControl__default,
-            selectControl_input,
-        }: SelectControlClassNameContract = this.props.managedClasses;
-
         return (
             <span
                 className={classNames(
-                    selectControl,
-                    [selectControl__disabled, this.props.disabled],
+                    "dtc-select-control dtc-common-select-span",
+                    ["dtc-select-control__disabled", this.props.disabled],
                     [
-                        selectControl__default,
+                        "dtc-select-control__default dtc-common-default-font",
                         isDefault(this.props.value, this.props.default),
                     ]
                 )}
             >
                 <select
-                    className={selectControl_input}
+                    className={"dtc-select-control_input dtc-common-select-input"}
                     onChange={this.handleChange()}
                     value={this.getValue()}
                     disabled={this.props.disabled}
@@ -107,4 +99,4 @@ class SelectControl extends React.Component<
 }
 
 export { SelectControl };
-export default manageJss(styles)(SelectControl);
+export default SelectControl;

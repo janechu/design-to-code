@@ -17,9 +17,8 @@ import {
     HTMLRenderLayer,
 } from "../../../src/web-components/html-render-layer/html-render-layer";
 import { html, ViewTemplate } from "@microsoft/fast-element";
+import MessageSystemWorker from "worker-loader!../../../dist/message-system.min.js";
 
-/* eslint-disable-next-line @typescript-eslint/no-var-requires */
-const MessageSystemWorker = require("../../../dist/message-system.min.js");
 document.body.setAttribute("style", "margin: 0");
 
 export class HTMLRenderLayerTest extends HTMLRenderLayer {

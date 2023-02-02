@@ -1,4 +1,4 @@
-import { linkedDataSchema } from "@microsoft/design-to-code";
+import { linkedDataSchema } from "design-to-code";
 
 export default {
     $schema: "http://json-schema.org/schema#",

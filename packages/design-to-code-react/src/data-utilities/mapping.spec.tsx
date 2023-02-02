@@ -6,15 +6,8 @@ import {
     linkedDataSchema,
     mapDataDictionary,
     pluginIdKeyword,
-} from "@microsoft/design-to-code";
+} from "design-to-code";
 import { ComponentDictionary, reactMapper, reactResolver } from "./mapping";
-import Adapter from "enzyme-adapter-react-16";
-import { configure, mount } from "enzyme";
-
-/**
- * Configure Enzyme
- */
-configure({ adapter: new Adapter() });
 
 class Foo extends React.Component<{}, {}> {
     public render(): React.ReactNode {

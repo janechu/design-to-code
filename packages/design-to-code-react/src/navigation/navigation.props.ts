@@ -4,8 +4,8 @@ import {
     DataType,
     MessageSystem,
     NavigationConfigDictionary,
-} from "@microsoft/design-to-code";
-import { XOR } from "@microsoft/design-to-code/dist/dts/data-utilities/type.utilities";
+} from "design-to-code";
+import { XOR } from "design-to-code/dist/dts/data-utilities/type.utilities";
 import { DragDropItemType } from "./navigation-tree-item.props";
 
 export enum NavigationDataType {

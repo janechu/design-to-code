@@ -1,17 +1,10 @@
 import React from "react";
-import Adapter from "enzyme-adapter-react-16";
 import "../../__tests__/mocks/match-media";
-import { configure, mount, shallow } from "enzyme";
 import { NumberFieldControl } from "./control.number-field";
 import { NumberFieldControlProps } from "./control.number-field.props";
 import { NumberFieldControlClassNameContract } from "./control.number-field.style";
 import { ControlType } from "../templates";
 import defaultStrings from "../form.strings";
-
-/*
- * Configure Enzyme
- */
-configure({ adapter: new Adapter() });
 
 const managedClasses: NumberFieldControlClassNameContract = {
     numberFieldControl: "numberFieldControl-class",

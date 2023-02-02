@@ -6,7 +6,7 @@ The CSS controls consist of an abstract control and two extended controls, CSS s
 
 ## Data import
 
-The CSS data will be imported from `@microsoft/design-to-code`, for more information on the exported data format for this, refer to [the documentation](../../../../design-to-code/src/data-utilities/mapping.mdn-data.md).
+The CSS data will be imported from `design-to-code`, for more information on the exported data format for this, refer to [the documentation](../../../../design-to-code/src/data-utilities/mapping.mdn-data.md).
 
 ## Wireframe
 

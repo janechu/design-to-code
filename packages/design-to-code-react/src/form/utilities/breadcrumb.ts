@@ -3,8 +3,8 @@ import {
     NavigationConfigDictionary,
     Parent,
     TreeNavigation,
-} from "@microsoft/design-to-code";
-import { DataType } from "@microsoft/design-to-code";
+} from "design-to-code";
+import { DataType } from "design-to-code";
 import { BreadcrumbItemEventHandler } from "../form.props";
 
 export interface BreadcrumbItem {

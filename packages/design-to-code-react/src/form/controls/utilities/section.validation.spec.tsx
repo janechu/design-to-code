@@ -1,17 +1,10 @@
 import React from "react";
-import Adapter from "enzyme-adapter-react-16";
-import { configure, mount } from "enzyme";
 import StyledSectionValidation, { SectionValidation } from "./section.validation";
 import {
     SectionValidationClassNameContract,
     SectionValidationProps,
 } from "./section.validation.props";
-import { ValidationError } from "@microsoft/design-to-code";
-
-/*
- * Configure Enzyme
- */
-configure({ adapter: new Adapter() });
+import { ValidationError } from "design-to-code";
 
 const sectionValidationProps: SectionValidationProps = {
     invalidMessage: "",

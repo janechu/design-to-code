@@ -1,14 +1,10 @@
-import { ManagedClasses } from "@microsoft/fast-components-class-name-contracts-base";
-import { RotateClassNameContract } from "./rotate.class-name-contract";
-
 export enum Orientation {
     landscape = "landscape",
     portrait = "portrait",
 }
 
-export type RotateManagedClasses = ManagedClasses<RotateClassNameContract>;
 export type RotateUnhandledProps = React.AllHTMLAttributes<HTMLElement>;
-export interface RotateHandledProps extends RotateManagedClasses {
+export interface RotateHandledProps {
     /**
      * A callback used when the orientation has been updated
      */

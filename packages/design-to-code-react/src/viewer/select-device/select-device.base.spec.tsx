@@ -1,15 +1,7 @@
 import React from "react";
-import Adapter from "enzyme-adapter-react-16";
-import { configure, mount, shallow } from "enzyme";
 import { SelectDeviceHandledProps } from "./";
 import { SelectDevice } from "./select-device.base";
 import { Display } from "./devices";
-import { SelectDeviceClassNameContract } from "./select-device.class-name-contract";
-
-/*
- * Configure Enzyme
- */
-configure({ adapter: new Adapter() });
 
 describe("SelectDevice", (): void => {
     const managedClasses: SelectDeviceClassNameContract = {

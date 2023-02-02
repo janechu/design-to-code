@@ -1,13 +1,6 @@
 import React from "react";
-import Adapter from "enzyme-adapter-react-16";
-import { configure, mount, shallow } from "enzyme";
 import { StandardControlPlugin } from "./";
 import { ControlConfig } from "./template.control.utilities.props";
-
-/*
- * Configure Enzyme
- */
-configure({ adapter: new Adapter() });
 
 describe("StandardControlPlugin", () => {
     test("should not throw", () => {

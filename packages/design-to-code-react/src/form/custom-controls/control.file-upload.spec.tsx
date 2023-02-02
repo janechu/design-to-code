@@ -1,16 +1,9 @@
 import React from "react";
-import Adapter from "enzyme-adapter-react-16";
-import { configure, mount } from "enzyme";
 import { FileUploadControl } from "./control.file-upload";
 import { FileUploadControl as StyledFileUploadControl } from "./control.file-upload";
 import { FileUploadControlProps } from "./control.file-upload.props";
 import { ControlType } from "../templates";
 import defaultStrings from "../form.strings";
-
-/*
- * Configure Enzyme
- */
-configure({ adapter: new Adapter() });
 
 const fileUploadControlProps: FileUploadControlProps = {
     type: ControlType.textarea,

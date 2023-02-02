@@ -1,28 +1,38 @@
 import { uniqueId } from "lodash-es";
-import { ManagedClasses } from "@microsoft/fast-components-class-name-contracts-base";
-import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
 import React from "react";
 import { getArrayLinks, isRootLocation } from "./utilities/form";
-import styles, { ArrayControlClassNameContract } from "./control.array.style";
 import { ArrayControlProps, ArrayControlState } from "./control.array.props";
-import { DragItem } from "../templates";
+import { DragItem, ItemType } from "../templates";
 import { ArrayAction } from "../templates/types";
 import { classNames } from "@microsoft/fast-web-utilities";
+import cssVariables from "../../style/css-variables.css";
+import addItemStyle from "../../style/add-item-style.css";
+import cleanListStyle from "../../style/clean-list-style.css";
+import defaultFontStyle from "../../style/default-font-style.css";
+import invalidMessageStyle from "../../style/invalid-message-style.css";
+import removeItemStyle from "../../style/remove-item-style.css";
+import labelStyle from "../../style/label-style.css";
+import labelRegionStyle from "../../style/label-region-style.css";
+import ellipsisStyle from "../../style/ellipsis-style.css";
+import style from "./control.array.style.css";
+
+// tree-shaking
+cssVariables;
+addItemStyle;
+cleanListStyle;
+defaultFontStyle;
+invalidMessageStyle;
+removeItemStyle;
+labelStyle;
+labelRegionStyle;
+ellipsisStyle;
+style;
 
 /**
  * Form control definition
  */
-class ArrayControl extends React.Component<
-    ArrayControlProps & ManagedClasses<ArrayControlClassNameContract>,
-    ArrayControlState
-> {
+class ArrayControl extends React.Component<ArrayControlProps, ArrayControlState> {
     public static displayName: string = "ArrayControl";
-
-    public static defaultProps: Partial<
-        ArrayControlProps & ManagedClasses<ArrayControlClassNameContract>
-    > = {
-        managedClasses: {},
-    };
 
     constructor(props: ArrayControlProps) {
         super(props);
@@ -37,15 +47,9 @@ class ArrayControl extends React.Component<
         return (
             <div
                 className={classNames(
-                    this.props.managedClasses.arrayControl,
-                    [
-                        this.props.managedClasses.arrayControl__disabled,
-                        this.props.disabled,
-                    ],
-                    [
-                        this.props.managedClasses.arrayControl__invalid,
-                        this.props.invalidMessage !== "",
-                    ]
+                    "dtc-array-control",
+                    ["dtc-array-control__disabled", this.props.disabled],
+                    ["dtc-array-control__invalid", this.props.invalidMessage !== ""]
                 )}
             >
                 {this.renderAddArrayItem()}
@@ -60,7 +64,7 @@ class ArrayControl extends React.Component<
     private renderAddArrayItemTrigger(): React.ReactNode {
         return (
             <button
-                className={this.props.managedClasses.arrayControl_addItemButton}
+                className={"dtc-array-control_add-item-button dtc-common-add-item"}
                 aria-label={this.props.strings.arrayAddItemTip}
                 onClick={this.arrayItemClickHandlerFactory(ArrayAction.add)}
             />
@@ -74,15 +78,11 @@ class ArrayControl extends React.Component<
         const existingItemLength: number = Array.isArray(this.props.value)
             ? this.props.value.length
             : 0;
-        const {
-            arrayControl_addItem,
-            arrayControl_addItemLabel,
-        }: ArrayControlClassNameContract = this.props.managedClasses;
 
         if (this.props.maxItems > existingItemLength) {
             return (
-                <div className={arrayControl_addItem}>
-                    <div className={arrayControl_addItemLabel}>
+                <div className={"dtc-array-control_add-item dtc-common-label-region"}>
+                    <div className={"dtc-array-control_add-item-label dtc-common-label"}>
                         {this.props.strings.arrayAddItemLabel}
                     </div>
                     {this.renderAddArrayItemTrigger()}
@@ -95,22 +95,16 @@ class ArrayControl extends React.Component<
      * Renders an default array link item
      */
     private renderDefaultArrayLinkItem = (value: any, index: number): React.ReactNode => {
-        const {
-            arrayControl_existingItemListItem,
-            arrayControl_existingItemListItemLink,
-            arrayControl_existingItemListItemLink__default,
-        }: ArrayControlClassNameContract = this.props.managedClasses;
-
         return (
             <li
-                className={arrayControl_existingItemListItem}
+                className={"dtc-array-control_existing-item-list-item"}
                 key={`item-${index}`}
                 id={uniqueId(index.toString())}
             >
                 <span
                     className={classNames(
-                        arrayControl_existingItemListItemLink,
-                        arrayControl_existingItemListItemLink__default
+                        "dtc-array-control_existing-item-list-item-link dtc-common-default-font dtc-common-ellipsis",
+                        "dtc-array-control_existing-item-list-item-link__default"
                     )}
                 >
                     {value}
@@ -139,7 +133,11 @@ class ArrayControl extends React.Component<
 
         if (hasData) {
             return (
-                <ul className={this.props.managedClasses.arrayControl_existingItemList}>
+                <ul
+                    className={
+                        "dtc-array-control_existing-item-list dtc-common-clean-list"
+                    }
+                >
                     {this.renderArrayLinkItems()}
                 </ul>
             );
@@ -147,14 +145,20 @@ class ArrayControl extends React.Component<
 
         if (hasDefault) {
             return (
-                <ul className={this.props.managedClasses.arrayControl_existingItemList}>
+                <ul
+                    className={
+                        "dtc-array-control_existing-item-list dtc-common-clean-list"
+                    }
+                >
                     {this.renderDefaultArrayLinkItems()}
                 </ul>
             );
         }
 
         return (
-            <ul className={this.props.managedClasses.arrayControl_existingItemList}></ul>
+            <ul
+                className={"dtc-array-control_existing-item-list dtc-common-clean-list"}
+            ></ul>
         );
     }
 
@@ -165,45 +169,43 @@ class ArrayControl extends React.Component<
         const data: unknown[] = this.state.isDragging
             ? this.state.data
             : this.props.value;
-        const {
-            arrayControl_existingItemRemoveButton,
-            arrayControl_existingItemListItem,
-            arrayControl_existingItemListItem__invalid,
-            arrayControl_existingItemListItemLink,
-        }: Partial<ArrayControlClassNameContract> = this.props.managedClasses;
+        return getArrayLinks(data).map((text: string, index: number): React.ReactNode => {
+            const invalidError: React.ReactNode = this.renderValidationError(index);
 
-        return getArrayLinks(data).map(
-            (text: string, index: number): React.ReactNode => {
-                const invalidError: React.ReactNode = this.renderValidationError(index);
-
-                return (
-                    <React.Fragment key={this.props.dataLocation + index}>
-                        <DragItem
-                            key={index}
-                            index={index}
-                            minItems={this.props.minItems}
-                            itemLength={getArrayLinks(data).length}
-                            itemRemoveClassName={arrayControl_existingItemRemoveButton}
-                            itemClassName={classNames(arrayControl_existingItemListItem, [
-                                arrayControl_existingItemListItem__invalid,
+            return (
+                <React.Fragment key={this.props.dataLocation + index}>
+                    {/* <DragItem
+                        key={index}
+                        index={index}
+                        minItems={this.props.minItems}
+                        itemLength={getArrayLinks(data).length}
+                        itemRemoveClassName={
+                            "dtc-array-control_existing-item-remove-button dtc-common-remove-item"
+                        }
+                        itemClassName={classNames(
+                            "dtc-array-control_existing-item-list-item",
+                            [
+                                "dtc-array-control_existing-itemListItem__invalid",
                                 invalidError !== null,
-                            ])}
-                            itemLinkClassName={arrayControl_existingItemListItemLink}
-                            removeDragItem={this.arrayItemClickHandlerFactory}
-                            onClick={this.arrayClickHandlerFactory}
-                            moveDragItem={this.handleMoveDragItem}
-                            dropDragItem={this.handleDropDragItem}
-                            dragStart={this.handleDragStart}
-                            dragEnd={this.handleDragEnd}
-                            strings={this.props.strings}
-                        >
-                            {text}
-                        </DragItem>
-                        {!!this.props.displayValidationInline ? invalidError : null}
-                    </React.Fragment>
-                );
-            }
-        );
+                            ]
+                        )}
+                        itemLinkClassName={
+                            "dtc-array-control_existing-item-list-item-link"
+                        }
+                        removeDragItem={this.arrayItemClickHandlerFactory}
+                        onClick={this.arrayClickHandlerFactory}
+                        moveDragItem={this.handleMoveDragItem}
+                        dropDragItem={this.handleDropDragItem}
+                        dragStart={this.handleDragStart}
+                        dragEnd={this.handleDragEnd}
+                        strings={this.props.strings}
+                    > */}
+                    {text}
+                    {/* </DragItem> */}
+                    {!!this.props.displayValidationInline ? invalidError : null}
+                </React.Fragment>
+            );
+        });
     }
 
     private renderValidationError(index: number): React.ReactNode {
@@ -215,7 +217,9 @@ class ArrayControl extends React.Component<
             if (error.dataLocation.startsWith(`${this.props.dataLocation}.${index}`)) {
                 return (
                     <div
-                        className={this.props.managedClasses.arrayControl_invalidMessage}
+                        className={
+                            "dtc-array-control_invalid-message dtc-common-invalid-message"
+                        }
                     >
                         {error.invalidMessage}
                     </div>
@@ -282,11 +286,13 @@ class ArrayControl extends React.Component<
     /**
      * Handle the start of the drag action
      */
-    private handleDragStart = (): void => {
+    private handleDragStart = (config: { type: ItemType }): { type: ItemType } => {
         this.setState({
             isDragging: true,
             data: [].concat(this.props.value || []),
         });
+
+        return config;
     };
 
     /**
@@ -323,4 +329,4 @@ class ArrayControl extends React.Component<
 }
 
 export { ArrayControl };
-export default manageJss(styles)(ArrayControl);
+export default ArrayControl;

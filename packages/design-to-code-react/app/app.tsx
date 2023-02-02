@@ -1,11 +1,10 @@
 import React from "react";
-import { BrowserRouter, Link, Redirect, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Link, Navigate, Route, Routes } from "react-router-dom";
 import { NavigationTestPage } from "./pages/navigation";
 import ViewerPage from "./pages/viewer";
 import ViewerContentPage from "./pages/viewer/content";
 import { FormTestPage } from "./pages/form";
 import { FormAndNavigationTestPage } from "./pages/form-and-navigation";
-import { NavigationMenuTestPage } from "./pages/navigation-menu";
 import { WebComponentTestPage } from "./pages/web-components";
 import WebComponentViewerContent from "./pages/web-components/web-component-viewer-content";
 
@@ -15,43 +14,25 @@ class App extends React.Component<{}, {}> {
             <BrowserRouter>
                 <div>
                     {this.renderLinks()}
-                    <Switch>
+                    <Routes>
+                        <Route path={"/navigation"} element={<NavigationTestPage />} />
+                        <Route path={"/viewer"} element={<ViewerPage />} />
+                        <Route path={"/viewer/content"} element={<ViewerContentPage />} />
+                        <Route path={"/form"} element={<FormTestPage />} />
                         <Route
-                            exact={true}
-                            path={"/navigation-menu"}
-                            component={NavigationMenuTestPage}
-                        />
-                        <Route
-                            exact={true}
-                            path={"/navigation"}
-                            component={NavigationTestPage}
-                        />
-                        <Route exact={true} path={"/viewer"} component={ViewerPage} />
-                        <Route
-                            exact={true}
-                            path={"/viewer/content"}
-                            component={ViewerContentPage}
-                        />
-                        <Route exact={true} path={"/form"} component={FormTestPage} />
-                        <Route
-                            exact={true}
                             path={"/form-and-navigation"}
-                            component={FormAndNavigationTestPage}
+                            element={<FormAndNavigationTestPage />}
                         />
                         <Route
-                            exact={true}
                             path={"/web-components"}
-                            component={WebComponentTestPage}
+                            element={<WebComponentTestPage />}
                         />
                         <Route
-                            exact={true}
                             path={"/web-components/content"}
-                            component={WebComponentViewerContent}
+                            element={<WebComponentViewerContent />}
                         />
-                        <Route exact={true} path={"/"}>
-                            <Redirect to={"/form"} />
-                        </Route>
-                    </Switch>
+                        <Route path={"/"} element={<Navigate to={"/form"} />} />
+                    </Routes>
                 </div>
             </BrowserRouter>
         );
@@ -62,9 +43,6 @@ class App extends React.Component<{}, {}> {
             return (
                 <React.Fragment>
                     <ul>
-                        <li>
-                            <Link to="/navigation-menu">Navigation Menu</Link>
-                        </li>
                         <li>
                             <Link to="/form">Form</Link>
                         </li>
