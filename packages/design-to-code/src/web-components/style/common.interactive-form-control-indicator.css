@@ -1,0 +1,25 @@
+.dtc-common-interactive-form-control-indicator {
+    display: flex;
+    padding: 0;
+    align-self: center;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: var(--dtc-border-radius);
+}
+
+.dtc-common-interactive-form-control-indicator:focus-visible {
+    border-color: var(--dtc-accent-color);
+    outline: none;
+}
+
+.dtc-common-interactive-form-control-indicator svg {
+    fill: var(--dtc-text-color);
+    min-height: 18px;
+    min-width: 18px;
+    box-sizing: border-box;
+    padding: 1px 0;
+}
+
+.dtc-common-interactive-form-control-indicator:hover svg {
+    fill: var(--dtc-accent-color);
+}

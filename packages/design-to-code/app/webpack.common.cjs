@@ -10,6 +10,7 @@ const ResolveTypeScriptPlugin = require("resolve-typescript-plugin");
 
 const appDir = path.resolve(__dirname, "./");
 const outDir = path.resolve(__dirname, "../www");
+const srcDir = path.resolve(__dirname, "../src");
 
 module.exports = {
     name: "root",
@@ -34,6 +35,9 @@ module.exports = {
                 use: [
                     {
                         loader: "ts-loader",
+                        options: {
+                            configFile: "tsconfig.json"
+                        }
                     },
                 ],
             },
@@ -51,9 +55,6 @@ module.exports = {
                 use: [
                     {
                         loader: MiniCssExtractPlugin.loader,
-                        options: {
-                            hmr: process.env.NODE_ENV === "development",
-                        },
                     },
                     {
                         loader: "css-loader",
@@ -87,6 +88,12 @@ module.exports = {
                     from: path.resolve(__dirname, "./server.cjs"),
                     to: path.resolve(__dirname, "../www/"),
                 },
+                {
+                    from: path.resolve(srcDir, "web-components", "style", "*.css"),
+                    to: (context, absoluteFilename) => {
+                        return path.resolve(__dirname, "../www", "[name][ext]");
+                    }
+                }
             ],
         }),
     ],

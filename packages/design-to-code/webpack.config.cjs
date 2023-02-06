@@ -2,7 +2,6 @@ const path = require("path");
 const glob = require("glob");
 const rootAppWebpackConfig = require(path.resolve(__dirname, "app/webpack.dev.cjs"));
 const outDir = path.resolve(__dirname, "./www");
-let parallelism = 1;
 
 const configs = new Promise(resolver => {
     try {
@@ -27,7 +26,6 @@ const configs = new Promise(resolver => {
                             path: path.resolve(outDir, name),
                             publicPath: `/${name}/`,
                         };
-                        parallelism++;
 
                         return webpackConfig;
                     })
@@ -43,4 +41,4 @@ const configs = new Promise(resolver => {
 });
 
 module.exports = configs;
-module.exports.parallelism = parallelism;
+module.exports.parallelism = 100;
