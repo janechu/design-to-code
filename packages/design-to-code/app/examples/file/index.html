@@ -19,7 +19,13 @@
     </head>
     <body>
         <div id="root">
-            <dtc-file id="file" accept=".jpg,.jpeg,.gif,.png">
+            <dtc-file
+                id="file"
+                accept=".jpg,.jpeg,.gif,.png"
+                control-button-stylesheet="<%= htmlWebpackPlugin.options.controlButtonStylesheet %>"
+                common-input-stylesheet="<%= htmlWebpackPlugin.options.commonInputStylesheet %>"
+                common-default-font-stylesheet="<%= htmlWebpackPlugin.options.commonDefaultFontStylesheet %>"
+            >
                 Pick a file
                 <dtc-file-action-objecturl
                     role="fileaction"
@@ -28,7 +34,7 @@
             </dtc-file>
             <br />
             Output:
-            <input id="outputValue" type="text" style="width: 800px;" />
+            <input id="outputValue" type="text" style="width: 800px" />
             <br />
             <img id="outputImg" />
         </div>

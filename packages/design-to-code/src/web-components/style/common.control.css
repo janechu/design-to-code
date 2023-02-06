@@ -1,0 +1,3 @@
+.dtc-common-control {
+    width: calc(100% - var(--dtc-gutter));
+}

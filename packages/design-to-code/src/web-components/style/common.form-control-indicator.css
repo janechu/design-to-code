@@ -1,0 +1,13 @@
+/*
+ * These styles are for reference only and should be
+ * copied into the individual component stylesheets to
+ * control specificity
+ */
+
+.dtc-common-form-control-indicator-style {
+    fill: var(--dtc-text-color);
+    padding: 0 4px;
+    align-self: center;
+    min-width: 14px;
+    min-height: 14px;
+}

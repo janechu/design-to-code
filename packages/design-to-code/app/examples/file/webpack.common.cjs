@@ -15,7 +15,7 @@ module.exports = {
         main: path.resolve(appDir, "index.ts"),
     },
     resolve: {
-        plugins: [new ResolveTypeScriptPlugin() ],
+        plugins: [new ResolveTypeScriptPlugin()],
         extensions: [".ts", ".js"],
     },
     output: {
@@ -62,6 +62,9 @@ module.exports = {
             title: "Test application",
             inject: "body",
             template: path.resolve(appDir, "index.html"),
+            controlButtonStylesheet: "/control.button.css",
+            commonInputStylesheet: "/common.input.css",
+            commonDefaultFontStylesheet: "/common.default-font.css",
         }),
     ],
 };

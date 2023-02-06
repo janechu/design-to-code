@@ -1,0 +1,26 @@
+{
+    "extends": "../../../tsconfig.json",
+    "include": [
+        "../src/**/*",
+        "../app/**/*",
+        "../types.d.ts"
+    ],
+    "compilerOptions": {
+        "baseUrl": "../",
+        "declaration": false,
+        "outDir": "dist/esm",
+        "resolveJsonModule": true,
+        "allowJs": true,
+        "types": [
+            "chai",
+            "chai-spies",
+            "mocha",
+            "node",
+            "webpack-env"
+        ]
+    },
+    "exclude": [
+        "node_modules",
+        "src/message-system/webworker.ts"
+    ]
+}

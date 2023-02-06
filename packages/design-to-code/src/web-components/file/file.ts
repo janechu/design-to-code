@@ -36,6 +36,24 @@ export class File extends FormAssociatedFile {
     public multiple: boolean;
 
     /**
+     * The button stylesheet path
+     */
+    @attr({ attribute: "control-button-stylesheet" })
+    public controlButtonStylesheet: string;
+
+    /**
+     * The common default font stylesheet path
+     */
+    @attr({ attribute: "common-default-font-stylesheet" })
+    public commonDefaultFontStylesheet: string;
+
+    /**
+     * The common input stylesheet path
+     */
+    @attr({ attribute: "common-input-stylesheet" })
+    public commonInputStylesheet: string;
+
+    /**
      * Callback method for reporting progress of long running FileAction.
      * The progress value is calculated by the FileAction but should be a number between 0 and 1.
      */
