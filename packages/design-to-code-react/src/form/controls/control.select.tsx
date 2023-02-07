@@ -18,55 +18,22 @@ style;
 /**
  * Form control definition
  */
-class SelectControl extends React.Component<SelectControlProps, {}> {
-    public static displayName: string = "SelectControl";
-
-    /**
-     * Renders the component
-     */
-    public render(): React.ReactNode {
-        return (
-            <span
-                className={classNames(
-                    "dtc-select-control dtc-common-select-span",
-                    ["dtc-select-control__disabled", this.props.disabled],
-                    [
-                        "dtc-select-control__default dtc-common-default-font",
-                        isDefault(this.props.value, this.props.default),
-                    ]
-                )}
-            >
-                <select
-                    className={"dtc-select-control_input dtc-common-select-input"}
-                    onChange={this.handleChange()}
-                    value={this.getValue()}
-                    disabled={this.props.disabled}
-                    ref={this.props.elementRef as React.Ref<HTMLSelectElement>}
-                    onBlur={this.props.updateValidity}
-                    onFocus={this.props.reportValidity}
-                    required={this.props.required}
-                >
-                    {this.renderOptions()}
-                </select>
-            </span>
-        );
-    }
-
-    private handleChange = (): ((e: React.ChangeEvent<HTMLSelectElement>) => void) => {
+function SelectControl(props: SelectControlProps) {
+    function handleChange(): (e: React.ChangeEvent<HTMLSelectElement>) => void {
         return (e: React.ChangeEvent<HTMLSelectElement>): void => {
-            const value: any = this.props.options.find((option: any): any => {
+            const value: any = props.options.find((option: any): any => {
                 return typeof option === "string"
                     ? option === e.target.value
                     : JSON.stringify(option) === e.target.value;
             });
-            this.props.onChange({ value });
+            props.onChange({ value });
         };
-    };
+    }
 
     /**
      * Stringify the select value
      */
-    private stringify(value: any): string | any {
+    function stringify(value: any): string | any {
         try {
             return JSON.stringify(value);
         } catch (e) {
@@ -74,28 +41,54 @@ class SelectControl extends React.Component<SelectControlProps, {}> {
         }
     }
 
-    private getValue(): any {
-        return typeof this.props.value !== "undefined"
-            ? this.props.value
-            : typeof this.props.default !== "undefined"
-            ? this.props.default
+    function getValue(): any {
+        return typeof props.value !== "undefined"
+            ? props.value
+            : typeof props.default !== "undefined"
+            ? props.default
             : "";
     }
 
     /**
      * Renders the selects option elements
      */
-    private renderOptions(): React.ReactNode {
-        return (this.props.options || []).map((item: any, index: number) => {
+    function renderOptions(): React.ReactNode {
+        return (props.options || []).map((item: any, index: number) => {
             return (
                 <option key={index} value={item}>
                     {typeof item === "string" || typeof item === "number"
                         ? item
-                        : this.stringify(item)}
+                        : stringify(item)}
                 </option>
             );
         });
     }
+
+    return (
+        <span
+            className={classNames(
+                "dtc-select-control dtc-common-select-span",
+                ["dtc-select-control__disabled", props.disabled],
+                [
+                    "dtc-select-control__default dtc-common-default-font",
+                    isDefault(props.value, props.default),
+                ]
+            )}
+        >
+            <select
+                className={"dtc-select-control_input dtc-common-select-input"}
+                onChange={handleChange()}
+                value={getValue()}
+                disabled={props.disabled}
+                ref={props.elementRef as React.Ref<HTMLSelectElement>}
+                onBlur={props.updateValidity}
+                onFocus={props.reportValidity}
+                required={props.required}
+            >
+                {renderOptions()}
+            </select>
+        </span>
+    );
 }
 
 export { SelectControl };
