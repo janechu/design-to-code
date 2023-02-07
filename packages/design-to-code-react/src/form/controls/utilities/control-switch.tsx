@@ -16,92 +16,80 @@ import { ControlType } from "../../index";
 import { dictionaryLink } from "design-to-code";
 import { XOR } from "design-to-code/dist/dts/data-utilities/type.utilities";
 
-class ControlSwitch extends React.Component<ControlSwitchProps, {}> {
-    public static displayName: string = "ControlSwitch";
-
-    public render(): React.ReactNode {
-        return <React.Fragment>{this.renderControl()}</React.Fragment>;
-    }
-
+function ControlSwitch(props: ControlSwitchProps) {
     /**
      * Renders form items
      */
-    private renderControl(): React.ReactNode {
+    function renderControl(): React.ReactNode {
         let control: ControlPluginUtilities<ControlPluginUtilitiesProps>;
 
         // Check to see if there is any associated `controlId`
         // then check for the id within the passed controlPlugins
-        if (
-            typeof this.props.schema.formControlId === "string" &&
-            this.props.controlPlugins
-        ) {
-            control = this.props.controlPlugins.find(
+        if (typeof props.schema.formControlId === "string" && props.controlPlugins) {
+            control = props.controlPlugins.find(
                 (controlPlugin: StandardControlPlugin) => {
-                    return controlPlugin.matchesId(this.props.schema.formControlId);
+                    return controlPlugin.matchesId(props.schema.formControlId);
                 }
             );
         }
 
-        const controlType: XOR<ControlType, null> = this.getControlType();
+        const controlType: XOR<ControlType, null> = getControlType();
 
         switch (controlType) {
             case ControlType.array:
-                return this.renderArray(
-                    control !== undefined ? control : this.props.controls.array
+                return renderArray(
+                    control !== undefined ? control : props.controls.array
                 );
             case ControlType.button:
-                return this.renderButton(
-                    control !== undefined ? control : this.props.controls.button
+                return renderButton(
+                    control !== undefined ? control : props.controls.button
                 );
             case ControlType.checkbox:
-                return this.renderCheckbox(
-                    control !== undefined ? control : this.props.controls.checkbox
+                return renderCheckbox(
+                    control !== undefined ? control : props.controls.checkbox
                 );
             case ControlType.display:
-                return this.renderDisplay(
-                    control !== undefined ? control : this.props.controls.display
+                return renderDisplay(
+                    control !== undefined ? control : props.controls.display
                 );
             case ControlType.linkedData:
-                return this.renderDataLink(
-                    control !== undefined ? control : this.props.controls.linkedData
+                return renderDataLink(
+                    control !== undefined ? control : props.controls.linkedData
                 );
             case ControlType.numberField:
-                return this.renderNumberField(
-                    control !== undefined ? control : this.props.controls.numberField
+                return renderNumberField(
+                    control !== undefined ? control : props.controls.numberField
                 );
             case ControlType.section:
             case ControlType.sectionLink:
-                return this.renderSectionLink(
-                    control !== undefined ? control : this.props.controls.sectionLink
+                return renderSectionLink(
+                    control !== undefined ? control : props.controls.sectionLink
                 );
             case ControlType.select:
-                return this.renderSelect(
-                    control !== undefined ? control : this.props.controls.select
+                return renderSelect(
+                    control !== undefined ? control : props.controls.select
                 );
             case ControlType.textarea:
-                return this.renderTextarea(
-                    control !== undefined ? control : this.props.controls.textarea
+                return renderTextarea(
+                    control !== undefined ? control : props.controls.textarea
                 );
         }
 
         return null;
     }
 
-    private getControlType(): XOR<ControlType, null> {
-        if (this.props.schema === false) {
+    function getControlType(): XOR<ControlType, null> {
+        if (props.schema === false) {
             return null;
         }
 
-        if (this.props.schema[dictionaryLink]) {
+        if (props.schema[dictionaryLink]) {
             return ControlType.linkedData;
         }
 
-        const hasEnum: boolean = isSelect({ enum: this.props.schema.enum });
+        const hasEnum: boolean = isSelect({ enum: props.schema.enum });
 
-        if (
-            isConst(this.props.schema) ||
-            (hasEnum && this.props.schema.enum.length === 1)
-        ) {
+        if (isConst(props.schema) || (hasEnum && props.schema.enum.length === 1)) {
             return ControlType.display;
         }
 
@@ -109,11 +97,11 @@ class ControlSwitch extends React.Component<ControlSwitchProps, {}> {
             return ControlType.select;
         }
 
-        if (this.props.schema.oneOf || this.props.schema.anyOf) {
+        if (props.schema.oneOf || props.schema.anyOf) {
             return ControlType.sectionLink;
         }
 
-        switch (this.props.schema.type) {
+        switch (props.schema.type) {
             case "boolean":
                 return ControlType.checkbox;
             case "number":
@@ -129,8 +117,8 @@ class ControlSwitch extends React.Component<ControlSwitchProps, {}> {
         }
     }
 
-    private renderDataLink(control: StandardControlPlugin): React.ReactNode {
-        control.updateProps(this.getCommonControlProps(ControlType.linkedData));
+    function renderDataLink(control: StandardControlPlugin): React.ReactNode {
+        control.updateProps(getCommonControlProps(ControlType.linkedData));
 
         return control.render();
     }
@@ -138,12 +126,12 @@ class ControlSwitch extends React.Component<ControlSwitchProps, {}> {
     /**
      * Renders the array form item
      */
-    private renderArray(control: StandardControlPlugin): React.ReactNode {
+    function renderArray(control: StandardControlPlugin): React.ReactNode {
         control.updateProps(
-            Object.assign(this.getCommonControlProps(ControlType.array), {
-                minItems: get(this.props.schema, ItemConstraints.minItems, 0),
-                maxItems: get(this.props.schema, ItemConstraints.maxItems, Infinity),
-                onAddExampleData: this.handleAddExampleData,
+            Object.assign(getCommonControlProps(ControlType.array), {
+                minItems: get(props.schema, ItemConstraints.minItems, 0),
+                maxItems: get(props.schema, ItemConstraints.maxItems, Infinity),
+                onAddExampleData: handleAddExampleData,
             })
         );
 
@@ -153,12 +141,12 @@ class ControlSwitch extends React.Component<ControlSwitchProps, {}> {
     /**
      * Renders the number field form item
      */
-    private renderNumberField(control: StandardControlPlugin): React.ReactNode {
+    function renderNumberField(control: StandardControlPlugin): React.ReactNode {
         control.updateProps(
-            Object.assign(this.getCommonControlProps(ControlType.numberField), {
-                min: this.props.schema.minimum,
-                max: this.props.schema.maximum,
-                step: this.props.schema.multipleOf,
+            Object.assign(getCommonControlProps(ControlType.numberField), {
+                min: props.schema.minimum,
+                max: props.schema.maximum,
+                step: props.schema.multipleOf,
             })
         );
 
@@ -168,8 +156,8 @@ class ControlSwitch extends React.Component<ControlSwitchProps, {}> {
     /**
      * Renders the checkbox form item
      */
-    private renderCheckbox(control: SingleLineControlPlugin): React.ReactNode {
-        control.updateProps(this.getCommonControlProps(ControlType.checkbox));
+    function renderCheckbox(control: SingleLineControlPlugin): React.ReactNode {
+        control.updateProps(getCommonControlProps(ControlType.checkbox));
 
         return control.render();
     }
@@ -178,8 +166,8 @@ class ControlSwitch extends React.Component<ControlSwitchProps, {}> {
      * Renders a section link for properties
      * that are objects
      */
-    private renderSectionLink(control: StandardControlPlugin): React.ReactNode {
-        control.updateProps(this.getCommonControlProps(ControlType.sectionLink));
+    function renderSectionLink(control: StandardControlPlugin): React.ReactNode {
+        control.updateProps(getCommonControlProps(ControlType.sectionLink));
 
         return control.render();
     }
@@ -187,11 +175,11 @@ class ControlSwitch extends React.Component<ControlSwitchProps, {}> {
     /**
      * Renders the textarea form item
      */
-    private renderTextarea(control: StandardControlPlugin): React.ReactNode {
-        const rows: number | undefined = this.props.schema.rows || void 0;
+    function renderTextarea(control: StandardControlPlugin): React.ReactNode {
+        const rows: number | undefined = props.schema.rows || void 0;
 
         control.updateProps(
-            Object.assign(this.getCommonControlProps(ControlType.textarea), {
+            Object.assign(getCommonControlProps(ControlType.textarea), {
                 rows,
             })
         );
@@ -202,15 +190,15 @@ class ControlSwitch extends React.Component<ControlSwitchProps, {}> {
     /**
      * Renders the select form item
      */
-    private renderSelect(control: StandardControlPlugin): React.ReactNode {
-        const options: any[] = this.props.schema.enum || [];
+    function renderSelect(control: StandardControlPlugin): React.ReactNode {
+        const options: any[] = props.schema.enum || [];
 
-        if (!this.props.required && typeof options[0] !== "undefined") {
+        if (!props.required && typeof options[0] !== "undefined") {
             options.unshift(void 0);
         }
 
         control.updateProps(
-            Object.assign(this.getCommonControlProps(ControlType.select), {
+            Object.assign(getCommonControlProps(ControlType.select), {
                 options,
             })
         );
@@ -221,71 +209,71 @@ class ControlSwitch extends React.Component<ControlSwitchProps, {}> {
     /**
      * Renders the display form item
      */
-    private renderDisplay(control: StandardControlPlugin): React.ReactNode {
-        control.updateProps(this.getCommonControlProps(ControlType.display));
+    function renderDisplay(control: StandardControlPlugin): React.ReactNode {
+        control.updateProps(getCommonControlProps(ControlType.display));
 
         return control.render();
     }
 
-    private renderButton(control: StandardControlPlugin): React.ReactNode {
-        control.updateProps(this.getCommonControlProps(ControlType.button));
+    function renderButton(control: StandardControlPlugin): React.ReactNode {
+        control.updateProps(getCommonControlProps(ControlType.button));
 
         return control.render();
     }
 
-    private handleAddExampleData = (additionalSchemaPathSyntax: string): any => {
-        return generateExampleData(this.props.schema, additionalSchemaPathSyntax);
-    };
+    function handleAddExampleData(additionalSchemaPathSyntax: string): any {
+        return generateExampleData(props.schema, additionalSchemaPathSyntax);
+    }
 
     /**
      * Gets the common form control props
      */
-    private getCommonControlProps(
+    function getCommonControlProps(
         type: ControlType
     ): ControlTemplateUtilitiesProps & AdditionalControlConfigOptions {
-        const schema: any = get(this.props, "schema", {});
+        const schema: any = get(props, "schema", {});
 
         return {
-            index: this.props.index,
+            index: props.index,
             type,
-            dataLocation: this.props.dataLocation,
-            navigationConfigId: this.props.navigationConfigId,
-            dictionaryId: this.props.dictionaryId,
-            dataDictionary: this.props.dataDictionary,
-            navigation: this.props.navigation,
-            schemaLocation: this.props.schemaLocation,
-            data: this.props.data,
-            schemaDictionary: this.props.schemaDictionary,
+            dataLocation: props.dataLocation,
+            navigationConfigId: props.navigationConfigId,
+            dictionaryId: props.dictionaryId,
+            dataDictionary: props.dataDictionary,
+            navigation: props.navigation,
+            schemaLocation: props.schemaLocation,
+            data: props.data,
+            schemaDictionary: props.schemaDictionary,
             schema,
-            required: this.props.required,
-            label: schema.title || schema.description || this.props.untitled,
+            required: props.required,
+            label: schema.title || schema.description || props.untitled,
             labelTooltip: schema.description,
-            disabled: this.props.disabled || schema.disabled,
-            onChange: this.props.onChange,
+            disabled: props.disabled || schema.disabled,
+            onChange: props.onChange,
             default:
                 typeof schema.default !== "undefined"
                     ? schema.default
-                    : typeof this.props.default !== "undefined"
-                    ? this.props.default
+                    : typeof props.default !== "undefined"
+                    ? props.default
                     : void 0,
-            const: schema.const || this.props.const,
+            const: schema.const || props.const,
             badge: schema.badge,
             badgeDescription: schema.badgeDescription,
-            invalidMessage: this.props.invalidMessage,
-            validationErrors: this.props.validationErrors,
-            displayValidationBrowserDefault: this.props.displayValidationBrowserDefault,
-            displayValidationInline: this.props.displayValidationInline,
-            onUpdateSection: this.props.onUpdateSection,
-            softRemove: this.shouldBeSoftRemovable(type),
-            component: this.props.controlComponents[type],
-            controls: this.props.controls,
-            controlComponents: this.props.controlComponents,
-            controlPlugins: this.props.controlPlugins,
-            untitled: this.props.untitled,
-            messageSystem: this.props.messageSystem,
-            strings: this.props.strings,
-            messageSystemOptions: this.props.messageSystemOptions,
-            categories: this.props.categories,
+            invalidMessage: props.invalidMessage,
+            validationErrors: props.validationErrors,
+            displayValidationBrowserDefault: props.displayValidationBrowserDefault,
+            displayValidationInline: props.displayValidationInline,
+            onUpdateSection: props.onUpdateSection,
+            softRemove: shouldBeSoftRemovable(type),
+            component: props.controlComponents[type],
+            controls: props.controls,
+            controlComponents: props.controlComponents,
+            controlPlugins: props.controlPlugins,
+            untitled: props.untitled,
+            messageSystem: props.messageSystem,
+            strings: props.strings,
+            messageSystemOptions: props.messageSystemOptions,
+            categories: props.categories,
         };
     }
 
@@ -293,7 +281,7 @@ class ControlSwitch extends React.Component<ControlSwitchProps, {}> {
      * Determine whether this control can be soft-removed
      * which allows undo/redo for the last stored value
      */
-    private shouldBeSoftRemovable(type: ControlType): boolean {
+    function shouldBeSoftRemovable(type: ControlType): boolean {
         return ![
             ControlType.button,
             ControlType.checkbox,
@@ -301,6 +289,8 @@ class ControlSwitch extends React.Component<ControlSwitchProps, {}> {
             ControlType.select,
         ].includes(type);
     }
+
+    return <React.Fragment>{renderControl()}</React.Fragment>;
 }
 
 export default ControlSwitch;
