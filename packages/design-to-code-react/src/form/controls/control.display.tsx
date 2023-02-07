@@ -16,32 +16,7 @@ style;
 /**
  * Form control definition
  */
-class DisplayControl extends React.Component<DisplayControlProps, {}> {
-    public static displayName: string = "DisplayControl";
-
-    public render(): React.ReactNode {
-        return (
-            <input
-                className={classNames(
-                    "dtc-display-control dtc-common-input",
-                    ["dtc-display-control__disabled", this.props.disabled],
-                    [
-                        "dtc-display-control__default dtc-common-default-font",
-                        isDefault(this.props.value, this.props.default),
-                    ]
-                )}
-                type={"text"}
-                ref={this.props.elementRef as React.Ref<HTMLInputElement>}
-                onBlur={this.props.updateValidity}
-                onFocus={this.props.reportValidity}
-                value={this.getDisplayValue(this.props.value)}
-                onChange={this.handleInputChange}
-                disabled={this.props.disabled}
-                required={this.props.required}
-            />
-        );
-    }
-
+function DisplayControl(props: DisplayControlProps) {
     /**
      * Dummy onChange handler
      *
@@ -49,18 +24,18 @@ class DisplayControl extends React.Component<DisplayControlProps, {}> {
      * therefore a value and onChange handler must still be supplied
      * even if there is no intention to update the value.
      */
-    private handleInputChange = (): void => {};
+    function handleInputChange(): void {}
 
-    private getDisplayValue(data: any): string {
+    function getDisplayValue(data: any): string {
         const typeofData: string = typeof data;
-        const typeofDefault: string = typeof this.props.default;
+        const typeofDefault: string = typeof props.default;
 
         if (typeofData === "undefined" && typeofDefault !== "undefined") {
             if (typeofDefault === "string") {
-                return this.props.default;
+                return props.default;
             }
 
-            return JSON.stringify(this.props.default, null, 2);
+            return JSON.stringify(props.default, null, 2);
         }
 
         switch (typeofData) {
@@ -70,6 +45,27 @@ class DisplayControl extends React.Component<DisplayControlProps, {}> {
                 return JSON.stringify(data, null, 2);
         }
     }
+
+    return (
+        <input
+            className={classNames(
+                "dtc-display-control dtc-common-input",
+                ["dtc-display-control__disabled", props.disabled],
+                [
+                    "dtc-display-control__default dtc-common-default-font",
+                    isDefault(props.value, props.default),
+                ]
+            )}
+            type={"text"}
+            ref={props.elementRef as React.Ref<HTMLInputElement>}
+            onBlur={props.updateValidity}
+            onFocus={props.reportValidity}
+            value={getDisplayValue(props.value)}
+            onChange={handleInputChange}
+            disabled={props.disabled}
+            required={props.required}
+        />
+    );
 }
 
 export { DisplayControl };
