@@ -16,58 +16,24 @@ style;
 /**
  * Form control definition
  */
-class NumberFieldControl extends React.Component<NumberFieldControlProps, {}> {
-    public static displayName: string = "NumberFieldControl";
+function NumberFieldControl(props: NumberFieldControlProps) {
+    let hasFocus: boolean = false;
 
-    private hasFocus: boolean = false;
-
-    /**
-     * Renders the component
-     */
-    public render(): React.ReactNode {
-        return (
-            <input
-                className={classNames(
-                    "dtc-number-field-control dtc-common-input",
-                    ["dtc-number-field-control__disabled", this.props.disabled],
-                    [
-                        "dtc-number-field-control__default dtc-common-default-font",
-                        isDefault(this.props.value, this.props.default),
-                    ]
-                )}
-                id={this.props.dataLocation}
-                type={"number"}
-                value={this.getValue(this.props.value)}
-                name={this.props.dataLocation}
-                onChange={this.handleChange()}
-                min={this.props.min}
-                max={this.props.max}
-                step={this.props.step}
-                disabled={this.props.disabled}
-                ref={this.props.elementRef as React.Ref<HTMLInputElement>}
-                onBlur={this.handleBlur(this.props.updateValidity)}
-                onFocus={this.handleFocus(this.props.reportValidity)}
-                required={this.props.required}
-            />
-        );
+    function handleFocus(callback: () => void) {
+        return (): void => {
+            hasFocus = true;
+            if (callback) callback();
+        };
     }
 
-    private handleFocus = (callback: () => void) => {
+    function handleBlur(callback: () => void) {
         return (): void => {
-            this.hasFocus = true;
+            hasFocus = false;
             if (callback) callback();
         };
-    };
+    }
 
-    private handleBlur = (callback: () => void) => {
-        return (): void => {
-            this.hasFocus = false;
-            if (callback) callback();
-            this.forceUpdate();
-        };
-    };
-
-    private handleChange = (): ((e: React.ChangeEvent<HTMLInputElement>) => void) => {
+    function handleChange(): (e: React.ChangeEvent<HTMLInputElement>) => void {
         return (e: React.ChangeEvent<HTMLInputElement>): void => {
             const input: string = !e.target.value
                 ? ""
@@ -75,20 +41,46 @@ class NumberFieldControl extends React.Component<NumberFieldControlProps, {}> {
             const value: number = parseInt(input, 10);
 
             if (!isNaN(value)) {
-                this.props.onChange({ value });
+                props.onChange({ value });
             } else if (input.length === 0) {
-                this.props.onChange({ value: undefined });
+                props.onChange({ value: undefined });
             }
         };
-    };
+    }
 
-    private getValue(value: number | undefined): number | string {
+    function getValue(value: number | undefined): number | string {
         return typeof value === "number"
             ? value
-            : typeof this.props.default !== "undefined" && !this.hasFocus
-            ? this.props.default
+            : typeof props.default !== "undefined" && !hasFocus
+            ? props.default
             : "";
     }
+
+    return (
+        <input
+            className={classNames(
+                "dtc-number-field-control dtc-common-input",
+                ["dtc-number-field-control__disabled", props.disabled],
+                [
+                    "dtc-number-field-control__default dtc-common-default-font",
+                    isDefault(props.value, props.default),
+                ]
+            )}
+            id={props.dataLocation}
+            type={"number"}
+            value={getValue(props.value)}
+            name={props.dataLocation}
+            onChange={handleChange()}
+            min={props.min}
+            max={props.max}
+            step={props.step}
+            disabled={props.disabled}
+            ref={props.elementRef as React.Ref<HTMLInputElement>}
+            onBlur={handleBlur(props.updateValidity)}
+            onFocus={handleFocus(props.reportValidity)}
+            required={props.required}
+        />
+    );
 }
 
 export { NumberFieldControl };
