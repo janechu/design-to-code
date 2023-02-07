@@ -28,42 +28,42 @@ const DragItem: React.FC<React.PropsWithChildren<DragItemProps>> = ({
     dragEnd,
     strings,
 }: React.PropsWithChildren<DragItemProps>): React.ReactElement => {
-    const drag: [
-        unknown,
-        DragElementWrapper<DragSourceOptions>,
-        DragElementWrapper<DragPreviewOptions>
-    ] = useDrag({
-        type: ItemType.ListItem,
-        item: dragStart({
-            type: ItemType.ListItem,
-            index,
-        }),
-        end(): void {
-            dragEnd();
-        },
-    });
-    const dragSource: ConnectDragSource = drag[1] as ConnectDragSource;
-    const drop: [
-        {
-            isOver: boolean;
-        },
-        DragElementWrapper<any>
-    ] = useDrop({
-        accept: ItemType.ListItem,
-        hover({ index: draggedIndex }: DragItem): void {
-            moveDragItem(draggedIndex, index);
-        },
-        drop({ index: draggedIndex }: DragItem): void {
-            if (draggedIndex !== index) {
-                dropDragItem();
-            }
-        },
-        collect: (monitor: DropTargetMonitor): { isOver: boolean } => ({
-            isOver: monitor.isOver(),
-        }),
-    });
-    const dropTarget: ConnectDropTarget = drop[1] as ConnectDropTarget;
-    const isOver: boolean = (drop[0] as { isOver: boolean }).isOver;
+    // const drag: [
+    //     unknown,
+    //     DragElementWrapper<DragSourceOptions>,
+    //     DragElementWrapper<DragPreviewOptions>
+    // ] = useDrag({
+    //     type: ItemType.ListItem,
+    //     item: dragStart({
+    //         type: ItemType.ListItem,
+    //         index,
+    //     }),
+    //     end(): void {
+    //         dragEnd();
+    //     },
+    // });
+    // const dragSource: ConnectDragSource = drag[1] as ConnectDragSource;
+    // const drop: [
+    //     {
+    //         isOver: boolean;
+    //     },
+    //     DragElementWrapper<any>
+    // ] = useDrop({
+    //     accept: ItemType.ListItem,
+    //     hover({ index: draggedIndex }: DragItem): void {
+    //         moveDragItem(draggedIndex, index);
+    //     },
+    //     drop({ index: draggedIndex }: DragItem): void {
+    //         if (draggedIndex !== index) {
+    //             dropDragItem();
+    //         }
+    //     },
+    //     collect: (monitor: DropTargetMonitor): { isOver: boolean } => ({
+    //         isOver: monitor.isOver(),
+    //     }),
+    // });
+    // const dropTarget: ConnectDropTarget = drop[1] as ConnectDropTarget;
+    // const isOver: boolean = (drop[0] as { isOver: boolean }).isOver;
     const renderDeleteArrayItemTrigger: (itemIndex: number) => React.ReactNode = (
         itemIndex: number
     ): React.ReactNode => {
@@ -82,10 +82,10 @@ const DragItem: React.FC<React.PropsWithChildren<DragItemProps>> = ({
 
     return (
         <li
-            ref={(node: HTMLLIElement): React.ReactElement =>
-                dragSource(dropTarget(node))
-            }
-            style={isOver ? { opacity: 0 } : null}
+            // ref={(node: HTMLLIElement): React.ReactElement =>
+            //     dragSource(dropTarget(node))
+            // }
+            // style={isOver ? { opacity: 0 } : null}
             className={itemClassName}
         >
             <a className={itemLinkClassName} onClick={onClick(index)}>
