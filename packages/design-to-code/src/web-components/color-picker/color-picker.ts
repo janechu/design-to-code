@@ -12,10 +12,6 @@ import { FormAssociatedColorPicker } from "./color-picker.form-associated.js";
 /**
  * This is currently experimental, any use of the color picker must include the following
  * imports and register with the DesignSystem
- *
- * import { fastTextField } from "@microsoft/fast-components";
- * import { DesignSystem } from "@microsoft/fast-foundation";
- * DesignSystem.getOrCreate().register(fastTextField());
  */
 
 /**
@@ -47,6 +43,24 @@ class ColorPickerUI {
  * @public
  */
 export class ColorPicker extends FormAssociatedColorPicker {
+    /**
+     * The text-field stylesheet path
+     */
+    @attr({ attribute: "control-text-field-stylesheet" })
+    public controlTextFieldStylesheet: string;
+
+    /**
+     * The common default font stylesheet path
+     */
+    @attr({ attribute: "common-default-font-stylesheet" })
+    public commonDefaultFontStylesheet: string;
+
+    /**
+     * The common input stylesheet path
+     */
+    @attr({ attribute: "common-input-stylesheet" })
+    public commonInputStylesheet: string;
+
     /**
      * When true, the control will be immutable by user interaction. See {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly | readonly HTML attribute} for more information.
      * @public

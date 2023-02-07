@@ -8,30 +8,26 @@ export const colorPickerStyles: (
     context: ElementDefinitionContext,
     definition: FoundationElementDefinition
 ) => ElementStyles = () => css`
-    .popup,
-    .popup__open {
+    .popup {
         display: none;
-        padding: 2px;
-        flex-direction: row;
-        background-color: var(--neutral-layer-floating);
-        border: calc(var(--outline-width) * 1px) solid var(--neutral-outline-rest);
-        border-radius: calc(var(--corner-radius) * 1px);
-    }
-
-    .popup__open {
-        display: flex;
         position: absolute;
         z-index: 1;
-        margin-left: -32px;
+        padding: 8px;
+        flex-direction: row;
+        background-color: var(--dtc-l3-color);
+        border-radius: var(--dtc-border-radius);
+    }
+
+    .popup.popup__open {
+        display: flex;
     }
 
     .pickers {
-        margin: 4px 6px 4px 4px;
+        margin-right: 4px;
     }
 
     .inputs {
         width: 65px;
-        margin: 0 4px 4px 0;
     }
 
     .pickers-saturation {
@@ -110,28 +106,14 @@ export const colorPickerStyles: (
     .control-color {
         position: relative;
         display: inline-block;
-        width: 25px;
-        height: 25px;
+        width: 24px;
+        height: 24px;
         margin-top: auto;
         margin-bottom: auto;
-        border: 1px solid var(--dtc-l1-color, #333333);
+        border-radius: var(--dtc-border-radius) 0 0 var(--dtc-border-radius);
     }
 
-    .control-color::before {
-        position: absolute;
-        content: "";
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        background-image: linear-gradient(
-            to bottom left,
-            transparent calc(50% - 1px),
-            var(--dtc-l1-color, #333333),
-            transparent calc(50% + 1px)
-        );
-    }
-
+    .control-color::before,
     .control-color::after {
         position: absolute;
         content: "";
@@ -139,6 +121,38 @@ export const colorPickerStyles: (
         right: 0;
         top: 0;
         bottom: 0;
+        border-radius: var(--dtc-border-radius) 0 0 var(--dtc-border-radius);
+    }
+
+    .control-color::before {
+        border: 1px solid var(--dtc-l1-color);
+        background-image: linear-gradient(
+            to bottom left,
+            transparent calc(50% - 1px),
+            var(--dtc-l1-color),
+            transparent calc(50% + 1px)
+        );
+    }
+
+    .control-color::after {
+        border: 1px solid var(--selected-color-value);
         background-color: var(--selected-color-value);
+    }
+
+    .content .dtc-text-field-control input {
+        border-radius: 0 var(--dtc-border-radius) var(--dtc-border-radius) 0;
+    }
+
+    .popup .dtc-text-field-control {
+        justify-content: space-between;
+        margin-bottom: 4px;
+    }
+
+    .popup .dtc-text-field-control input {
+        width: unset;
+    }
+
+    .popup .dtc-text-field-control span {
+        padding-left: 4px;
     }
 `;

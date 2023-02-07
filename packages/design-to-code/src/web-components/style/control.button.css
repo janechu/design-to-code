@@ -1,5 +1,9 @@
-button.dtc-button-control {
+.dtc-button-control {
     text-align: start;
     background: var(--dtc-l1-color);
-    padding: 4px 12px;
+}
+
+.dtc-button-control.dtc-button-control__disabled {
+    color: var(--dtc-inactive-text-color);
+    font-style: italic;
 }

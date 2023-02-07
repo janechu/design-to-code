@@ -1,0 +1,20 @@
+.dtc-text-field-control {
+    display: flex;
+    align-items: center;
+}
+
+.dtc-text-field-control input {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: var(--dtc-text-size-default);
+    box-sizing: border-box;
+    line-height: 16px;
+    font-family: inherit;
+    background-color: var(--dtc-l1-color);
+}
+
+.dtc-text-field-control.dtc-text-field-control__disabled input {
+    color: var(--dtc-inactive-text-color);
+    font-style: italic;
+}
