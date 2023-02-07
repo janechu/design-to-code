@@ -14,37 +14,27 @@ style;
 /**
  * Form control definition
  */
-class SectionLinkControl extends React.Component<SectionLinkControlProps, {}> {
-    public static displayName: string = "SectionLinkControl";
-
-    public render(): React.ReactNode {
-        return (
-            <a
-                className={classNames(
-                    "dtc-section-link-control",
-                    ["dtc-section-link-control__disabled", this.props.disabled],
-                    [
-                        "dtc-section-link-control__invalid",
-                        this.props.invalidMessage !== "",
-                    ],
-                    [
-                        "dtc-section-link-control__default dtc-common-default-font",
-                        isDefault(this.props.value, this.props.default),
-                    ]
-                )}
-                onClick={this.handleUpdateSection}
-            >
-                {format(this.props.strings.sectionLinkEditLabel, this.props.label)}
-            </a>
-        );
+function SectionLinkControl(props: SectionLinkControlProps) {
+    function handleUpdateSection(e: React.MouseEvent<HTMLAnchorElement>): void {
+        props.onUpdateSection(props.dictionaryId, props.navigationConfigId);
     }
 
-    private handleUpdateSection = (e: React.MouseEvent<HTMLAnchorElement>): void => {
-        this.props.onUpdateSection(
-            this.props.dictionaryId,
-            this.props.navigationConfigId
-        );
-    };
+    return (
+        <a
+            className={classNames(
+                "dtc-section-link-control",
+                ["dtc-section-link-control__disabled", props.disabled],
+                ["dtc-section-link-control__invalid", props.invalidMessage !== ""],
+                [
+                    "dtc-section-link-control__default dtc-common-default-font",
+                    isDefault(props.value, props.default),
+                ]
+            )}
+            onClick={handleUpdateSection}
+        >
+            {format(props.strings.sectionLinkEditLabel, props.label)}
+        </a>
+    );
 }
 
 export { SectionLinkControl };
