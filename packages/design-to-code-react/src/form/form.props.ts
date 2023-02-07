@@ -153,7 +153,7 @@ export interface FormState {
 
 export interface ControlPluginConfig {
     plugin: typeof StandardControlPlugin | typeof SingleLineControlPlugin;
-    component: React.ComponentClass;
+    component: React.ComponentClass | React.FC;
     context: ControlContext;
 }
 
