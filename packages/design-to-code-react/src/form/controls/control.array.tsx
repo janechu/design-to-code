@@ -1,5 +1,5 @@
 import { uniqueId } from "lodash-es";
-import React from "react";
+import React, { useState } from "react";
 import { getArrayLinks, isRootLocation } from "./utilities/form";
 import { ArrayControlProps, ArrayControlState } from "./control.array.props";
 import { DragItem, ItemType } from "../templates";
@@ -31,42 +31,19 @@ style;
 /**
  * Form control definition
  */
-class ArrayControl extends React.Component<ArrayControlProps, ArrayControlState> {
-    public static displayName: string = "ArrayControl";
-
-    constructor(props: ArrayControlProps) {
-        super(props);
-
-        this.state = {
-            data: props.value,
-            isDragging: false,
-        };
-    }
-
-    public render(): React.ReactNode {
-        return (
-            <div
-                className={classNames(
-                    "dtc-array-control",
-                    ["dtc-array-control__disabled", this.props.disabled],
-                    ["dtc-array-control__invalid", this.props.invalidMessage !== ""]
-                )}
-            >
-                {this.renderAddArrayItem()}
-                {this.renderExistingArrayItems()}
-            </div>
-        );
-    }
+function ArrayControl(props: ArrayControlProps) {
+    const [data, setData] = useState(props.value);
+    const [dragging, setDragging] = useState(false);
 
     /**
      * Render a button for adding an item to the array
      */
-    private renderAddArrayItemTrigger(): React.ReactNode {
+    function renderAddArrayItemTrigger(): React.ReactNode {
         return (
             <button
                 className={"dtc-array-control_add-item-button dtc-common-add-item"}
-                aria-label={this.props.strings.arrayAddItemTip}
-                onClick={this.arrayItemClickHandlerFactory(ArrayAction.add)}
+                aria-label={props.strings.arrayAddItemTip}
+                onClick={arrayItemClickHandlerFactory(ArrayAction.add)}
             />
         );
     }
@@ -74,18 +51,18 @@ class ArrayControl extends React.Component<ArrayControlProps, ArrayControlState>
     /**
      * Render an add array item section
      */
-    private renderAddArrayItem(): React.ReactNode {
-        const existingItemLength: number = Array.isArray(this.props.value)
-            ? this.props.value.length
+    function renderAddArrayItem(): React.ReactNode {
+        const existingItemLength: number = Array.isArray(props.value)
+            ? props.value.length
             : 0;
 
-        if (this.props.maxItems > existingItemLength) {
+        if (props.maxItems > existingItemLength) {
             return (
                 <div className={"dtc-array-control_add-item dtc-common-label-region"}>
                     <div className={"dtc-array-control_add-item-label dtc-common-label"}>
-                        {this.props.strings.arrayAddItemLabel}
+                        {props.strings.arrayAddItemLabel}
                     </div>
-                    {this.renderAddArrayItemTrigger()}
+                    {renderAddArrayItemTrigger()}
                 </div>
             );
         }
@@ -94,7 +71,7 @@ class ArrayControl extends React.Component<ArrayControlProps, ArrayControlState>
     /**
      * Renders an default array link item
      */
-    private renderDefaultArrayLinkItem = (value: any, index: number): React.ReactNode => {
+    function renderDefaultArrayLinkItem(value: any, index: number): React.ReactNode {
         return (
             <li
                 className={"dtc-array-control_existing-item-list-item"}
@@ -111,15 +88,15 @@ class ArrayControl extends React.Component<ArrayControlProps, ArrayControlState>
                 </span>
             </li>
         );
-    };
+    }
 
     /**
      * Renders default array items
      */
-    private renderDefaultArrayLinkItems(): React.ReactNode {
-        return getArrayLinks(this.props.default).map(
+    function renderDefaultArrayLinkItems(): React.ReactNode {
+        return getArrayLinks(props.default).map(
             (value: any, index: number): React.ReactNode => {
-                return this.renderDefaultArrayLinkItem(value, index);
+                return renderDefaultArrayLinkItem(value, index);
             }
         );
     }
@@ -127,9 +104,9 @@ class ArrayControl extends React.Component<ArrayControlProps, ArrayControlState>
     /**
      * Renders the links to an array section to be activated
      */
-    private renderExistingArrayItems(): React.ReactNode {
-        const hasData: boolean = Array.isArray(this.props.value);
-        const hasDefault: boolean = Array.isArray(this.props.default);
+    function renderExistingArrayItems(): React.ReactNode {
+        const hasData: boolean = Array.isArray(props.value);
+        const hasDefault: boolean = Array.isArray(props.default);
 
         if (hasData) {
             return (
@@ -138,7 +115,7 @@ class ArrayControl extends React.Component<ArrayControlProps, ArrayControlState>
                         "dtc-array-control_existing-item-list dtc-common-clean-list"
                     }
                 >
-                    {this.renderArrayLinkItems()}
+                    {renderArrayLinkItems()}
                 </ul>
             );
         }
@@ -150,7 +127,7 @@ class ArrayControl extends React.Component<ArrayControlProps, ArrayControlState>
                         "dtc-array-control_existing-item-list dtc-common-clean-list"
                     }
                 >
-                    {this.renderDefaultArrayLinkItems()}
+                    {renderDefaultArrayLinkItems()}
                 </ul>
             );
         }
@@ -165,56 +142,56 @@ class ArrayControl extends React.Component<ArrayControlProps, ArrayControlState>
     /**
      * Render UI for all items in an array
      */
-    private renderArrayLinkItems(): React.ReactNode {
-        const data: unknown[] = this.state.isDragging
-            ? this.state.data
-            : this.props.value;
-        return getArrayLinks(data).map((text: string, index: number): React.ReactNode => {
-            const invalidError: React.ReactNode = this.renderValidationError(index);
+    function renderArrayLinkItems(): React.ReactNode {
+        const currentData: unknown[] = dragging ? data : props.value;
+        return getArrayLinks(currentData).map(
+            (text: string, index: number): React.ReactNode => {
+                const invalidError: React.ReactNode = renderValidationError(index);
 
-            return (
-                <React.Fragment key={this.props.dataLocation + index}>
-                    {/* <DragItem
-                        key={index}
-                        index={index}
-                        minItems={this.props.minItems}
-                        itemLength={getArrayLinks(data).length}
-                        itemRemoveClassName={
-                            "dtc-array-control_existing-item-remove-button dtc-common-remove-item"
-                        }
-                        itemClassName={classNames(
-                            "dtc-array-control_existing-item-list-item",
-                            [
-                                "dtc-array-control_existing-itemListItem__invalid",
-                                invalidError !== null,
-                            ]
-                        )}
-                        itemLinkClassName={
-                            "dtc-array-control_existing-item-list-item-link"
-                        }
-                        removeDragItem={this.arrayItemClickHandlerFactory}
-                        onClick={this.arrayClickHandlerFactory}
-                        moveDragItem={this.handleMoveDragItem}
-                        dropDragItem={this.handleDropDragItem}
-                        dragStart={this.handleDragStart}
-                        dragEnd={this.handleDragEnd}
-                        strings={this.props.strings}
-                    > */}
-                    {text}
-                    {/* </DragItem> */}
-                    {!!this.props.displayValidationInline ? invalidError : null}
-                </React.Fragment>
-            );
-        });
+                return (
+                    <React.Fragment key={props.dataLocation + index}>
+                        <DragItem
+                            key={index}
+                            index={index}
+                            minItems={props.minItems}
+                            itemLength={getArrayLinks(currentData).length}
+                            itemRemoveClassName={
+                                "dtc-array-control_existing-item-remove-button dtc-common-remove-item"
+                            }
+                            itemClassName={classNames(
+                                "dtc-array-control_existing-item-list-item",
+                                [
+                                    "dtc-array-control_existing-itemListItem__invalid",
+                                    invalidError !== null,
+                                ]
+                            )}
+                            itemLinkClassName={
+                                "dtc-array-control_existing-item-list-item-link"
+                            }
+                            removeDragItem={arrayItemClickHandlerFactory}
+                            onClick={arrayClickHandlerFactory}
+                            moveDragItem={handleMoveDragItem}
+                            dropDragItem={handleDropDragItem}
+                            dragStart={handleDragStart}
+                            dragEnd={handleDragEnd}
+                            strings={props.strings}
+                        >
+                            {text}
+                        </DragItem>
+                        {!!props.displayValidationInline ? invalidError : null}
+                    </React.Fragment>
+                );
+            }
+        );
     }
 
-    private renderValidationError(index: number): React.ReactNode {
-        if (typeof this.props.validationErrors === "undefined") {
+    function renderValidationError(index: number): React.ReactNode {
+        if (typeof props.validationErrors === "undefined") {
             return null;
         }
 
-        for (const error of this.props.validationErrors) {
-            if (error.dataLocation.startsWith(`${this.props.dataLocation}.${index}`)) {
+        for (const error of props.validationErrors) {
+            if (error.dataLocation.startsWith(`${props.dataLocation}.${index}`)) {
                 return (
                     <div
                         className={
@@ -233,44 +210,44 @@ class ArrayControl extends React.Component<ArrayControlProps, ArrayControlState>
     /**
      * Array add/remove item click handler factory
      */
-    private arrayItemClickHandlerFactory = (
+    function arrayItemClickHandlerFactory(
         type: ArrayAction,
         index?: number
-    ): ((e: React.MouseEvent<HTMLButtonElement>) => void) => {
+    ): (e: React.MouseEvent<HTMLButtonElement>) => void {
         return (e: React.MouseEvent<HTMLButtonElement>): void => {
             e.preventDefault();
 
             type === ArrayAction.add
-                ? this.handleAddArrayItem()
-                : this.handleRemoveArrayItem(index);
+                ? handleAddArrayItem()
+                : handleRemoveArrayItem(index);
         };
-    };
+    }
 
     /**
      * Array section link click handler factory
      */
-    private arrayClickHandlerFactory = (
+    function arrayClickHandlerFactory(
         index: number
-    ): ((e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => void) => {
+    ): (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => void {
         return (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>): void => {
             e.preventDefault();
 
-            this.props.onUpdateSection(
-                this.props.dictionaryId,
-                this.props.navigation[this.props.navigationConfigId].items[index]
+            props.onUpdateSection(
+                props.dictionaryId,
+                props.navigation[props.navigationConfigId].items[index]
             );
         };
-    };
+    }
 
     /**
      * Handles adding an array item
      */
-    private handleAddArrayItem(): void {
-        if (typeof this.props.value === "undefined") {
-            this.props.onChange({ value: [this.props.onAddExampleData("items")] });
+    function handleAddArrayItem(): void {
+        if (typeof props.value === "undefined") {
+            props.onChange({ value: [props.onAddExampleData("items")] });
         } else {
-            this.props.onChange({
-                value: this.props.onAddExampleData("items"),
+            props.onChange({
+                value: props.onAddExampleData("items"),
                 isArray: true,
             });
         }
@@ -279,53 +256,60 @@ class ArrayControl extends React.Component<ArrayControlProps, ArrayControlState>
     /**
      * Handles removing an array item
      */
-    private handleRemoveArrayItem(index: number): void {
-        this.props.onChange({ value: void 0, isArray: true, index });
+    function handleRemoveArrayItem(index: number): void {
+        props.onChange({ value: void 0, isArray: true, index });
     }
 
     /**
      * Handle the start of the drag action
      */
-    private handleDragStart = (config: { type: ItemType }): { type: ItemType } => {
-        this.setState({
-            isDragging: true,
-            data: [].concat(this.props.value || []),
-        });
+    function handleDragStart(config: { type: ItemType }): { type: ItemType } {
+        setDragging(true);
+        setData([].concat(props.value || []));
 
         return config;
-    };
+    }
 
     /**
      * Handle the end of the drag action
      */
-    private handleDragEnd = (): void => {
-        this.setState({
-            isDragging: false,
-        });
-    };
+    function handleDragEnd(): void {
+        setDragging(false);
+    }
 
     /**
      * Handle moving the drag item
      */
-    private handleMoveDragItem = (sourceIndex: number, targetIndex: number): void => {
-        const currentData: unknown[] = [].concat(this.props.value);
+    function handleMoveDragItem(sourceIndex: number, targetIndex: number): void {
+        const currentData: unknown[] = [].concat(props.value);
 
         if (sourceIndex !== targetIndex) {
             currentData.splice(targetIndex, 0, currentData.splice(sourceIndex, 1)[0]);
         }
 
-        this.setState({
-            data: currentData,
-        });
-    };
+        setData(currentData);
+    }
 
     /**
      * Handle dropping the drag item
      * Triggers the onChange
      */
-    private handleDropDragItem = (): void => {
-        this.props.onChange({ value: this.state.data });
-    };
+    function handleDropDragItem(): void {
+        props.onChange({ value: data });
+    }
+
+    return (
+        <div
+            className={classNames(
+                "dtc-array-control",
+                ["dtc-array-control__disabled", props.disabled],
+                ["dtc-array-control__invalid", props.invalidMessage !== ""]
+            )}
+        >
+            {renderAddArrayItem()}
+            {renderExistingArrayItems()}
+        </div>
+    );
 }
 
 export { ArrayControl };
