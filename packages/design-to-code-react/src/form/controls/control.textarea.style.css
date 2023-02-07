@@ -17,3 +17,7 @@
     color: var(--dtc-text-color);
     font-style: italic;
 }
+
+.dtc-textarea-control:invalid {
+    border: 1px solid var(--dtc-error-color);
+}
