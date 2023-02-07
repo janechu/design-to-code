@@ -62,6 +62,7 @@ module.exports = {
             title: "Test application",
             inject: "body",
             template: path.resolve(appDir, "index.html"),
+            globalCssVariableStylesheet: "/global.css-variables.css",
             controlButtonStylesheet: "/control.button.css",
             commonInputStylesheet: "/common.input.css",
             commonDefaultFontStylesheet: "/common.default-font.css",

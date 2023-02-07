@@ -1,4 +1,3 @@
 .dtc-common-default-font {
-    color: var(--dtc-inactive-text-color);
-    font-style: italic;
+    color: var(--dtc-text-color);
 }

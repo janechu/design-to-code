@@ -11,18 +11,27 @@
                 width: 100%;
                 height: 100%;
                 font-family: Arial, Helvetica, sans-serif;
-                background-color: var(--fill-color);
+                background-color: var(--dtc-l4-color);
                 padding: 20px;
                 color: white;
             }
         </style>
+        <link
+            rel="stylesheet"
+            href="<%= htmlWebpackPlugin.options.globalCssVariableStylesheet %>"
+        />
     </head>
     <body>
         <div id="root">
-            <dtc-color-picker id="color_picker"></dtc-color-picker>
+            <dtc-color-picker
+                id="color_picker"
+                control-text-field-stylesheet="<%= htmlWebpackPlugin.options.controlTextFieldStylesheet %>"
+                common-input-stylesheet="<%= htmlWebpackPlugin.options.commonInputStylesheet %>"
+                common-default-font-stylesheet="<%= htmlWebpackPlugin.options.commonDefaultFontStylesheet %>"
+            ></dtc-color-picker>
             <br />
             Output:
-            <input id="outputValue" type="text" style="width: 800px;" />
+            <input id="outputValue" type="text" style="width: 800px" />
         </div>
         <script>
             const colorPickerElement = document.getElementById("color_picker");

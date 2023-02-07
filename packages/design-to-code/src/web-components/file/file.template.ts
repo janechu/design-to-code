@@ -13,9 +13,9 @@ export const FileTemplate: (
     return html`
         <template>
             <div class="root" part="root">
-                <link rel="stylesheet" href="${x => x.controlButtonStylesheet}" />
                 <link rel="stylesheet" href="${x => x.commonInputStylesheet}" />
                 <link rel="stylesheet" href="${x => x.commonDefaultFontStylesheet}" />
+                <link rel="stylesheet" href="${x => x.controlButtonStylesheet}" />
                 <button
                     class="${x => {
                         return x.disabled

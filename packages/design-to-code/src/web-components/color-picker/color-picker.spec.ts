@@ -1,12 +1,9 @@
 import { expect } from "chai";
-import { fastTextField } from "@microsoft/fast-components";
 import { DesignSystem } from "@microsoft/fast-foundation";
 import { fixture } from "../../__test__/fixture";
 import { ColorPicker } from "./color-picker";
 import { colorPickerComponent } from ".";
 import { html } from "@microsoft/fast-element";
-
-DesignSystem.getOrCreate().register(fastTextField());
 
 async function setup() {
     const { element, connect, disconnect } = await fixture<ColorPicker>(

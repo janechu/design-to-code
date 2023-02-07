@@ -3,8 +3,9 @@
     background: none;
     border: none;
     margin: 0;
-    height: 18px;
+    padding: 4px 6px;
     border-radius: var(--dtc-border-radius);
+    height: 24px;
 }
 
 .dtc-common-input:focus-visible {
