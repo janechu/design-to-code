@@ -11,52 +11,44 @@ style;
 
 /**
  * Form control definition
- * @extends React.Component
  */
-class CheckboxControl extends React.Component<CheckboxControlProps, {}> {
-    public static displayName: string = "CheckboxControl";
+function CheckboxControl(props: CheckboxControlProps) {
+    const value: boolean =
+        typeof props.value === "boolean"
+            ? props.value
+            : typeof props.default === "boolean"
+            ? props.default
+            : false;
 
-    public render(): JSX.Element {
-        const value: boolean =
-            typeof this.props.value === "boolean"
-                ? this.props.value
-                : typeof this.props.default === "boolean"
-                ? this.props.default
-                : false;
-
-        return (
-            <div
-                className={classNames(
-                    "dtc-checkbox-control",
-                    ["dtc-checkbox-control__disabled", this.props.disabled],
-                    [
-                        "dtc-checkbox-control__default",
-                        isDefault(this.props.value, this.props.default),
-                    ]
-                )}
-            >
-                <input
-                    className={"dtc-checkbox-control_input"}
-                    id={this.props.dataLocation}
-                    type={"checkbox"}
-                    value={value.toString()}
-                    onChange={this.handleChange()}
-                    checked={value}
-                    disabled={this.props.disabled}
-                    ref={this.props.elementRef as React.Ref<HTMLInputElement>}
-                    onFocus={this.props.reportValidity}
-                    onBlur={this.props.updateValidity}
-                />
-                <span className={"dtc-checkbox-control_checkmark"} />
-            </div>
-        );
+    function handleChange(): (e: React.ChangeEvent<HTMLInputElement>) => void {
+        return (e: React.ChangeEvent<HTMLInputElement>): void => {
+            props.onChange({ value: e.target.checked });
+        };
     }
 
-    private handleChange = (): ((e: React.ChangeEvent<HTMLInputElement>) => void) => {
-        return (e: React.ChangeEvent<HTMLInputElement>): void => {
-            this.props.onChange({ value: e.target.checked });
-        };
-    };
+    return (
+        <div
+            className={classNames(
+                "dtc-checkbox-control",
+                ["dtc-checkbox-control__disabled", props.disabled],
+                ["dtc-checkbox-control__default", isDefault(props.value, props.default)]
+            )}
+        >
+            <input
+                className={"dtc-checkbox-control_input"}
+                id={props.dataLocation}
+                type={"checkbox"}
+                value={value.toString()}
+                onChange={handleChange()}
+                checked={value}
+                disabled={props.disabled}
+                ref={props.elementRef as React.Ref<HTMLInputElement>}
+                onFocus={props.reportValidity}
+                onBlur={props.updateValidity}
+            />
+            <span className={"dtc-checkbox-control_checkmark"} />
+        </div>
+    );
 }
 
 export { CheckboxControl };
