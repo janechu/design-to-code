@@ -4,10 +4,3 @@ export interface SectionOneOfAnyOfProps {
     onUpdate: (activeIndex: number) => void;
     children: React.ReactNode;
 }
-
-export interface SectionOneOfAnyOfClassNameContract {
-    sectionOneOfAnyOf?: string;
-    sectionOneOfAnyOf_label?: string;
-    sectionOneOfAnyOf_selectSpan?: string;
-    sectionOneOfAnyOf_select?: string;
-}
