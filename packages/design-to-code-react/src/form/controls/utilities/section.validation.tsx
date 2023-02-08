@@ -1,8 +1,5 @@
-import React from "react";
-import {
-    SectionValidationProps,
-    SectionValidationState,
-} from "./section.validation.props";
+import React, { useState } from "react";
+import { SectionValidationProps } from "./section.validation.props";
 import { ValidationError } from "design-to-code";
 import { classNames } from "@microsoft/fast-web-utilities";
 import cssVariables from "../../../style/css-variables.css";
@@ -22,84 +19,57 @@ style;
 
 /**
  * Schema form component definition
- * @extends React.Component
  */
-class SectionValidation extends React.Component<
-    SectionValidationProps,
-    SectionValidationState
-> {
-    private validationIdentifier: string = "validation";
+function SectionValidation(props: SectionValidationProps) {
+    const validationIdentifier: string = "validation";
+    const [expanded, setExpanded] = useState(false);
 
-    constructor(props: SectionValidationProps) {
-        super(props);
-
-        this.state = {
-            expanded: false,
-        };
-    }
-
-    public render(): React.ReactNode {
-        return (
-            <div className={"dtc-section-validation"}>
-                {this.renderExpandTrigger()}
-                <div
-                    className={
-                        "dtc-section-validation_control-region dtc-common-invalid-message"
-                    }
-                >
-                    {this.renderInvalidMessage()}
-                    {this.renderValidationErrorContainer()}
-                </div>
-            </div>
-        );
-    }
-
-    private renderInvalidMessage(): React.ReactNode {
+    function renderInvalidMessage(): React.ReactNode {
         return (
             <div
                 className={"dtc-section-validation_message dtc-common-ellipsis"}
-                title={this.props.invalidMessage}
+                title={props.invalidMessage}
             >
-                {this.props.invalidMessage}
+                {props.invalidMessage}
             </div>
         );
     }
 
-    private renderExpandTrigger(): React.ReactNode {
-        if (this.props.validationErrors.length > 1) {
+    function renderExpandTrigger(): React.ReactNode {
+        if (props.validationErrors.length > 1) {
             return (
                 <button
                     className={classNames(
                         "dtc-section-validation_expand-trigger dtc-common-chevron",
                         [
                             "dtc-section-validation_expand-trigger__active dtc-common-chevron dtc-common-chevron-up",
-                            this.state.expanded,
+                            expanded,
                         ]
                     )}
-                    onClick={this.handleExpandTrigger}
-                    aria-expanded={this.state.expanded}
-                    aria-controls={this.getId()}
+                    onClick={handleExpandTrigger}
+                    aria-expanded={expanded}
+                    aria-controls={getId()}
                     title={"Expand to see full error list"}
                 />
             );
         }
     }
 
-    private renderValidationErrorContainer(): React.ReactNode {
+    function renderValidationErrorContainer(): React.ReactNode {
         return (
-            <ul id={this.getId()} className={"dtc-section-validation_error-list"}>
-                {this.renderAllValidationErrors()}
+            <ul id={getId()} className={"dtc-section-validation_error-list"}>
+                {renderAllValidationErrors()}
             </ul>
         );
     }
 
-    private renderAllValidationErrors(): React.ReactNode {
-        if (this.state.expanded) {
-            return this.props.validationErrors.map(
+    function renderAllValidationErrors(): React.ReactNode {
+        if (expanded) {
+            return props.validationErrors.map(
                 (validationError: ValidationError, index: number): React.ReactNode => {
                     return (
                         <li
-                            key={`${this.props.dataLocation}${index}`}
+                            key={`${props.dataLocation}${index}`}
                             className={
                                 "dtc-section-validation_error-list-item dtc-common-ellipsis"
                             }
@@ -122,17 +92,29 @@ class SectionValidation extends React.Component<
         }
     }
 
-    private handleExpandTrigger = (e: React.MouseEvent<HTMLButtonElement>): void => {
+    function handleExpandTrigger(e: React.MouseEvent<HTMLButtonElement>): void {
         e.preventDefault();
 
-        this.setState({
-            expanded: !this.state.expanded,
-        });
-    };
-
-    private getId(): string {
-        return `${this.props.dataLocation}${this.validationIdentifier}`;
+        setExpanded(!expanded);
     }
+
+    function getId(): string {
+        return `${props.dataLocation}${validationIdentifier}`;
+    }
+
+    return (
+        <div className={"dtc-section-validation"}>
+            {renderExpandTrigger()}
+            <div
+                className={
+                    "dtc-section-validation_control-region dtc-common-invalid-message"
+                }
+            >
+                {renderInvalidMessage()}
+                {renderValidationErrorContainer()}
+            </div>
+        </div>
+    );
 }
 
 export { SectionValidation };
