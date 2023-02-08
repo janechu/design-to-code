@@ -11,7 +11,6 @@ import {
  * compiler infer the type instead of re-declaring just for the package export
  */
 const SelectDevice = BaseSelectDevice;
-type SelectDevice = InstanceType<typeof SelectDevice>;
 
 export {
     SelectDevice,
