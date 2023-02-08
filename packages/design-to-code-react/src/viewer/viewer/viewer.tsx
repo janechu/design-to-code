@@ -18,7 +18,6 @@ style;
  * compiler infer the type instead of re-declaring just for the package export
  */
 const Viewer = BaseViewer;
-type Viewer = InstanceType<typeof Viewer>;
 
 export {
     Viewer,
