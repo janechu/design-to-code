@@ -1,13 +1,19 @@
-/*
- * These styles are for reference only and should be
- * copied into the individual component stylesheets to
- * control specificity
- */
-
-.dtc-common-form-control-indicator-style {
-    fill: var(--dtc-text-color);
-    padding: 0 4px;
+.dtc-common-form-control-indicator {
+    display: flex;
+    width: 18px;
+    height: 18px;
+    margin-top: 4px;
+    padding: 0;
     align-self: center;
-    min-width: 14px;
-    min-height: 14px;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: var(--dtc-border-radius);
+}
+
+.dtc-common-form-control-indicator svg {
+    fill: var(--dtc-text-color);
+    min-height: 15px;
+    min-width: 18px;
+    box-sizing: border-box;
+    padding: 0 1px;
 }
