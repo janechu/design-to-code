@@ -18,56 +18,44 @@ labelStyle;
 
 /**
  * Schema form component definition
- * @extends React.Component
  */
-class SectionOneOfAnyOf extends React.Component<
-    React.PropsWithChildren<SectionOneOfAnyOfProps>,
-    {}
-> {
-    public static displayName: string = "SectionOneOfAnyOf";
+function SectionOneOfAnyOf(props: SectionOneOfAnyOfProps) {
+    const id: string = uniqueId();
 
-    public render(): React.ReactNode {
-        const id: string = uniqueId();
+    function getActiveIndex(): number {
+        return typeof props.activeIndex === "number" ? props.activeIndex : -1;
+    }
 
-        return (
-            <div
-                className={
-                    "dtc-section-one-of-any-of dtc-common-control dtc-common-control-wrapper"
-                }
+    function handleChange(e: React.ChangeEvent<HTMLSelectElement>): void {
+        props.onUpdate(parseInt(e.target.value, 10));
+    }
+
+    return (
+        <div
+            className={
+                "dtc-section-one-of-any-of dtc-common-control dtc-common-control-wrapper"
+            }
+        >
+            <label
+                htmlFor={id}
+                className={"dtc-section-one-of-any-of_label dtc-common-label"}
             >
-                <label
-                    htmlFor={id}
-                    className={"dtc-section-one-of-any-of_label dtc-common-label"}
+                {props.label}
+            </label>
+            <span
+                className={"dtc-section-one-of-any-of_select-span dtc-common-select-span"}
+            >
+                <select
+                    className={"dtc-section-one-of-any-of_select dtc-common-select-input"}
+                    id={id}
+                    onChange={handleChange}
+                    value={getActiveIndex()}
                 >
-                    {this.props.label}
-                </label>
-                <span
-                    className={
-                        "dtc-section-one-of-any-of_select-span dtc-common-select-span"
-                    }
-                >
-                    <select
-                        className={
-                            "dtc-section-one-of-any-of_select dtc-common-select-input"
-                        }
-                        id={id}
-                        onChange={this.handleChange}
-                        value={this.getActiveIndex()}
-                    >
-                        {this.props.children}
-                    </select>
-                </span>
-            </div>
-        );
-    }
-
-    private getActiveIndex(): number {
-        return typeof this.props.activeIndex === "number" ? this.props.activeIndex : -1;
-    }
-
-    private handleChange = (e: React.ChangeEvent<HTMLSelectElement>): void => {
-        this.props.onUpdate(parseInt(e.target.value, 10));
-    };
+                    {props.children}
+                </select>
+            </span>
+        </div>
+    );
 }
 
 export default SectionOneOfAnyOf;
