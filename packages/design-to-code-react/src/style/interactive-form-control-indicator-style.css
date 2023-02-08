@@ -1,5 +1,7 @@
 .dtc-common-interactive-form-control-indicator {
     display: flex;
+    width: 18px;
+    height: 18px;
     padding: 0;
     align-self: center;
     background: transparent;
