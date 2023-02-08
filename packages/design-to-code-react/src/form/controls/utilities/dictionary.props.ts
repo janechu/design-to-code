@@ -53,15 +53,3 @@ export interface DictionaryProps
      */
     validationErrors: ValidationError[];
 }
-
-export interface DictionaryState {
-    /**
-     * The current property key being edited
-     */
-    focusedPropertyKey: string | null;
-
-    /**
-     * The current property key value
-     */
-    focusedPropertyKeyValue: string | null;
-}
