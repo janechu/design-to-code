@@ -26,26 +26,10 @@ export interface SoftRemoveProps {
  * A component that allows:
  * - deletion of data which is intended to be cached
  * - addition of the removed data via a cache
- * @extends React.Component
  */
-class SoftRemove extends React.Component<SoftRemoveProps, {}> {
-    public render(): JSX.Element {
-        return (
-            <React.Fragment>
-                <input
-                    type={"checkbox"}
-                    className={this.props.className}
-                    checked={this.props.checked}
-                    onChange={this.props.onChange}
-                    disabled={this.props.disabled}
-                />
-                {this.renderIcon()}
-            </React.Fragment>
-        );
-    }
-
-    private renderIcon(): React.ReactNode {
-        if (this.props.checked) {
+function SoftRemove(props: SoftRemoveProps) {
+    function renderIcon(): React.ReactNode {
+        if (props.checked) {
             return (
                 <svg
                     width={"12"}
@@ -87,6 +71,19 @@ class SoftRemove extends React.Component<SoftRemoveProps, {}> {
             </svg>
         );
     }
+
+    return (
+        <React.Fragment>
+            <input
+                type={"checkbox"}
+                className={props.className}
+                checked={props.checked}
+                onChange={props.onChange}
+                disabled={props.disabled}
+            />
+            {renderIcon()}
+        </React.Fragment>
+    );
 }
 
 export default SoftRemove;
