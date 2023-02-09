@@ -16,52 +16,36 @@ enum Theme {
 /**
  * Custom form control definition
  */
-class ThemeControl extends React.Component<ThemeControlProps, {}> {
-    public static displayName: string = "ThemeControl";
+function ThemeControl(props: ThemeControlProps) {
+    function onChange(value: string): void {
+        props.onChange({ value });
+    }
 
-    public render(): React.ReactNode {
+    function isChecked(theme: string): boolean {
         return (
-            <div
-                className={classNames("dtc-theme-control", [
-                    "dtc-theme-control__disabled",
-                    this.props.disabled,
-                ])}
-            >
-                {this.renderInput(Theme.Light)}
-                {this.renderInput(Theme.Dark)}
-            </div>
+            props.value === theme ||
+            (typeof props.value === "undefined" && props.default === theme)
         );
     }
 
-    private onChange = (value: string): void => {
-        this.props.onChange({ value });
-    };
-
-    private isChecked(theme: string): boolean {
-        return (
-            this.props.value === theme ||
-            (typeof this.props.value === "undefined" && this.props.default === theme)
-        );
-    }
-
-    private getInputClassName(theme: Theme): string {
+    function getInputClassName(theme: Theme): string {
         return theme === Theme.Dark
             ? "dtc-theme-control_input__dark"
             : "dtc-theme-control_input__light";
     }
 
-    private getThemeLabel(theme: Theme): string {
+    function getThemeLabel(theme: Theme): string {
         switch (theme) {
             case Theme.Dark:
-                return this.props.strings.themeDarkLabel;
+                return props.strings.themeDarkLabel;
             case Theme.Light:
-                return this.props.strings.themeLightLabel;
+                return props.strings.themeLightLabel;
         }
     }
 
-    private renderInput(theme: Theme): JSX.Element {
-        if (this.props.options && Array.isArray(this.props.options)) {
-            const option: any = this.props.options.find((item: string): any => {
+    function renderInput(theme: Theme): JSX.Element {
+        if (props.options && Array.isArray(props.options)) {
+            const option: any = props.options.find((item: string): any => {
                 return item === theme;
             });
 
@@ -70,21 +54,33 @@ class ThemeControl extends React.Component<ThemeControlProps, {}> {
                     <input
                         className={classNames(
                             "dtc-theme-control_input",
-                            this.getInputClassName(theme)
+                            getInputClassName(theme)
                         )}
-                        id={this.props.dataLocation}
+                        id={props.dataLocation}
                         type={"radio"}
                         value={theme}
-                        name={this.props.dataLocation}
-                        aria-label={this.getThemeLabel(theme)}
-                        onChange={this.onChange.bind(this, theme)}
-                        checked={this.isChecked(theme)}
-                        disabled={this.props.disabled}
+                        name={props.dataLocation}
+                        aria-label={getThemeLabel(theme)}
+                        onChange={onChange.bind(this, theme)}
+                        checked={isChecked(theme)}
+                        disabled={props.disabled}
                     />
                 );
             }
         }
     }
+
+    return (
+        <div
+            className={classNames("dtc-theme-control", [
+                "dtc-theme-control__disabled",
+                props.disabled,
+            ])}
+        >
+            {renderInput(Theme.Light)}
+            {renderInput(Theme.Dark)}
+        </div>
+    );
 }
 
 export { ThemeControl };
