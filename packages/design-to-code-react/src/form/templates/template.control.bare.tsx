@@ -1,24 +1,37 @@
 import React from "react";
-import ControlTemplateUtilities from "./template.control.utilities";
+import { getConfig } from "./template.control.utilities";
 import { BareControlTemplateProps } from "./template.control.bare.props";
 import { classNames } from "@microsoft/fast-web-utilities";
+import { FormHTMLElement } from "./template.control.utilities.props";
 
 /**
  * Control template definition
  */
-class BareControlTemplate extends ControlTemplateUtilities<BareControlTemplateProps, {}> {
-    public render(): React.ReactNode {
-        return (
-            <div
-                className={classNames("dtc-bare-control-template", [
-                    "dtc-bare-control-template__disabled",
-                    this.props.disabled,
-                ])}
-            >
-                {this.props.control(this.getConfig())}
-            </div>
-        );
+function BareControlTemplate(props: BareControlTemplateProps) {
+    const ref: React.RefObject<FormHTMLElement> = React.createRef<FormHTMLElement>();
+    let cache: any = undefined;
+
+    function setCache(updatedCache: any): void {
+        cache = updatedCache;
     }
+
+    const aggregateProps = {
+        ...props,
+        ref,
+        cache,
+        setCache,
+    };
+
+    return (
+        <div
+            className={classNames("dtc-bare-control-template", [
+                "dtc-bare-control-template__disabled",
+                props.disabled,
+            ])}
+        >
+            {props.control(getConfig(aggregateProps))}
+        </div>
+    );
 }
 
 export { BareControlTemplate };
