@@ -1,12 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { keyEnter, keyTab } from "@microsoft/fast-web-utilities";
 import { getDataFromSchema } from "design-to-code";
 import { DragItem, ItemType } from "../templates";
 import { ArrayAction, LinkedDataActionType } from "../templates/types";
-import {
-    LinkedDataControlProps,
-    LinkedDataControlState,
-} from "./control.linked-data.props";
+import { LinkedDataControlProps } from "./control.linked-data.props";
 import cssVariables from "../../style/css-variables.css";
 import cleanListStyle from "../../style/clean-list-style.css";
 import ellipsisStyle from "../../style/ellipsis-style.css";
@@ -23,36 +20,15 @@ removeItemStyle;
 /**
  * Form control definition
  */
-class LinkedDataControl extends React.Component<
-    LinkedDataControlProps,
-    LinkedDataControlState
-> {
-    public static displayName: string = "LinkedDataControl";
-
-    constructor(props: LinkedDataControlProps) {
-        super(props);
-
-        this.state = {
-            searchTerm: "",
-            isDragging: false,
-            data: [].concat(props.value || []),
-        };
-    }
-
-    public render(): React.ReactNode {
-        // Convert to search component when #3006 has been completed
-        return (
-            <div className={"dtc-linked-data-control"}>
-                {this.renderExistingLinkedData()}
-                {this.renderAddLinkedData()}
-            </div>
-        );
-    }
+function LinkedDataControl(props: LinkedDataControlProps) {
+    const [searchTerm, setSearchTerm] = useState("");
+    const [dragging, setDragging] = useState(false);
+    const [data, setData] = useState([].concat(props.value || []));
 
     /**
      * Render the UI for adding linked data
      */
-    private renderAddLinkedData(): React.ReactNode {
+    function renderAddLinkedData(): React.ReactNode {
         return (
             <div className={"dtc-linked-data-control_linked-data-list-control"}>
                 <span
@@ -66,23 +42,23 @@ class LinkedDataControl extends React.Component<
                         }
                         type={"text"}
                         aria-autocomplete={"list"}
-                        list={this.getLinkedDataInputId()}
-                        aria-controls={this.getLinkedDataInputId()}
-                        value={this.state.searchTerm}
-                        placeholder={this.props.strings.linkedDataPlaceholder}
-                        onChange={this.handleSearchTermUpdate}
-                        onKeyDown={this.handleLinkedDataKeydown}
+                        list={getLinkedDataInputId()}
+                        aria-controls={getLinkedDataInputId()}
+                        value={searchTerm}
+                        placeholder={props.strings.linkedDataPlaceholder}
+                        onChange={handleSearchTermUpdate}
+                        onKeyDown={handleLinkedDataKeydown}
                     />
                 </span>
-                <datalist id={this.getLinkedDataInputId()} role={"listbox"}>
-                    {this.renderFilteredLinkedDataOptions()}
+                <datalist id={getLinkedDataInputId()} role={"listbox"}>
+                    {renderFilteredLinkedDataOptions()}
                 </datalist>
             </div>
         );
     }
 
-    private renderFilteredLinkedDataOptions(): React.ReactNode {
-        return Object.entries(this.props.schemaDictionary).map(
+    function renderFilteredLinkedDataOptions(): React.ReactNode {
+        return Object.entries(props.schemaDictionary).map(
             ([key, value]: [string, any]): React.ReactNode => {
                 return (
                     <option
@@ -98,8 +74,8 @@ class LinkedDataControl extends React.Component<
     /**
      * Render the list of existing linkedData for a component
      */
-    private renderExistingLinkedData(): React.ReactNode {
-        const childItems: React.ReactNode = this.renderExistingLinkedDataItem();
+    function renderExistingLinkedData(): React.ReactNode {
+        const childItems: React.ReactNode = renderExistingLinkedDataItem();
 
         if (childItems) {
             return (
@@ -114,107 +90,96 @@ class LinkedDataControl extends React.Component<
         }
     }
 
-    private renderExistingLinkedDataItem(): React.ReactNode {
-        if (Array.isArray(this.props.value)) {
-            return (this.state.isDragging ? this.state.data : this.props.value).map(
-                (value: any, index: number) => {
-                    // return (
-                    //     <DragItem
-                    //         key={value + index}
-                    //         itemClassName={
-                    //             "dtc-linked-data-control_existing-linked-data-item"
-                    //         }
-                    //         itemLinkClassName={
-                    //             "dtc-linked-data-control_existing-linked-data-item-link dtc-common-ellipsis"
-                    //         }
-                    //         itemRemoveClassName={"dtc-linked-data-control_delete-button dtc-common-remove-item"}
-                    //         minItems={0}
-                    //         itemLength={1}
-                    //         index={index}
-                    //         onClick={this.handleItemClick(value.id)}
-                    //         removeDragItem={this.handleRemoveItem}
-                    //         moveDragItem={this.handleMoveItem}
-                    //         dropDragItem={this.handleDropItem}
-                    //         dragStart={this.handleDragStart}
-                    //         dragEnd={this.handleDragEnd}
-                    //         strings={this.props.strings}
-                    //     >
-                    //         {
-                    //             this.props.schemaDictionary[
-                    //                 this.props.dataDictionary[0][value.id].schemaId
-                    //             ].title
-                    //         }
-                    //     </DragItem>
-                    // );
-                    return this.props.schemaDictionary[
-                        this.props.dataDictionary[0][value.id].schemaId
-                    ].title;
-                }
-            );
+    function renderExistingLinkedDataItem(): React.ReactNode {
+        if (Array.isArray(props.value)) {
+            return (dragging ? data : props.value).map((value: any, index: number) => {
+                // return (
+                //     <DragItem
+                //         key={value + index}
+                //         itemClassName={
+                //             "dtc-linked-data-control_existing-linked-data-item"
+                //         }
+                //         itemLinkClassName={
+                //             "dtc-linked-data-control_existing-linked-data-item-link dtc-common-ellipsis"
+                //         }
+                //         itemRemoveClassName={"dtc-linked-data-control_delete-button dtc-common-remove-item"}
+                //         minItems={0}
+                //         itemLength={1}
+                //         index={index}
+                //         onClick={handleItemClick(value.id)}
+                //         removeDragItem={handleRemoveItem}
+                //         moveDragItem={handleMoveItem}
+                //         dropDragItem={handleDropItem}
+                //         dragStart={handleDragStart}
+                //         dragEnd={handleDragEnd}
+                //         strings={props.strings}
+                //     >
+                //         {
+                //             props.schemaDictionary[
+                //                 props.dataDictionary[0][value.id].schemaId
+                //             ].title
+                //         }
+                //     </DragItem>
+                // );
+                return props.schemaDictionary[props.dataDictionary[0][value.id].schemaId]
+                    .title;
+            });
         }
     }
 
-    private handleDragStart = (config: { type: ItemType }): { type: ItemType } => {
-        this.setState({
-            isDragging: true,
-            data: [].concat(this.props.value || []),
-        });
+    function handleDragStart(config: { type: ItemType }): { type: ItemType } {
+        setDragging(true);
+        setData([].concat(props.value || []));
 
         return config;
-    };
+    }
 
-    private handleDragEnd = (): void => {
-        this.setState({
-            isDragging: false,
-        });
-    };
+    function handleDragEnd(): void {
+        setDragging(false);
+    }
 
-    private handleItemClick = (
+    function handleItemClick(
         id: string
-    ): ((index: number) => (e: React.MouseEvent<HTMLAnchorElement>) => void) => {
+    ): (index: number) => (e: React.MouseEvent<HTMLAnchorElement>) => void {
         return (index: number): ((e: React.MouseEvent<HTMLAnchorElement>) => void) => {
             return (e: React.MouseEvent<HTMLAnchorElement>): void => {
-                this.props.onUpdateSection(id);
+                props.onUpdateSection(id);
             };
         };
-    };
+    }
 
-    private handleRemoveItem = (
+    function handleRemoveItem(
         type: ArrayAction,
         index: number
-    ): ((e: React.MouseEvent<HTMLButtonElement>) => void) => {
+    ): (e: React.MouseEvent<HTMLButtonElement>) => void {
         return (e: React.MouseEvent<HTMLButtonElement>): void => {
-            this.props.onChange({
-                value: this.props.value.splice(index, 1),
+            props.onChange({
+                value: props.value.splice(index, 1),
                 isLinkedData: true,
                 linkedDataAction: LinkedDataActionType.remove,
             });
         };
-    };
+    }
 
-    private handleMoveItem = (sourceIndex: number, targetIndex: number): void => {
-        const currentData: unknown[] = [].concat(this.props.value);
+    function handleMoveItem(sourceIndex: number, targetIndex: number): void {
+        const currentData: unknown[] = [].concat(props.value);
 
         if (sourceIndex !== targetIndex) {
             currentData.splice(targetIndex, 0, currentData.splice(sourceIndex, 1)[0]);
         }
 
-        this.setState({
-            data: currentData,
-        });
-    };
+        setData(currentData);
+    }
 
-    private handleDropItem = (): void => {
-        this.props.onChange({
-            value: this.state.data,
+    function handleDropItem(): void {
+        props.onChange({
+            value: data,
             isLinkedData: true,
             linkedDataAction: LinkedDataActionType.reorder,
         });
-    };
+    }
 
-    private handleLinkedDataKeydown = (
-        e: React.KeyboardEvent<HTMLInputElement>
-    ): void => {
+    function handleLinkedDataKeydown(e: React.KeyboardEvent<HTMLInputElement>): void {
         if (e.target === e.currentTarget) {
             // Enter adds linked data if the input value matches a schema lazily or exactly
             if (e.key === keyEnter) {
@@ -223,10 +188,10 @@ class LinkedDataControl extends React.Component<
                 const normalizedValue = e.currentTarget.value.toLowerCase();
 
                 if (
-                    this.lazyMatchValueWithASingleSchema(normalizedValue) ||
-                    this.matchExactValueWithASingleSchema(e.currentTarget.value)
+                    lazyMatchValueWithASingleSchema(normalizedValue) ||
+                    matchExactValueWithASingleSchema(e.currentTarget.value)
                 ) {
-                    this.addLinkedData(normalizedValue, e.currentTarget.value);
+                    addLinkedData(normalizedValue, e.currentTarget.value);
 
                     /**
                      * Adding items to the linked data causes the items to
@@ -237,36 +202,29 @@ class LinkedDataControl extends React.Component<
                     (e.target as HTMLElement).blur();
                     (e.target as HTMLElement).focus();
 
-                    this.setState({
-                        searchTerm: "",
-                    });
+                    setSearchTerm("");
                 }
                 // Tab performs an auto-complete if there is a single schema it can match to
             } else if (e.key === keyTab) {
                 const normalizedValue = e.currentTarget.value.toLowerCase();
-                const matchedSchema =
-                    this.lazyMatchValueWithASingleSchema(normalizedValue);
+                const matchedSchema = lazyMatchValueWithASingleSchema(normalizedValue);
 
                 if (typeof matchedSchema === "string") {
                     // prevent navigating away by tab when single schema matched
                     e.preventDefault();
 
-                    this.setState({
-                        searchTerm: this.props.schemaDictionary[matchedSchema].title,
-                    });
+                    setSearchTerm(props.schemaDictionary[matchedSchema].title);
                 }
             }
         }
-    };
+    }
 
-    private lazyMatchValueWithASingleSchema(value: string): string | void {
-        const matchingSchemas: string[] = Object.keys(this.props.schemaDictionary).reduce<
+    function lazyMatchValueWithASingleSchema(value: string): string | void {
+        const matchingSchemas: string[] = Object.keys(props.schemaDictionary).reduce<
             string[]
         >((previousValue: string[], currentValue: string): string[] => {
             if (
-                this.props.schemaDictionary[currentValue].title
-                    .toLowerCase()
-                    .includes(value)
+                props.schemaDictionary[currentValue].title.toLowerCase().includes(value)
             ) {
                 return previousValue.concat([currentValue]);
             }
@@ -279,52 +237,56 @@ class LinkedDataControl extends React.Component<
         }
     }
 
-    private matchExactValueWithASingleSchema(value: string): string | void {
-        return Object.keys(this.props.schemaDictionary).find(
-            (schemaDictionaryKey: string) => {
-                return value === this.props.schemaDictionary[schemaDictionaryKey].title;
-            }
-        );
+    function matchExactValueWithASingleSchema(value: string): string | void {
+        return Object.keys(props.schemaDictionary).find((schemaDictionaryKey: string) => {
+            return value === props.schemaDictionary[schemaDictionaryKey].title;
+        });
     }
 
     /**
      * Change handler for editing the search term filter
      */
-    private handleSearchTermUpdate = (e: React.ChangeEvent<HTMLInputElement>): void => {
-        this.setState({
-            searchTerm: e.target.value,
-        });
-    };
+    function handleSearchTermUpdate(e: React.ChangeEvent<HTMLInputElement>): void {
+        setSearchTerm(e.target.value);
+    }
 
-    private addLinkedData(normalizedValue: string, originalValue: string): void {
+    function addLinkedData(normalizedValue: string, originalValue: string): void {
         const matchedNormalizedValue: string | void =
-            this.lazyMatchValueWithASingleSchema(normalizedValue);
+            lazyMatchValueWithASingleSchema(normalizedValue);
         const matchedOriginalValue: string | void =
-            this.matchExactValueWithASingleSchema(originalValue);
+            matchExactValueWithASingleSchema(originalValue);
         const schemaId: string | void = matchedNormalizedValue || matchedOriginalValue;
 
         if (typeof schemaId !== "undefined") {
-            this.props.onChange({
+            props.onChange({
                 value: [
                     {
                         schemaId,
                         parent: {
-                            id: this.props.dictionaryId,
-                            dataLocation: this.props.dataLocation,
+                            id: props.dictionaryId,
+                            dataLocation: props.dataLocation,
                         },
-                        data: getDataFromSchema(this.props.schemaDictionary[schemaId]),
+                        data: getDataFromSchema(props.schemaDictionary[schemaId]),
                     },
                 ],
                 isLinkedData: true,
                 linkedDataAction: LinkedDataActionType.add,
-                index: Array.isArray(this.props.value) ? this.props.value.length : 0,
+                index: Array.isArray(props.value) ? props.value.length : 0,
             });
         }
     }
 
-    private getLinkedDataInputId(): string {
-        return `${this.props.dataLocation}-input`;
+    function getLinkedDataInputId(): string {
+        return `${props.dataLocation}-input`;
     }
+
+    // Convert to search component when #3006 has been completed
+    return (
+        <div className={"dtc-linked-data-control"}>
+            {renderExistingLinkedData()}
+            {renderAddLinkedData()}
+        </div>
+    );
 }
 
 export { LinkedDataControl };
