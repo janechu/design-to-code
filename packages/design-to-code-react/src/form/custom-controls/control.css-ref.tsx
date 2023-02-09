@@ -1,5 +1,5 @@
-import React from "react";
-import { CSSRefProps, CSSRefState } from "./control.css-ref.props";
+import React, { useState } from "react";
+import { CSSRefProps } from "./control.css-ref.props";
 import {
     CombinatorType,
     CSSPropertiesDictionary,
@@ -15,44 +15,45 @@ import { renderSelection } from "./control.css.utilities";
 /**
  * Custom CSS reference definition
  */
-export class CSSRef extends React.Component<CSSRefProps, CSSRefState> {
-    constructor(props: CSSRefProps) {
-        super(props);
+export function CSSRef(props: CSSRefProps): JSX.Element {
+    /**
+     * The index of the select dropdown determining which form UI to show,
+     * this will be used when multiple form element UI options are available
+     * according to the syntax.
+     */
+    const [index, setIndex] = useState(null);
 
-        this.state = {
-            index: null,
-            values: [],
-        };
-    }
+    /**
+     * The values available, since CSS can comprise of multiple values for example:
+     *
+     * border: 1px solid #000000;
+     *
+     * Each value will be represented in the array, for example:
+     *
+     * ["1px", "solid", "#000"]
+     *
+     * A single string cannot be used as indexes will move around depending on if certain values are omitted.
+     * Example:
+     * "1px solid #000" equates to ["1px", "solid", "#000"]
+     * "1px #000" equates to ["1px", undefined, "#000"]
+     *
+     * Which preserves the order the string values must appear.
+     */
+    const [values, setValues] = useState([]);
 
-    public render(): React.ReactNode {
-        switch (this.props.syntax.refCombinatorType) {
-            case CombinatorType.juxtaposition:
-            case CombinatorType.mandatoryInAnyOrder:
-            case CombinatorType.atLeastOneInAnyOrder:
-                return this.renderMultipleItems();
-            case CombinatorType.brackets:
-                return this.renderBrackets();
-            case CombinatorType.exactlyOne:
-                return this.renderExactlyOne();
-            default:
-                return this.renderByType();
-        }
-    }
-
-    private renderMultipleItems(): React.ReactNode {
+    function renderMultipleItems(): JSX.Element {
         return (
             <div>
-                {(this.props.syntax.ref as CSSPropertyRef[]).map(
+                {(props.syntax.ref as CSSPropertyRef[]).map(
                     (syntaxRef: CSSPropertyRef, index: number) => {
                         return (
                             <CSSRef
                                 key={index}
                                 syntax={syntaxRef}
-                                onChange={this.handleMultipleChange(index)}
-                                value={this.state.values[index]}
-                                dictionaryId={this.props.dictionaryId}
-                                dataLocation={this.props.dataLocation}
+                                onChange={handleMultipleChange(index)}
+                                value={values[index]}
+                                dictionaryId={props.dictionaryId}
+                                dataLocation={props.dataLocation}
                             />
                         );
                     }
@@ -61,33 +62,32 @@ export class CSSRef extends React.Component<CSSRefProps, CSSRefState> {
         );
     }
 
-    private renderExactlyOne(): React.ReactNode {
+    function renderExactlyOne(): JSX.Element {
         const cssRef: React.ReactNode =
-            this.state.index !== null &&
-            (this.props.syntax.ref as CSSPropertyRef[])[this.state.index] &&
-            (this.props.syntax.ref as CSSPropertyRef[])[this.state.index].type !==
-                "value" ? (
+            index !== null &&
+            (props.syntax.ref as CSSPropertyRef[])[index] &&
+            (props.syntax.ref as CSSPropertyRef[])[index].type !== "value" ? (
                 <CSSRef
-                    syntax={(this.props.syntax.ref as CSSPropertyRef[])[this.state.index]}
-                    onChange={this.handleChange}
-                    value={this.state.values[this.state.index]}
-                    dictionaryId={this.props.dictionaryId}
-                    dataLocation={this.props.dataLocation}
+                    syntax={(props.syntax.ref as CSSPropertyRef[])[index]}
+                    onChange={handleChange}
+                    value={values[index]}
+                    dictionaryId={props.dictionaryId}
+                    dataLocation={props.dataLocation}
                 />
             ) : null;
 
         return (
             <div>
                 {renderSelection({
-                    key: `${this.state.index}`,
-                    handleChange: this.handleFormElementOnChange,
+                    key: `${index}`,
+                    handleChange: handleFormElementOnChange,
                     options: [
                         {
                             key: "init",
                             value: "",
                             displayName: "",
                         },
-                        ...(this.props.syntax.ref as CSSPropertyRef[]).map(
+                        ...(props.syntax.ref as CSSPropertyRef[]).map(
                             (refItem: CSSPropertyRef, index: number) => {
                                 if (typeof refItem.ref === "string") {
                                     // This should always be a string, but check in case
@@ -106,47 +106,47 @@ export class CSSRef extends React.Component<CSSRefProps, CSSRefState> {
                             }
                         ),
                     ],
-                    value: this.props.value,
-                    dictionaryId: this.props.dictionaryId,
-                    dataLocation: this.props.dataLocation,
+                    value: props.value,
+                    dictionaryId: props.dictionaryId,
+                    dataLocation: props.dataLocation,
                 })}
                 {cssRef}
             </div>
         );
     }
 
-    private renderByType(): React.ReactNode {
-        if (typeof this.props.syntax.ref === "string") {
-            switch ((this.props.syntax as CSSPropertyRef).type) {
+    function renderByType(): JSX.Element {
+        if (typeof props.syntax.ref === "string") {
+            switch ((props.syntax as CSSPropertyRef).type) {
                 case "value":
                     return renderValueControl({
-                        ref: this.props.syntax,
-                        key: this.props.syntax.ref,
-                        handleChange: this.props.onChange,
-                        value: this.props.value,
-                        dictionaryId: this.props.dictionaryId,
-                        dataLocation: this.props.dataLocation,
+                        ref: props.syntax,
+                        key: props.syntax.ref,
+                        handleChange: props.onChange,
+                        value: props.value,
+                        dictionaryId: props.dictionaryId,
+                        dataLocation: props.dataLocation,
                     });
                 case "type":
                     return renderTypeControl({
-                        ref: this.props.syntax,
-                        key: this.props.syntax.ref,
-                        handleChange: this.props.onChange,
-                        value: this.props.value,
-                        dictionaryId: this.props.dictionaryId,
-                        dataLocation: this.props.dataLocation,
+                        ref: props.syntax,
+                        key: props.syntax.ref,
+                        handleChange: props.onChange,
+                        value: props.value,
+                        dictionaryId: props.dictionaryId,
+                        dataLocation: props.dataLocation,
                     });
                 case "syntax":
                     return renderSyntaxControl({
-                        ref: this.props.syntax,
-                        key: this.props.syntax.ref,
-                        handleChange: this.props.onChange,
-                        value: this.props.value,
-                        dictionaryId: this.props.dictionaryId,
-                        dataLocation: this.props.dataLocation,
+                        ref: props.syntax,
+                        key: props.syntax.ref,
+                        handleChange: props.onChange,
+                        value: props.value,
+                        dictionaryId: props.dictionaryId,
+                        dataLocation: props.dataLocation,
                     });
                 case "property":
-                    const propertyKey: string = this.props.syntax.ref.slice(2, -2);
+                    const propertyKey: string = props.syntax.ref.slice(2, -2);
 
                     if (
                         (properties as unknown as CSSPropertiesDictionary)[
@@ -158,11 +158,11 @@ export class CSSRef extends React.Component<CSSRefProps, CSSRefState> {
                                 propertyKey
                             ].syntax,
                             property: propertyKey,
-                            key: this.props.syntax.ref,
-                            handleChange: this.props.onChange,
-                            value: this.props.value,
-                            dictionaryId: this.props.dictionaryId,
-                            dataLocation: this.props.dataLocation,
+                            key: props.syntax.ref,
+                            handleChange: props.onChange,
+                            value: props.value,
+                            dictionaryId: props.dictionaryId,
+                            dataLocation: props.dataLocation,
                         });
                     }
                 default:
@@ -172,86 +172,69 @@ export class CSSRef extends React.Component<CSSRefProps, CSSRefState> {
 
         return (
             <CSSRef
-                syntax={this.props.syntax.ref[0]}
-                onChange={this.handleChange}
-                value={this.props.value}
-                dictionaryId={this.props.dictionaryId}
-                dataLocation={this.props.dataLocation}
+                syntax={props.syntax.ref[0]}
+                onChange={handleChange}
+                value={props.value}
+                dictionaryId={props.dictionaryId}
+                dataLocation={props.dataLocation}
             />
         );
     }
 
-    private renderBrackets(): React.ReactNode {
+    function renderBrackets(): JSX.Element {
         return null;
     }
 
-    private handleFormElementOnChange = (value: string): void => {
+    function handleFormElementOnChange(value: string): void {
         if (
-            (this.props.syntax.ref as CSSPropertyRef[])[value] &&
-            (this.props.syntax.ref as CSSPropertyRef[])[value].type === "value"
+            (props.syntax.ref as CSSPropertyRef[])[value] &&
+            (props.syntax.ref as CSSPropertyRef[])[value].type === "value"
         ) {
-            const index: number = parseInt(value, 10);
-            const updatedValues: string[] = [this.props.syntax.ref[value].ref];
+            const updatedIndex: number = parseInt(value, 10);
+            const updatedValues: string[] = [props.syntax.ref[value].ref];
 
-            this.setState(
-                {
-                    index,
-                    values: updatedValues,
-                },
-                () => {
-                    this.props.onChange(this.state.values[0]);
-                }
-            );
+            setIndex(updatedIndex);
+            setValues(updatedValues);
+            props.onChange(updatedValues[0]);
         } else if (value === "") {
-            this.setState(
-                {
-                    index: null,
-                    values: [],
-                },
-                () => {
-                    this.props.onChange(this.state.values[0]);
-                }
-            );
+            setIndex(null);
+            setValues([]);
+            props.onChange(void 0);
         } else {
-            this.setState(
-                {
-                    index: parseInt(value, 10),
-                    values: [],
-                },
-                () => {
-                    this.props.onChange(this.state.values[0]);
-                }
-            );
+            setIndex(parseInt(value, 10));
+            setValues([]);
+            props.onChange(void 0);
         }
-    };
+    }
 
-    private handleChange = (value: string): void => {
-        const updatedValues: string[] = this.state.values.concat([]);
+    function handleChange(value: string): void {
+        const updatedValues: string[] = values.concat([]);
         updatedValues[0] = value;
 
-        this.setState(
-            {
-                values: updatedValues,
-            },
-            () => {
-                this.props.onChange(this.state.values.join(" ").trim());
-            }
-        );
-    };
+        setValues(updatedValues);
+        props.onChange(values.join(" ").trim());
+    }
 
-    private handleMultipleChange = (index: number): ((value: string) => void) => {
+    function handleMultipleChange(index: number): (value: string) => void {
         return (value: string) => {
-            const updatedValues: string[] = this.state.values.concat([]);
+            const updatedValues: string[] = values.concat([]);
             updatedValues[index] = value;
 
-            this.setState(
-                {
-                    values: updatedValues,
-                },
-                () => {
-                    this.props.onChange(this.state.values.join(" ").trim());
-                }
-            );
+            setValues(updatedValues);
+            props.onChange(values.join(" ").trim());
         };
-    };
+    }
+
+    switch (props.syntax.refCombinatorType) {
+        case CombinatorType.juxtaposition:
+        case CombinatorType.mandatoryInAnyOrder:
+        case CombinatorType.atLeastOneInAnyOrder:
+            return renderMultipleItems();
+        case CombinatorType.brackets:
+            return renderBrackets();
+        case CombinatorType.exactlyOne:
+            return renderExactlyOne();
+        default:
+            return renderByType();
+    }
 }

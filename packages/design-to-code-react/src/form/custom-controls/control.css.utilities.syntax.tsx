@@ -12,7 +12,7 @@ import { renderColorPicker } from "./control.css.utilities";
  * These are provided from the design-to-code package
  * as TypeScript type.
  */
-export function renderSyntaxControl(config: RenderRefControlConfig): React.ReactNode {
+export function renderSyntaxControl(config: RenderRefControlConfig): JSX.Element {
     switch (config.ref.ref as Syntax) {
         case "<color>":
             return renderColorPicker(config);

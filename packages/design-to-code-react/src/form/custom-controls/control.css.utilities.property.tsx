@@ -16,9 +16,7 @@ export interface RenderPropertyControlConfig extends RenderControlConfig {
  * CSS properties, for a list refer to:
  * https://github.com/mdn/data/blob/master/css/properties.json
  */
-export function renderPropertyControl(
-    config: RenderPropertyControlConfig
-): React.ReactNode {
+export function renderPropertyControl(config: RenderPropertyControlConfig): JSX.Element {
     switch (config.property) {
         default:
             return (
