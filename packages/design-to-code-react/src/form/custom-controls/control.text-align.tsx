@@ -18,37 +18,19 @@ enum Direction {
 /**
  * Custom form control definition
  */
-class TextAlignControl extends React.Component<TextAlignControlProps, {}> {
-    public static displayName: string = "TextAlignControl";
+function TextAlignControl(props: TextAlignControlProps) {
+    function onChange(value: string): void {
+        props.onChange({ value });
+    }
 
-    public render(): React.ReactNode {
+    function isChecked(direction: string): boolean {
         return (
-            <div
-                className={classNames("dtc-text-align-control", [
-                    "dtc-text-align-control__disabled",
-                    this.props.disabled,
-                ])}
-            >
-                {this.renderInput(Direction.Left)}
-                {this.renderInput(Direction.Center)}
-                {this.renderInput(Direction.Right)}
-                {this.renderInput(Direction.Justify)}
-            </div>
+            props.value === direction ||
+            (typeof props.value === "undefined" && props.default === direction)
         );
     }
 
-    private onChange = (value: string): void => {
-        this.props.onChange({ value });
-    };
-
-    private isChecked(direction: string): boolean {
-        return (
-            this.props.value === direction ||
-            (typeof this.props.value === "undefined" && this.props.default === direction)
-        );
-    }
-
-    private getInputClassName(direction: Direction): string {
+    function getInputClassName(direction: Direction): string {
         switch (direction) {
             case Direction.Left:
                 return "dtc-text-align-control_input__left";
@@ -61,22 +43,22 @@ class TextAlignControl extends React.Component<TextAlignControlProps, {}> {
         }
     }
 
-    private getDirectionLabel(direction: Direction): string {
+    function getDirectionLabel(direction: Direction): string {
         switch (direction) {
             case Direction.Left:
-                return this.props.strings.textAlignLeftLabel;
+                return props.strings.textAlignLeftLabel;
             case Direction.Center:
-                return this.props.strings.textAlignCenterLabel;
+                return props.strings.textAlignCenterLabel;
             case Direction.Right:
-                return this.props.strings.textAlignRightLabel;
+                return props.strings.textAlignRightLabel;
             case Direction.Justify:
-                return this.props.strings.textAlignJustifyLabel;
+                return props.strings.textAlignJustifyLabel;
         }
     }
 
-    private renderInput(direction: Direction): React.ReactNode {
-        if (this.props.options && Array.isArray(this.props.options)) {
-            const option: string = this.props.options.find((item: string) => {
+    function renderInput(direction: Direction): React.ReactNode {
+        if (props.options && Array.isArray(props.options)) {
+            const option: string = props.options.find((item: string) => {
                 return item === direction;
             });
 
@@ -86,22 +68,36 @@ class TextAlignControl extends React.Component<TextAlignControlProps, {}> {
                         <input
                             className={classNames(
                                 "dtc-text-align-control_input dtc-common-input-backplate",
-                                this.getInputClassName(direction)
+                                getInputClassName(direction)
                             )}
-                            id={this.props.dataLocation}
+                            id={props.dataLocation}
                             type={"radio"}
                             value={direction}
-                            name={this.props.dataLocation}
-                            aria-label={this.getDirectionLabel(direction)}
-                            onChange={this.onChange.bind(this, direction)}
-                            checked={this.isChecked(direction)}
-                            disabled={this.props.disabled}
+                            name={props.dataLocation}
+                            aria-label={getDirectionLabel(direction)}
+                            onChange={onChange.bind(this, direction)}
+                            checked={isChecked(direction)}
+                            disabled={props.disabled}
                         />
                     </span>
                 );
             }
         }
     }
+
+    return (
+        <div
+            className={classNames("dtc-text-align-control", [
+                "dtc-text-align-control__disabled",
+                props.disabled,
+            ])}
+        >
+            {renderInput(Direction.Left)}
+            {renderInput(Direction.Center)}
+            {renderInput(Direction.Right)}
+            {renderInput(Direction.Justify)}
+        </div>
+    );
 }
 
 export { TextAlignControl };
