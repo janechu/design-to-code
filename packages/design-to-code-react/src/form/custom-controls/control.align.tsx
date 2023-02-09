@@ -11,40 +11,23 @@ alignStyle;
 /**
  * Custom form control definition
  */
-class AlignControl extends React.Component<AlignControlProps, {}> {
-    public static displayName: string = "AlignControl";
-
-    public render(): React.ReactNode {
+function AlignControl(props: AlignControlProps) {
+    function isChecked(direction: string): boolean {
         return (
-            <div
-                className={classNames("dtc-align-control", [
-                    "dtc-align-control__disabled",
-                    this.props.disabled,
-                ])}
-            >
-                {this.renderInput(Alignment.top)}
-                {this.renderInput(Alignment.center)}
-                {this.renderInput(Alignment.bottom)}
-            </div>
+            props.value === direction ||
+            (typeof props.value === "undefined" && props.default === direction)
         );
     }
 
-    private isChecked(direction: string): boolean {
-        return (
-            this.props.value === direction ||
-            (typeof this.props.value === "undefined" && this.props.default === direction)
-        );
-    }
-
-    private handleChange(value: string): () => void {
+    function handleChange(value: string): () => void {
         return (): void => {
-            this.props.onChange({ value });
+            props.onChange({ value });
         };
     }
 
-    private renderInput(direction: Alignment): React.ReactNode {
-        if (this.props.options && Array.isArray(this.props.options)) {
-            const option: string = this.props.options.find((item: string) => {
+    function renderInput(direction: Alignment): React.ReactNode {
+        if (props.options && Array.isArray(props.options)) {
+            const option: string = props.options.find((item: string) => {
                 return item === direction;
             });
 
@@ -67,20 +50,33 @@ class AlignControl extends React.Component<AlignControlProps, {}> {
                                     direction === Alignment.top,
                                 ]
                             )}
-                            id={this.props.dataLocation}
+                            id={props.dataLocation}
                             type={"radio"}
                             value={direction}
-                            name={this.props.dataLocation}
+                            name={props.dataLocation}
                             aria-label={`${direction} align`}
-                            onChange={this.handleChange(direction)}
-                            checked={this.isChecked(direction)}
-                            disabled={this.props.disabled}
+                            onChange={handleChange(direction)}
+                            checked={isChecked(direction)}
+                            disabled={props.disabled}
                         />
                     </span>
                 );
             }
         }
     }
+
+    return (
+        <div
+            className={classNames("dtc-align-control", [
+                "dtc-align-control__disabled",
+                props.disabled,
+            ])}
+        >
+            {renderInput(Alignment.top)}
+            {renderInput(Alignment.center)}
+            {renderInput(Alignment.bottom)}
+        </div>
+    );
 }
 
 export { AlignControl };
