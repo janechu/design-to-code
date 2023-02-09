@@ -15,7 +15,7 @@ import React from "react";
  * These are provided from the design-to-code package
  * as TypeScript type.
  */
-export function renderTypeControl(config: RenderRefControlConfig): React.ReactNode {
+export function renderTypeControl(config: RenderRefControlConfig): JSX.Element {
     // some types omitted as they default to syntax definitions
     switch (config.ref.ref as Type) {
         case "<angle>":

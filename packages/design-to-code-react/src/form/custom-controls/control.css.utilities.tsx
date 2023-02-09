@@ -6,7 +6,7 @@ import {
     RenderSelectControlConfig,
 } from "./control.css.utilities.props";
 
-export function renderDefault(config: RenderRefControlConfig): React.ReactNode {
+export function renderDefault(config: RenderRefControlConfig): JSX.Element {
     return renderTextInput(config);
 }
 
@@ -31,7 +31,7 @@ function getInputChangeHandler(
 // this is currently an experimental component however this should be adjusted before
 // documentation and export
 
-export function renderTextInput(config: RenderRefControlConfig): React.ReactNode {
+export function renderTextInput(config: RenderRefControlConfig): JSX.Element {
     return (
         <fast-text-field
             {...{
@@ -49,7 +49,7 @@ export function renderTextInput(config: RenderRefControlConfig): React.ReactNode
     );
 }
 
-export function renderNumber(config: RenderRefControlConfig): React.ReactNode {
+export function renderNumber(config: RenderRefControlConfig): JSX.Element {
     return (
         <fast-number-field
             {...{
@@ -67,7 +67,7 @@ export function renderNumber(config: RenderRefControlConfig): React.ReactNode {
     );
 }
 
-export function renderInteger(config: RenderRefControlConfig): React.ReactNode {
+export function renderInteger(config: RenderRefControlConfig): JSX.Element {
     return (
         <fast-number-field
             {...{
@@ -95,7 +95,7 @@ function getCheckboxInputChangeHandler(
     };
 }
 
-export function renderCheckbox(config: RenderRefControlConfig): React.ReactNode {
+export function renderCheckbox(config: RenderRefControlConfig): JSX.Element {
     return (
         <fast-checkbox
             {...{
@@ -125,7 +125,7 @@ function getSelectionChangeHandler(
     };
 }
 
-export function renderSelection(config: RenderSelectControlConfig): React.ReactNode {
+export function renderSelection(config: RenderSelectControlConfig): JSX.Element {
     const currentOption = config.options.find(
         option => option.displayName === config.value
     );
@@ -176,7 +176,7 @@ function getColorPickerChangeHandler(
     };
 }
 
-export function renderColorPicker(config: RenderRefControlConfig): React.ReactNode {
+export function renderColorPicker(config: RenderRefControlConfig): JSX.Element {
     return (
         <dtc-color-picker
             key={`${config.dictionaryId}::${config.dataLocation}`}

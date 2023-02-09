@@ -5,7 +5,7 @@ import React from "react";
 /**
  * The value control, used for when string values are available
  */
-export function renderValueControl(config: RenderRefControlConfig): React.ReactNode {
+export function renderValueControl(config: RenderRefControlConfig): JSX.Element {
     if (config.ref.multiplier) {
         switch (config.ref.multiplier.type) {
             case "zeroOrOne":
