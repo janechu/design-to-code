@@ -25,5 +25,5 @@ export interface CSSStandardControlTemplateProps extends CSSControlConfig {
     /**
      * The control provided.
      */
-    control: (config: CSSControlConfig) => React.ReactNode;
+    control: (config: CSSControlConfig) => JSX.Element;
 }
