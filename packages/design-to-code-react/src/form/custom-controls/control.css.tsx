@@ -43,50 +43,34 @@ cssStyle;
 /**
  * Custom form control definition for CSS
  */
-class CSSControl extends React.Component<CSSControlProps, {}> {
-    private memoizeMappedStyleToCSSPropertyDictionary: (value: string) => {
+function CSSControl(props: CSSControlProps) {
+    const memoizeMappedStyleToCSSPropertyDictionary: (value: string) => {
         [key: string]: string;
-    };
+    } = memoize(mapCSSInlineStyleToCSSPropertyDictionary);
 
-    constructor(props: CSSControlProps) {
-        super(props);
-
-        this.memoizeMappedStyleToCSSPropertyDictionary = memoize(
-            mapCSSInlineStyleToCSSPropertyDictionary
-        );
-    }
-
-    public render(): React.ReactNode {
-        return <div className={classNames("dtc-css")}>{this.renderCSSProperties()}</div>;
-    }
-
-    private renderCSSProperties(): React.ReactNode {
+    function renderCSSProperties(): React.ReactNode {
         const css = {
             // An object spread is used here to control
             // mutability at the top level of the css prop
-            ...this.props.css,
+            ...props.css,
         };
         const renderedCssControls: React.ReactNode[] = [];
 
-        if (this.props.cssControls) {
-            this.props.cssControls.forEach(
-                (cssControl: CSSStandardControlPlugin): void => {
-                    cssControl.updateProps({
-                        css: {
-                            ...this.memoizeMappedStyleToCSSPropertyDictionary(
-                                this.props.value || ""
-                            ),
-                        },
-                        value: this.props.value,
-                        onChange: this.handleMultiplePropertyOnChange,
-                    });
+        if (props.cssControls) {
+            props.cssControls.forEach((cssControl: CSSStandardControlPlugin): void => {
+                cssControl.updateProps({
+                    css: {
+                        ...memoizeMappedStyleToCSSPropertyDictionary(props.value || ""),
+                    },
+                    value: props.value,
+                    onChange: handleMultiplePropertyOnChange,
+                });
 
-                    renderedCssControls.push(cssControl.render());
-                    cssControl.getPropertyNames().forEach((propertyName: string) => {
-                        delete css[propertyName];
-                    });
-                }
-            );
+                renderedCssControls.push(cssControl.render());
+                cssControl.getPropertyNames().forEach((propertyName: string) => {
+                    delete css[propertyName];
+                });
+            });
         }
 
         return [
@@ -96,10 +80,10 @@ class CSSControl extends React.Component<CSSControlProps, {}> {
                     string,
                     CSSProperty
                 ]): React.ReactNode => {
-                    return this.renderCSSProperty(
+                    return renderCSSProperty(
                         cssProperty,
                         cssPropertyName,
-                        this.memoizeMappedStyleToCSSPropertyDictionary(this.props.value)[
+                        memoizeMappedStyleToCSSPropertyDictionary(props.value)[
                             cssPropertyName
                         ] || ""
                     );
@@ -108,7 +92,7 @@ class CSSControl extends React.Component<CSSControlProps, {}> {
         ];
     }
 
-    private renderCSSProperty(
+    function renderCSSProperty(
         cssProperty: CSSProperty,
         cssPropertyName: string,
         cssPropertyValue: string
@@ -122,35 +106,35 @@ class CSSControl extends React.Component<CSSControlProps, {}> {
                 <legend>{cssProperty.name}</legend>
                 <CSSRef
                     syntax={cssProperty.syntax}
-                    onChange={this.handleOnChange(cssPropertyName)}
+                    onChange={handleOnChange(cssPropertyName)}
                     mapsToProperty={cssPropertyName}
                     value={cssPropertyValue}
-                    dictionaryId={this.props.dictionaryId}
-                    dataLocation={this.props.dataLocation}
+                    dictionaryId={props.dictionaryId}
+                    dataLocation={props.dataLocation}
                 />
             </fieldset>
         );
     }
 
-    private handleMultiplePropertyOnChange = (css: { [key: string]: string }): void => {
-        this.resolveCSS(css);
-    };
+    function handleMultiplePropertyOnChange(css: { [key: string]: string }): void {
+        resolveCSS(css);
+    }
 
-    private handleOnChange = (propertyName: string): ((value: string) => void) => {
+    function handleOnChange(propertyName: string): (value: string) => void {
         return (value: string): void => {
-            this.resolveCSS({
+            resolveCSS({
                 [propertyName]: value,
             });
         };
-    };
+    }
 
-    private resolveCSS = (css: { [key: string]: string }): void => {
+    function resolveCSS(css: { [key: string]: string }): void {
         const cssDictionary = {
-            ...this.memoizeMappedStyleToCSSPropertyDictionary(this.props.value),
+            ...memoizeMappedStyleToCSSPropertyDictionary(props.value),
             ...css,
         };
 
-        this.props.onChange({
+        props.onChange({
             value:
                 `${Object.keys(cssDictionary)
                     .reduce((previousValue: string, propertyName: string) => {
@@ -162,7 +146,9 @@ class CSSControl extends React.Component<CSSControlProps, {}> {
                     }, "")
                     .trim()}` || undefined,
         });
-    };
+    }
+
+    return <div className={classNames("dtc-css")}>{renderCSSProperties()}</div>;
 }
 
 export { CSSControl };
