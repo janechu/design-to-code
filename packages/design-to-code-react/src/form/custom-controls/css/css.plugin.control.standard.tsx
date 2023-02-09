@@ -6,12 +6,10 @@ import CSSStandardControlTemplate from "./css.template.control.standard";
 
 export interface CSSStandardControlPluginProps extends CSSControlPluginUtilitiesProps {}
 
-export default class CSSStandardControlPlugin extends CSSControlPluginUtilities<
-    CSSStandardControlPluginProps
-> {
+export default class CSSStandardControlPlugin extends CSSControlPluginUtilities<CSSStandardControlPluginProps> {
     public config: CSSStandardControlPluginProps;
 
-    public render(): React.ReactNode {
+    public render(): JSX.Element {
         return (
             <CSSStandardControlTemplate
                 key={this.config.id}

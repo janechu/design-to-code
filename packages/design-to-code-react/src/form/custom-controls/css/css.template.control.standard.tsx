@@ -9,23 +9,16 @@ import {
  *
  * This is the standard control template that may be used for a CSS plugin.
  */
-export default class CSSStandardControlTemplate extends React.Component<
-    CSSStandardControlTemplateProps,
-    {}
-> {
-    public render(): React.ReactNode {
-        return this.renderControl();
-    }
-
-    public renderControl(): React.ReactNode {
-        return this.props.control(this.getConfig());
-    }
-
-    public getConfig(): CSSControlConfig {
+export default function CSSStandardControlTemplate(
+    props: CSSStandardControlTemplateProps
+) {
+    function getConfig(): CSSControlConfig {
         return {
-            css: this.props.css,
-            onChange: this.props.onChange,
-            value: this.props.value,
+            css: props.css,
+            onChange: props.onChange,
+            value: props.value,
         };
     }
+
+    return props.control(getConfig());
 }
