@@ -1,5 +1,5 @@
 import React from "react";
-import { Orientation, RotateHandledProps, RotateUnhandledProps } from "./rotate.props";
+import { Orientation, RotateProps } from "./rotate.props";
 import cssVariables from "../../style/css-variables.css";
 import inputBackplateStyle from "../../style/input-backplate-style.css";
 import style from "./rotate.style.css";
@@ -9,60 +9,8 @@ cssVariables;
 inputBackplateStyle;
 style;
 
-export class Rotate extends React.Component<
-    RotateHandledProps,
-    RotateUnhandledProps,
-    {}
-> {
-    public static displayName: string = "Rotate";
-
-    protected handledProps: RotateHandledProps = {
-        onUpdateOrientation: void 0,
-        landscapeDisabled: void 0,
-        portraitDisabled: void 0,
-        orientation: void 0,
-    };
-
-    public render(): JSX.Element {
-        return (
-            <div className={"dtc-rotate"}>
-                <div className={"dtc-rotate_control-input-container"}>
-                    <span>
-                        <input
-                            type="radio"
-                            aria-label={this.props.landscapeLabel || "landscape view"}
-                            className={this.getInputClassName(Orientation.landscape)}
-                            disabled={this.props.landscapeDisabled}
-                            onChange={this.handleLandscapeClick}
-                            checked={this.props.orientation === Orientation.landscape}
-                            tabIndex={
-                                this.props.orientation !== Orientation.landscape
-                                    ? -1
-                                    : undefined
-                            }
-                        />
-                    </span>
-                    <span>
-                        <input
-                            type="radio"
-                            aria-label={this.props.portraitLabel || "portrait view"}
-                            className={this.getInputClassName(Orientation.portrait)}
-                            disabled={this.props.portraitDisabled}
-                            onChange={this.handlePortraitClick}
-                            checked={this.props.orientation === Orientation.portrait}
-                            tabIndex={
-                                this.props.orientation !== Orientation.portrait
-                                    ? -1
-                                    : undefined
-                            }
-                        />
-                    </span>
-                </div>
-            </div>
-        );
-    }
-
-    private getInputClassName(orientation: Orientation): string {
+export function Rotate(props: RotateProps) {
+    function getInputClassName(orientation: Orientation): string {
         let classes: string = "dtc-rotate_control-input dtc-common-input-backplate";
 
         switch (orientation) {
@@ -70,18 +18,14 @@ export class Rotate extends React.Component<
                 classes = classes.concat(
                     " ",
                     "dtc-rotate_control-input__landscape",
-                    this.props.landscapeDisabled
-                        ? ` dtc-rotate_control-input__disabled`
-                        : ""
+                    props.landscapeDisabled ? ` dtc-rotate_control-input__disabled` : ""
                 );
                 break;
             case Orientation.portrait:
                 classes = classes.concat(
                     " ",
                     "dtc-rotate_control-input__portrait",
-                    this.props.portraitDisabled
-                        ? ` dtc-rotate_control-input__disabled`
-                        : ""
+                    props.portraitDisabled ? ` dtc-rotate_control-input__disabled` : ""
                 );
                 break;
         }
@@ -89,15 +33,48 @@ export class Rotate extends React.Component<
         return classes;
     }
 
-    private handleOrientationUpdate = (orientation: Orientation): void => {
-        this.props.onUpdateOrientation(orientation);
-    };
+    function handleOrientationUpdate(orientation: Orientation): void {
+        props.onUpdateOrientation(orientation);
+    }
 
-    private handleLandscapeClick = (): void => {
-        this.handleOrientationUpdate(Orientation.landscape);
-    };
+    function handleLandscapeClick(): void {
+        handleOrientationUpdate(Orientation.landscape);
+    }
 
-    private handlePortraitClick = (): void => {
-        this.handleOrientationUpdate(Orientation.portrait);
-    };
+    function handlePortraitClick(): void {
+        handleOrientationUpdate(Orientation.portrait);
+    }
+
+    return (
+        <div className={"dtc-rotate"}>
+            <div className={"dtc-rotate_control-input-container"}>
+                <span>
+                    <input
+                        type="radio"
+                        aria-label={props.landscapeLabel || "landscape view"}
+                        className={getInputClassName(Orientation.landscape)}
+                        disabled={props.landscapeDisabled}
+                        onChange={handleLandscapeClick}
+                        checked={props.orientation === Orientation.landscape}
+                        tabIndex={
+                            props.orientation !== Orientation.landscape ? -1 : undefined
+                        }
+                    />
+                </span>
+                <span>
+                    <input
+                        type="radio"
+                        aria-label={props.portraitLabel || "portrait view"}
+                        className={getInputClassName(Orientation.portrait)}
+                        disabled={props.portraitDisabled}
+                        onChange={handlePortraitClick}
+                        checked={props.orientation === Orientation.portrait}
+                        tabIndex={
+                            props.orientation !== Orientation.portrait ? -1 : undefined
+                        }
+                    />
+                </span>
+            </div>
+        </div>
+    );
 }

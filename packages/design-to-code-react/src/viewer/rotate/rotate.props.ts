@@ -3,8 +3,7 @@ export enum Orientation {
     portrait = "portrait",
 }
 
-export type RotateUnhandledProps = React.AllHTMLAttributes<HTMLElement>;
-export interface RotateHandledProps {
+export interface RotateProps {
     /**
      * A callback used when the orientation has been updated
      */
@@ -35,5 +34,3 @@ export interface RotateHandledProps {
      */
     portraitLabel?: string;
 }
-
-export type RotateProps = RotateUnhandledProps & RotateHandledProps;
