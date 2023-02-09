@@ -5,105 +5,133 @@ import DefaultValue from "./default-value";
 import ConstValue from "./const-value";
 import SoftRemove from "./soft-remove";
 import {
-    AdditionalControlConfigOptions,
     ControlConfig,
-    ControlTemplateUtilitiesProps,
     FormHTMLElement,
+    ControlTemplateUtilitiesProps,
 } from "./template.control.utilities.props";
-import { ControlType, OnChangeConfig } from "./types";
+import { BadgeType, ControlType, OnChangeConfig } from "./types";
+import { FormStrings } from "../form.props";
 
 /**
- * Control template definition
- * This should be extended to create custom templates
+ * Custom templates can make use of the available utility functions
  */
-abstract class ControlTemplateUtilities<P, S> extends React.Component<
-    P & ControlTemplateUtilitiesProps & AdditionalControlConfigOptions,
-    S
-> {
-    public ref: React.RefObject<FormHTMLElement> = React.createRef<FormHTMLElement>();
 
-    private cache: string;
+export interface RenderSoftRemoveProps {
+    className: string;
+    required: boolean;
+    softRemove?: boolean;
+    type: ControlType;
+    disabled?: boolean;
+    data: boolean;
+    cache: string;
+    dataLocation: string;
+    dictionaryId: string;
+    setCache: (cache: any) => void;
+    onChange: (config: OnChangeConfig) => void;
+}
 
-    public componentDidMount(): void {
-        this.updateValidity();
+export function renderSoftRemove(props: RenderSoftRemoveProps): JSX.Element {
+    if (!props.required && props.softRemove && props.type !== ControlType.linkedData) {
+        return (
+            <SoftRemove
+                className={props.className}
+                checked={props.data !== undefined}
+                onChange={handleSoftRemove(props)}
+                disabled={
+                    props.disabled &&
+                    props.data === undefined &&
+                    props.cache === undefined
+                }
+            />
+        );
     }
+}
 
-    public componentDidUpdate(prevProps: P & ControlTemplateUtilitiesProps): void {
-        if (prevProps.invalidMessage !== this.props.invalidMessage) {
-            this.updateValidity();
-        }
+export interface RenderBadgeProps {
+    className: string;
+    badge?: BadgeType;
+    badgeDescription?: string;
+}
+
+export function renderBadge(props: RenderBadgeProps): React.ReactNode {
+    if (props.badge) {
+        return (
+            <Badge
+                className={props.className}
+                type={props.badge}
+                description={props.badgeDescription}
+            />
+        );
     }
+}
 
-    public renderSoftRemove(className: string): React.ReactNode {
-        if (
-            !this.props.required &&
-            this.props.softRemove &&
-            this.props.type !== ControlType.linkedData
-        ) {
-            return (
-                <SoftRemove
-                    className={className}
-                    checked={this.props.data !== undefined}
-                    onChange={this.handleSoftRemove}
-                    disabled={
-                        this.props.disabled &&
-                        this.props.data === undefined &&
-                        this.cache === undefined
-                    }
-                />
-            );
-        }
+export interface RenderConstValueIndicatorProps {
+    const?: boolean;
+    data: any;
+    className: string;
+    disabled?: boolean;
+    strings: FormStrings;
+    dataLocation: string;
+    dictionaryId: string;
+    onChange: (config: OnChangeConfig) => void;
+}
+
+export function renderConstValueIndicator(
+    props: RenderConstValueIndicatorProps
+): React.ReactNode {
+    if (props.const !== undefined && props.data !== props.const) {
+        return (
+            <ConstValue
+                className={props.className}
+                disabled={props.disabled}
+                onChange={handleSetConstValue(props)}
+                strings={props.strings}
+            />
+        );
     }
+}
 
-    public renderBadge(className: string): React.ReactNode {
-        if (this.props.badge) {
-            return (
-                <Badge
-                    className={className}
-                    type={this.props.badge}
-                    description={this.props.badgeDescription}
-                />
-            );
-        }
+export interface RenderDefaultValueIndicatorProps {
+    default?: any;
+    data: any;
+    className: string;
+    disabled?: boolean;
+    strings: FormStrings;
+    dataLocation: string;
+    dictionaryId: string;
+    onChange: (config: OnChangeConfig) => void;
+}
+
+/**
+ * Renders an indicator that signifies that the value
+ * displayed is a default value
+ */
+export function renderDefaultValueIndicator(
+    props: RenderDefaultValueIndicatorProps
+): React.ReactNode {
+    if (typeof props.default !== "undefined" && !isEqual(props.data, props.default)) {
+        return (
+            <DefaultValue
+                className={props.className}
+                disabled={props.disabled}
+                onChange={handleSetDefaultValue(props)}
+                strings={props.strings}
+            />
+        );
     }
+}
 
-    public renderConstValueIndicator(className: string): React.ReactNode {
-        if (this.props.const !== undefined && this.props.data !== this.props.const) {
-            return (
-                <ConstValue
-                    className={className}
-                    disabled={this.props.disabled}
-                    onChange={this.handleSetConstValue}
-                    strings={this.props.strings}
-                />
-            );
-        }
-    }
+export interface HandleChangeProps {
+    onChange: (config: OnChangeConfig) => void;
+    dataLocation: string;
+    dictionaryId: string;
+}
 
-    /**
-     * Renders an indicator that signifies that the value
-     * displayed is a default value
-     */
-    public renderDefaultValueIndicator(className: string): React.ReactNode {
-        if (
-            typeof this.props.default !== "undefined" &&
-            !isEqual(this.props.data, this.props.default)
-        ) {
-            return (
-                <DefaultValue
-                    className={className}
-                    disabled={this.props.disabled}
-                    onChange={this.handleSetDefaultValue}
-                    strings={this.props.strings}
-                />
-            );
-        }
-    }
-
-    public handleChange = (config: OnChangeConfig): any => {
-        return this.props.onChange({
-            dataLocation: this.props.dataLocation,
-            dictionaryId: this.props.dictionaryId,
+export function handleChange(props: HandleChangeProps): (config: OnChangeConfig) => void {
+    return (config: OnChangeConfig): void => {
+        props.onChange({
+            dataLocation: props.dataLocation,
+            dictionaryId: props.dictionaryId,
             value: config.value,
             isArray: config.isArray,
             isLinkedData: config.isLinkedData,
@@ -111,130 +139,209 @@ abstract class ControlTemplateUtilities<P, S> extends React.Component<
             index: config.index,
         });
     };
+}
 
-    public handleSetDefaultValue = (): void => {
-        this.props.onChange({
-            dataLocation: this.props.dataLocation,
-            dictionaryId: this.props.dictionaryId,
-            value: this.props.default,
-        });
-    };
+export interface HandleSetDefaultValueProps {
+    onChange: (config: OnChangeConfig) => void;
+    dataLocation: string;
+    dictionaryId: string;
+    default?: any;
+}
 
-    public handleSetConstValue = (): void => {
-        this.props.onChange({
-            dataLocation: this.props.dataLocation,
-            dictionaryId: this.props.dictionaryId,
-            value: this.props.const,
-        });
-    };
-
-    public handleSoftRemove = (): void => {
-        if (typeof this.props.data !== "undefined") {
-            this.cache = this.props.data;
-
-            return this.props.onChange({
-                dataLocation: this.props.dataLocation,
-                dictionaryId: this.props.dictionaryId,
-                value: undefined,
-            });
-        } else {
-            return this.props.onChange({
-                dataLocation: this.props.dataLocation,
-                dictionaryId: this.props.dictionaryId,
-                value: this.cache,
-            });
-        }
-    };
-
-    /**
-     * Renders an invalid message
-     */
-    public renderInvalidMessage = (className: string): React.ReactNode => {
-        if (this.props.invalidMessage !== "" && this.props.displayValidationInline) {
-            return <div className={className}>{this.props.invalidMessage}</div>;
-        }
-    };
-
-    /**
-     * updates the validity
-     */
-    public updateValidity = (): void => {
-        const formControlElement: HTMLElement = this.ref.current;
-
-        if (formControlElement !== null && typeof formControlElement !== "undefined") {
-            this.ref.current.setCustomValidity(this.props.invalidMessage);
-        }
-    };
-
-    /**
-     * Reports the current validity of the form item
-     */
-    public reportValidity = (): void => {
-        this.updateValidity();
-
-        if (this.props.displayValidationBrowserDefault) {
-            this.ref.current.reportValidity();
-        }
-    };
-
-    public getConfig(): ControlConfig {
-        return {
-            type: this.props.type,
-            schemaDictionary: this.props.schemaDictionary,
-            dataLocation: this.props.dataLocation,
-            navigationConfigId: this.props.navigationConfigId,
-            dictionaryId: this.props.dictionaryId,
-            dataDictionary: this.props.dataDictionary,
-            navigation: this.props.navigation,
-            schemaLocation: this.props.schemaLocation,
-            disabled: this.props.disabled,
-            value: this.props.data,
-            schema: this.props.schema,
-            elementRef: this.ref,
-            reportValidity: this.reportValidity,
-            updateValidity: this.updateValidity,
-            onChange:
-                this.props.type === ControlType.section
-                    ? this.props.onChange
-                    : this.handleChange,
-            min: this.props.min,
-            max: this.props.max,
-            step: this.props.step,
-            rows: this.props.rows,
-            options: this.props.options,
-            label: this.props.label,
-            onUpdateSection: this.props.onUpdateSection,
-            invalidMessage: this.props.invalidMessage,
-            validationErrors: this.props.validationErrors,
-            displayValidationBrowserDefault: this.props.displayValidationBrowserDefault,
-            displayValidationInline: this.props.displayValidationInline,
-            minItems: this.props.minItems,
-            maxItems: this.props.maxItems,
-            onAddExampleData: this.props.onAddExampleData,
-            default: this.props.default,
-            component: this.props.component,
-            required: this.props.required,
-            controls: this.props.controls,
-            controlComponents: this.props.controlComponents,
-            controlPlugins: this.props.controlPlugins,
-            untitled: this.props.untitled,
-            messageSystem: this.props.messageSystem,
-            strings: this.props.strings,
-            messageSystemOptions: this.props.messageSystemOptions,
-            categories: this.props.categories,
-        };
-    }
-
-    /**
-     * Explicitly updates the default value as the value
-     */
-    public handleUpdateValueToDefaultValue = (): void => {
-        this.props.onChange({
-            dataLocation: this.props.dataLocation,
-            dictionaryId: this.props.dictionaryId,
-            value: this.props.default,
+export function handleSetDefaultValue(props: HandleSetDefaultValueProps): () => void {
+    return function (): void {
+        props.onChange({
+            dataLocation: props.dataLocation,
+            dictionaryId: props.dictionaryId,
+            value: props.default,
         });
     };
 }
 
-export default ControlTemplateUtilities;
+export interface HandleSetConstValueProps {
+    onChange: (config: OnChangeConfig) => void;
+    dataLocation: string;
+    dictionaryId: string;
+    const?: any;
+}
+
+export function handleSetConstValue(props: HandleSetConstValueProps): () => void {
+    return function (): void {
+        props.onChange({
+            dataLocation: props.dataLocation,
+            dictionaryId: props.dictionaryId,
+            value: props.const,
+        });
+    };
+}
+
+export interface HandleSoftRemoveProps {
+    onChange: (config: OnChangeConfig) => void;
+    dataLocation: string;
+    dictionaryId: string;
+    data: any;
+    cache: any;
+    setCache: (cache: any) => void;
+}
+
+function handleSoftRemove(props: HandleSoftRemoveProps): () => void {
+    return function (): void {
+        if (typeof props.data !== "undefined") {
+            props.setCache(props.data);
+
+            return props.onChange({
+                dataLocation: props.dataLocation,
+                dictionaryId: props.dictionaryId,
+                value: undefined,
+            });
+        } else {
+            return props.onChange({
+                dataLocation: props.dataLocation,
+                dictionaryId: props.dictionaryId,
+                value: props.cache,
+            });
+        }
+    };
+}
+
+export interface RenderInvalidMessageProps {
+    className: string;
+    invalidMessage: string;
+    displayValidationInline?: boolean;
+}
+
+/**
+ * Renders an invalid message
+ */
+export function renderInvalidMessage(props: RenderInvalidMessageProps): React.ReactNode {
+    if (props.invalidMessage !== "" && props.displayValidationInline) {
+        return <div className={props.className}>{props.invalidMessage}</div>;
+    }
+}
+
+export interface UpdateValidityProps {
+    ref: React.RefObject<FormHTMLElement>;
+    invalidMessage: string;
+}
+
+/**
+ * updates the validity
+ *
+ * Use:
+ * useEffect(() => {
+ *    updateValidity();
+ * });
+ */
+export function updateValidity(props: UpdateValidityProps): () => void {
+    return function (): void {
+        const formControlElement: HTMLElement = props.ref.current;
+
+        if (formControlElement !== null && typeof formControlElement !== "undefined") {
+            props.ref.current.setCustomValidity(props.invalidMessage);
+        }
+    };
+}
+
+export interface ReportValidityProps {
+    ref: React.RefObject<FormHTMLElement>;
+    invalidMessage: string;
+    displayValidationBrowserDefault?: boolean;
+}
+
+/**
+ * Reports the current validity of the form item
+ */
+function reportValidity(props: ReportValidityProps): () => void {
+    return function (): void {
+        updateValidity(props);
+
+        if (props.displayValidationBrowserDefault) {
+            props.ref.current.reportValidity();
+        }
+    };
+}
+
+export interface GetConfigProps extends ControlTemplateUtilitiesProps {
+    /**
+     * The cache for soft removing data
+     */
+    cache: string;
+
+    /**
+     * The callback for updating the cache
+     */
+    setCache: (cache: string) => void;
+
+    /**
+     * The form element React ref
+     */
+    ref: React.RefObject<FormHTMLElement>;
+}
+
+export function getConfig(props: GetConfigProps): ControlConfig {
+    return {
+        type: props.type,
+        schemaDictionary: props.schemaDictionary,
+        dataLocation: props.dataLocation,
+        navigationConfigId: props.navigationConfigId,
+        dictionaryId: props.dictionaryId,
+        dataDictionary: props.dataDictionary,
+        navigation: props.navigation,
+        schemaLocation: props.schemaLocation,
+        disabled: props.disabled,
+        value: props.data,
+        schema: props.schema,
+        elementRef: props.ref,
+        reportValidity: reportValidity(props),
+        updateValidity: updateValidity(props),
+        onChange:
+            props.type === ControlType.section ? props.onChange : handleChange(props),
+        min: props.min,
+        max: props.max,
+        step: props.step,
+        rows: props.rows,
+        options: props.options,
+        label: props.label,
+        onUpdateSection: props.onUpdateSection,
+        invalidMessage: props.invalidMessage,
+        validationErrors: props.validationErrors,
+        displayValidationBrowserDefault: props.displayValidationBrowserDefault,
+        displayValidationInline: props.displayValidationInline,
+        minItems: props.minItems,
+        maxItems: props.maxItems,
+        onAddExampleData: props.onAddExampleData,
+        default: props.default,
+        component: props.component,
+        required: props.required,
+        controls: props.controls,
+        controlComponents: props.controlComponents,
+        controlPlugins: props.controlPlugins,
+        untitled: props.untitled,
+        messageSystem: props.messageSystem,
+        strings: props.strings,
+        messageSystemOptions: props.messageSystemOptions,
+        categories: props.categories,
+    };
+}
+
+export interface HandleUpdateValueToDefaultValueProps {
+    onChange: (config: OnChangeConfig) => void;
+    dataLocation: string;
+    dictionaryId: string;
+    default: any;
+}
+
+/**
+ * Explicitly updates the default value as the value
+ */
+export function handleUpdateValueToDefaultValue(
+    props: HandleUpdateValueToDefaultValueProps
+): () => void {
+    return function (): void {
+        props.onChange({
+            dataLocation: props.dataLocation,
+            dictionaryId: props.dictionaryId,
+            value: props.default,
+        });
+    };
+}

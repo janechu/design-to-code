@@ -1,5 +1,5 @@
 import { ControlType } from "./types";
-import ControlTemplateUtilities from "./template.control.utilities";
+import * as ControlTemplateUtilities from "./template.control.utilities";
 import StandardControlTemplate from "./template.control.standard";
 import { StandardControlPlugin } from "./plugin.control.standard";
 import SingleLineControlTemplate from "./template.control.single-line";
