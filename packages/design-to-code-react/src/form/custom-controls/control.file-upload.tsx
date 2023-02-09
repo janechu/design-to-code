@@ -1,167 +1,139 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { uniqueId } from "lodash-es";
-import {
-    FileUploadControlProps,
-    FileUploadControlState,
-} from "./control.file-upload.props";
+import { FileUploadControlProps } from "./control.file-upload.props";
 import { classNames } from "@microsoft/fast-web-utilities";
 
 /**
  * Custom form control definition
  */
-class FileUploadControl extends React.Component<
-    FileUploadControlProps,
-    FileUploadControlState
-> {
-    public static displayName: string = "FileUploadControl";
-
+function FileUploadControl(props: FileUploadControlProps) {
     /**
      * The id of the file input
      */
-    public fileId: string;
+    const fileId: string = uniqueId();
 
     /**
      * File reader to handle reading / parsing of file data
      */
-    private reader: FileReader = new FileReader();
+    const reader: FileReader = new FileReader();
 
-    constructor(props: FileUploadControlProps) {
-        super(props);
+    const [dragging, setDragging] = useState(false);
+    const [processing, setProcessing] = useState(false);
 
-        this.fileId = uniqueId();
-        this.state = {
-            dragging: false,
-            processing: false,
+    useEffect(() => {
+        reader.addEventListener("load", handleReaderLoad);
+
+        return function cleanup() {
+            reader.removeEventListener("load", handleReaderLoad);
         };
-    }
-
-    /**
-     * Render the component
-     */
-    public render(): React.ReactNode {
-        return (
-            <div
-                className={classNames("dtc-file-upload-control", [
-                    "dtc-file-upload-control__disabled",
-                    this.props.disabled,
-                ])}
-                onDragEnter={this.cancelEvent}
-                onDragOver={this.dragOver}
-                onDragLeave={this.dragLeave}
-                onDrop={this.onDrop}
-            >
-                {this.state.processing
-                    ? this.generateProcessingUI()
-                    : this.generateStaticUI()}
-            </div>
-        );
-    }
-
-    /**
-     * React lifecycle hook
-     */
-    public componentDidMount(): void {
-        this.reader.addEventListener("load", this.handleReaderLoad);
-    }
-
-    /**
-     * React lifecycle hook
-     */
-    public componentWillUnMount(): void {
-        this.reader.removeEventListener("load", this.handleReaderLoad);
-    }
+    });
 
     /**
      * Callback to call when the reader loads file data
      */
-    private handleReaderLoad = (): void => {
-        this.setState({ processing: false });
-        this.props.onChange({ value: this.reader.result });
-    };
+    function handleReaderLoad(): void {
+        setProcessing(false);
+        props.onChange({ value: reader.result });
+    }
 
     /**
      * Event handler that effectively cancels the event
      */
-    private cancelEvent = (e: React.DragEvent<HTMLDivElement>): void => {
+    function cancelEvent(e: React.DragEvent<HTMLDivElement>): void {
         e.preventDefault();
-    };
+    }
 
     /**
      * Updates the component with new file data
      */
-    private updateWithFile(file: File): void {
+    function updateWithFile(file: File): void {
         // We should exit if file is not actually a File or the type is not an image
         if (!(file instanceof File) || !file.type.includes("image")) {
             return;
         }
 
-        this.setState({ processing: true });
-        this.reader.readAsDataURL(file);
+        setProcessing(true);
+        reader.readAsDataURL(file);
     }
 
     /**
      * Event handler for drag-area dragover event
      */
-    private dragOver = (e: React.DragEvent<HTMLDivElement>): void => {
-        this.cancelEvent(e);
+    function dragOver(e: React.DragEvent<HTMLDivElement>): void {
+        cancelEvent(e);
 
-        if (!this.state.dragging) {
-            this.setState({ dragging: true });
+        if (!dragging) {
+            setDragging(true);
         }
-    };
+    }
 
     /**
      * Event handler for drag-area drag-leave event
      */
-    private dragLeave = (e: React.DragEvent<HTMLDivElement>): void => {
-        this.cancelEvent(e);
-        this.setState({ dragging: false });
-    };
+    function dragLeave(e: React.DragEvent<HTMLDivElement>): void {
+        cancelEvent(e);
+
+        setDragging(false);
+    }
 
     /**
      * Callback for drop event
      */
-    private onDrop = (e: React.DragEvent<HTMLDivElement>): void => {
-        this.cancelEvent(e);
-        this.setState({ dragging: false });
-        this.updateWithFile(e.dataTransfer.files[0]);
-    };
+    function onDrop(e: React.DragEvent<HTMLDivElement>): void {
+        cancelEvent(e);
+
+        setDragging(false);
+        updateWithFile(e.dataTransfer.files[0]);
+    }
 
     /**
      * Callback for input change
      */
-    private handleInputOnChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-        this.updateWithFile(e.target.files[0]);
-    };
+    function handleInputOnChange(e: React.ChangeEvent<HTMLInputElement>): void {
+        updateWithFile(e.target.files[0]);
+    }
 
-    private generateStaticUI(): React.ReactNode {
+    function generateStaticUI(): React.ReactNode {
         return [
-            typeof this.props.value === "string" ? (
+            typeof props.value === "string" ? (
                 <img
                     key={"thumbnail"}
-                    src={this.props.value}
-                    alt={this.props.strings.fileUploadPreviewAlt}
+                    src={props.value}
+                    alt={props.strings.fileUploadPreviewAlt}
                 />
             ) : null,
             <input
                 key={"input"}
                 className={"dtc-file-upload-control_input"}
                 type={"file"}
-                id={this.fileId}
-                onChange={this.handleInputOnChange}
+                id={fileId}
+                onChange={handleInputOnChange}
             />,
             <p key={"info"}>
-                {this.props.strings.fileUploadDragInstr}{" "}
-                <label htmlFor={this.fileId}>
-                    {this.props.strings.fileUploadBrowseFiles}
-                </label>
+                {props.strings.fileUploadDragInstr}{" "}
+                <label htmlFor={fileId}>{props.strings.fileUploadBrowseFiles}</label>
             </p>,
         ];
     }
 
-    private generateProcessingUI(): JSX.Element {
-        return <p>{this.props.strings.fileUploadUploading}</p>;
+    function generateProcessingUI(): JSX.Element {
+        return <p>{props.strings.fileUploadUploading}</p>;
     }
+
+    return (
+        <div
+            className={classNames("dtc-file-upload-control", [
+                "dtc-file-upload-control__disabled",
+                props.disabled,
+            ])}
+            onDragEnter={cancelEvent}
+            onDragOver={dragOver}
+            onDragLeave={dragLeave}
+            onDrop={onDrop}
+        >
+            {processing ? generateProcessingUI() : generateStaticUI()}
+        </div>
+    );
 }
 
 export { FileUploadControl };
