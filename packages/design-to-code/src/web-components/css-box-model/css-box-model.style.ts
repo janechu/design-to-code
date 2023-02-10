@@ -18,16 +18,19 @@ export const cssBoxModelStyles = css`
         display: inline-block;
         margin-bottom: 10px;
     }
-    .singleInput__hidden {
+    .single-input {
+        display: flex;
+    }
+    .single-input__hidden {
         display: none;
     }
-    .sideButton {
+    .layout-button {
         vertical-align: top;
     }
-    .sideButton path {
+    .layout-button path {
         fill: ${neutralForegroundRest};
     }
-    .sideButton__active {
+    .layout-button__active {
         background-color: ${neutralFillStealthActive};
     }
     .grid {

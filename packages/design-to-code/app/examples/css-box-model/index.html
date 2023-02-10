@@ -11,21 +11,25 @@
                 width: 100%;
                 height: 100%;
                 font-family: Arial, Helvetica, sans-serif;
-                background-color: var(--fill-color);
+                background-color: var(--dtc-l4-color);
                 color: white;
             }
         </style>
+        <link
+            rel="stylesheet"
+            href="<%= htmlWebpackPlugin.options.globalCssVariableStylesheet %>"
+        />
     </head>
     <body>
         <div id="root">
             Input:
-            <input id="inputValue" type="text" style="width: 800px;" />
+            <input id="inputValue" type="text" style="width: 800px" />
             <br />
             <br />
             <dtc-css-box-model id="box_model"></dtc-css-box-model>
             <br />
             Output:
-            <input id="outputValue" type="text" style="width: 800px;" />
+            <input id="outputValue" type="text" style="width: 800px" />
         </div>
         <script>
             const boxModelElement = document.getElementById("box_model");
