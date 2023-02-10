@@ -2,20 +2,6 @@ import { CombiningKeyword } from "design-to-code";
 import { FormStrings } from "../form.props";
 import { SectionControlConfig } from "../templates";
 
-/**
- * Section class name contract
- */
-export interface SectionControlClassNameContract {
-    sectionControl: string;
-    sectionControl__disabled: string;
-    sectionControl_category: string;
-    sectionControl_category__expanded: string;
-    sectionControl_categoryTitle: string;
-    sectionControl_categoryTitleRegion: string;
-    sectionControl_categoryExpandTrigger: string;
-    sectionControl_categoryContentRegion: string;
-}
-
 export interface InitialOneOfAnyOfState {
     /**
      * The current schema

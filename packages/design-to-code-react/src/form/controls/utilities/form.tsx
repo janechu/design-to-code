@@ -453,7 +453,7 @@ export function isDefault<T>(value: T | void, defaultValue: T | void): boolean {
     return typeof value === "undefined" && typeof defaultValue !== "undefined";
 }
 
-function getCategoryStateFromCategoryDictionary(
+export function getCategoryStateFromCategoryDictionary(
     categoryDictionary: FormCategoryDictionary,
     dataDictionary: DataDictionary<unknown>,
     dictionaryId: string,
