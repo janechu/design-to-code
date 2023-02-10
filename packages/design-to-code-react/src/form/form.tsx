@@ -58,12 +58,12 @@ interface FormRegisterConfig {
 /**
  * Schema form component definition
  */
-function Form(
+const Form: React.FC<FormProps> = (
     props: Partial<FormProps> = {
         controls: [],
         displayValidationBrowserDefault: true,
     }
-) {
+) => {
     /**
      * The default untitled string
      */
@@ -558,6 +558,6 @@ function Form(
     }
 
     return <div className={classNames("dtc-form")}>{renderForm()}</div>;
-}
+};
 
 export default Form;
