@@ -21,16 +21,16 @@ const sidesButton = html`
  * The template for the box-model component.
  * @public
  */
-export const cssBoxModelTemplate = (context: ElementDefinitionContext) => html<
-    CSSBoxModel
->`
+export const cssBoxModelTemplate = (
+    context: ElementDefinitionContext
+) => html<CSSBoxModel>`
     <template>
         <div class="section">
             <label for="margin" class="section-label">Margin</label>
             <br />
             <div
                 class="${x =>
-                    x.marginOpen ? "singleInput singleInput__hidden" : "singleInput"}"
+                    x.marginOpen ? "single-input single-input__hidden" : "single-input"}"
             >
                 <dtc-units-text-field
                     id="margin"
@@ -41,7 +41,7 @@ export const cssBoxModelTemplate = (context: ElementDefinitionContext) => html<
                 ></dtc-units-text-field>
                 <fast-button
                     appearance="stealth"
-                    class="sideButton"
+                    class="layout-button"
                     @click="${(x, c) =>
                         x.handleOpenButtonClick(expandableSection.margin)}"
                 >
@@ -61,7 +61,7 @@ export const cssBoxModelTemplate = (context: ElementDefinitionContext) => html<
                 <div class="item item-topRight">
                     <fast-button
                         appearance="stealth"
-                        class="sideButton sideButton_active"
+                        class="layout-button layout-button_active"
                         @click="${(x, c) =>
                             x.handleOpenButtonClick(expandableSection.margin)}"
                     >
@@ -104,7 +104,7 @@ export const cssBoxModelTemplate = (context: ElementDefinitionContext) => html<
             <label for="border" class="section-label">Border Width</label>
             <div
                 class="${x =>
-                    x.borderOpen ? "singleInput singleInput__hidden" : "singleInput"}"
+                    x.borderOpen ? "single-input single-input__hidden" : "single-input"}"
             >
                 <dtc-units-text-field
                     id="border"
@@ -115,7 +115,7 @@ export const cssBoxModelTemplate = (context: ElementDefinitionContext) => html<
                 ></dtc-units-text-field>
                 <fast-button
                     appearance="stealth"
-                    class="sideButton"
+                    class="layout-button"
                     @click="${(x, c) =>
                         x.handleOpenButtonClick(expandableSection.border)}"
                 >
@@ -136,7 +136,7 @@ export const cssBoxModelTemplate = (context: ElementDefinitionContext) => html<
                 <div class="item item-topRight">
                     <fast-button
                         appearance="stealth"
-                        class="sideButton sideButton__active"
+                        class="layout-button layout-button__active"
                         @click="${(x, c) =>
                             x.handleOpenButtonClick(expandableSection.border)}"
                     >
@@ -191,7 +191,7 @@ export const cssBoxModelTemplate = (context: ElementDefinitionContext) => html<
                 ></dtc-units-text-field>
                 <fast-button
                     appearance="stealth"
-                    class="sideButton"
+                    class="layout-button"
                     @click="${(x, c) =>
                         x.handleOpenButtonClick(expandableSection.padding)}"
                 >
@@ -211,7 +211,7 @@ export const cssBoxModelTemplate = (context: ElementDefinitionContext) => html<
                 <div class="item item-topRight">
                     <fast-button
                         appearance="stealth"
-                        class="sideButton sideButton__active"
+                        class="layout-button layout-button__active"
                         @click="${(x, c) =>
                             x.handleOpenButtonClick(expandableSection.padding)}"
                     >
