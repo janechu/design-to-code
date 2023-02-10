@@ -23,11 +23,10 @@ import {
     BreadcrumbItemEventHandler,
     ControlPluginConfig,
     FormProps,
-    FormState,
     FormStrings,
 } from "./form.props";
 import { cloneDeep, get } from "lodash-es";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import defaultStrings from "./form.strings";
 import { classNames } from "@microsoft/fast-web-utilities";
 import {
@@ -58,97 +57,77 @@ interface FormRegisterConfig {
 
 /**
  * Schema form component definition
- * @extends React.Component
  */
-class Form extends React.Component<FormProps, FormState> {
-    public static displayName: string = "Form";
-
-    public static defaultProps: Partial<FormProps> = {
+function Form(
+    props: Partial<FormProps> = {
         controls: [],
         displayValidationBrowserDefault: true,
-    };
-
+    }
+) {
     /**
      * The default untitled string
      */
-    private untitled: string;
+    const untitled: string = "Untitled";
 
     /**
      * The default form controls
      */
-    private selectControl: StandardControlPlugin;
-    private displayControl: StandardControlPlugin;
-    private linkedDataControl: StandardControlPlugin;
-    private sectionLinkControl: StandardControlPlugin;
-    private sectionControl: BareControlPlugin;
-    private checkboxControl: SingleLineControlPlugin;
-    private numberFieldControl: StandardControlPlugin;
-    private textareaControl: StandardControlPlugin;
-    private arrayControl: StandardControlPlugin;
-    private buttonControl: StandardControlPlugin;
+    let selectControl: StandardControlPlugin;
+    let displayControl: StandardControlPlugin;
+    let linkedDataControl: StandardControlPlugin;
+    let sectionLinkControl: StandardControlPlugin;
+    let sectionControl: BareControlPlugin;
+    let checkboxControl: SingleLineControlPlugin;
+    let numberFieldControl: StandardControlPlugin;
+    let textareaControl: StandardControlPlugin;
+    let arrayControl: StandardControlPlugin;
+    let buttonControl: StandardControlPlugin;
 
     /**
      * The default form components as a dictionary
      * by type
      */
-    private controlComponents: {
+    const controlComponents: {
         [key: string]: React.ComponentClass | React.FunctionComponent;
     } = {};
 
-    private messageSystemConfig: Register<FormRegisterConfig>;
-    private strings: FormStrings = defaultStrings;
+    let strings: FormStrings = !!props.strings ? props.strings : defaultStrings;
 
-    constructor(props: FormProps) {
-        super(props);
+    updateControls();
 
-        this.untitled = "Untitled";
+    const [activeDictionaryId, setActiveDictionaryId] = useState("");
+    const [activeNavigationConfigId, setActiveNavigationConfigId] = useState("");
+    const [data, setData] = useState(void 0);
+    const [dataDictionary, setDataDictionary] = useState(void 0);
+    const [schemaDictionary, setSchemaDictionary] = useState({});
+    const [navigationDictionary, setNavigationDictionary] = useState(void 0);
+    const [validationErrors, setValidationErrors] = useState({});
+    const [options, setOptions] = useState(null);
 
-        this.updateControls();
-
-        this.messageSystemConfig = {
-            onMessage: this.handleMessageSystem,
+    useEffect(() => {
+        const messageSystemConfig: Register<FormRegisterConfig> = {
+            onMessage: handleMessageSystem,
             config: {
                 displayTextDataLocation: dataSetName,
             },
         };
 
         if (props.messageSystem !== undefined) {
-            props.messageSystem.add(this.messageSystemConfig);
+            props.messageSystem.add(messageSystemConfig);
         }
 
-        if (!!props.strings) {
-            this.strings = props.strings;
-        }
-
-        this.state = {
-            activeDictionaryId: "",
-            activeNavigationConfigId: "",
-            data: void 0,
-            dataDictionary: void 0,
-            schema: {},
-            schemaDictionary: {},
-            navigation: void 0,
-            navigationDictionary: void 0,
-            validationErrors: {},
-            options: null,
+        return function cancel() {
+            if (props.messageSystem !== undefined) {
+                props.messageSystem.remove(messageSystemConfig);
+            }
         };
-    }
+    });
 
-    public render(): React.ReactNode {
-        return <div className={classNames("dtc-form")}>{this.renderForm()}</div>;
-    }
-
-    public componentWillUnmount(): void {
-        if (this.props.messageSystem !== undefined) {
-            this.props.messageSystem.remove(this.messageSystemConfig);
-        }
-    }
-
-    private renderForm(): React.ReactNode {
-        return this.state.navigationDictionary ? (
-            <form onSubmit={this.handleSubmit}>
-                {this.renderBreadcrumbs()}
-                {this.renderSection()}
+    function renderForm(): React.ReactNode {
+        return navigationDictionary ? (
+            <form onSubmit={handleSubmit}>
+                {renderBreadcrumbs()}
+                {renderSection()}
             </form>
         ) : null;
     }
@@ -156,16 +135,16 @@ class Form extends React.Component<FormProps, FormState> {
     /**
      * Handle messages from the message system
      */
-    private handleMessageSystem = (e: MessageEvent): void => {
+    function handleMessageSystem(e: MessageEvent): void {
         let setState = false;
-        let activeDictionaryId: string = e.data.activeDictionaryId;
+        let updatedActiveDictionaryId: string = e.data.activeDictionaryId;
 
         switch (e.data.type) {
             case MessageSystemType.initialize:
             case MessageSystemType.data:
-                activeDictionaryId = e.data?.activeDictionaryId
+                updatedActiveDictionaryId = e.data?.activeDictionaryId
                     ? e.data.activeDictionaryId
-                    : this.state.activeDictionaryId;
+                    : activeDictionaryId;
             case MessageSystemType.navigation:
             case MessageSystemType.validation:
             case MessageSystemType.schemaDictionary:
@@ -174,54 +153,47 @@ class Form extends React.Component<FormProps, FormState> {
         }
 
         if (setState) {
-            const schemaDictionary: SchemaDictionary = e.data.schemaDictionary;
-            let dataDictionary: DataDictionary<unknown> = e.data.dataDictionary;
-            let navigationDictionary: NavigationConfigDictionary =
+            const updatedSchemaDictionary: SchemaDictionary = e.data.schemaDictionary;
+            let updatedDataDictionary: DataDictionary<unknown> = e.data.dataDictionary;
+            let updatedNavigationDictionary: NavigationConfigDictionary =
                 e.data.navigationDictionary;
-            let activeDictionaryId: string = e.data.activeDictionaryId;
-            let activeNavigationConfigId: string = e.data.activeNavigationConfigId;
-            let validationErrors: Validation = e.data.validation;
-            let schema: any =
-                schemaDictionary[dataDictionary[0][activeDictionaryId].schemaId];
-            let data: any = dataDictionary[0][activeDictionaryId].data;
-            let navigation: NavigationConfig =
-                navigationDictionary[0][activeDictionaryId];
-            let options = e.data.options;
+            let updatedActiveDictionaryId: string = e.data.activeDictionaryId;
+            let updatedActiveNavigationConfigId: string = e.data.activeNavigationConfigId;
+            let updatedValidationErrors: Validation = e.data.validation;
+            let updatedData: any =
+                updatedDataDictionary[0][updatedActiveDictionaryId].data;
+            let updatedOptions = e.data.options;
 
-            this.setState({
-                schemaDictionary,
-                dataDictionary,
-                activeDictionaryId,
-                activeNavigationConfigId,
-                navigationDictionary,
-                navigation,
-                validationErrors,
-                options,
-                schema,
-                data,
-            });
+            setSchemaDictionary(updatedSchemaDictionary);
+            setDataDictionary(updatedDataDictionary);
+            setActiveDictionaryId(updatedActiveDictionaryId);
+            setActiveNavigationConfigId(updatedActiveNavigationConfigId);
+            setNavigationDictionary(updatedNavigationDictionary);
+            setValidationErrors(updatedValidationErrors);
+            setOptions(updatedOptions);
+            setData(updatedData);
         }
-    };
+    }
 
     /**
      * Find all type controls passed and use them in
      * place of the default controls
      */
-    private findControlPlugin(
+    function findControlPlugin(
         hasCustomControlPlugins: boolean,
         type: ControlType
     ): StandardControlPlugin {
-        const controlPluginConfig: ControlPluginConfig = this.getComponentByType(type);
+        const controlPluginConfig: ControlPluginConfig = getComponentByType(type);
 
         if (hasCustomControlPlugins) {
-            const controlPlugin: StandardControlPlugin = this.props.controls.find(
+            const controlPlugin: StandardControlPlugin = props.controls.find(
                 (control: StandardControlPlugin): boolean => {
                     return control.matchesType(type);
                 }
             );
 
             if (controlPlugin !== undefined) {
-                this.controlComponents[type] =
+                controlComponents[type] =
                     controlPlugin.config.component !== undefined
                         ? controlPlugin.config.component
                         : controlPluginConfig.component;
@@ -229,14 +201,14 @@ class Form extends React.Component<FormProps, FormState> {
                 return controlPlugin;
             }
 
-            const allControlsPlugin: StandardControlPlugin = this.props.controls.find(
+            const allControlsPlugin: StandardControlPlugin = props.controls.find(
                 (control: StandardControlPlugin): boolean => {
                     return control.matchesAllTypes();
                 }
             );
 
             if (allControlsPlugin !== undefined) {
-                this.controlComponents[type] =
+                controlComponents[type] =
                     allControlsPlugin.config.component !== undefined
                         ? allControlsPlugin.config.component
                         : controlPluginConfig.component;
@@ -246,7 +218,7 @@ class Form extends React.Component<FormProps, FormState> {
         }
 
         const ControlComponent = controlPluginConfig.component as React.ComponentClass;
-        this.controlComponents[type] = ControlComponent;
+        controlComponents[type] = ControlComponent;
 
         return new controlPluginConfig.plugin({
             ...controlPluginConfig,
@@ -257,7 +229,7 @@ class Form extends React.Component<FormProps, FormState> {
         });
     }
 
-    private getComponentByType(type: ControlType): ControlPluginConfig {
+    function getComponentByType(type: ControlType): ControlPluginConfig {
         switch (type) {
             case ControlType.select:
                 return {
@@ -322,72 +294,57 @@ class Form extends React.Component<FormProps, FormState> {
         }
     }
 
-    private updateControls(): void {
-        const hasCustomControlPlugins: boolean = Array.isArray(this.props.controls);
+    function updateControls(): void {
+        const hasCustomControlPlugins: boolean = Array.isArray(props.controls);
 
-        this.selectControl = this.findControlPlugin(
-            hasCustomControlPlugins,
-            ControlType.select
-        );
-        this.arrayControl = this.findControlPlugin(
-            hasCustomControlPlugins,
-            ControlType.array
-        );
-        this.linkedDataControl = this.findControlPlugin(
+        selectControl = findControlPlugin(hasCustomControlPlugins, ControlType.select);
+        arrayControl = findControlPlugin(hasCustomControlPlugins, ControlType.array);
+        linkedDataControl = findControlPlugin(
             hasCustomControlPlugins,
             ControlType.linkedData
         );
-        this.numberFieldControl = this.findControlPlugin(
+        numberFieldControl = findControlPlugin(
             hasCustomControlPlugins,
             ControlType.numberField
         );
-        this.checkboxControl = this.findControlPlugin(
+        checkboxControl = findControlPlugin(
             hasCustomControlPlugins,
             ControlType.checkbox
         );
-        this.sectionLinkControl = this.findControlPlugin(
+        sectionLinkControl = findControlPlugin(
             hasCustomControlPlugins,
             ControlType.sectionLink
         );
-        this.textareaControl = this.findControlPlugin(
+        textareaControl = findControlPlugin(
             hasCustomControlPlugins,
             ControlType.textarea
         );
-        this.displayControl = this.findControlPlugin(
-            hasCustomControlPlugins,
-            ControlType.display
-        );
-        this.buttonControl = this.findControlPlugin(
-            hasCustomControlPlugins,
-            ControlType.button
-        );
-        this.sectionControl = this.findControlPlugin(
-            hasCustomControlPlugins,
-            ControlType.section
-        );
+        displayControl = findControlPlugin(hasCustomControlPlugins, ControlType.display);
+        buttonControl = findControlPlugin(hasCustomControlPlugins, ControlType.button);
+        sectionControl = findControlPlugin(hasCustomControlPlugins, ControlType.section);
     }
 
     /**
      * Generates the breadcrumb navigation
      */
-    private renderBreadcrumbs(): JSX.Element {
+    function renderBreadcrumbs(): JSX.Element {
         const breadcrumbs: BreadcrumbItem[] = getDictionaryBreadcrumbs(
-            this.state.navigationDictionary,
-            this.state.activeDictionaryId,
-            this.state.activeNavigationConfigId,
-            this.handleBreadcrumbClick
+            navigationDictionary,
+            activeDictionaryId,
+            activeNavigationConfigId,
+            handleBreadcrumbClick
         );
 
         if (breadcrumbs.length > 1) {
             return (
                 <ul className={"dtc-form_breadcrumbs dtc-common-clean-list"}>
-                    {this.renderBreadcrumbItems(breadcrumbs)}
+                    {renderBreadcrumbItems(breadcrumbs)}
                 </ul>
             );
         }
     }
 
-    private renderBreadcrumbItems(items: BreadcrumbItem[]): React.ReactNode {
+    function renderBreadcrumbItems(items: BreadcrumbItem[]): React.ReactNode {
         return items.map((item: BreadcrumbItem, index: number): JSX.Element => {
             if (index === items.length - 1) {
                 return (
@@ -410,24 +367,22 @@ class Form extends React.Component<FormProps, FormState> {
     /**
      * Render the section to be shown
      */
-    private renderSection(): React.ReactNode {
-        let control: BareControlPlugin = this.sectionControl;
+    function renderSection(): React.ReactNode {
+        let control: BareControlPlugin = sectionControl;
         const navigationItem: TreeNavigationItem =
-            this.state.navigationDictionary[0][this.state.activeDictionaryId][0][
-                this.state.activeNavigationConfigId
-            ];
+            navigationDictionary[0][activeDictionaryId][0][activeNavigationConfigId];
 
         // Check to see if there is any associated `formControlId`
         // then check for the id within the passed controlPlugins
         if (typeof get(navigationItem, `schema.formControlId`) === "string") {
-            control = this.props.controls.find((controlPlugin: StandardControlPlugin) => {
+            control = props.controls.find((controlPlugin: StandardControlPlugin) => {
                 return controlPlugin.matchesId(
                     (navigationItem.schema as any).formControlId
                 );
             });
 
             if (control === undefined) {
-                control = this.sectionControl;
+                control = sectionControl;
             }
         }
 
@@ -435,69 +390,67 @@ class Form extends React.Component<FormProps, FormState> {
             index: 0,
             type: ControlType.section,
             required: false,
-            label: navigationItem.text || this.untitled,
+            label: navigationItem.text || untitled,
             invalidMessage: "",
-            component: this.controlComponents[ControlType.section],
+            component: controlComponents[ControlType.section],
             schema: navigationItem.schema,
-            schemaDictionary: this.state.schemaDictionary,
+            schemaDictionary,
             controls: {
-                button: this.buttonControl,
-                array: this.arrayControl,
-                linkedData: this.linkedDataControl,
-                checkbox: this.checkboxControl,
-                display: this.displayControl,
-                textarea: this.textareaControl,
-                select: this.selectControl,
-                section: this.sectionControl,
-                sectionLink: this.sectionLinkControl,
-                numberField: this.numberFieldControl,
+                button: buttonControl,
+                array: arrayControl,
+                linkedData: linkedDataControl,
+                checkbox: checkboxControl,
+                display: displayControl,
+                textarea: textareaControl,
+                select: selectControl,
+                section: sectionControl,
+                sectionLink: sectionLinkControl,
+                numberField: numberFieldControl,
             },
-            controlPlugins: this.props.controls,
-            controlComponents: this.controlComponents,
-            onChange: this.handleOnChange,
-            onUpdateSection: this.handleUpdateActiveSection,
+            controlPlugins: props.controls,
+            controlComponents: controlComponents,
+            onChange: handleOnChange,
+            onUpdateSection: handleUpdateActiveSection,
             data: navigationItem.data,
             schemaLocation: navigationItem.schemaLocation,
             default: get(navigationItem, "schema.default"),
             disabled: navigationItem.disabled,
             dataLocation:
-                this.state.navigationDictionary[0][this.state.activeDictionaryId][0][
-                    navigationItem.self
-                ].relativeDataLocation,
+                navigationDictionary[0][activeDictionaryId][0][navigationItem.self]
+                    .relativeDataLocation,
             navigationConfigId: navigationItem.self,
-            dictionaryId: this.state.activeDictionaryId,
-            dataDictionary: this.state.dataDictionary,
-            navigation:
-                this.state.navigationDictionary[0][this.state.activeDictionaryId][0],
-            untitled: this.untitled,
-            validationErrors: this.state.validationErrors[this.state.activeDictionaryId],
-            displayValidationBrowserDefault: this.props.displayValidationBrowserDefault,
-            displayValidationInline: this.props.displayValidationInline,
-            messageSystem: this.props.messageSystem,
-            strings: this.strings,
-            messageSystemOptions: this.state.options,
-            categories: this.props.categories || {},
+            dictionaryId: activeDictionaryId,
+            dataDictionary: dataDictionary,
+            navigation: navigationDictionary[0][activeDictionaryId][0],
+            untitled: untitled,
+            validationErrors: validationErrors[activeDictionaryId],
+            displayValidationBrowserDefault: props.displayValidationBrowserDefault,
+            displayValidationInline: props.displayValidationInline,
+            messageSystem: props.messageSystem,
+            strings: strings,
+            messageSystemOptions: options,
+            categories: props.categories || {},
         });
 
         return control.render();
     }
 
-    private handleBreadcrumbClick = (
+    function handleBreadcrumbClick(
         dictionaryId: string,
         navigationConfigId: string
-    ): BreadcrumbItemEventHandler => {
+    ): BreadcrumbItemEventHandler {
         return (e: React.MouseEvent): void => {
             e.preventDefault();
 
-            this.handleUpdateActiveSection(dictionaryId, navigationConfigId);
+            handleUpdateActiveSection(dictionaryId, navigationConfigId);
         };
-    };
+    }
 
-    private handleOnChange = (config: OnChangeConfig): void => {
-        if (this.props.messageSystem) {
+    function handleOnChange(config: OnChangeConfig): void {
+        if (props.messageSystem) {
             if (config.isLinkedData) {
                 if (config.linkedDataAction === LinkedDataActionType.add) {
-                    this.props.messageSystem.postMessage({
+                    props.messageSystem.postMessage({
                         type: MessageSystemType.data,
                         action: MessageSystemDataTypeAction.addLinkedData,
                         dataLocation: config.dataLocation,
@@ -507,7 +460,7 @@ class Form extends React.Component<FormProps, FormState> {
                         },
                     });
                 } else if (config.linkedDataAction === LinkedDataActionType.reorder) {
-                    this.props.messageSystem.postMessage({
+                    props.messageSystem.postMessage({
                         type: MessageSystemType.data,
                         action: MessageSystemDataTypeAction.reorderLinkedData,
                         dataLocation: config.dataLocation,
@@ -517,7 +470,7 @@ class Form extends React.Component<FormProps, FormState> {
                         },
                     });
                 } else if (config.linkedDataAction === LinkedDataActionType.remove) {
-                    this.props.messageSystem.postMessage({
+                    props.messageSystem.postMessage({
                         type: MessageSystemType.data,
                         action: MessageSystemDataTypeAction.removeLinkedData,
                         dataLocation: config.dataLocation,
@@ -528,9 +481,7 @@ class Form extends React.Component<FormProps, FormState> {
                     });
                 }
             } else if (config.isArray) {
-                const updatedData: any = cloneDeep(
-                    get(this.state.data, config.dataLocation)
-                );
+                const updatedData: any = cloneDeep(get(data, config.dataLocation));
                 let newArray: any[];
 
                 if (typeof config.index !== "undefined") {
@@ -542,7 +493,7 @@ class Form extends React.Component<FormProps, FormState> {
                     newArray.push(config.value);
                 }
 
-                this.props.messageSystem.postMessage({
+                props.messageSystem.postMessage({
                     type: MessageSystemType.data,
                     action: MessageSystemDataTypeAction.update,
                     dataLocation: config.dataLocation,
@@ -553,7 +504,7 @@ class Form extends React.Component<FormProps, FormState> {
                 });
             } else {
                 if (config.value === undefined) {
-                    this.props.messageSystem.postMessage({
+                    props.messageSystem.postMessage({
                         type: MessageSystemType.data,
                         action: MessageSystemDataTypeAction.remove,
                         dataLocation: config.dataLocation,
@@ -562,7 +513,7 @@ class Form extends React.Component<FormProps, FormState> {
                         },
                     });
                 } else {
-                    this.props.messageSystem.postMessage({
+                    props.messageSystem.postMessage({
                         type: MessageSystemType.data,
                         action: MessageSystemDataTypeAction.update,
                         dataLocation: config.dataLocation,
@@ -574,37 +525,39 @@ class Form extends React.Component<FormProps, FormState> {
                 }
             }
         }
-    };
+    }
 
     /**
      * Handles the form submit
      */
-    private handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+    function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
         e.preventDefault();
-    };
+    }
 
     /**
      * Handles an update to the active section and component
      */
-    private handleUpdateActiveSection = (
+    function handleUpdateActiveSection(
         dictionaryId: string,
         navigationConfigId?: string
-    ): void => {
-        if (this.props.messageSystem) {
-            this.props.messageSystem.postMessage({
+    ): void {
+        if (props.messageSystem) {
+            props.messageSystem.postMessage({
                 type: MessageSystemType.navigation,
                 action: MessageSystemNavigationTypeAction.update,
                 activeNavigationConfigId:
                     navigationConfigId !== undefined
                         ? navigationConfigId
-                        : this.state.navigationDictionary[0][dictionaryId][1],
+                        : navigationDictionary[0][dictionaryId][1],
                 activeDictionaryId: dictionaryId,
                 options: {
                     originatorId: formId,
                 },
             });
         }
-    };
+    }
+
+    return <div className={classNames("dtc-form")}>{renderForm()}</div>;
 }
 
 export default Form;
