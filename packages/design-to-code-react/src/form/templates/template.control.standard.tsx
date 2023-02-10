@@ -59,7 +59,7 @@ function StandardControlTemplate(props: StandardControlTemplateProps) {
     };
 
     function renderControl(context: ControlContext): React.ReactNode {
-        return context === props.context
+        return context === (props.context || ControlContext.default)
             ? props.control(getConfig({ ...aggregateProps }))
             : null;
     }
