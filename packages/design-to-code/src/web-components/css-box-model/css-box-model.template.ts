@@ -39,14 +39,13 @@ export const cssBoxModelTemplate = (
                     :value="${x => x.uiValues.margin.getCSSShorthandFourValues()}"
                     @change="${(x, c) => x.handleInputChange("margin", c.event)}"
                 ></dtc-units-text-field>
-                <fast-button
-                    appearance="stealth"
+                <button
                     class="layout-button"
                     @click="${(x, c) =>
                         x.handleOpenButtonClick(expandableSection.margin)}"
                 >
                     ${sidesButton}
-                </fast-button>
+                </button>
             </div>
             <div class="${x => (x.marginOpen ? "grid" : "grid grid__hidden")}">
                 <div class="item item-top">
@@ -58,15 +57,14 @@ export const cssBoxModelTemplate = (
                         @change="${(x, c) => x.handleInputChange("margin-top", c.event)}"
                     ></dtc-units-text-field>
                 </div>
-                <div class="item item-topRight">
-                    <fast-button
-                        appearance="stealth"
-                        class="layout-button layout-button_active"
+                <div class="item item-top-right">
+                    <button
+                        class="layout-button layout-button__active"
                         @click="${(x, c) =>
                             x.handleOpenButtonClick(expandableSection.margin)}"
                     >
                         ${sidesButton}
-                    </fast-button>
+                    </button>
                 </div>
                 <div class="item item-left">
                     <dtc-units-text-field
@@ -113,14 +111,13 @@ export const cssBoxModelTemplate = (
                     :value="${x => x.uiValues.borderWidth.getCSSShorthandFourValues()}"
                     @change="${(x, c) => x.handleInputChange("border-width", c.event)}"
                 ></dtc-units-text-field>
-                <fast-button
-                    appearance="stealth"
+                <button
                     class="layout-button"
                     @click="${(x, c) =>
                         x.handleOpenButtonClick(expandableSection.border)}"
                 >
                     ${sidesButton}
-                </fast-button>
+                </button>
             </div>
             <div class="${x => (x.borderOpen ? "grid" : "grid grid__hidden")}">
                 <div class="item item-top">
@@ -133,15 +130,14 @@ export const cssBoxModelTemplate = (
                             x.handleInputChange("border-top-width", c.event)}"
                     ></dtc-units-text-field>
                 </div>
-                <div class="item item-topRight">
-                    <fast-button
-                        appearance="stealth"
+                <div class="item item-top-right">
+                    <button
                         class="layout-button layout-button__active"
                         @click="${(x, c) =>
                             x.handleOpenButtonClick(expandableSection.border)}"
                     >
                         ${sidesButton}
-                    </fast-button>
+                    </button>
                 </div>
                 <div class="item item-left">
                     <dtc-units-text-field
@@ -180,7 +176,7 @@ export const cssBoxModelTemplate = (
             <label for="padding" class="section-label">Padding</label>
             <div
                 class="${x =>
-                    x.paddingOpen ? "singleInput singleInput__hidden" : "singleInput"}"
+                    x.paddingOpen ? "single-input single-input__hidden" : "single-input"}"
             >
                 <dtc-units-text-field
                     id="padding"
@@ -189,14 +185,13 @@ export const cssBoxModelTemplate = (
                     :value="${x => x.uiValues.padding.getCSSShorthandFourValues()}"
                     @change="${(x, c) => x.handleInputChange("padding", c.event)}"
                 ></dtc-units-text-field>
-                <fast-button
-                    appearance="stealth"
+                <button
                     class="layout-button"
                     @click="${(x, c) =>
                         x.handleOpenButtonClick(expandableSection.padding)}"
                 >
                     ${sidesButton}
-                </fast-button>
+                </button>
             </div>
             <div class="${x => (x.paddingOpen ? "grid" : "grid grid__hidden")}">
                 <div class="item item-top">
@@ -208,15 +203,14 @@ export const cssBoxModelTemplate = (
                         @change="${(x, c) => x.handleInputChange("padding-top", c.event)}"
                     ></dtc-units-text-field>
                 </div>
-                <div class="item item-topRight">
-                    <fast-button
-                        appearance="stealth"
+                <div class="item item-top-right">
+                    <button
                         class="layout-button layout-button__active"
                         @click="${(x, c) =>
                             x.handleOpenButtonClick(expandableSection.padding)}"
                     >
                         ${sidesButton}
-                    </fast-button>
+                    </button>
                 </div>
                 <div class="item item-left">
                     <dtc-units-text-field

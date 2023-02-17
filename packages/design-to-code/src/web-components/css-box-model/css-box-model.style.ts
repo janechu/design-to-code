@@ -1,8 +1,3 @@
-import {
-    neutralFillStealthActive,
-    neutralForegroundRest,
-    typeRampBaseFontSize,
-} from "@microsoft/fast-components";
 import { css } from "@microsoft/fast-element";
 
 export const cssBoxModelStyles = css`
@@ -25,18 +20,24 @@ export const cssBoxModelStyles = css`
         display: none;
     }
     .layout-button {
+        display: flex;
+        border-radius: var(--dtc-border-radius);
         vertical-align: top;
+        background: none;
+        border: 0px;
+        padding: 1px 4px;
+        margin-top: 4px;
     }
     .layout-button path {
-        fill: ${neutralForegroundRest};
+        fill: var(--dtc-text-color);
     }
     .layout-button__active {
-        background-color: ${neutralFillStealthActive};
+        background-color: var(--dtc-accent-color);
     }
     .grid {
         display: grid;
         grid-template-columns: 33% 33% 33%;
-        color: ${neutralForegroundRest};
+        color: var(--dtc-text-color);
     }
     .grid-dimension {
         grid-template-columns: 50% 50%;
@@ -54,14 +55,14 @@ export const cssBoxModelStyles = css`
     .item-label {
         overflow: visible;
         justify-content: start;
-        font-size: ${typeRampBaseFontSize};
+        font-size: var(--dtc-text-size-default);
         width: 25px;
     }
     .item-top {
         grid-row: 1;
         grid-column: 2;
     }
-    .item-topRight {
+    .item-top-right {
         grid-column: 3;
         justify-content: right;
     }
