@@ -1,4 +1,4 @@
-import { observable } from "@microsoft/fast-element";
+import { attr, observable } from "@microsoft/fast-element";
 import { keySpace } from "@microsoft/fast-web-utilities";
 import { mapCSSInlineStyleToCSSPropertyDictionary } from "../../data-utilities/mapping.mdn-data.js";
 import { dtcPrefix } from "../utilities/index.js";
@@ -19,6 +19,12 @@ import {
  * @public
  */
 export class CSSLayout extends FormAssociatedCSSLayout {
+    /**
+     * The toggle stylesheet path
+     */
+    @attr({ attribute: "control-toggle-stylesheet" })
+    public controlToggleStylesheet: string;
+
     /**
      * When true the css-layout controls are visible
      * @internal

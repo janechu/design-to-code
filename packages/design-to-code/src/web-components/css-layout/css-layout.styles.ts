@@ -1,11 +1,5 @@
 import { css } from "@microsoft/fast-element";
 
-const radioBackgroundColor = "#222";
-const activeRadioBackgroundColor = "#333";
-const numberfieldBorderColor = "#333";
-const activeRadioBorderColor = "#282828";
-const borderRadius = "3px";
-
 export const cssLayoutStyles = css`
     :host {
         display: flex;
@@ -20,21 +14,21 @@ export const cssLayoutStyles = css`
         margin: 10px 0 5px;
     }
 
-    .flexboxRegion {
+    .flexbox-region {
         display: none;
     }
 
-    .flexboxRegion__active {
+    .flexbox-region__active {
         display: block;
     }
 
-    .controlRegion,
-    .controlRegion-row {
+    .control-region,
+    .control-region-row {
         display: flex;
         flex-direction: column;
     }
 
-    .controlRegion-row {
+    .control-region-row {
         flex-direction: row;
     }
 
@@ -56,7 +50,7 @@ export const cssLayoutStyles = css`
         outline: none;
         border: none;
         width: 40px;
-        border-left: 1px solid ${numberfieldBorderColor};
+        border-left: 1px solid var(--dtc-l3-outline-color);
         color: #fff;
     }
 
@@ -66,34 +60,42 @@ export const cssLayoutStyles = css`
 
     .numberfield-item {
         display: flex;
-        border: 1px solid ${numberfieldBorderColor};
-        border-radius: ${borderRadius};
+        border: 1px solid var(--dtc-l3-outline-color);
+        border-radius: var(--dtc-border-radius);
     }
 
-    .radioRegion {
+    .radio-region {
         display: flex;
-        column-gap: 2px;
+        column-gap: 4px;
     }
 
-    .radioRegion-contentItem {
-        background: ${radioBackgroundColor};
-        border-radius: ${borderRadius};
-        border: 3px solid #1b1b1b;
+    .radio-region-content-item {
+        background: var(--dtc-l1-color);
+        border-radius: var(--dtc-border-radius);
         position: relative;
         height: 24px;
         max-width: 24px;
     }
 
-    .radioRegion-contentItem__active {
-        background: ${activeRadioBackgroundColor};
-        border-color: ${activeRadioBorderColor};
+    .radio-region-content-item__active {
+        background: var(--dtc-accent-color);
     }
 
-    .radioRegion-input {
+    .radio-region-input {
         width: 24px;
         height: 24px;
         margin: 0;
         opacity: 0;
+    }
+
+    [role="tooltip"] {
+        display: none;
+        font-size: var(--dtc-text-size-default);
+    }
+
+    .radio-region-input:hover + [role="tooltip"],
+    .radio-region-inputbutton:focus + [role="tooltip"] {
+        display: block;
     }
 
     svg {

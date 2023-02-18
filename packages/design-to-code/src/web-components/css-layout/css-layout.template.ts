@@ -1,4 +1,3 @@
-import { Tooltip } from "@microsoft/fast-components";
 import { html, repeat } from "@microsoft/fast-element";
 import { ElementDefinitionContext, Switch } from "@microsoft/fast-foundation";
 import { CSSLayout } from "./css-layout.js";
@@ -531,29 +530,34 @@ const columnGap = html`
  */
 export const cssLayoutTemplate = (context: ElementDefinitionContext) => html<CSSLayout>`
     <template>
-        <div class="controlRegion">
-            <${context.tagFor(Switch)}
+        <link rel="stylesheet" href="${x => x.controlToggleStylesheet}" />
+        <div class="control-region dtc-toggle-control">
+            <input
+                id="enable-flexbox"
+                class=""
+                type="checkbox"
                 :checked="${x => x.flexEnabled}"
                 @keypress="${(x, c) =>
                     x.handleKeypressToggleCSSLayout(c.event as KeyboardEvent)}"
                 @click="${(x, c) => x.handleClickToggleCSSLayout()}"
-            >
-                Enable Flexbox
-            </${context.tagFor(Switch)}>
+            />
+            <label for="enable-flexbox">Enable Flexbox</label>
         </div>
-        <div class="${x => (x.flexEnabled ? `flexboxRegion__active` : "flexboxRegion")}">
-            <div class="controlRegion">
-                <label for="dtc-css-flex-direction">Direction</label>
-                <div class="radioRegion">
+        <div
+            class="${x => (x.flexEnabled ? `flexbox-region__active` : "flexbox-region")}"
+        >
+            <div class="control-region">
+                <label for="css-flex-direction">Direction</label>
+                <div class="radio-region">
                     ${repeat(
                         x => x.flexDirectionOptions,
                         html<string, CSSLayout>`
                             <div
-                                class="radioRegion-contentItem ${(x, c) =>
+                                class="radio-region-content-item ${(x, c) =>
                                     c.parent.flexDirectionName} ${x => x} ${(x, c) =>
-                            x === c.parent.flexDirectionValue
-                                ? "radioRegion-contentItem__active"
-                                : ""}"
+                                    x === c.parent.flexDirectionValue
+                                        ? "radio-region-content-item__active"
+                                        : ""}"
                             >
                                 ${x =>
                                     x === "row"
@@ -570,8 +574,8 @@ export const cssLayoutTemplate = (context: ElementDefinitionContext) => html<CSS
                                             x
                                         )}"
                                     type="radio"
-                                    class="radioRegion-input"
-                                    aria-label="${x => x}"
+                                    class="radio-region-input"
+                                    aria-labelledby="${x => x}-tooltip"
                                     name="${(x, c) => c.parent.flexDirectionName}"
                                     value="${x => x}"
                                     ?checked="${(x, c) =>
@@ -587,32 +591,30 @@ export const cssLayoutTemplate = (context: ElementDefinitionContext) => html<CSS
                                             c.event as MouseEvent
                                         )}"
                                 />
-                                <${context.tagFor(Tooltip)}
-                                    anchor="${(x, c) =>
-                                        c.parent.getInputId(
-                                            c.parent.flexDirectionName,
-                                            x
-                                        )}"
+                                <div
+                                    class="tooltip"
+                                    role="tooltip"
+                                    id="${x => x}-tooltip"
                                 >
                                     ${x => x}
-                                </${context.tagFor(Tooltip)}>
+                                </div>
                             </div>
                         `
                     )}
                 </div>
             </div>
-            <div class="controlRegion">
-                <label for="dtc-css-justify-content">Justify Content</label>
-                <div class="radioRegion">
+            <div class="control-region">
+                <label for="css-justify-content">Justify Content</label>
+                <div class="radio-region">
                     ${repeat(
                         x => x.justifyContentOptions,
                         html<string, CSSLayout>`
                             <div
-                                class="radioRegion-contentItem ${(x, c) =>
+                                class="radio-region-content-item ${(x, c) =>
                                     c.parent.justifyContentName} ${x => x} ${(x, c) =>
-                            x === c.parent.justifyContentValue
-                                ? "radioRegion-contentItem__active"
-                                : ""}"
+                                    x === c.parent.justifyContentValue
+                                        ? "radio-region-content-item__active"
+                                        : ""}"
                             >
                                 ${x =>
                                     x === "flex-start"
@@ -633,8 +635,8 @@ export const cssLayoutTemplate = (context: ElementDefinitionContext) => html<CSS
                                             x
                                         )}"
                                     type="radio"
-                                    class="radioRegion-input"
-                                    aria-label="${x => x}"
+                                    class="radio-region-input"
+                                    aria-labelledby="${x => x}-tooltip"
                                     name="${(x, c) => c.parent.justifyContentName}"
                                     value="${x => x}"
                                     ?checked="${(x, c) =>
@@ -650,32 +652,30 @@ export const cssLayoutTemplate = (context: ElementDefinitionContext) => html<CSS
                                             c.event as MouseEvent
                                         )}"
                                 />
-                                <${context.tagFor(Tooltip)}
-                                    anchor="${(x, c) =>
-                                        c.parent.getInputId(
-                                            c.parent.justifyContentName,
-                                            x
-                                        )}"
+                                <div
+                                    class="tooltip"
+                                    role="tooltip"
+                                    id="${x => x}-tooltip"
                                 >
                                     ${x => x}
-                                </${context.tagFor(Tooltip)}>
+                                </div>
                             </div>
                         `
                     )}
                 </div>
             </div>
-            <div class="controlRegion">
-                <label for="dtc-css-align-content">Align Content</label>
-                <div class="radioRegion">
+            <div class="control-region">
+                <label for="css-align-content">Align Content</label>
+                <div class="radio-region">
                     ${repeat(
                         x => x.alignContentOptions,
                         html<string, CSSLayout>`
                             <div
-                                class="radioRegion-contentItem ${(x, c) =>
+                                class="radio-region-content-item ${(x, c) =>
                                     c.parent.alignContentName} ${x => x} ${(x, c) =>
-                            x === c.parent.alignContentValue
-                                ? "radioRegion-contentItem__active"
-                                : ""}"
+                                    x === c.parent.alignContentValue
+                                        ? "radio-region-content-item__active"
+                                        : ""}"
                             >
                                 ${x =>
                                     x === "flex-start"
@@ -698,8 +698,8 @@ export const cssLayoutTemplate = (context: ElementDefinitionContext) => html<CSS
                                             x
                                         )}"
                                     type="radio"
-                                    class="radioRegion-input"
-                                    aria-label="${x => x}"
+                                    class="radio-region-input"
+                                    aria-labelledby="${x => x}-tooltip"
                                     name="${(x, c) => c.parent.alignContentName}"
                                     value="${x => x}"
                                     ?checked="${(x, c) =>
@@ -715,32 +715,30 @@ export const cssLayoutTemplate = (context: ElementDefinitionContext) => html<CSS
                                             c.event as MouseEvent
                                         )}"
                                 />
-                                <${context.tagFor(Tooltip)}
-                                    anchor="${(x, c) =>
-                                        c.parent.getInputId(
-                                            c.parent.alignContentName,
-                                            x
-                                        )}"
+                                <div
+                                    class="tooltip"
+                                    role="tooltip"
+                                    id="${x => x}-tooltip"
                                 >
                                     ${x => x}
-                                </${context.tagFor(Tooltip)}>
+                                </div>
                             </div>
                         `
                     )}
                 </div>
             </div>
-            <div class="controlRegion">
-                <label for="dtc-css-align-items">Align Items</label>
-                <div class="radioRegion">
+            <div class="control-region">
+                <label for="css-align-items">Align -items</label>
+                <div class="radio-region">
                     ${repeat(
                         x => x.alignItemsOptions,
                         html<string, CSSLayout>`
                             <div
-                                class="radioRegion-contentItem ${(x, c) =>
+                                class="radio-region-content-item ${(x, c) =>
                                     c.parent.alignItemsName} ${x => x} ${(x, c) =>
-                            x === c.parent.alignItemsValue
-                                ? "radioRegion-contentItem__active"
-                                : ""}"
+                                    x === c.parent.alignItemsValue
+                                        ? "radio-region-content-item__active"
+                                        : ""}"
                             >
                                 ${x =>
                                     x === "flex-start"
@@ -754,8 +752,8 @@ export const cssLayoutTemplate = (context: ElementDefinitionContext) => html<CSS
                                     id="${(x, c) =>
                                         c.parent.getInputId(c.parent.alignItemsName, x)}"
                                     type="radio"
-                                    class="radioRegion-input"
-                                    aria-label="${x => x}"
+                                    class="radio-region-input"
+                                    aria-labelled-by="${x => x}-tooltip"
                                     name="${(x, c) => c.parent.alignItemsName}"
                                     value="${x => x}"
                                     ?checked="${(x, c) => c.parent.alignItemsValue === x}"
@@ -770,30 +768,29 @@ export const cssLayoutTemplate = (context: ElementDefinitionContext) => html<CSS
                                             c.event as MouseEvent
                                         )}"
                                 />
-                                <${context.tagFor(Tooltip)}
-                                    anchor="${(x, c) =>
-                                        c.parent.getInputId(c.parent.alignItemsName, x)}"
+                                <div
+                                    class="tooltip"
+                                    role="tooltip"
+                                    id="${x => x}-tooltip"
                                 >
                                     ${x => x}
-                                </${context.tagFor(Tooltip)}>
+                                </div>
                             </div>
                         `
                     )}
                 </div>
             </div>
-            <div class="controlRegion-row">
+            <div class="control-region-row">
                 <div class="numberfield">
                     <div>
-                        <label for="dtc-css-row-gap">Row gap</label>
+                        <label for="css-row-gap">Row gap</label>
                         <div class="numberfield-item">
-                            <div class="numberfield-icon">
-                                ${rowGap}
-                            </div>
+                            <div class="numberfield-icon">${rowGap}</div>
                             <input
                                 name="${x => x.rowGapName}"
                                 class="numberfield-input"
                                 type="number"
-                                id="dtc-css-row-gap"
+                                id="css-row-gap"
                                 :value="${x => x.rowGapValue}"
                                 @input="${(x, c) =>
                                     x.handleCSSChange("rowGapValue", c.event)}"
@@ -801,16 +798,14 @@ export const cssLayoutTemplate = (context: ElementDefinitionContext) => html<CSS
                         </div>
                     </div>
                     <div>
-                        <label for="dtc-css-column-gap">Column gap</label>
+                        <label for="css-column-gap">Column gap</label>
                         <div class="numberfield-item">
-                            <div class="numberfield-icon">
-                                ${columnGap}
-                            </div>
+                            <div class="numberfield-icon">${columnGap}</div>
                             <input
                                 name="${x => x.columnGapName}"
                                 class="numberfield-input"
                                 type="number"
-                                id="dtc-css-column-gap"
+                                id="css-column-gap"
                                 :value="${x => x.columnGapValue}"
                                 @input="${(x, c) =>
                                     x.handleCSSChange("columnGapValue", c.event)}"
@@ -819,18 +814,18 @@ export const cssLayoutTemplate = (context: ElementDefinitionContext) => html<CSS
                     </div>
                 </div>
             </div>
-            <div class="controlRegion">
-                <label for="dtc-css-flex-wrap">Wrap</label>
-                <div class="radioRegion">
+            <div class="control-region">
+                <label for="css-flex-wrap">Wrap</label>
+                <div class="radio-region">
                     ${repeat(
                         x => x.flexWrapOptions,
                         html<string, CSSLayout>`
                             <div
-                                class="radioRegion-contentItem ${(x, c) =>
+                                class="radio-region-content-item ${(x, c) =>
                                     c.parent.flexWrapName} ${x => x} ${(x, c) =>
-                            x === c.parent.flexWrapValue
-                                ? "radioRegion-contentItem__active"
-                                : ""}"
+                                    x === c.parent.flexWrapValue
+                                        ? "radio-region-content-item__active"
+                                        : ""}"
                             >
                                 ${x =>
                                     x === "wrap"
@@ -842,8 +837,8 @@ export const cssLayoutTemplate = (context: ElementDefinitionContext) => html<CSS
                                     id="${(x, c) =>
                                         c.parent.getInputId(c.parent.flexWrapName, x)}"
                                     type="radio"
-                                    class="radioRegion-input"
-                                    aria-label="${x => x}"
+                                    class="radio-region-input"
+                                    aria-labelledby="${x => x}-tooltip"
                                     name="${(x, c) => c.parent.flexWrapName}"
                                     value="${x => x}"
                                     ?checked="${(x, c) => c.parent.flexWrapValue === x}"
@@ -858,12 +853,13 @@ export const cssLayoutTemplate = (context: ElementDefinitionContext) => html<CSS
                                             c.event as MouseEvent
                                         )}"
                                 />
-                                <${context.tagFor(Tooltip)}
-                                    anchor="${(x, c) =>
-                                        c.parent.getInputId(c.parent.flexWrapName, x)}"
+                                <div
+                                    class="tooltip"
+                                    role="tooltip"
+                                    id="${x => x}-tooltip"
                                 >
                                     ${x => x}
-                                </${context.tagFor(Tooltip)}>
+                                </div>
                             </div>
                         `
                     )}
