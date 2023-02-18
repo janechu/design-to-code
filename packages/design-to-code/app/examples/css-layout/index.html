@@ -5,6 +5,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title><%= htmlWebpackPlugin.options.title %></title>
         <style>
+            html,
+            body,
+            #root {
+                width: 100%;
+                height: 100%;
+                font-family: Arial, Helvetica, sans-serif;
+                background-color: var(--dtc-l4-color);
+                color: white;
+            }
+
             .content {
                 background-color: pink;
                 overflow: auto;
@@ -38,11 +48,18 @@
                 border: solid 1px black;
             }
         </style>
+        <link
+            rel="stylesheet"
+            href="<%= htmlWebpackPlugin.options.globalCssVariableStylesheet %>"
+        />
         <style id="custom"></style>
     </head>
     <body>
         <div id="root">
-            <dtc-css-layout id="dtc-css-layout-control"></dtc-css-layout>
+            <dtc-css-layout
+                id="dtc-css-layout-control"
+                control-toggle-stylesheet="<%= htmlWebpackPlugin.options.controlToggleStylesheet %>"
+            ></dtc-css-layout>
             <div class="content">
                 <div class="item">Item 1</div>
                 <div class="item">Item 2</div>
@@ -78,7 +95,9 @@
         </div>
         <script>
             const customStyleElement = document.getElementById("custom");
-            const cssLayoutControlElement = document.getElementById("dtc-css-layout-control");
+            const cssLayoutControlElement = document.getElementById(
+                "dtc-css-layout-control"
+            );
 
             cssLayoutControlElement.addEventListener("change", e => {
                 customStyleElement.innerText = ".content { " + e.target.value + " }";

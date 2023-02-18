@@ -1,0 +1,44 @@
+.dtc-toggle-control [type="checkbox"] {
+    position: absolute;
+    top: auto;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    width: 1px;
+    height: 1px;
+    white-space: nowrap;
+}
+.dtc-toggle-control [type="checkbox"] + label {
+    display: block;
+    position: relative;
+    padding-inline-start: 42px;
+}
+.dtc-toggle-control [type="checkbox"] + label::before,
+.dtc-toggle-control [type="checkbox"] + label::after {
+    content: "";
+    position: absolute;
+    height: 14px;
+    transition: all 0.25s ease;
+}
+.dtc-toggle-control [type="checkbox"] + label::before {
+    left: 0;
+    top: 0;
+    width: 30px;
+    background: var(--dtc-l1-color);
+    border: 2px solid var(--dtc-l1-color);
+    border-radius: var(--dtc-border-radius);
+}
+.dtc-toggle-control [type="checkbox"]:checked + label::before {
+    background: var(--dtc-accent-color);
+    border-color: var(--dtc-accent-color);
+}
+.dtc-toggle-control [type="checkbox"] + label::after {
+    left: 2px;
+    top: 2px;
+    background-color: var(--dtc-text-color);
+    background-position: center center;
+    border-radius: var(--dtc-border-radius);
+    width: 14px;
+}
+.dtc-toggle-control [type="checkbox"]:checked + label::after {
+    left: 18px;
+}

@@ -62,6 +62,8 @@ module.exports = {
             title: "Test application",
             inject: "body",
             template: path.resolve(appDir, "index.html"),
+            globalCssVariableStylesheet: "/global.css-variables.css",
+            controlToggleStylesheet: "/control.toggle.css",
         }),
     ],
 };
