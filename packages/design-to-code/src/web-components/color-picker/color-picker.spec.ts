@@ -1,20 +1,17 @@
 import { expect } from "chai";
-import { DesignSystem } from "@microsoft/fast-foundation";
 import { fixture } from "../../__test__/fixture";
 import { ColorPicker } from "./color-picker";
-import { colorPickerComponent } from ".";
+import { DTCColorPicker } from "./color-picker.define";
 import { html } from "@microsoft/fast-element";
+
+// tree-shaking
+DTCColorPicker;
 
 async function setup() {
     const { element, connect, disconnect } = await fixture<ColorPicker>(
         html`
             <dtc-color-picker></dtc-color-picker>
         `,
-        {
-            designSystem: DesignSystem.getOrCreate()
-                .withPrefix("dtc")
-                .register(colorPickerComponent()),
-        }
     );
 
     return { element, connect, disconnect };

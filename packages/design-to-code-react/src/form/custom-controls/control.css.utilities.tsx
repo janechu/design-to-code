@@ -184,6 +184,11 @@ export function renderColorPicker(config: RenderRefControlConfig): JSX.Element {
             events={{
                 change: getColorPickerChangeHandler(config.handleChange),
             }}
+            control-text-field-stylesheet={config.stylesheets.controlTextFieldStylesheet}
+            common-input-stylesheet={config.stylesheets.commonInputStylesheet}
+            common-default-font-stylesheet={
+                config.stylesheets.commonDefaultFontStylesheet
+            }
         ></dtc-color-picker>
     );
 }

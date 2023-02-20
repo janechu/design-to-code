@@ -1,13 +1,6 @@
 import { css, ElementStyles } from "@microsoft/fast-element";
-import {
-    ElementDefinitionContext,
-    FoundationElementDefinition,
-} from "@microsoft/fast-foundation";
 
-export const colorPickerStyles: (
-    context: ElementDefinitionContext,
-    definition: FoundationElementDefinition
-) => ElementStyles = () => css`
+export const colorPickerStyles: ElementStyles = css`
     .popup {
         display: none;
         position: absolute;

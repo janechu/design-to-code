@@ -1,5 +1,4 @@
-import { html } from "@microsoft/fast-element";
-import { ElementDefinitionContext } from "@microsoft/fast-foundation";
+import { html, ViewTemplate } from "@microsoft/fast-element";
 import { CSSBoxModel, expandableSection } from "./css-box-model.js";
 
 const sidesButton = html`
@@ -21,9 +20,7 @@ const sidesButton = html`
  * The template for the box-model component.
  * @public
  */
-export const cssBoxModelTemplate = (
-    context: ElementDefinitionContext
-) => html<CSSBoxModel>`
+export const cssBoxModelTemplate: ViewTemplate<CSSBoxModel> = html<CSSBoxModel>`
     <template>
         <div class="section">
             <label for="margin" class="section-label">Margin</label>

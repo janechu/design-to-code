@@ -3,7 +3,10 @@ import h from "../../utilities/web-components/pragma"; /* Note: Import wrapped c
 import React from "react";
 import { FileControlProps } from "./control.file.props";
 import { classNames } from "@microsoft/fast-web-utilities";
-import { fileComponent } from "design-to-code/dist/esm/web-components";
+import { DTCFile } from "design-to-code/dist/esm/web-components/file/file.define.js";
+
+// tree-shaking
+DTCFile;
 
 /**
  * @alpha
@@ -14,7 +17,7 @@ function FileControl(props: FileControlProps & { children: React.ReactNode }) {
      * Callback for input change
      */
     function onChange(e: React.ChangeEvent<HTMLInputElement>): void {
-        const newValue: string = (e.target as fileComponent).fileReferences[0];
+        const newValue: string = (e.target as DTCFile).fileReferences[0];
         props.onChange({ value: newValue });
     }
 
@@ -31,6 +34,11 @@ function FileControl(props: FileControlProps & { children: React.ReactNode }) {
                     change: onChange,
                 }}
                 disabled={props.disabled}
+                control-button-stylesheet={props.stylesheets.controlButtonStylesheet}
+                common-input-stylesheet={props.stylesheets.commonInputStylesheet}
+                common-default-font-stylesheet={
+                    props.stylesheets.commonDefaultFontStylesheet
+                }
             >
                 {props.children}
                 <dtc-file-action-objecturl

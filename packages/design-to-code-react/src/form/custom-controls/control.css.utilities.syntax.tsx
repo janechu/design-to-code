@@ -276,6 +276,7 @@ export function renderSyntaxControl(config: RenderRefControlConfig): JSX.Element
                     value={config.value}
                     dictionaryId={config.dictionaryId}
                     dataLocation={config.dataLocation}
+                    stylesheets={config.stylesheets}
                 />
             );
     }

@@ -4,6 +4,7 @@ import {
     CSSSyntaxRef,
 } from "design-to-code/dist/esm/data-utilities/mapping.mdn-data";
 import { XOR } from "design-to-code/dist/esm/data-utilities/type.utilities";
+import { CSSControlStylesheets } from "./control.css.props";
 
 export interface CSSRefProps {
     /**
@@ -38,4 +39,9 @@ export interface CSSRefProps {
      * The current data location
      */
     dataLocation: string;
+
+    /**
+     * The paths to the web component stylesheets
+     */
+    stylesheets: CSSControlStylesheets;
 }

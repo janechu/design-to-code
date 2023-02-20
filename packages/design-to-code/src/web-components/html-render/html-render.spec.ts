@@ -11,9 +11,11 @@ import dataDictionaryConfig from "../../__test__/html-render/data-dictionary-con
 import schemaDictionary from "../../__test__/html-render/schema-dictionary";
 import { nativeElementDefinitions } from "../../definitions";
 import { ActivityType, HTMLRenderLayer } from "../html-render-layer/html-render-layer";
-import { HTMLRender, htmlRenderOriginatorId } from "./html-render";
-import { htmlRenderComponent } from ".";
-HTMLRender;
+import { htmlRenderOriginatorId } from "./html-render";
+import { DTCHTMLRender } from "./html-render.define";
+
+// tree-shaking
+DTCHTMLRender;
 HTMLRenderLayer;
 
 /* eslint-disable-next-line @typescript-eslint/no-var-requires */
@@ -56,7 +58,7 @@ const htmlRenderLayerTestComponent = HTMLRenderLayerTest.compose({
 });
 
 async function setup() {
-    const { element, connect, disconnect } = await fixture<HTMLRender>(
+    const { element, connect, disconnect } = await fixture<DTCHTMLRender>(
         html`
             <dtc-html-render>
                 <dtc-html-render-layer-test
@@ -64,11 +66,6 @@ async function setup() {
                 ></dtc-html-render-layer-test>
             </dtc-html-render>
         `,
-        {
-            designSystem: DesignSystem.getOrCreate()
-                .withPrefix("dtc")
-                .register(htmlRenderComponent(), htmlRenderLayerTestComponent()),
-        }
     );
     const message = new MessageSystem({
         webWorker: fastMessageSystemWorker,

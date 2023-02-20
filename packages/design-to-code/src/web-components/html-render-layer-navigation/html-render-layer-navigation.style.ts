@@ -8,7 +8,7 @@ import {
     LineHeight1Property,
 } from "../style/css-properties.js";
 
-export const htmlRenderLayerNavigationStyles = (context, definition) => css`
+export const htmlRenderLayerNavigationStyles = css`
     .navigation {
         position: fixed;
         top: 0;

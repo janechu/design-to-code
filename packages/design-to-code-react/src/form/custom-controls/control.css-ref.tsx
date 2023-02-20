@@ -54,6 +54,7 @@ export function CSSRef(props: CSSRefProps): JSX.Element {
                                 value={values[index]}
                                 dictionaryId={props.dictionaryId}
                                 dataLocation={props.dataLocation}
+                                stylesheets={props.stylesheets}
                             />
                         );
                     }
@@ -73,6 +74,7 @@ export function CSSRef(props: CSSRefProps): JSX.Element {
                     value={values[index]}
                     dictionaryId={props.dictionaryId}
                     dataLocation={props.dataLocation}
+                    stylesheets={props.stylesheets}
                 />
             ) : null;
 
@@ -109,6 +111,7 @@ export function CSSRef(props: CSSRefProps): JSX.Element {
                     value: props.value,
                     dictionaryId: props.dictionaryId,
                     dataLocation: props.dataLocation,
+                    stylesheets: props.stylesheets,
                 })}
                 {cssRef}
             </div>
@@ -126,6 +129,7 @@ export function CSSRef(props: CSSRefProps): JSX.Element {
                         value: props.value,
                         dictionaryId: props.dictionaryId,
                         dataLocation: props.dataLocation,
+                        stylesheets: props.stylesheets,
                     });
                 case "type":
                     return renderTypeControl({
@@ -135,6 +139,7 @@ export function CSSRef(props: CSSRefProps): JSX.Element {
                         value: props.value,
                         dictionaryId: props.dictionaryId,
                         dataLocation: props.dataLocation,
+                        stylesheets: props.stylesheets,
                     });
                 case "syntax":
                     return renderSyntaxControl({
@@ -144,6 +149,7 @@ export function CSSRef(props: CSSRefProps): JSX.Element {
                         value: props.value,
                         dictionaryId: props.dictionaryId,
                         dataLocation: props.dataLocation,
+                        stylesheets: props.stylesheets,
                     });
                 case "property":
                     const propertyKey: string = props.syntax.ref.slice(2, -2);
@@ -163,6 +169,7 @@ export function CSSRef(props: CSSRefProps): JSX.Element {
                             value: props.value,
                             dictionaryId: props.dictionaryId,
                             dataLocation: props.dataLocation,
+                            stylesheets: props.stylesheets,
                         });
                     }
                 default:
@@ -177,6 +184,7 @@ export function CSSRef(props: CSSRefProps): JSX.Element {
                 value={props.value}
                 dictionaryId={props.dictionaryId}
                 dataLocation={props.dataLocation}
+                stylesheets={props.stylesheets}
             />
         );
     }

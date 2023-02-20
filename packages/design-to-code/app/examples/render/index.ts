@@ -1,4 +1,4 @@
-import { DesignSystem, ElementDefinitionContext } from "@microsoft/fast-foundation";
+import { ElementDefinitionContext } from "@microsoft/fast-foundation";
 import {
     MessageSystem,
     MessageSystemDataTypeAction,
@@ -6,9 +6,9 @@ import {
     MessageSystemType,
 } from "../../../src";
 import { HTMLRender } from "../../../src/web-components/html-render/html-render.js";
-import { htmlRenderComponent } from "../../../src/web-components/html-render/index.js";
-import { htmlRenderLayerNavigationComponent } from "../../../src/web-components/html-render-layer-navigation/index.js";
-import { htmlRenderLayerInlineEditComponent } from "../../../src/web-components/html-render-layer-inline-edit/index.js";
+import { DTCHTMLRender } from "../../../src/web-components/html-render/html-render.define";
+import { DTCHTMLRenderLayerNavigation } from "../../../src/web-components/html-render-layer-navigation/html-render-layer-navigation.define";
+import { DTCHTMLRenderLayerInlineEdit } from "../../../src/web-components/html-render-layer-inline-edit/html-render-layer-inline-edit.define";
 import { nativeElementDefinitions } from "../../../src/definitions/index.js";
 import dataDictionaryConfig from "../../../src/__test__/html-render/data-dictionary-config.js";
 import schemaDictionary from "../../../src/__test__/html-render/schema-dictionary.js";
@@ -18,9 +18,23 @@ import {
 } from "../../../src/web-components/html-render-layer/html-render-layer";
 import { html, ViewTemplate } from "@microsoft/fast-element";
 import MessageSystemWorker from "worker-loader!../../../dist/message-system.min.js";
+import { customElement } from "@microsoft/fast-element";
+
+// tree-shaking
+DTCHTMLRender;
+DTCHTMLRenderLayerInlineEdit;
+DTCHTMLRenderLayerNavigation;
 
 document.body.setAttribute("style", "margin: 0");
 
+export const htmlRenderLayerNavigationTemplate: ViewTemplate<HTMLRenderLayerTest> = html`
+    <div id="testContainer"></div>
+`;
+
+@customElement({
+    name: "dtc-html-render-layer-test",
+    template: htmlRenderLayerNavigationTemplate,
+})
 export class HTMLRenderLayerTest extends HTMLRenderLayer {
     public layerActivityId: string = "testLayer";
 
@@ -33,26 +47,6 @@ export class HTMLRenderLayerTest extends HTMLRenderLayer {
         UpdateMessageContainer(`${activityType.toString()} ${datadictionaryId}`);
     }
 }
-
-export const htmlRenderLayerNavigationTemplate: (
-    context: ElementDefinitionContext
-) => ViewTemplate<HTMLRenderLayerTest> = context => html<HTMLRenderLayerTest>`
-    <div id="testContainer"></div>
-`;
-
-const htmlRenderLayerTestComponent = HTMLRenderLayerTest.compose({
-    baseName: "html-render-layer-test",
-    template: htmlRenderLayerNavigationTemplate,
-});
-
-DesignSystem.getOrCreate()
-    .withPrefix("dtc")
-    .register(
-        htmlRenderComponent(),
-        htmlRenderLayerNavigationComponent(),
-        htmlRenderLayerInlineEditComponent(),
-        htmlRenderLayerTestComponent()
-    );
 
 const fastMessageSystemWorker = new MessageSystemWorker();
 let fastMessageSystem: MessageSystem;

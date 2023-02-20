@@ -5,6 +5,7 @@ import {
 import { XOR } from "design-to-code/dist/esm/data-utilities/type.utilities";
 import { Type } from "design-to-code/dist/esm/css-data.types";
 import { Syntax } from "design-to-code/dist/esm/css-data.syntax";
+import { CSSControlStylesheets } from "./control.css.props";
 
 export interface RenderControlConfig {
     /**
@@ -34,6 +35,11 @@ export interface RenderControlConfig {
      * The current data location
      */
     dataLocation: string;
+
+    /**
+     * The file paths to the web components stylesheets
+     */
+    stylesheets: CSSControlStylesheets;
 }
 
 export interface RenderRefControlConfig extends RenderControlConfig {

@@ -111,6 +111,7 @@ function CSSControl(props: CSSControlProps) {
                     value={cssPropertyValue}
                     dictionaryId={props.dictionaryId}
                     dataLocation={props.dataLocation}
+                    stylesheets={props.stylesheets}
                 />
             </fieldset>
         );

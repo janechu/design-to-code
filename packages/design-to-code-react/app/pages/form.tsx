@@ -27,32 +27,16 @@ import { CSSPropertiesDictionary } from "design-to-code/dist/esm/data-utilities/
 import { ControlContext } from "../../src/form/templates/types";
 import { CSSStandardControlPlugin } from "../../src/form/custom-controls/css";
 import { CSSControlConfig } from "../../src/form/custom-controls/css/css.template.control.standard.props";
-import { DesignSystem } from "@microsoft/fast-foundation";
-import {
-    fastButton,
-    fastCheckbox,
-    fastNumberField,
-    fastOption,
-    fastSelect,
-    fastTextField,
-} from "@microsoft/fast-components";
-import {
-    colorPickerComponent,
-    fileComponent,
-    fileActionObjectUrlComponent,
-} from "design-to-code/dist/esm/web-components";
+import { DTCColorPicker } from "design-to-code/dist/esm/web-components/color-picker/color-picker.define.js";
+import { DTCFile } from "design-to-code/dist/esm/web-components/file/file.define.js";
+import { DTCFileActionObjectUrl } from "design-to-code/dist/esm/web-components/file-action-objecturl/file-action-objecturl.define.js";
+import { CSSControlStylesheets } from "../../src/form/custom-controls/control.css.props";
+import { FileControlStylesheets } from "../../src/form/custom-controls/control.file.props";
 
-DesignSystem.getOrCreate().register(
-    fastButton(),
-    fastCheckbox(),
-    fastNumberField(),
-    fastOption(),
-    fastSelect(),
-    fastTextField(),
-    colorPickerComponent({ prefix: "dtc" }),
-    fileComponent({ prefix: "dtc" }),
-    fileActionObjectUrlComponent({ prefix: "dtc" })
-);
+// tree-shaking
+DTCColorPicker;
+DTCFile;
+DTCFileActionObjectUrl;
 
 export type componentDataOnChange = (e: React.ChangeEvent<HTMLFormElement>) => void;
 
@@ -116,6 +100,18 @@ const dataSets: DataSet[] = [
     },
 ];
 
+const cssControlStylesheets: CSSControlStylesheets = {
+    controlTextFieldStylesheet: "/public/control.text-field.css",
+    commonInputStylesheet: "/public/common.input.css",
+    commonDefaultFontStylesheet: "/public/common.default-font.css",
+};
+
+const fileControlStylesheets: FileControlStylesheets = {
+    controlButtonStylesheet: "/public/control.button.css",
+    commonInputStylesheet: "/public/common.input.css",
+    commonDefaultFontStylesheet: "/public/common.default-font.css",
+};
+
 let fastMessageSystem: MessageSystem;
 let ajvMapper: AjvMapper;
 
@@ -140,7 +136,11 @@ class FormTestPage extends React.Component<{}, FormTestPageState> {
                 id: testConfigs.customControl.schema.properties.file.formControlId,
                 control: (config: ControlConfig): React.ReactNode => {
                     return (
-                        <FileControl {...config} accept=".jpg,.jpeg,.png,.gif">
+                        <FileControl
+                            {...config}
+                            accept=".jpg,.jpeg,.png,.gif"
+                            stylesheets={fileControlStylesheets}
+                        >
                             Add Image
                         </FileControl>
                     );
@@ -173,6 +173,7 @@ class FormTestPage extends React.Component<{}, FormTestPageState> {
                             css={properties as unknown as CSSPropertiesDictionary}
                             {...config}
                             key={`${config.dictionaryId}::${config.dataLocation}`}
+                            stylesheets={cssControlStylesheets}
                         />
                     );
                 },
@@ -236,6 +237,7 @@ class FormTestPage extends React.Component<{}, FormTestPageState> {
                                 }),
                             ]}
                             {...config}
+                            stylesheets={cssControlStylesheets}
                         />
                     );
                 },
