@@ -1,4 +1,3 @@
-import { ElementDefinitionContext } from "@microsoft/fast-foundation";
 import {
     MessageSystem,
     MessageSystemDataTypeAction,

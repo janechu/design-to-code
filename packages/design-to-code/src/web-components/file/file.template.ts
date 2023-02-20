@@ -1,5 +1,4 @@
 import { html, slotted, ViewTemplate } from "@microsoft/fast-element";
-import { ElementDefinitionContext } from "@microsoft/fast-foundation";
 import dtcClassName from "../style/class-names.js";
 import { File } from "./file.js";
 
