@@ -10,8 +10,7 @@ import { isNullOrWhiteSpace } from "@microsoft/fast-web-utilities";
 import { FormAssociatedColorPicker } from "./color-picker.form-associated.js";
 
 /**
- * This is currently experimental, any use of the color picker must include the following
- * imports and register with the DesignSystem
+ * This is currently experimental
  */
 
 /**
