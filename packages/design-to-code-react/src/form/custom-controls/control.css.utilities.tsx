@@ -33,7 +33,9 @@ function getInputChangeHandler(
 
 export function renderTextInput(config: RenderRefControlConfig): JSX.Element {
     return (
-        <fast-text-field
+        <input
+            type={"text"}
+            className={"dtc-textarea-control"}
             {...{
                 key: `${config.dictionaryId}::${config.dataLocation}`,
                 events: {
@@ -45,13 +47,15 @@ export function renderTextInput(config: RenderRefControlConfig): JSX.Element {
                       }
                     : {}),
             }}
-        ></fast-text-field>
+        />
     );
 }
 
 export function renderNumber(config: RenderRefControlConfig): JSX.Element {
     return (
-        <fast-number-field
+        <input
+            type={"number"}
+            className={"dtc-number-field-control dtc-common-input"}
             {...{
                 key: `${config.dictionaryId}::${config.dataLocation}`,
                 events: {
@@ -63,13 +67,15 @@ export function renderNumber(config: RenderRefControlConfig): JSX.Element {
                       }
                     : {}),
             }}
-        ></fast-number-field>
+        />
     );
 }
 
 export function renderInteger(config: RenderRefControlConfig): JSX.Element {
     return (
-        <fast-number-field
+        <input
+            type={"number"}
+            className={"dtc-number-field-control dtc-common-input"}
             {...{
                 key: `${config.dictionaryId}::${config.dataLocation}`,
                 events: {
@@ -82,7 +88,7 @@ export function renderInteger(config: RenderRefControlConfig): JSX.Element {
                       }
                     : {}),
             }}
-        ></fast-number-field>
+        />
     );
 }
 
@@ -97,23 +103,27 @@ function getCheckboxInputChangeHandler(
 
 export function renderCheckbox(config: RenderRefControlConfig): JSX.Element {
     return (
-        <fast-checkbox
-            {...{
-                events: {
-                    change: getCheckboxInputChangeHandler(
-                        config.handleChange,
-                        config.ref.ref as string
-                    ),
-                },
-                ...(config.value
-                    ? {
-                          value: config.value,
-                      }
-                    : {}),
-            }}
-        >
-            {config.ref.ref}
-        </fast-checkbox>
+        <React.Fragment>
+            <input
+                type={"checkbox"}
+                className={"dtc-checkbox-control"}
+                {...{
+                    events: {
+                        change: getCheckboxInputChangeHandler(
+                            config.handleChange,
+                            config.ref.ref as string
+                        ),
+                    },
+                    ...(config.value
+                        ? {
+                              value: config.value,
+                          }
+                        : {}),
+                }}
+            />
+            <span className={"dtc-checkbox-control_checkmark"} />
+            <label>{config.ref.ref}</label>
+        </React.Fragment>
     );
 }
 
@@ -132,30 +142,31 @@ export function renderSelection(config: RenderSelectControlConfig): JSX.Element 
     const currentValue = currentOption ? `${currentOption.value}` : "";
 
     return (
-        <fast-select
-            key={`${config.dictionaryId}::${config.dataLocation}`}
-            events={{
-                change: getSelectionChangeHandler(config.handleChange),
-            }}
-        >
-            {config.options.map(option => {
-                return (
-                    <fast-option
-                        {...{
-                            value: `${option.value}`,
-                            key: `${config.dictionaryId}::${config.dataLocation}::${option.key}`,
-                            ...(`${option.value}` === currentValue
-                                ? {
-                                      selected: "",
-                                  }
-                                : {}),
-                        }}
-                    >
-                        {option.displayName}
-                    </fast-option>
-                );
-            })}
-        </fast-select>
+        <span className="dtc-common-select-span">
+            <select
+                className={"dtc-select-control_input dtc-common-select-input"}
+                key={`${config.dictionaryId}::${config.dataLocation}`}
+                onChange={getSelectionChangeHandler(config.handleChange)}
+            >
+                {config.options.map(option => {
+                    return (
+                        <option
+                            {...{
+                                value: `${option.value}`,
+                                key: `${config.dictionaryId}::${config.dataLocation}::${option.key}`,
+                                ...(`${option.value}` === currentValue
+                                    ? {
+                                          selected: true,
+                                      }
+                                    : {}),
+                            }}
+                        >
+                            {option.displayName}
+                        </option>
+                    );
+                })}
+            </select>
+        </span>
     );
 }
 

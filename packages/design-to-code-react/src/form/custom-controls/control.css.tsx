@@ -15,29 +15,7 @@ import cssStyle from "./control.align.style.css";
 cssStyle;
 
 /**
- * This is currently experimental, any use of the CSS control must include the following
- * imports and register with the DesignSystem
- *
- * import { DesignSystem } from "@microsoft/fast-foundation";
- * import {
- *    fastCheckbox,
- *    fastNumberField,
- *    fastOption,
- *    fastSelect,
- *    fastTextField,
- * } from "@microsoft/fast-components";
- * import {
- *     colorPickerComponent,
- * } from "design-to-code/dist/esm/web-components";
- *
- * DesignSystem.getOrCreate().register(
- *    fastCheckbox(),
- *    fastNumberField(),
- *    fastOption(),
- *    fastSelect(),
- *    fastTextField(),
- *    colorPickerComponent({ prefix: "dtc" }),
- * );
+ * This is currently experimental
  */
 
 /**
