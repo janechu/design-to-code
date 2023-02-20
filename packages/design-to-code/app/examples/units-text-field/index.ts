@@ -1,4 +1,4 @@
-import { provideFASTDesignSystem } from "@microsoft/fast-components";
-import { unitsTextFieldComponent } from "../../../src/web-components/units-text-field/index.js";
+import { DTCUnitsTextField } from "../../../src/web-components/units-text-field/units-text-field.define";
 
-provideFASTDesignSystem().withPrefix("dtc").register(unitsTextFieldComponent());
+// tree-shaking
+DTCUnitsTextField;

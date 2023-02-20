@@ -27,6 +27,7 @@ export function renderPropertyControl(config: RenderPropertyControlConfig): JSX.
                     value={config.value}
                     dictionaryId={config.dictionaryId}
                     dataLocation={config.dataLocation}
+                    stylesheets={config.stylesheets}
                 />
             );
     }

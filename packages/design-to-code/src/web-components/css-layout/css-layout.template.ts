@@ -528,7 +528,7 @@ const columnGap = html`
  * The template for the css-layout component.
  * @public
  */
-export const cssLayoutTemplate = (context: ElementDefinitionContext) => html<CSSLayout>`
+export const cssLayoutTemplate = html<CSSLayout>`
     <template>
         <link rel="stylesheet" href="${x => x.controlToggleStylesheet}" />
         <div class="control-region dtc-toggle-control">

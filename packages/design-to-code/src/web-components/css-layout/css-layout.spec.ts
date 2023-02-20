@@ -1,15 +1,17 @@
-import { fastSwitch, fastTooltip } from "@microsoft/fast-components";
-import { DOM } from "@microsoft/fast-element";
+import { DOM, html } from "@microsoft/fast-element";
 import { expect } from "chai";
 import { fixture } from "../../__test__/fixture";
-import { cssLayoutComponent } from ".";
+import { DTCCSSLayout } from "./css-layout.define";
+
+// tree-shaking
+DTCCSSLayout;
 
 async function setup() {
-    const { element, connect, disconnect } = await fixture([
-        cssLayoutComponent(),
-        fastSwitch(),
-        fastTooltip(),
-    ]);
+    const { element, connect, disconnect } = await fixture<DTCCSSLayout>(
+        html`
+            <dtc-css-layout></dtc-css-layout>
+        `,
+    );
 
     return { element, connect, disconnect };
 }

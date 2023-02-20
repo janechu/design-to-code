@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 const appDir = path.resolve(__dirname, "./app");
 const outDir = path.resolve(__dirname, "./www");
@@ -54,9 +55,17 @@ module.exports = {
         new HtmlWebpackPlugin({
             contentBase: outDir,
         }),
+        new CopyWebpackPlugin({
+            patterns: [
+                {
+                    from: path.resolve("../design-to-code/dist/web-components/**/*.css"),
+                    to: "public/[name][ext]"
+                },
+            ],
+        }),
     ],
     resolve: {
-        extensions: [".js", ".tsx", ".ts", ".json"],
+        extensions: [".js", ".tsx", ".ts", ".json", ".css"],
         alias: {
             react: path.resolve("./node_modules/react"),
             "react-dom": path.resolve("./node_modules/react-dom"),

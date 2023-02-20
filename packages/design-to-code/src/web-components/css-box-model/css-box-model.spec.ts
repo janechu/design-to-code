@@ -1,21 +1,19 @@
 import { expect } from "chai";
 import { DOM, html } from "@microsoft/fast-element";
-import { DesignSystem } from "@microsoft/fast-foundation";
 import { fixture } from "../../__test__/fixture";
 import { CSSBoxModel } from "./css-box-model";
-import { cssBoxModelComponent } from ".";
-import { unitsTextFieldComponent } from "../units-text-field";
+import { DTCCSSBoxModel } from "./css-box-model.define";
+import { DTCUnitsTextField } from "../units-text-field/units-text-field.define";
+
+// tree-shaking
+DTCCSSBoxModel;
+DTCUnitsTextField;
 
 async function setup() {
     const { element, connect, disconnect } = await fixture<CSSBoxModel>(
         html`
             <dtc-css-box-model id="css-box-model"></dtc-css-box-model>
         `,
-        {
-            designSystem: DesignSystem.getOrCreate()
-                .withPrefix("dtc")
-                .register(unitsTextFieldComponent(), cssBoxModelComponent()),
-        }
     );
 
     return { element, connect, disconnect };

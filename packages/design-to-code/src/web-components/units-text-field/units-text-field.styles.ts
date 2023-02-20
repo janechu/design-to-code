@@ -1,6 +1,6 @@
 import { css } from "@microsoft/fast-element";
 
-export const UnitsTextFieldStyles = (context, definition) => css`
+export const unitsTextFieldStyles = css`
     :host {
         outline: none;
         user-select: none;

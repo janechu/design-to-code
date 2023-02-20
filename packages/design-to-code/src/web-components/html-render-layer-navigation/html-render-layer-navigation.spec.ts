@@ -1,11 +1,14 @@
-import { DOM } from "@microsoft/fast-element";
+import { DOM, html } from "@microsoft/fast-element";
 import { expect } from "chai";
 import { fixture } from "../../__test__/fixture";
 import { MessageSystem, MessageSystemType } from "../../message-system";
 import dataDictionaryConfig from "../../__test__/html-render/data-dictionary-config";
 import schemaDictionary from "../../__test__/html-render/schema-dictionary";
 import { ActivityType } from "../html-render-layer/html-render-layer";
-import { htmlRenderLayerNavigationComponent } from ".";
+import { DTCHTMLRenderLayerNavigation } from "./html-render-layer-navigation.define";
+
+// tree-shaking
+DTCHTMLRenderLayerNavigation;
 
 /* eslint-disable-next-line @typescript-eslint/no-var-requires */
 const MessageSystemWorker = require("../../../message-system.min.js");
@@ -15,8 +18,8 @@ const fastMessageSystemWorker = new MessageSystemWorker();
 const wait = () => new Promise(done => setTimeout(done, 20));
 
 async function setup() {
-    const { element, connect, disconnect, parent } = await fixture(
-        htmlRenderLayerNavigationComponent()
+    const { element, connect, disconnect, parent } = await fixture<DTCHTMLRenderLayerNavigation>(
+        html`<dtc-html-render-layer-navigation></dtc-html-render-layer-navigation>`
     );
     const message = new MessageSystem({
         webWorker: fastMessageSystemWorker,

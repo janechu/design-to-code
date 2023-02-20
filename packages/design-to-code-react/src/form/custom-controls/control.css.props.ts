@@ -12,4 +12,15 @@ export interface CSSControlProps extends ControlConfig {
      * Control overrides for one or more CSS properties.
      */
     cssControls?: CSSStandardControlPlugin[];
+
+    /**
+     * The paths to the web component stylesheets
+     */
+    stylesheets: CSSControlStylesheets;
+}
+
+export interface CSSControlStylesheets {
+    controlTextFieldStylesheet: string;
+    commonInputStylesheet: string;
+    commonDefaultFontStylesheet: string;
 }

@@ -1,7 +1,6 @@
-import { provideFASTDesignSystem } from "@microsoft/fast-components";
-import { cssBoxModelComponent } from "../../../src/web-components/css-box-model/index.js";
-import { unitsTextFieldComponent } from "../../../src/web-components/units-text-field/index.js";
+import { DTCCSSBoxModel } from "../../../src/web-components/css-box-model/css-box-model.define";
+import { DTCUnitsTextField } from "../../../src/web-components/units-text-field/units-text-field.define";
 
-provideFASTDesignSystem()
-    .withPrefix("dtc")
-    .register(unitsTextFieldComponent(), cssBoxModelComponent());
+// tree-shaking
+DTCCSSBoxModel;
+DTCUnitsTextField;

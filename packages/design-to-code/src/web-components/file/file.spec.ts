@@ -1,10 +1,13 @@
 import { expect } from "chai";
 import { DOM, html } from "@microsoft/fast-element";
-import { DesignSystem } from "@microsoft/fast-foundation";
 import { fixture } from "../../__test__/fixture";
-import { fileActionObjectUrlComponent } from "../file-action-objecturl";
+import { DTCFileActionObjectUrl } from "../file-action-objecturl/file-action-objecturl.define";
 import { File as FastFile } from "./file";
-import { fileComponent } from ".";
+import { DTCFile } from "./file.define";
+
+// tree-shaking
+DTCFile;
+DTCFileActionObjectUrl;
 
 // This is a base 64 encoding of a 2x1 pixel jpeg image.
 const imageContent: string =
@@ -45,11 +48,6 @@ async function setup() {
                 ></dtc-file-action-objecturl>
             </dtc-file>
         `,
-        {
-            designSystem: DesignSystem.getOrCreate()
-                .withPrefix("dtc")
-                .register(fileComponent(), fileActionObjectUrlComponent()),
-        }
     );
 
     return { element, connect, disconnect };

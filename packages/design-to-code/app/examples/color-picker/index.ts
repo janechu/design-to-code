@@ -1,4 +1,4 @@
-import { provideFASTDesignSystem } from "@microsoft/fast-components";
-import { colorPickerComponent } from "../../../src/web-components/color-picker/index.js";
+import { DTCColorPicker } from "../../../src/web-components/color-picker/color-picker.define";
 
-provideFASTDesignSystem().withPrefix("dtc").register(colorPickerComponent());
+// tree-shaking
+DTCColorPicker;

@@ -3,8 +3,11 @@ import { DOM, html } from "@microsoft/fast-element";
 import { DesignSystem } from "@microsoft/fast-foundation";
 import { fixture } from "../../__test__/fixture";
 import { UnitsTextField } from "./units-text-field";
-import { unitsTextFieldComponent } from ".";
+import { DTCUnitsTextField } from "./units-text-field.define";
 import { keyArrowDown, keyArrowUp } from "@microsoft/fast-web-utilities";
+
+// tree-shaking
+DTCUnitsTextField;
 
 const fakeArrowUpEvent: KeyboardEvent = new KeyboardEvent("keydown", { key: keyArrowUp });
 const fakeArrowShiftUpEvent: KeyboardEvent = new KeyboardEvent("keydown", {
@@ -26,11 +29,6 @@ async function setup() {
                 Units Text Field
             </dtc-units-text-field>
         `,
-        {
-            designSystem: DesignSystem.getOrCreate()
-                .withPrefix("dtc")
-                .register(unitsTextFieldComponent()),
-        }
     );
 
     return { element, connect, disconnect };

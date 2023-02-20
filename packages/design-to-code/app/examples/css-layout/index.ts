@@ -1,4 +1,4 @@
-import { DesignSystem } from "@microsoft/fast-foundation";
-import { cssLayoutComponent } from "../../../src/web-components/css-layout/index.js";
+import { DTCCSSLayout } from "../../../src/web-components/css-layout/css-layout.define";
 
-DesignSystem.getOrCreate().withPrefix("dtc").register(cssLayoutComponent());
+// tree-shaking
+DTCCSSLayout;
