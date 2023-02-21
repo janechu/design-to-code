@@ -11,10 +11,12 @@ import("static-docs").then(({ StaticDocs }) => {
         root,
         docs: path.resolve(root, "docs-files"),
         target: path.resolve(root, "docs"),
+        projectTitle: "Design to code",
         sidebar,
         baseUrl: ghPagesBaseUrl,
         githubUrl,
-        frontpageContent: "Design to code",
+        frontpageContent:
+            "<h1>Design to code</h1><p>Welcome to the design to code project, the intent of the project is to provide tooling to create web experiences that allow a user to manipulate HTML, JavaScript/TypeScript, and CSS in an WYSIWYG editor.</p><p>To get started click on the docs link in the top navigation.</p>",
         versions,
     });
 
