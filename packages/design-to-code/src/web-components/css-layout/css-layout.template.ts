@@ -543,7 +543,10 @@ export const cssLayoutTemplate = html<CSSLayout>`
             <label for="enable-flexbox">Enable Flexbox</label>
         </div>
         <div
-            class="${x => (x.flexEnabled ? `flexbox-region__active` : "flexbox-region")}"
+            class="${x =>
+                x.flexEnabled
+                    ? "flexbox-region flexbox-region__active"
+                    : "flexbox-region"}"
         >
             <div class="control-region">
                 <label for="css-flex-direction">Direction</label>

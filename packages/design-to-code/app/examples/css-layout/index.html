@@ -92,16 +92,19 @@
                 Items showing how the scrollbar should be at the edge of the container,
                 not inset if the 16px padding were applied to the entire content.
             </p>
+            <input id="outputValue" />
         </div>
         <script>
             const customStyleElement = document.getElementById("custom");
             const cssLayoutControlElement = document.getElementById(
                 "dtc-css-layout-control"
             );
+            const outputValue = document.getElementById("outputValue");
 
             cssLayoutControlElement.addEventListener("change", e => {
                 customStyleElement.innerText = ".content { " + e.target.value + " }";
                 cssLayoutControlElement.setAttribute("value", e.target.value);
+                outputValue.setAttribute("value", e.target.value);
             });
         </script>
     </body>
