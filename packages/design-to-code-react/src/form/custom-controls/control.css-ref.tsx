@@ -155,12 +155,12 @@ export function CSSRef(props: CSSRefProps): JSX.Element {
                     const propertyKey: string = props.syntax.ref.slice(2, -2);
 
                     if (
-                        (properties as unknown as CSSPropertiesDictionary)[
+                        ((properties as unknown) as CSSPropertiesDictionary)[
                             propertyKey
                         ] !== undefined
                     ) {
                         return renderPropertyControl({
-                            syntax: (properties as unknown as CSSPropertiesDictionary)[
+                            syntax: ((properties as unknown) as CSSPropertiesDictionary)[
                                 propertyKey
                             ].syntax,
                             property: propertyKey,

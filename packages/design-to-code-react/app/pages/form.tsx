@@ -170,7 +170,7 @@ class FormTestPage extends React.Component<{}, FormTestPageState> {
                 control: (config: ControlConfig): React.ReactNode => {
                     return (
                         <CSSControl
-                            css={properties as unknown as CSSPropertiesDictionary}
+                            css={(properties as unknown) as CSSPropertiesDictionary}
                             {...config}
                             key={`${config.dictionaryId}::${config.dataLocation}`}
                             stylesheets={cssControlStylesheets}
@@ -179,12 +179,13 @@ class FormTestPage extends React.Component<{}, FormTestPageState> {
                 },
             }),
             new StandardControlPlugin({
-                id: testConfigs.controlPluginCssWithOverrides.schema.properties
-                    .cssWithOverrides.formControlId,
+                id:
+                    testConfigs.controlPluginCssWithOverrides.schema.properties
+                        .cssWithOverrides.formControlId,
                 control: (config: ControlConfig): React.ReactNode => {
                     return (
                         <CSSControl
-                            css={properties as unknown as CSSPropertiesDictionary}
+                            css={(properties as unknown) as CSSPropertiesDictionary}
                             key={`${config.dictionaryId}::${config.dataLocation}`}
                             cssControls={[
                                 new CSSStandardControlPlugin({

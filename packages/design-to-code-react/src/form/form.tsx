@@ -345,23 +345,25 @@ const Form: React.FC<FormProps> = (
     }
 
     function renderBreadcrumbItems(items: BreadcrumbItem[]): React.ReactNode {
-        return items.map((item: BreadcrumbItem, index: number): JSX.Element => {
-            if (index === items.length - 1) {
+        return items.map(
+            (item: BreadcrumbItem, index: number): JSX.Element => {
+                if (index === items.length - 1) {
+                    return (
+                        <li key={index}>
+                            <span>{item.text}</span>
+                        </li>
+                    );
+                }
+
                 return (
                     <li key={index}>
-                        <span>{item.text}</span>
+                        <a href={item.href} onClick={item.onClick}>
+                            {item.text}
+                        </a>
                     </li>
                 );
             }
-
-            return (
-                <li key={index}>
-                    <a href={item.href} onClick={item.onClick}>
-                        {item.text}
-                    </a>
-                </li>
-            );
-        });
+        );
     }
 
     /**

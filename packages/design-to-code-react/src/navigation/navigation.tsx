@@ -210,7 +210,7 @@ function Navigation(props: NavigationHandledProps) {
         const isDroppable: boolean =
             isBlockedFromBeingDroppable &&
             ((isLinkedData && schema?.type === DataType.object && !isRootLinkedData) || // a piece of linked data that is not the root and is an object type
-                schema?.[dictionaryLink] || // an identified dictionary link
+            schema?.[dictionaryLink] || // an identified dictionary link
                 (isRootLinkedData && props.defaultLinkedDataDroppableDataLocation)); // the root linked data with an defined droppable data location
 
         const isTriggerRenderable: boolean = shouldTriggerRender(

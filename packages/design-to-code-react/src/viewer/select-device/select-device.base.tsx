@@ -26,13 +26,15 @@ export function SelectDevice(props: SelectDeviceProps) {
     }
 
     function renderOptions(): React.ReactNode {
-        return props.devices.map((device: Device, index: number): React.ReactNode => {
-            return (
-                <option value={device.id} key={device.id + index}>
-                    {device.displayName}
-                </option>
-            );
-        });
+        return props.devices.map(
+            (device: Device, index: number): React.ReactNode => {
+                return (
+                    <option value={device.id} key={device.id + index}>
+                        {device.displayName}
+                    </option>
+                );
+            }
+        );
     }
 
     function handleOnChange(e: React.ChangeEvent<HTMLSelectElement>): void {

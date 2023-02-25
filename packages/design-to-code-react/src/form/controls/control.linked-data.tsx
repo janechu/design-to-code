@@ -251,10 +251,12 @@ function LinkedDataControl(props: LinkedDataControlProps) {
     }
 
     function addLinkedData(normalizedValue: string, originalValue: string): void {
-        const matchedNormalizedValue: string | void =
-            lazyMatchValueWithASingleSchema(normalizedValue);
-        const matchedOriginalValue: string | void =
-            matchExactValueWithASingleSchema(originalValue);
+        const matchedNormalizedValue: string | void = lazyMatchValueWithASingleSchema(
+            normalizedValue
+        );
+        const matchedOriginalValue: string | void = matchExactValueWithASingleSchema(
+            originalValue
+        );
         const schemaId: string | void = matchedNormalizedValue || matchedOriginalValue;
 
         if (typeof schemaId !== "undefined") {

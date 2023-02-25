@@ -200,8 +200,9 @@ function SectionControl(props: SectionControlProps) {
     }
 
     function getFormControl(item: string, index: number): React.ReactNode {
-        const splitDataLocation: string[] =
-            props.navigation[item].relativeDataLocation.split(".");
+        const splitDataLocation: string[] = props.navigation[
+            item
+        ].relativeDataLocation.split(".");
         const propertyName: string = splitDataLocation[splitDataLocation.length - 1];
         const requiredArray: string[] | void =
             props.navigation[props.navigationConfigId].schema.required;
