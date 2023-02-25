@@ -1,6 +1,6 @@
 import { html, ref, ViewTemplate } from "@microsoft/fast-element";
-import { ColorPicker } from "./color-picker.js";
 import dtcClassName from "../style/class-names.js";
+import { ColorPicker } from "./color-picker.js";
 
 /**
  * The template for the color picker component.

@@ -60,6 +60,6 @@ jobs:
       run: npx playwright install
 
     - name: Test
-      run: npm run test --if-present
+      run: npm run test --if-present --workspace=design-to-code
 
        

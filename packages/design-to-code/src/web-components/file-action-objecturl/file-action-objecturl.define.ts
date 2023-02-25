@@ -1,4 +1,4 @@
-import { customElement, css, html } from "@microsoft/fast-element";
+import { css, customElement, html } from "@microsoft/fast-element";
 import { FileActionObjectUrl } from "./file-action-objecturl.js";
 
 @customElement({
