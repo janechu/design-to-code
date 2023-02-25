@@ -12,9 +12,6 @@
         "resolveJsonModule": true,
         "allowJs": true,
         "types": [
-            "chai",
-            "chai-spies",
-            "mocha",
             "node",
             "webpack-env"
         ]
