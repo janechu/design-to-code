@@ -102,7 +102,7 @@ export const cssBoxModelTemplate: ViewTemplate<CSSBoxModel> = html<CSSBoxModel>`
                     x.borderOpen ? "single-input single-input__hidden" : "single-input"}"
             >
                 <dtc-units-text-field
-                    id="border"
+                    id="border-width"
                     title="border-width"
                     tabindex="6"
                     :value="${x => x.uiValues.borderWidth.getCSSShorthandFourValues()}"
@@ -119,8 +119,8 @@ export const cssBoxModelTemplate: ViewTemplate<CSSBoxModel> = html<CSSBoxModel>`
             <div class="${x => (x.borderOpen ? "grid" : "grid grid__hidden")}">
                 <div class="item item-top">
                     <dtc-units-text-field
-                        id="border-top-width"
-                        title="border-top-width"
+                        id="border-width-top"
+                        title="border-width-top"
                         tabindex="7"
                         :value="${x => x.uiValues.borderWidth.top}"
                         @change="${(x, c) =>
@@ -138,8 +138,8 @@ export const cssBoxModelTemplate: ViewTemplate<CSSBoxModel> = html<CSSBoxModel>`
                 </div>
                 <div class="item item-left">
                     <dtc-units-text-field
-                        id="border-left-width"
-                        title="border-left-width"
+                        id="border-width-left"
+                        title="border-width-left"
                         tabindex="8"
                         :value="${x => x.uiValues.borderWidth.left}"
                         @change="${(x, c) =>
@@ -148,8 +148,8 @@ export const cssBoxModelTemplate: ViewTemplate<CSSBoxModel> = html<CSSBoxModel>`
                 </div>
                 <div class="item item-right">
                     <dtc-units-text-field
-                        id="border-right-width"
-                        title="border-right-width"
+                        id="border-width-right"
+                        title="border-width-right"
                         tabindex="9"
                         :value="${x => x.uiValues.borderWidth.right}"
                         @change="${(x, c) =>
@@ -158,8 +158,8 @@ export const cssBoxModelTemplate: ViewTemplate<CSSBoxModel> = html<CSSBoxModel>`
                 </div>
                 <div class="item item-bottom">
                     <dtc-units-text-field
-                        id="border-bottom-width"
-                        title="border-bottom-width"
+                        id="border-width-bottom"
+                        title="border-width-bottom"
                         tabindex="10"
                         :value="${x => x.uiValues.borderWidth.bottom}"
                         @change="${(x, c) =>
