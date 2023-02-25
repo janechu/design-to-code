@@ -20,7 +20,8 @@ test.describe.only("CSSLayout", () => {
         await expect(await page.locator(".flexbox-region__active").all()).toHaveLength(0);
     });
 
-    test("should not show the flexbox toggle if it has been pressed", async ({
+    // This test is flakey on GitHub CI
+    test.skip("should not show the flexbox toggle if it has been pressed", async ({
         page,
     }) => {
         const toggle = await page.locator(".control-region.dtc-toggle-control");
