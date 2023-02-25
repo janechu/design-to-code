@@ -1,24 +1,16 @@
-import { expect, Page, test } from "@playwright/test";
+import { expect, test } from "@playwright/test";
+import { getMessageAll } from "../html-render/__tests__/helpers.js";
 
-/* eslint-disable-next-line */
-async function getMessage(page: Page, positionFromEnd: number): Promise<string> {
-    const messageOutput = await page.locator(
-        "#messageContainer span:nth-last-child(" + positionFromEnd + ")"
-    );
-    await expect(messageOutput).not.toBeNull();
-    return await messageOutput.textContent();
-}
-
-test.describe("HTML Render Layer Navigation", () => {
+test.describe.only("HTML Render Layer Navigation", () => {
     test.beforeEach(async ({ page }) => {
-        // Playwright is configured to use http://localhost:7776 as the base URL for all tests
+        // Playwright is configured to use http://localhost:7001 as the base URL for all tests
         // so you can use a relative URL to navigate to a different page.
         await page.goto("/render");
         const htmlRender = page.locator("#htmlRender");
-        await expect(htmlRender).not.toBeNull();
+        await expect(htmlRender).toHaveCount(1);
         const content = await htmlRender.locator("span").textContent();
         expect(content).toBe("Dynamic Markup!");
-        await page.waitForTimeout(100);
+        await getMessageAll(page, 2);
     });
 
     test("should exist and initialize", async ({ page }) => {
@@ -38,8 +30,8 @@ test.describe("HTML Render Layer Navigation", () => {
         expect(layer).not.toBeNull();
         await expect(layer).not.toHaveClass("navigation-hover navigation-hover__active");
 
-        page.mouse.move(55, 60);
-        await page.waitForTimeout(100);
+        await page.mouse.move(55, 60);
+        await getMessageAll(page, 3);
 
         layer = await page.locator("dtc-html-render-layer-navigation .navigation-hover");
         await expect(layer).toHaveClass("navigation-hover navigation-hover__active");
@@ -52,8 +44,8 @@ test.describe("HTML Render Layer Navigation", () => {
         expect(layer).not.toBeNull();
         await expect(layer).not.toHaveClass("navigation-hover navigation-hover__active");
 
-        page.mouse.move(55, 80);
-        await page.waitForTimeout(100);
+        await page.mouse.move(55, 80);
+        await getMessageAll(page, 2);
 
         layer = await page.locator("dtc-html-render-layer-navigation .navigation-hover");
         await expect(layer).not.toHaveClass("navigation-hover navigation-hover__active");
@@ -68,7 +60,7 @@ test.describe("HTML Render Layer Navigation", () => {
         await expect(layer.locator(".select-pill")).toHaveText("root_div");
 
         await page.click("#testbutton2");
-        await page.waitForTimeout(100);
+        await getMessageAll(page, 3);
 
         layer = await page.locator("dtc-html-render-layer-navigation .navigation-select");
         expect(layer).not.toBeNull();
@@ -88,7 +80,7 @@ test.describe("HTML Render Layer Navigation", () => {
         );
 
         await page.click("#testbutton2");
-        await page.waitForTimeout(100);
+        await getMessageAll(page, 3);
 
         layer = await page.locator("dtc-html-render-layer-navigation .navigation-select");
         expect(layer).not.toBeNull();

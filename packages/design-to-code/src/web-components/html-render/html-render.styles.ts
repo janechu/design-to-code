@@ -1,20 +1,19 @@
 import { css } from "@microsoft/fast-element";
 
 export const htmlRenderStyles = css`
-    .container,
-    .container__interactive {
+    .container {
         width: 100%;
         height: 100%;
         padding: 0;
         box-sizing: border-box;
     }
-    .htmlRender {
+    .html-render {
         width: 100%;
         height: 100%;
         outline: none;
         display: flow-root;
     }
-    .htmlRender > * {
+    .html-render > * {
         display: flow-root;
     }
 `;

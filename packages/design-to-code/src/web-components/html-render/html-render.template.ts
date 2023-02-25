@@ -3,11 +3,12 @@ import { HTMLRender } from "./html-render.js";
 
 export const htmlRenderTemplate: ViewTemplate<HTMLRender> = html`
     <div
-        class="${x => (x.interactiveMode ? "container__interactive" : "container")}"
+        class="${x =>
+            x.interactiveMode ? "container container__interactive" : "container"}"
         @click="${(x, c) => x.containerClickHandler(c.event as MouseEvent)}"
     >
         <div
-            class="htmlRender"
+            class="html-render"
             @click="${(x, c) => x.clickHandler(c.event as MouseEvent)}"
             @dblclick="${(x, c) => x.dblClickHandler(c.event as MouseEvent)}"
             @mouseover="${(x, c) => x.hoverHandler(c.event as MouseEvent)}"
