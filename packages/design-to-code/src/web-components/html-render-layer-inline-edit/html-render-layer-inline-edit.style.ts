@@ -10,8 +10,7 @@ export const htmlRenderLayerInlineEditStyles = css`
         pointer-events: none;
     }
 
-    .edit-textArea,
-    .edit-textArea__active {
+    .edit-textarea {
         display: none;
         position: absolute;
         box-sizing: content-box;
@@ -30,7 +29,7 @@ export const htmlRenderLayerInlineEditStyles = css`
         white-space: pre-wrap;
     }
 
-    .edit-textArea__active {
+    .edit-textarea.edit-textarea__active {
         display: block;
     }
 `;
