@@ -50,6 +50,16 @@ jobs:
     - name: Check for the presence of changed files inside ./change
       run: npm run check
 
-    - name: Build
-      run: npm run build:app --if-present
+    - name: Build package files
+      run: npm run build
+
+    - name: Build test app
+      run: npm run build:app
+
+    - name: Install playwright browsers
+      run: npx playwright install
+
+    - name: Test
+      run: npm run test --if-present
+
        
