@@ -203,8 +203,8 @@ class NavigationTestPage extends React.Component<{}, NavigationTestPageState> {
 
     private handleSetDefaultLinkedDataDatalocation = (e: React.ChangeEvent): void => {
         this.setState({
-            defaultLinkedDataDroppableDataLocation:
-                !this.state.defaultLinkedDataDroppableDataLocation,
+            defaultLinkedDataDroppableDataLocation: !this.state
+                .defaultLinkedDataDroppableDataLocation,
         });
     };
 

@@ -414,8 +414,9 @@ export function getErrorFromDataLocation(
     let error: string = "";
 
     if (Array.isArray(validationErrors)) {
-        const normalizedDataLocation: string =
-            normalizeDataLocationToDotNotation(dataLocation);
+        const normalizedDataLocation: string = normalizeDataLocationToDotNotation(
+            dataLocation
+        );
 
         for (const validationError of validationErrors) {
             if (normalizedDataLocation === validationError.dataLocation) {
@@ -426,8 +427,9 @@ export function getErrorFromDataLocation(
                 if (normalizedDataLocation === "") {
                     containsInvalidData = true;
                 } else {
-                    const dataLocations: string[] =
-                        validationError.dataLocation.split(".");
+                    const dataLocations: string[] = validationError.dataLocation.split(
+                        "."
+                    );
 
                     containsInvalidData = dataLocations.some(
                         (value: string, index: number) => {

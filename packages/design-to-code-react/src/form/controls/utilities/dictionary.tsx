@@ -28,8 +28,9 @@ style;
  *  control definition
  */
 function Dictionary(props: DictionaryProps) {
-    const rootElementRef: React.RefObject<HTMLDivElement> =
-        React.createRef<HTMLDivElement>();
+    const rootElementRef: React.RefObject<HTMLDivElement> = React.createRef<
+        HTMLDivElement
+    >();
 
     const [focusedPropertyKey, setFocusedPropertyKey] = useState(null);
     const [focusedPropertyKeyValue, setFocusedPropertyKeyValue] = useState(null);

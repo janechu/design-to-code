@@ -22,7 +22,9 @@ cssStyle;
  * Custom form control definition for CSS
  */
 function CSSControl(props: CSSControlProps) {
-    const memoizeMappedStyleToCSSPropertyDictionary: (value: string) => {
+    const memoizeMappedStyleToCSSPropertyDictionary: (
+        value: string
+    ) => {
         [key: string]: string;
     } = memoize(mapCSSInlineStyleToCSSPropertyDictionary);
 

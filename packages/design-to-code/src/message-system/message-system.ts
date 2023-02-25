@@ -8,7 +8,7 @@ import { MessageSystemIncoming } from "./message-system.utilities.props.js";
 /**
  * The registration used for the message system
  */
-export default class MessageSystem<C = {}> {
+export default class MessageSystem<C = object> {
     /**
      * The list of items registered to the message system registry
      */
@@ -133,7 +133,7 @@ export default class MessageSystem<C = {}> {
                     });
                 });
 
-            this.register.forEach((registeredItem: Register) => {
+            this.register.forEach((registeredItem: Register<unknown>) => {
                 updatedEvents.forEach(updatedEvent => {
                     registeredItem.onMessage(updatedEvent);
                 });

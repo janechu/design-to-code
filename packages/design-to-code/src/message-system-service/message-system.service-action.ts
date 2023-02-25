@@ -13,12 +13,10 @@ export interface MessageSystemServiceActionCallback<TCallback>
     action: (config: TCallback) => void;
 }
 
-export type MessageSystemServiceActionConfig<
-    TCallback,
-    TOptions
-> = MessageSystemServiceActionCallbackConfig &
-    MessageSystemServiceActionCallback<TCallback> &
-    TOptions;
+export type MessageSystemServiceActionConfig<TCallback, TOptions> =
+    MessageSystemServiceActionCallbackConfig &
+        MessageSystemServiceActionCallback<TCallback> &
+        TOptions;
 
 /**
  * This abstract class is for actions intended to be part
@@ -30,9 +28,9 @@ export type MessageSystemServiceActionConfig<
  * and TOptions for additional options to be passed in the constructor.
  */
 export abstract class MessageSystemServiceAction<
-    TCallback = {},
-    TMatch = {},
-    TOptions = {}
+    TCallback = object,
+    TMatch = object,
+    TOptions = object
 > {
     private action: (
         config: TCallback & MessageSystemServiceActionCallbackConfig

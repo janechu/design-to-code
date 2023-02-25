@@ -1,6 +1,6 @@
 import { html, ref, ViewTemplate } from "@microsoft/fast-element";
-import { ColorPicker } from "./color-picker.js";
 import dtcClassName from "../style/class-names.js";
+import { ColorPicker } from "./color-picker.js";
 
 /**
  * The template for the color picker component.
@@ -47,6 +47,7 @@ export const colorPickerTemplate: ViewTemplate<ColorPicker> = html`
                         class="root-control ${dtcClassName.commonDefaultFont} ${dtcClassName.commonInput}"
                         part="control"
                         id="control"
+                        type="text"
                         @input="${x => x.handleTextInput()}"
                         @change="${x => x.handleChange()}"
                         ?autofocus="${x => x.autofocus}"
@@ -104,6 +105,7 @@ export const colorPickerTemplate: ViewTemplate<ColorPicker> = html`
                     <div class="${dtcClassName.textFieldControl}">
                         <span>R:</span>
                         <input
+                            type="text"
                             class="${dtcClassName.commonDefaultFont} ${dtcClassName.commonInput}"
                             maxlength="3"
                             size="3"
@@ -114,6 +116,7 @@ export const colorPickerTemplate: ViewTemplate<ColorPicker> = html`
                     <div class="${dtcClassName.textFieldControl}">
                         <span>G:</span>
                         <input
+                            type="text"
                             class="${dtcClassName.commonDefaultFont} ${dtcClassName.commonInput}"
                             maxlength="3"
                             size="3"
@@ -124,6 +127,7 @@ export const colorPickerTemplate: ViewTemplate<ColorPicker> = html`
                     <div class="${dtcClassName.textFieldControl}">
                         <span>B:</span>
                         <input
+                            type="text"
                             class="${dtcClassName.commonDefaultFont} ${dtcClassName.commonInput}"
                             maxlength="3"
                             size="3"
@@ -134,6 +138,7 @@ export const colorPickerTemplate: ViewTemplate<ColorPicker> = html`
                     <div class="${dtcClassName.textFieldControl}">
                         <span>H:</span>
                         <input
+                            type="text"
                             class="${dtcClassName.commonDefaultFont} ${dtcClassName.commonInput}"
                             maxlength="3"
                             size="3"
@@ -144,6 +149,7 @@ export const colorPickerTemplate: ViewTemplate<ColorPicker> = html`
                     <div class="${dtcClassName.textFieldControl}">
                         <span>S:</span>
                         <input
+                            type="text"
                             class="${dtcClassName.commonDefaultFont} ${dtcClassName.commonInput}"
                             maxlength="3"
                             size="3"
@@ -154,6 +160,7 @@ export const colorPickerTemplate: ViewTemplate<ColorPicker> = html`
                     <div class="${dtcClassName.textFieldControl}">
                         <span>V:</span>
                         <input
+                            type="text"
                             class="${dtcClassName.commonDefaultFont} ${dtcClassName.commonInput}"
                             maxlength="3"
                             size="3"
@@ -164,6 +171,7 @@ export const colorPickerTemplate: ViewTemplate<ColorPicker> = html`
                     <div class="${dtcClassName.textFieldControl}">
                         <span>A:</span>
                         <input
+                            type="text"
                             class="${dtcClassName.commonDefaultFont} ${dtcClassName.commonInput}"
                             maxlength="3"
                             size="3"

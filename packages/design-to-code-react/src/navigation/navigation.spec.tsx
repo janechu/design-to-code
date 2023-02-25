@@ -11,10 +11,7 @@ import {
     Register,
 } from "design-to-code";
 import { keyEnter } from "@microsoft/fast-web-utilities";
-import {
-    linkedDataSchema,
-    MessageSystemNavigationTypeAction,
-} from "design-to-code";
+import { linkedDataSchema, MessageSystemNavigationTypeAction } from "design-to-code";
 import { NavigationProps } from "./navigation.props";
 import { ModularNavigation, Navigation } from "./index";
 

@@ -23,7 +23,7 @@ export interface ActionNotFound {
     error: string;
 }
 
-export interface MessageSystemServiceConfig<SACallback, SConfig = {}> {
+export interface MessageSystemServiceConfig<SACallback, SConfig = object> {
     /**
      * The id for the service
      */
@@ -50,7 +50,7 @@ export interface MessageSystemServiceConfig<SACallback, SConfig = {}> {
  * This abstract class are for services that
  * use the MessageSystem to register and de-register themselves
  */
-export abstract class MessageSystemService<SACallback, SConfig = {}> {
+export abstract class MessageSystemService<SACallback, SConfig = object> {
     public messageSystem: MessageSystem;
     private messageSystemConfig: Register;
     protected registeredActions: MessageSystemServiceAction<SACallback, unknown>[] = [];
@@ -74,7 +74,7 @@ export abstract class MessageSystemService<SACallback, SConfig = {}> {
             this.messageSystemConfig = {
                 id: config.id,
                 onMessage: this.handleMessageSystem,
-                config: config.config,
+                config: config.config as unknown as object,
             };
             config.messageSystem.add(this.messageSystemConfig);
         }
