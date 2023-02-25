@@ -4,7 +4,13 @@ const config: PlaywrightTestConfig = {
     testMatch: "**/?(*.)+(spec).+(pw).+(ts)",
     globalSetup: "playwright.global-setup.ts",
     use: {
-        baseURL: "http://localhost:7776",
+        baseURL: "http://localhost:7001",
+    },
+    webServer: {
+        command: "npm run start",
+        url: "http://localhost:7001",
+        timeout: 240 * 1000,
+        reuseExistingServer: !process.env.CI,
     },
 };
 export default config;

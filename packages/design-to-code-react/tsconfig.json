@@ -10,7 +10,6 @@
         "jsx": "react",
         "resolveJsonModule": true,
         "types": [
-            "jest",
             "node"
         ],
     },

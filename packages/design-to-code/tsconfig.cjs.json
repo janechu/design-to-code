@@ -15,6 +15,7 @@
         "allowJs": true,
         "resolveJsonModule": true,
         "types": [
+            "node",
             "webpack-env"
         ],
         "lib": [
