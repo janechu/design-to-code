@@ -18,7 +18,7 @@ export const cssLayoutStyles = css`
         display: none;
     }
 
-    .flexbox-region__active {
+    .flexbox-region.flexbox-region__active {
         display: block;
     }
 
