@@ -28,7 +28,7 @@ export interface ShortcutOptions {
 /**
  * @alpha
  */
-export interface ShortcutMessageOutgoing extends CustomMessage<{}, ShortcutOptions> {
+export interface ShortcutMessageOutgoing extends CustomMessage<object, ShortcutOptions> {
     /**
      * The custom message id
      */

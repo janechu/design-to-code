@@ -924,7 +924,7 @@ function getLinkedDataIds(ids: string[], linkedData: Data<unknown>[]): void {
     });
 }
 
-export function getMessage<C = {}>(
+export function getMessage<C = object>(
     data: InternalMessageSystemIncoming,
     historyIndex?: number
 ): Array<InternalMessageSystemOutgoing<C>> {
@@ -934,9 +934,9 @@ export function getMessage<C = {}>(
         case MessageSystemType.custom:
             return [
                 [
-                    getCustomMessage(data[0] as CustomMessage<C, {}>),
+                    getCustomMessage(data[0] as CustomMessage<C, object>),
                     data[1],
-                ] as InternalOutgoingMessage<CustomMessage<C, {}>>,
+                ] as InternalOutgoingMessage<CustomMessage<C, object>>,
             ];
         case MessageSystemType.data: {
             let ids: string[] = [];
@@ -1036,10 +1036,9 @@ export function getMessage<C = {}>(
                         type: MessageSystemType.initialize,
                         data: dataDictionary[0][activeDictionaryId].data,
                         navigation: navigationDictionary[0][activeDictionaryId],
-                        schema:
-                            schemaDictionary[
-                                dataDictionary[0][activeDictionaryId].schemaId
-                            ],
+                        schema: schemaDictionary[
+                            dataDictionary[0][activeDictionaryId].schemaId
+                        ],
                         historyLimit: history.limit,
                         dataDictionary,
                         navigationDictionary,

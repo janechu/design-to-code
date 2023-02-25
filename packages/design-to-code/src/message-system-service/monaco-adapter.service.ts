@@ -38,7 +38,7 @@ export const monacoAdapterId: string = "design-to-code::monaco-adapter-service";
  */
 export class MonacoAdapter extends MessageSystemService<
     MonacoAdapterActionCallbackConfig,
-    {}
+    object
 > {
     private monacoModelValue: string[];
     private schemaDictionary: SchemaDictionary;

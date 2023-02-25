@@ -11,7 +11,7 @@ module.exports = {
     ],
     settings: {
         react: {
-            version: "latest",
+            version: "detect",
         },
     },
     rules: {
@@ -22,7 +22,6 @@ module.exports = {
                 allowSingleExtends: true,
             },
         ],
-        "@typescript-eslint/interface-name-prefix": ["error", { prefixWithI: "never" }],
         "import/order": "error",
         "sort-imports": [
             "error",

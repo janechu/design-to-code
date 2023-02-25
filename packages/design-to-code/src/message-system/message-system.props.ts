@@ -2,7 +2,7 @@ import { DataDictionary } from "./data.props.js";
 import { SchemaDictionary } from "./schema.props.js";
 import { InitializeMessageIncoming } from "./message-system.utilities.props.js";
 
-export interface Register<C = {}> {
+export interface Register<C = object> {
     /**
      * The id of the registered item
      */
