@@ -12,5 +12,6 @@ const config: PlaywrightTestConfig = {
         timeout: 240 * 1000,
         reuseExistingServer: !process.env.CI,
     },
+    fullyParallel: true,
 };
 export default config;
