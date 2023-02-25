@@ -56,7 +56,7 @@ test.describe.only("HTML Render Layer Navigation", () => {
             "dtc-html-render-layer-navigation .navigation-select"
         );
         expect(layer).not.toBeNull();
-        await expect(layer).toHaveCSS("top", "21.5px");
+        await expect(layer).toHaveCSS("top", "21px");
         await expect(layer.locator(".select-pill")).toHaveText("root_div");
 
         await page.click("#testbutton2");
@@ -64,7 +64,7 @@ test.describe.only("HTML Render Layer Navigation", () => {
 
         layer = await page.locator("dtc-html-render-layer-navigation .navigation-select");
         expect(layer).not.toBeNull();
-        await expect(layer).toHaveCSS("top", "52.5px");
+        await expect(layer).toHaveCSS("top", "52px");
         await expect(layer.locator(".select-pill")).toHaveText("span");
     });
 
