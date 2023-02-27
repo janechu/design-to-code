@@ -94,10 +94,6 @@ test.describe.only("mapDataDictionary", () => {
         expect(resolverCalled).toEqual(2);
     });
     test("should map a single dictionary entry", () => {
-        const mapper: any = function (config: MapperConfig<any>): any {
-            config.dataDictionary[0][config.dictionaryId].data =
-                config.dataDictionary[0][config.dictionaryId].data;
-        };
         const resolver: any = function (config: ResolverConfig<any>): any {
             const dataBlob = config.dataDictionary[0][config.dataDictionary[1]].data;
 
@@ -130,7 +126,9 @@ test.describe.only("mapDataDictionary", () => {
                     type: "object",
                 },
             },
-            mapper,
+            mapper: () => {
+                return;
+            },
             resolver,
         });
 
@@ -139,10 +137,6 @@ test.describe.only("mapDataDictionary", () => {
         });
     });
     test("should map multiple dictionary entries", () => {
-        const mapper: any = function (config: MapperConfig<any>): any {
-            config.dataDictionary[0][config.dictionaryId].data =
-                config.dataDictionary[0][config.dictionaryId].data;
-        };
         const resolver: any = function (config: ResolverConfig<any>): any {
             if (config.dataDictionary[0][config.dictionaryId].parent) {
                 set(
@@ -188,7 +182,9 @@ test.describe.only("mapDataDictionary", () => {
                     type: "object",
                 },
             },
-            mapper,
+            mapper: () => {
+                return;
+            },
             resolver,
         });
 
