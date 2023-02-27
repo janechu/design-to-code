@@ -3,15 +3,12 @@ import { expect, test } from "@playwright/test";
 import { DataDictionary } from "../message-system/index.js";
 import { linkedDataSchema } from "../schemas/index.js";
 import {
-    htmlMapper,
-    htmlResolver,
     mapDataDictionary,
     MapperConfig,
     mapWebComponentDefinitionToJSONSchema,
     ResolverConfig,
 } from "./mapping.js";
 import { DataType, ReservedElementMappingKeyword } from "./types.js";
-import dataDictionary from "src/message-system-service/shortcuts-service-actions/__test__/data-dictionary.js";
 
 /* eslint-disable @typescript-eslint/no-empty-function */
 test.describe.only("mapDataDictionary", () => {
