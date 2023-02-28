@@ -4,7 +4,6 @@ import {
     DataDictionary,
     DuplicateDataMessageOutgoing,
     InitializeMessageOutgoing,
-    MessageSystem,
     MessageSystemDataTypeAction,
     MessageSystemType,
     NavigationConfig,
@@ -12,8 +11,6 @@ import {
     Register,
     RemoveLinkedDataDataMessageOutgoing,
     SchemaSetValidationAction,
-    SchemaSetValidationMessageRequest,
-    SchemaSetValidationMessageResponse,
     UpdateDataMessageOutgoing,
 } from "../message-system/index.js";
 import { DataType } from "../data-utilities/types.js";
@@ -908,7 +905,7 @@ test.describe.only("AjvMapper", () => {
                     const data = JSON.parse(dataAsString);
                     const containsValidSchema = JSON.parse(containsValidSchemaAsString);
 
-                    let callbackData = [];
+                    const callbackData = [];
                     const postMessageCallback: any = e => {
                         callbackData.push(e);
                     };
@@ -978,7 +975,7 @@ test.describe.only("AjvMapper", () => {
                         containsInvalidSchemaAsString
                     );
                     const data = JSON.parse(dataAsString);
-                    let callbackData = [];
+                    const callbackData = [];
                     const postMessageCallback: any = e => {
                         callbackData.push(e);
                     };
@@ -1042,7 +1039,7 @@ test.describe.only("AjvMapper", () => {
                     string,
                     string
                 ]) => {
-                    let callbackData = [];
+                    const callbackData = [];
                     const postMessageCallback: any = e => {
                         callbackData.push(e);
                     };
