@@ -1,4 +1,8 @@
 import { htmlMapper, htmlResolver, mapDataDictionary } from "design-to-code";
+import {
+    mapVSCodeParsedHTMLToDataDictionary,
+    mapVSCodeHTMLAndDataDictionaryToDataDictionary,
+} from "design-to-code/dist/esm/data-utilities/mapping.vscode-html-languageservice.js";
 
 /**
  * These utilities are used for testing in browser
@@ -7,4 +11,6 @@ import { htmlMapper, htmlResolver, mapDataDictionary } from "design-to-code";
     htmlMapper,
     htmlResolver,
     mapDataDictionary,
+    mapVSCodeParsedHTMLToDataDictionary,
+    mapVSCodeHTMLAndDataDictionaryToDataDictionary,
 };
