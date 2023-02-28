@@ -115,7 +115,7 @@ test.describe.only("getDataUpdatedWithSourceData", () => {
 /**
  * Gets updated data by removing data from a data blob
  */
-test.describe("getDataUpdatedWithoutSourceData", () => {
+test.describe.only("getDataUpdatedWithoutSourceData", () => {
     test("should remove source data from an object", () => {
         const data: Dictionary<unknown> = {
             foo: "bar",
@@ -150,7 +150,7 @@ test.describe("getDataUpdatedWithoutSourceData", () => {
 /**
  * Gets the next active dictionary ID when linked data is being removed
  */
-test.describe("getNextActiveParentDictionaryId", () => {
+test.describe.only("getNextActiveParentDictionaryId", () => {
     test("should get the current active dictionary ID if the active dictionary ID is not being removed", () => {
         expect(
             getNextActiveParentDictionaryId(
