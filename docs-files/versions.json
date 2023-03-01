@@ -1,12 +1,12 @@
 {
     "design-to-code": {
         "versions": [
-            "0.x"
+            "1.x"
         ]
     },
     "design-to-code-react": {
         "versions": [
-            "2.x"
+            "1.x"
         ]
     }
 }
