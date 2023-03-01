@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 import { getLinkedData, getLinkedDataDictionary, getLinkedDataList } from "./data.js";
 import { Data, LinkedDataPromise } from "./data.props.js";
 
-test.describe.only("getLinkedDataDictionary", () => {
+test.describe("getLinkedDataDictionary", () => {
     test("should get a linked data dictionary", () => {
         const dictionaryId: string = "root";
         const dataLocation: string = "foo";
@@ -127,7 +127,7 @@ test.describe.only("getLinkedDataDictionary", () => {
     });
 });
 
-test.describe.only("getLinkedData", () => {
+test.describe("getLinkedData", () => {
     test("should get a linked data set", () => {
         expect(
             getLinkedData(
@@ -201,7 +201,7 @@ test.describe.only("getLinkedData", () => {
     });
 });
 
-test.describe.only("getLinkedDataList", () => {
+test.describe("getLinkedDataList", () => {
     test("should get an empty list if an item does not contain linked data", () => {
         expect(
             getLinkedDataList(

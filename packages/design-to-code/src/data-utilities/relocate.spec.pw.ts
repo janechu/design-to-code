@@ -10,7 +10,7 @@ import { DataType } from "./types.js";
 /**
  * Gets updated data by adding data to a data blob
  */
-test.describe.only("getDataUpdatedWithSourceData", () => {
+test.describe("getDataUpdatedWithSourceData", () => {
     test("should update an undefined target with source data", () => {
         const data: Dictionary<unknown> = {
             foo: "bar",
@@ -115,7 +115,7 @@ test.describe.only("getDataUpdatedWithSourceData", () => {
 /**
  * Gets updated data by removing data from a data blob
  */
-test.describe.only("getDataUpdatedWithoutSourceData", () => {
+test.describe("getDataUpdatedWithoutSourceData", () => {
     test("should remove source data from an object", () => {
         const data: Dictionary<unknown> = {
             foo: "bar",
@@ -150,7 +150,7 @@ test.describe.only("getDataUpdatedWithoutSourceData", () => {
 /**
  * Gets the next active dictionary ID when linked data is being removed
  */
-test.describe.only("getNextActiveParentDictionaryId", () => {
+test.describe("getNextActiveParentDictionaryId", () => {
     test("should get the current active dictionary ID if the active dictionary ID is not being removed", () => {
         expect(
             getNextActiveParentDictionaryId(

@@ -62,7 +62,7 @@ const customSchema = {
     },
 };
 
-test.describe.only("mapVSCodeParsedHTMLToDataDictionary", () => {
+test.describe("mapVSCodeParsedHTMLToDataDictionary", () => {
     test.beforeEach(async ({ page }) => {
         await page.goto("/utilities");
     });
@@ -664,7 +664,7 @@ test.describe.only("mapVSCodeParsedHTMLToDataDictionary", () => {
     });
 });
 
-test.describe.only("mapVSCodeHTMLAndDataDictionaryToDataDictionary", () => {
+test.describe("mapVSCodeHTMLAndDataDictionaryToDataDictionary", () => {
     test.beforeEach(async ({ page }) => {
         await page.goto("/utilities");
     });

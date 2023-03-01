@@ -11,7 +11,7 @@ import {
 import { DataType, ReservedElementMappingKeyword } from "./types.js";
 
 /* eslint-disable @typescript-eslint/no-empty-function */
-test.describe.only("mapDataDictionary", () => {
+test.describe("mapDataDictionary", () => {
     test("should call a passed mapper and resolver function on a single data dictionary item", () => {
         let mapperCalled = 0;
         let resolverCalled = 0;
@@ -197,7 +197,7 @@ test.describe.only("mapDataDictionary", () => {
     });
 });
 
-test.describe.only("htmlMapper", async () => {
+test.describe("htmlMapper", async () => {
     test.beforeEach(async ({ page }) => {
         await page.goto("/utilities");
     });
@@ -1286,7 +1286,7 @@ test.describe.only("htmlMapper", async () => {
     });
 });
 
-test.describe.only("mapWebComponentDefinitionToJSONSchema", () => {
+test.describe("mapWebComponentDefinitionToJSONSchema", () => {
     test("should not throw", () => {
         expect(() => mapWebComponentDefinitionToJSONSchema({ version: 1 })).not.toThrow();
     });

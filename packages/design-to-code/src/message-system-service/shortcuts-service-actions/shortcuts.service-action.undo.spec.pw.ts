@@ -8,7 +8,7 @@ import {
 import { MessageSystemType } from "../../message-system/types.js";
 
 /* eslint-disable @typescript-eslint/no-empty-function */
-test.describe.only("ShortcutsActionUndo", () => {
+test.describe("ShortcutsActionUndo", () => {
     test.beforeEach(async ({ page }) => {
         await page.goto("/message-system");
     });

@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 import { ShortcutsAction } from "./shortcuts.service-action.js";
 
 /* eslint-disable @typescript-eslint/no-empty-function */
-test.describe.only("ShortcutsAction", () => {
+test.describe("ShortcutsAction", () => {
     test("should not throw", () => {
         expect(() => {
             new ShortcutsAction({

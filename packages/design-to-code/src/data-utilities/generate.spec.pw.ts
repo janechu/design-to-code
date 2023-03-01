@@ -4,7 +4,7 @@ import { getDataFromSchema } from "./generate.js";
 /**
  * Gets an example from a schema
  */
-test.describe.only("getDataFromSchema", () => {
+test.describe("getDataFromSchema", () => {
     test("should return a default even if no type has been specified", () => {
         const schema: any = {
             default: "foo",

@@ -7,7 +7,7 @@ import {
 } from "./monaco-adapter.service.utilities.js";
 
 /* eslint-disable @typescript-eslint/no-empty-function */
-test.describe.only("MonacoAdapter", async () => {
+test.describe("MonacoAdapter", async () => {
     test.beforeEach(async ({ page }) => {
         await page.goto("/message-system");
     });
@@ -958,7 +958,7 @@ test.describe.only("MonacoAdapter", async () => {
     });
 });
 
-test.describe.only("findDictionaryIdParents", () => {
+test.describe("findDictionaryIdParents", () => {
     test("should not return any parents if this is the root dictionary item", () => {
         expect(
             findDictionaryIdParents("root", [
@@ -1073,7 +1073,7 @@ test.describe.only("findDictionaryIdParents", () => {
     });
 });
 
-test.describe.only("findUpdatedDictionaryId", () => {
+test.describe("findUpdatedDictionaryId", () => {
     test("should return the root dictionary id if there is no parent items", () => {
         expect(
             findUpdatedDictionaryId(

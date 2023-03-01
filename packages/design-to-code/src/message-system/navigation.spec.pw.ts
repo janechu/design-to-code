@@ -8,7 +8,7 @@ import { TreeNavigationItem } from "./navigation.props.js";
 /**
  * Gets the navigation
  */
-test.describe.only("getNavigation", () => {
+test.describe("getNavigation", () => {
     test("should get a single navigation object from a schema with type object", () => {
         expect(
             getNavigation({
@@ -699,7 +699,7 @@ test.describe.only("getNavigation", () => {
     });
 });
 
-test.describe.only("getNavigationDictionary", () => {
+test.describe("getNavigationDictionary", () => {
     test("should not throw", () => {
         expect(() =>
             getNavigationDictionary(

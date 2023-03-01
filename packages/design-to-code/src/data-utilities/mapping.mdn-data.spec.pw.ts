@@ -19,7 +19,7 @@ import {
     resolveReferenceType,
 } from "./mapping.mdn-data.js";
 
-test.describe.only("mapStringLiterals,", () => {
+test.describe("mapStringLiterals,", () => {
     test("should keep track of '/' and ',' as literals", () => {
         expect(mapStringLiterals("/ <length-percentage>")).toEqual("/");
         expect(mapStringLiterals("<length-percentage>")).toEqual(null);
@@ -27,7 +27,7 @@ test.describe.only("mapStringLiterals,", () => {
     });
 });
 
-test.describe.only("mapCSSGroups", () => {
+test.describe("mapCSSGroups", () => {
     test("should map a single group", () => {
         expect(mapCSSGroups("foo [ bar ]+ baz")).toMatchObject([
             {
@@ -223,7 +223,7 @@ test.describe.only("mapCSSGroups", () => {
     });
 });
 
-test.describe.only("mapMultiplierType", () => {
+test.describe("mapMultiplierType", () => {
     test("should find a zero or more multiplier type", () => {
         expect(mapMultiplierType("foo*")).toMatchObject({
             type: MultiplierType.zeroOrMore,
@@ -257,7 +257,7 @@ test.describe.only("mapMultiplierType", () => {
     });
 });
 
-test.describe.only("mapCombinatorType", () => {
+test.describe("mapCombinatorType", () => {
     test("should find a juxtaposition combination type", () => {
         expect(mapCombinatorType("foo bar bat")).toEqual(CombinatorType.juxtaposition);
         expect(
@@ -291,7 +291,7 @@ test.describe.only("mapCombinatorType", () => {
     });
 });
 
-test.describe.only("resolveReferenceType", () => {
+test.describe("resolveReferenceType", () => {
     test("should resolve a reference of type syntax", () => {
         expect(
             resolveReferenceType("<line-style>", CombinatorType.none, ["line-style"], [])
@@ -320,7 +320,7 @@ test.describe.only("resolveReferenceType", () => {
     });
 });
 
-test.describe.only("resolveCSSPropertySyntaxSplit", () => {
+test.describe("resolveCSSPropertySyntaxSplit", () => {
     test("should split by at least one in any order", () => {
         expect(
             resolveCSSPropertySyntaxSplit(
@@ -357,7 +357,7 @@ test.describe.only("resolveCSSPropertySyntaxSplit", () => {
     });
 });
 
-test.describe.only("resolveCSSGroups", () => {
+test.describe("resolveCSSGroups", () => {
     test("should resolve a simple string referece", () => {
         expect(resolveCSSGroups("<length>", [], [])).toMatchObject([
             {
@@ -474,7 +474,7 @@ test.describe.only("resolveCSSGroups", () => {
     });
 });
 
-test.describe.only("resolveCSSPropertySyntax", () => {
+test.describe("resolveCSSPropertySyntax", () => {
     test("should resolve a CSS properties syntax without shorthand properties", () => {
         expect(
             resolveCSSPropertySyntax(
@@ -567,7 +567,7 @@ test.describe.only("resolveCSSPropertySyntax", () => {
     });
 });
 
-test.describe.only("mapCSSProperties", () => {
+test.describe("mapCSSProperties", () => {
     test("should return a subset of MDN data into a subset of CSS properties ", () => {
         const subsetOfMDNCSS = {
             properties: {
@@ -669,7 +669,7 @@ test.describe.only("mapCSSProperties", () => {
     });
 });
 
-test.describe.only("resolveCSSSyntax", () => {
+test.describe("resolveCSSSyntax", () => {
     test("should resolve a CSS syntax without grouped items", () => {
         expect(resolveCSSSyntax("xx-small | x-small | small", [], [])).toMatchObject({
             ref: [
@@ -736,7 +736,7 @@ test.describe.only("resolveCSSSyntax", () => {
     });
 });
 
-test.describe.only("mapCSSSyntaxes", () => {
+test.describe("mapCSSSyntaxes", () => {
     test("should return a subset of MDN data into a subset of CSS syntaxes", () => {
         const subsetOfMDNCSS = {
             properties: {},
@@ -956,7 +956,7 @@ test.describe.only("mapCSSSyntaxes", () => {
     });
 });
 
-test.describe.only("mapMixedCombinatorTypes", () => {
+test.describe("mapMixedCombinatorTypes", () => {
     test("should add brackets if there are multiple combinator types", () => {
         const syntax1: string = "foo | bar bat";
         expect(mapMixedCombinatorTypes(syntax1)).toEqual("foo | [ bar bat ]");
@@ -998,7 +998,7 @@ test.describe.only("mapMixedCombinatorTypes", () => {
     });
 });
 
-test.describe.only("mapCSSInlineStyleToCSSPropertyDictionary", () => {
+test.describe("mapCSSInlineStyleToCSSPropertyDictionary", () => {
     test("should return an empty dictionary if the style is an empty string", () => {
         expect(mapCSSInlineStyleToCSSPropertyDictionary("")).toMatchObject({});
     });

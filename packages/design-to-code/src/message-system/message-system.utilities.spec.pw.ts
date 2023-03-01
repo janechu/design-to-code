@@ -33,7 +33,7 @@ import { SchemaDictionary } from "./schema.props.js";
 import { getNavigationDictionary } from "./navigation.js";
 import { removeRootDataNodeErrorMessage } from "./errors.js";
 
-test.describe.only("getMessage", () => {
+test.describe("getMessage", () => {
     test.describe("history", () => {
         test("should return messages sent to get the history", () => {
             const getHistory: InternalIncomingMessage<GetHistoryMessageIncoming> = [
