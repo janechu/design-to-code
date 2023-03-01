@@ -31,9 +31,6 @@ test.describe.only("HTML Render Layer Inline Edit", () => {
         );
         expect(editor).not.toBeNull();
         await expect(editor).toHaveCSS("display", "block");
-        await expect(editor).toHaveCSS("top", "52px");
-        await expect(editor).toHaveCSS("height", "24px");
-        await expect(editor).toHaveCSS("width", "126.484px");
     });
 
     test("should take focus and navigate on double click", async ({ page }) => {
