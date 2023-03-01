@@ -16,11 +16,6 @@ import {
 import { DataType } from "../data-utilities/types.js";
 import { AjvMapper, ajvValidationId } from "./ajv-validation.service.js";
 
-/**
- * These tests rely on some async functionality.
- * They are therefore not included with the rest of the coverage
- * and should be run only locally when making changes to the AjvMapper service.
- */
 /* eslint-disable @typescript-eslint/no-empty-function */
 test.describe.only("AjvMapper", () => {
     test.beforeEach(async ({ page }) => {
