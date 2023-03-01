@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 import type { Register } from "./message-system.props.js";
 
 /* eslint-disable @typescript-eslint/no-empty-function */
-test.describe.only("MessageSystem", async () => {
+test.describe("MessageSystem", async () => {
     test.beforeEach(async ({ page }) => {
         await page.goto("/message-system");
     });

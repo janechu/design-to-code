@@ -13,7 +13,7 @@ const textSchema = {
     type: DataType.string,
 };
 
-test.describe.only("mapDataDictionaryToMonacoEditorHTML", async () => {
+test.describe("mapDataDictionaryToMonacoEditorHTML", async () => {
     test.beforeEach(async ({ page }) => {
         await page.goto("/utilities");
     });
@@ -734,7 +734,7 @@ test.describe.only("mapDataDictionaryToMonacoEditorHTML", async () => {
     });
 });
 
-test.describe.only("findMonacoEditorHTMLPositionByDictionaryId", async () => {
+test.describe("findMonacoEditorHTMLPositionByDictionaryId", async () => {
     test.beforeEach(async ({ page }) => {
         await page.goto("/utilities");
     });
@@ -1108,7 +1108,7 @@ test.describe.only("findMonacoEditorHTMLPositionByDictionaryId", async () => {
     });
 });
 
-test.describe.only("findDictionaryIdByMonacoEditorHTMLPosition", async () => {
+test.describe("findDictionaryIdByMonacoEditorHTMLPosition", async () => {
     test.beforeEach(async ({ page }) => {
         await page.goto("/utilities");
     });

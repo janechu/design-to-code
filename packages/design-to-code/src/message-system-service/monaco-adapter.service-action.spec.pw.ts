@@ -3,7 +3,7 @@ import { MessageSystemType } from "../message-system/index.js";
 import { MonacoAdapterAction } from "./monaco-adapter.service-action.js";
 
 /* eslint-disable @typescript-eslint/no-empty-function */
-test.describe.only("MonacoAdapterAction", () => {
+test.describe("MonacoAdapterAction", () => {
     test("should not throw", () => {
         expect(() => {
             new MonacoAdapterAction({

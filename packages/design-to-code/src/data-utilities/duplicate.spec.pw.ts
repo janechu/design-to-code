@@ -4,7 +4,7 @@ import { getDataWithDuplicate } from "./duplicate.js";
 /**
  * Gets duplicated data
  */
-test.describe.only("getDataWithDuplicate", () => {
+test.describe("getDataWithDuplicate", () => {
     test("should duplicate data inside an array", () => {
         const data: any = {
             foo: ["Hello"],

@@ -3,7 +3,7 @@ import { MessageSystemType, Register } from "../message-system/index.js";
 import { ShortcutsConfig, shortcutsId } from "./shortcuts.service.js";
 
 /* eslint-disable @typescript-eslint/no-empty-function */
-test.describe.only("Shortcuts", async () => {
+test.describe("Shortcuts", async () => {
     test.beforeEach(async ({ page }) => {
         await page.goto("/message-system");
     });

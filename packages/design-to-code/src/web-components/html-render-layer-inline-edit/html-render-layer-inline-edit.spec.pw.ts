@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 import { getMessage, getMessageAll } from "../html-render/__tests__/helpers.js";
 
-test.describe.only("HTML Render Layer Inline Edit", () => {
+test.describe("HTML Render Layer Inline Edit", () => {
     test.beforeEach(async ({ page }) => {
         // Playwright is configured to use http://localhost:7001 as the base URL for all tests
         // so you can use a relative URL to navigate to a different page.

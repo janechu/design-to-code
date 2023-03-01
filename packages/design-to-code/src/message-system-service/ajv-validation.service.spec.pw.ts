@@ -17,7 +17,7 @@ import { DataType } from "../data-utilities/types.js";
 import { AjvMapper, ajvValidationId } from "./ajv-validation.service.js";
 
 /* eslint-disable @typescript-eslint/no-empty-function */
-test.describe.only("AjvMapper", () => {
+test.describe("AjvMapper", () => {
     test.beforeEach(async ({ page }) => {
         await page.goto("/message-system");
     });
