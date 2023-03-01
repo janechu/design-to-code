@@ -6,11 +6,6 @@ import {
     findUpdatedDictionaryId,
 } from "./monaco-adapter.service.utilities.js";
 
-/**
- * These tests rely on some async functionality.
- * They are therefore not included with the rest of the coverage
- * and should be run only locally when making changes to the MonacoAdapter service.
- */
 /* eslint-disable @typescript-eslint/no-empty-function */
 test.describe.only("MonacoAdapter", async () => {
     test.beforeEach(async ({ page }) => {
