@@ -59,4 +59,7 @@ jobs:
     - name: Test
       run: npm run test --if-present --workspace=design-to-code
 
+    - name: Build docs site
+      run: npm run build:gh-pages
+
        
