@@ -1,0 +1,8 @@
+.dtc-common-form-control-disabled {
+    opacity: var(--dtc-disable-opacity);
+    cursor: not-allowed;
+}
+
+.dtc-common-form-control-disabled label {
+    cursor: not-allowed;
+}

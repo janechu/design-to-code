@@ -1,0 +1,7 @@
+.dtc-common-soft-remove {
+    display: flex;
+    height: 18px;
+    min-width: var(--dtc-gutter);
+    justify-content: center;
+    align-items: center;
+}

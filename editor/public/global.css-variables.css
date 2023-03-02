@@ -1,0 +1,20 @@
+body, html {
+    --dtc-l1-color: #333333;
+    --dtc-l2-color: #2B2B2B;
+    --dtc-l3-color: #242424;
+    --dtc-l3-outline-color: #646464;
+    --dtc-l3-fill-color: #4D4D4D;
+    --dtc-l4-color: #1B1B1B;
+    --dtc-floating-color: #3B3B3B;
+    --dtc-accent-color: #65A1FA;
+    --dtc-text-color: #F7F7F7;
+    --dtc-inactive-text-color: #A2A2A2;
+    --dtc-error-color: red;
+    --dtc-disable-opacity: 0.3;
+    --dtc-code-highlight-css-key: #9CDCFE;
+    --dtc-code-highlight-css-value: #D4D4D4;
+    --dtc-border-radius: 3px;
+    --dtc-gutter: 24px;
+    --dtc-text-size-default: 12px;
+    --dtc-text-size-status-message: 11px;
+}

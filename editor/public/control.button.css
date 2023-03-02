@@ -1,0 +1,9 @@
+.dtc-button-control {
+    text-align: start;
+    background: var(--dtc-l1-color);
+}
+
+.dtc-button-control.dtc-button-control__disabled {
+    color: var(--dtc-inactive-text-color);
+    font-style: italic;
+}
