@@ -2,7 +2,7 @@ const path = require("path");
 const copyfiles = require("copyfiles");
 const sidebar = require("../docs-files/sidebar.js");
 const versions = require("../docs-files/versions.json");
-const toolbarConfig = require("./toolbar-config.js");
+const toolbarConfig = require("./toolbar-config.json");
 const root = path.resolve(__dirname, "../");
 
 import("static-docs").then(({ StaticDocs }) => {

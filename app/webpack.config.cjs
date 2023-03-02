@@ -22,8 +22,8 @@ module.exports = {
     },
     output: {
         path: outDir,
-        publicPath: "/",
-        filename: "[name].js",
+        publicPath: process.env.NODE_ENV === "production" ? "/editor" : "/",
+        filename: "[name].[contenthash].js",
     },
     mode: process.env.NODE_ENV || "development",
     module: {
