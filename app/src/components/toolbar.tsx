@@ -2,7 +2,7 @@ import React from "react";
 import toolbarTemplate from "static-docs/dist/esm/templates/toolbar/index.js";
 import staticDocsStyleTemplate from "static-docs/dist/esm/templates/style/index.js";
 import { template as templateResolver, escape, forEach } from "lodash-es";
-import { toolbarConfig } from "../../../build/toolbar-config.js";
+import toolbarConfig from "../../../build/toolbar-config.json";
 
 const compiledToolbarTemplate = templateResolver(toolbarTemplate, {
     imports: {
