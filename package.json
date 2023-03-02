@@ -9,7 +9,7 @@
     "./packages/design-to-code",
     "./packages/design-to-code-react",
     "./packages/design-to-code-wasm",
-    "./website"
+    "./app"
   ],
   "repository": {
     "type": "git",
@@ -20,7 +20,8 @@
   },
   "scripts": {
     "bump": "beachball bump",
-    "build:gh-pages": "node build/generate-docs.js",
+    "build:editor": "cd app && npm run build:app",
+    "build:gh-pages": "npm run build:editor && node build/generate-docs.js",
     "change": "beachball change",
     "check": "beachball check --changehint \"Run 'npm run change' to generate a change file\"",
     "publish": "beachball publish --workspaces",
