@@ -1,4 +1,4 @@
-import * as vscodeHTMLData from "vscode-web-custom-data/data/browsers.html-data.json";
+import vscodeHTMLData from "vscode-web-custom-data/data/browsers.html-data.json";
 import { DataType } from "../../data-utilities/index.js";
 import {
     WebComponentAttribute,
@@ -78,26 +78,26 @@ function convertAttributeData(tag: VSCodeNativeHTMLTag): WebComponentAttribute[]
     });
 }
 
-const convertedTags: WebComponentDefinitionTag[] = (vscodeHTMLData as VSCodeNativeHTMLDefinition).tags?.map(
-    (tag: VSCodeNativeHTMLTag): WebComponentDefinitionTag => {
-        const newWebComponentDefinitionTag: WebComponentDefinitionTag = {
-            name: tag.name,
-            title: tag.name,
-            description:
-                typeof tag.description === "string"
-                    ? tag.description
-                    : (tag.description as VSCodeNativeHTMLTagDescription).value ?? "", // TODO: this ?? might not work if typescript is not 4.0+
-            attributes: convertAttributeData(tag),
-            slots: [],
-        };
-        if (!voidElements.includes(tag.name)) {
-            Object.assign(newWebComponentDefinitionTag, {
-                slots: defaultSlotValue,
-            });
-        }
-        return newWebComponentDefinitionTag;
+const convertedTags: WebComponentDefinitionTag[] = (
+    vscodeHTMLData as VSCodeNativeHTMLDefinition
+).tags?.map((tag: VSCodeNativeHTMLTag): WebComponentDefinitionTag => {
+    const newWebComponentDefinitionTag: WebComponentDefinitionTag = {
+        name: tag.name,
+        title: tag.name,
+        description:
+            typeof tag.description === "string"
+                ? tag.description
+                : (tag.description as VSCodeNativeHTMLTagDescription).value ?? "", // TODO: this ?? might not work if typescript is not 4.0+
+        attributes: convertAttributeData(tag),
+        slots: [],
+    };
+    if (!voidElements.includes(tag.name)) {
+        Object.assign(newWebComponentDefinitionTag, {
+            slots: defaultSlotValue,
+        });
     }
-);
+    return newWebComponentDefinitionTag;
+});
 
 /**
  * WebComponentDefinition has version typed as 1

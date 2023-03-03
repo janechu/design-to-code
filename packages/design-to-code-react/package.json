@@ -18,6 +18,7 @@
     "build": "tsc --project ./tsconfig.json",
     "build:app": "webpack --progress --mode=production",
     "clean:dist": "node ../../build/clean.js dist",
+    "copy:css": "copyfiles -u 1 'src/**/*.css' dist/",
     "coverage": "jest --coverage",
     "prepublishOnly": "npm run clean:dist && npm run build",
     "prettier": "prettier --config ../../.prettierrc --write \"**/*.{ts,tsx,html}\"",

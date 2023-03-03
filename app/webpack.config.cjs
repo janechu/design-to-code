@@ -15,10 +15,6 @@ module.exports = {
     devtool: process.env.NODE_ENV === "production" ? "none" : "inline-source-map",
     entry: {
         app: path.resolve(appDir, "index.tsx"),
-        "message-system": path.resolve(
-            __dirname,
-            "../node_modules/design-to-code/dist/message-system.min.js"
-        ),
     },
     output: {
         path: outDir,
@@ -38,12 +34,19 @@ module.exports = {
                     {
                         loader: "ts-loader",
                         options: {
+                            configFile: path.resolve(__dirname, "tsconfig.json"),
                             compilerOptions: {
                                 declaration: false,
                             },
                         },
                     },
                 ],
+            },
+            {
+                test: /message\-system\.min\.js/,
+                use: {
+                    loader: "worker-loader",
+                },
             },
         ],
     },
@@ -57,7 +60,7 @@ module.exports = {
         new CopyWebpackPlugin({
             patterns: [
                 {
-                    from: path.resolve("../node_modules/design-to-code/dist/web-components/**/*.css"),
+                    from: path.resolve("../node_modules/design-to-code/dist/stylesheets/**/*.css"),
                     to: "public/[name][ext]"
                 },
             ],
