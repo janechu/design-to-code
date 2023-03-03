@@ -9,6 +9,7 @@ import cleanListStyle from "../../style/clean-list-style.css";
 import ellipsisStyle from "../../style/ellipsis-style.css";
 import softRemoveStyle from "../../style/soft-remove-style.css";
 import removeItemStyle from "../../style/remove-item-style.css";
+import style from "./control.linked-data.style.css";
 
 // tree-shaking
 cssVariables;
@@ -16,6 +17,7 @@ cleanListStyle;
 ellipsisStyle;
 softRemoveStyle;
 removeItemStyle;
+style;
 
 /**
  * Form control definition
@@ -93,36 +95,36 @@ function LinkedDataControl(props: LinkedDataControlProps) {
     function renderExistingLinkedDataItem(): React.ReactNode {
         if (Array.isArray(props.value)) {
             return (dragging ? data : props.value).map((value: any, index: number) => {
-                // return (
-                //     <DragItem
-                //         key={value + index}
-                //         itemClassName={
-                //             "dtc-linked-data-control_existing-linked-data-item"
-                //         }
-                //         itemLinkClassName={
-                //             "dtc-linked-data-control_existing-linked-data-item-link dtc-common-ellipsis"
-                //         }
-                //         itemRemoveClassName={"dtc-linked-data-control_delete-button dtc-common-remove-item"}
-                //         minItems={0}
-                //         itemLength={1}
-                //         index={index}
-                //         onClick={handleItemClick(value.id)}
-                //         removeDragItem={handleRemoveItem}
-                //         moveDragItem={handleMoveItem}
-                //         dropDragItem={handleDropItem}
-                //         dragStart={handleDragStart}
-                //         dragEnd={handleDragEnd}
-                //         strings={props.strings}
-                //     >
-                //         {
-                //             props.schemaDictionary[
-                //                 props.dataDictionary[0][value.id].schemaId
-                //             ].title
-                //         }
-                //     </DragItem>
-                // );
-                return props.schemaDictionary[props.dataDictionary[0][value.id].schemaId]
-                    .title;
+                return (
+                    <DragItem
+                        key={value + index}
+                        itemClassName={
+                            "dtc-linked-data-control_existing-linked-data-item"
+                        }
+                        itemLinkClassName={
+                            "dtc-linked-data-control_existing-linked-data-item-link dtc-common-ellipsis"
+                        }
+                        itemRemoveClassName={
+                            "dtc-linked-data-control_delete-button dtc-common-remove-item"
+                        }
+                        minItems={0}
+                        itemLength={1}
+                        index={index}
+                        onClick={handleItemClick(value.id)}
+                        removeDragItem={handleRemoveItem}
+                        moveDragItem={handleMoveItem}
+                        dropDragItem={handleDropItem}
+                        dragStart={handleDragStart}
+                        dragEnd={handleDragEnd}
+                        strings={props.strings}
+                    >
+                        {
+                            props.schemaDictionary[
+                                props.dataDictionary[0][value.id].schemaId
+                            ].title
+                        }
+                    </DragItem>
+                );
             });
         }
     }
@@ -251,12 +253,10 @@ function LinkedDataControl(props: LinkedDataControlProps) {
     }
 
     function addLinkedData(normalizedValue: string, originalValue: string): void {
-        const matchedNormalizedValue: string | void = lazyMatchValueWithASingleSchema(
-            normalizedValue
-        );
-        const matchedOriginalValue: string | void = matchExactValueWithASingleSchema(
-            originalValue
-        );
+        const matchedNormalizedValue: string | void =
+            lazyMatchValueWithASingleSchema(normalizedValue);
+        const matchedOriginalValue: string | void =
+            matchExactValueWithASingleSchema(originalValue);
         const schemaId: string | void = matchedNormalizedValue || matchedOriginalValue;
 
         if (typeof schemaId !== "undefined") {
