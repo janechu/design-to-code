@@ -22,7 +22,7 @@ module.exports = {
     },
     output: {
         path: outDir,
-        publicPath: process.env.NODE_ENV === "production" ? "/editor" : "/",
+        publicPath: "/",
         filename: "[name].[contenthash].js",
     },
     mode: process.env.NODE_ENV || "development",
@@ -52,6 +52,7 @@ module.exports = {
             contentBase: outDir,
             inject: "body",
             template: path.resolve(appDir, "index.html"),
+            publicPath: "./",
         }),
         new CopyWebpackPlugin({
             patterns: [

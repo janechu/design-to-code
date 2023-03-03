@@ -4,6 +4,11 @@ import staticDocsStyleTemplate from "static-docs/dist/esm/templates/style/index.
 import { template as templateResolver, escape, forEach } from "lodash-es";
 import toolbarConfig from "../../../build/toolbar-config.json";
 
+const config = {
+    ...toolbarConfig,
+    links: toolbarConfig.toolbarLinks,
+};
+
 const compiledToolbarTemplate = templateResolver(toolbarTemplate, {
     imports: {
         // lodash imports needed for the compiler
@@ -18,7 +23,7 @@ const compiledStaticDocsStyleTemplate = templateResolver(staticDocsStyleTemplate
 
 function createMarkup() {
     return {
-        __html: compiledToolbarTemplate(toolbarConfig),
+        __html: compiledToolbarTemplate(config),
     };
 }
 
