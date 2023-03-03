@@ -30,7 +30,7 @@
     "prettier": "prettier --config ../../.prettierrc --write \"**/*.ts\"",
     "prettier:diff": "prettier --config ../../.prettierrc \"**/*.ts\" --list-different",
     "start": "node ./www/server.cjs",
-    "test": "npm run eslint && npm run build && npm run build:app && npm run test:playwright",
+    "test": "npm run eslint && npm run test:playwright",
     "test:playwright": "npx playwright test",
     "eslint": "eslint . --ext .ts",
     "eslint:fix": "eslint . --ext .ts --fix",

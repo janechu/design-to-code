@@ -8,7 +8,7 @@
         "baseUrl": "./",
         "outDir": "dist",
         "jsx": "react",
-        "module": "es2022",
+        "module": "ES6",
         "moduleResolution": "node",
         "resolveJsonModule": true,
         "types": [
