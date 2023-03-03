@@ -58,7 +58,7 @@ module.exports = {
         new CopyWebpackPlugin({
             patterns: [
                 {
-                    from: path.resolve("../design-to-code/dist/web-components/**/*.css"),
+                    from: path.resolve("../design-to-code/dist/stylesheets/**/*.css"),
                     to: "public/[name][ext]"
                 },
             ],
@@ -67,8 +67,8 @@ module.exports = {
     resolve: {
         extensions: [".js", ".tsx", ".ts", ".json", ".css"],
         alias: {
-            react: path.resolve("./node_modules/react"),
-            "react-dom": path.resolve("./node_modules/react-dom"),
+            react: path.resolve("../../node_modules/react"),
+            "react-dom": path.resolve("../../node_modules/react-dom"),
         },
     },
 };

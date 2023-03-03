@@ -1,0 +1,37 @@
+main.editor {
+    display: block;
+    margin: 0;
+    height: calc(100vh - var(--toolbar-height));
+    --editor-toolbar-height: 24px;
+    --editor-height: calc(100vh - var(--toolbar-height) - var(--editor-toolbar-height));
+}
+
+.editor-toolbar {
+    background: red;
+    width: 100%;
+    height: var(--editor-toolbar-height);
+}
+
+.editor-container {
+    background: blue;
+    display: grid;
+    width: 100%;
+    grid-template-columns: 20% 60% 20%;
+    height: var(--editor-height);
+}
+
+.editor-left-rail {
+    grid-column-start: 1;
+    grid-column-end: 1;
+}
+
+.editor-right-rail {
+    grid-column-start: 3;
+    grid-column-end: 3;
+}
+
+.editor-view {
+    background: green;
+    grid-column-start: 2;
+    grid-column-end: 2;
+}

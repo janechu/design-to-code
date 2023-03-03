@@ -2,6 +2,7 @@
   "name": "app",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "description": "An application using the design to code project packages to create a WYSIWYG HTML editor",
   "main": "index.js",
   "scripts": {
@@ -22,6 +23,7 @@
     "copy-webpack-plugin": "^11.0.0",
     "copyfiles": "^2.4.1",
     "css-loader": "^6.7.3",
+    "design-to-code-react": "^1.0.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
     "lodash-es": "^4.17.21",
