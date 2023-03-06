@@ -5,7 +5,7 @@ import {
     MessageSystem,
     SchemaDictionary,
 } from "design-to-code";
-import { ModularForm, ModularNavigation } from "design-to-code-react";
+import { ModularForm, ModularNavigation, ModularViewer } from "design-to-code-react";
 import { schemaDictionary as nativeElementSchemaDictionary } from "../configs/native.schema-dictionary";
 import "./editor.css";
 import MessageSystemWorker from "design-to-code/dist/message-system.min.js";
@@ -42,7 +42,12 @@ export function Editor() {
                     />
                 </div>
                 <div className="editor-view">
-                    <div className="editor-view-viewer">Viewer</div>
+                    <div className="editor-view-viewer">
+                        <ModularViewer
+                            iframeSrc={"/preview"}
+                            messageSystem={messageSystem}
+                        />
+                    </div>
                     <div className="editor-view-monaco">
                         <MonacoEditor
                             messageSystem={messageSystem}

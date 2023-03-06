@@ -2,11 +2,12 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
+const previewWebpackConfig = require("./webpack.preview.config.cjs");
 
 const appDir = path.resolve(__dirname, "./src");
 const outDir = path.resolve(__dirname, "./www");
 
-module.exports = {
+const rootWebpackConfig = {
     devServer: {
         compress: false,
         historyApiFallback: true,
@@ -76,3 +77,5 @@ module.exports = {
         extensions: [".js", ".tsx", ".ts", ".json", ".css"],
     },
 };
+
+module.exports = [rootWebpackConfig, previewWebpackConfig];
