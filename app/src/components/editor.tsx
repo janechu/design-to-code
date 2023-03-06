@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import {
     DataDictionary,
     DataType,
@@ -31,6 +31,19 @@ const messageSystem = new MessageSystem({
 });
 
 export function Editor() {
+    const [viewWidth, setViewWidth] = useState(0);
+    const [viewHeight, setViewHeight] = useState(0);
+
+    const onViewRefChange = useCallback(node => {
+        if (node !== null) {
+            const width = getComputedStyle(node).width;
+            const height = getComputedStyle(node).height;
+
+            setViewWidth(parseInt(width.slice(0, -2), 10));
+            setViewHeight(parseInt(height.slice(0, -2), 10));
+        }
+    }, []);
+
     return (
         <main className="editor">
             <nav className="editor-toolbar">header</nav>
@@ -42,10 +55,15 @@ export function Editor() {
                     />
                 </div>
                 <div className="editor-view">
-                    <div className="editor-view-viewer">
+                    <div className="editor-view-viewer" ref={onViewRefChange}>
                         <ModularViewer
+                            height={viewHeight}
+                            width={viewWidth}
+                            onUpdateHeight={setViewHeight}
+                            onUpdateWidth={setViewWidth}
                             iframeSrc={"/preview"}
                             messageSystem={messageSystem}
+                            responsive={true}
                         />
                     </div>
                     <div className="editor-view-monaco">
