@@ -34,10 +34,6 @@ main.editor {
     grid-column-end: 2;
 }
 
-.editor-view-viewer {
-    background: orange;
-}
-
 .editor-view-viewer,
 .editor-view-monaco {
     height: 50%;
