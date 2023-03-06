@@ -101,7 +101,7 @@ const adapter = new MonacoAdapter({
                 // postMessage to the MessageSystem
                 config.updateMonacoModelValue(
                     [html_beautify(monacoValue.join(""))],
-                    true
+                    false
                 );
             },
         }),

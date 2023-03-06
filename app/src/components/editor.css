@@ -13,7 +13,6 @@ main.editor {
 }
 
 .editor-container {
-    background: blue;
     display: grid;
     width: 100%;
     grid-template-columns: 20% 60% 20%;
@@ -31,7 +30,15 @@ main.editor {
 }
 
 .editor-view {
-    background: green;
     grid-column-start: 2;
     grid-column-end: 2;
+}
+
+.editor-view-viewer {
+    background: orange;
+}
+
+.editor-view-viewer,
+.editor-view-monaco {
+    height: 50%;
 }
