@@ -56,39 +56,40 @@ export class MonacoAdapter extends MessageSystemService<
      * Handles messages from the message system
      */
     handleMessageSystem = (e: MessageEvent): void => {
-        switch (e.data.type) {
-            case MessageSystemType.initialize:
-                this.dictionaryId = e.data.activeDictionaryId;
-                this.dataDictionary = e.data.dataDictionary;
-
-                if (!e.data.options || e.data.options.originatorId !== monacoAdapterId) {
+        if (e.data.options?.originatorId !== monacoAdapterId) {
+            switch (e.data.type) {
+                case MessageSystemType.initialize:
+                    this.dictionaryId = e.data.activeDictionaryId;
+                    this.dataDictionary = e.data.dataDictionary;
                     this.schemaDictionary = e.data.schemaDictionary;
-                    this.monacoModelValue = [
-                        mapDataDictionaryToMonacoEditorHTML(
-                            e.data.dataDictionary,
-                            e.data.schemaDictionary
-                        ),
-                    ];
-                    this.registeredActions.forEach((action: MonacoAdapterAction) => {
-                        if (action.matches(e.data.type)) {
-                            action.invoke();
-                        }
-                    });
+
+                    break;
+                case MessageSystemType.data:
+                    this.dictionaryId = e.data.activeDictionaryId;
+                    this.dataDictionary = e.data.dataDictionary;
+
+                    break;
+                case MessageSystemType.navigation:
+                    this.dictionaryId = e.data.activeDictionaryId;
+
+                    break;
+                case MessageSystemType.schemaDictionary:
+                    this.schemaDictionary = e.data.schemaDictionary;
+
+                    break;
+            }
+
+            this.monacoModelValue = [
+                mapDataDictionaryToMonacoEditorHTML(
+                    e.data.dataDictionary,
+                    e.data.schemaDictionary
+                ),
+            ];
+            this.registeredActions.forEach((action: MonacoAdapterAction) => {
+                if (action.matches(e.data.type)) {
+                    action.invoke();
                 }
-                break;
-            case MessageSystemType.data:
-                this.dictionaryId = e.data.activeDictionaryId;
-                this.dataDictionary = e.data.dataDictionary;
-
-                break;
-            case MessageSystemType.navigation:
-                this.dictionaryId = e.data.activeDictionaryId;
-
-                break;
-            case MessageSystemType.schemaDictionary:
-                this.schemaDictionary = e.data.schemaDictionary;
-
-                break;
+            });
         }
     };
 

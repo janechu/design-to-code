@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
 
 const appDir = path.resolve(__dirname, "./src");
 const outDir = path.resolve(__dirname, "./www");
@@ -64,6 +65,11 @@ module.exports = {
                     to: "public/[name][ext]"
                 },
             ],
+        }),
+        new MonacoWebpackPlugin({
+            // available options are documented at https://github.com/Microsoft/monaco-editor-webpack-plugin#options
+            languages: ["html"],
+            features: ["format", "coreCommands", "codeAction"],
         }),
     ],
     resolve: {
