@@ -11,6 +11,8 @@ import "./editor.css";
 import MessageSystemWorker from "design-to-code/dist/message-system.min.js";
 import { MonacoEditor } from "./monaco-editor";
 import { mapDataDictionaryToMonacoEditorHTML } from "design-to-code/dist/esm/data-utilities/monaco";
+import { ScreenSelect } from "./screen-select";
+import { deviceOrScreenSize } from "./screen-select.constants";
 
 const initialDataDictionary: DataDictionary<unknown> = [
     {
@@ -33,6 +35,7 @@ const messageSystem = new MessageSystem({
 export function Editor() {
     const [viewWidth, setViewWidth] = useState(0);
     const [viewHeight, setViewHeight] = useState(0);
+    const [screenId, setScreenId] = useState("none");
 
     const onViewRefChange = useCallback(node => {
         if (node !== null) {
@@ -43,9 +46,21 @@ export function Editor() {
         }
     }, []);
 
+    const onSizeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const size = deviceOrScreenSize.find(
+            screenSize => e.target.value === screenSize.id
+        );
+
+        setViewWidth(size.width);
+        setViewHeight(size.height);
+        setScreenId(size.id);
+    };
+
     return (
         <main className="editor">
-            <nav className="editor-toolbar">header</nav>
+            <nav className="editor-toolbar">
+                <ScreenSelect handleChange={onSizeChange} screenId={screenId} />
+            </nav>
             <div className="editor-container">
                 <div className="editor-left-rail">
                     <ModularNavigation
@@ -58,8 +73,14 @@ export function Editor() {
                         <ModularViewer
                             height={viewHeight}
                             width={viewWidth}
-                            onUpdateHeight={setViewHeight}
-                            onUpdateWidth={setViewWidth}
+                            onUpdateHeight={e => {
+                                setScreenId("none");
+                                return setViewHeight(e);
+                            }}
+                            onUpdateWidth={e => {
+                                setScreenId("none");
+                                return setViewWidth(e);
+                            }}
                             iframeSrc={"/preview"}
                             messageSystem={messageSystem}
                             responsive={true}
