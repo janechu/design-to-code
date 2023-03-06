@@ -296,6 +296,8 @@ test.describe("MonacoAdapter", async () => {
                         data: {
                             type: messageSystemTypeNavigation,
                             activeDictionaryId: "text",
+                            dataDictionary,
+                            schemaDictionary,
                         },
                     } as any);
                 });
@@ -374,6 +376,7 @@ test.describe("MonacoAdapter", async () => {
                             type: messageSystemTypeData,
                             dataDictionary: dataDictionary2,
                             activeDictionaryId: "foo",
+                            schemaDictionary,
                         },
                     } as any);
                 });
@@ -452,6 +455,7 @@ test.describe("MonacoAdapter", async () => {
                         data: {
                             type: messageSystemTypeData,
                             dataDictionary: dataDictionary2,
+                            schemaDictionary,
                         },
                     } as any);
                 });
