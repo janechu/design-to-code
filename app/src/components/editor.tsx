@@ -36,8 +36,7 @@ export function Editor() {
 
     const onViewRefChange = useCallback(node => {
         if (node !== null) {
-            const width = getComputedStyle(node).width;
-            const height = getComputedStyle(node).height;
+            const { height, width } = getComputedStyle(node);
 
             setViewWidth(parseInt(width.slice(0, -2), 10));
             setViewHeight(parseInt(height.slice(0, -2), 10));
