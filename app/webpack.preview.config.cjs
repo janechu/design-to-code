@@ -9,10 +9,10 @@ const outDir = path.resolve(__dirname, "./www/preview");
 module.exports = {
     name: "preview",
     entry: {
-        main: path.resolve(appDir, "index.tsx"),
+        main: path.resolve(appDir, "index.ts"),
     },
     resolve: {
-        extensions: [".ts", ".tsx", ".js"],
+        extensions: [".ts", ".js"],
     },
     output: {
         path: outDir,

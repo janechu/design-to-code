@@ -1,6 +1,7 @@
 {
     "extends": "../tsconfig.json",
     "include": [
+        "shared/**/*",
         "preview/**/*",
         "src/**/*",
         "types.d.ts"
