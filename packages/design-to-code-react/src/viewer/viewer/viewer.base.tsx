@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { get } from "lodash-es";
 import { canUseDOM } from "exenv-es6";
 import rafThrottle from "raf-throttle";
@@ -11,7 +11,7 @@ import {
 import { MessageSystemType, Register } from "design-to-code";
 
 export function Viewer(props: ViewerHandledProps & ViewerUnhandledProps) {
-    let iframeRef: React.RefObject<HTMLIFrameElement>;
+    let iframeRef = useRef(null);
     const [resizing, setResizing] = useState(false);
     const [dragReferenceY, setDragReferenceY] = useState(null);
     const [dragReferenceX, setDragReferenceX] = useState(null);
@@ -24,7 +24,6 @@ export function Viewer(props: ViewerHandledProps & ViewerUnhandledProps) {
         props.messageSystem.add(messageSystemConfig);
     }
 
-    iframeRef = React.createRef();
     const throttledHandleMouseMove = rafThrottle(handleMouseMove);
 
     useEffect(() => {
@@ -111,7 +110,7 @@ export function Viewer(props: ViewerHandledProps & ViewerUnhandledProps) {
         return classes;
     }
 
-    function postMessage(message: MessageEvent): void {
+    function postMessage(message): void {
         if (canUseDOM() && get(iframeRef, "current.contentWindow")) {
             iframeRef.current.contentWindow.postMessage(JSON.stringify(message), "*");
         }

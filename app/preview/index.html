@@ -6,6 +6,13 @@
         <title><%= htmlWebpackPlugin.options.title %></title>
     </head>
     <body>
-        <div id="root"></div>
+        <dtc-html-render id="htmlRender">
+            <dtc-html-render-layer-navigation
+                role="htmlrenderlayer"
+            ></dtc-html-render-layer-navigation>
+            <dtc-html-render-layer-inline-edit
+                role="htmlrenderlayer"
+            ></dtc-html-render-layer-inline-edit>
+        </dtc-html-render>
     </body>
 </html>

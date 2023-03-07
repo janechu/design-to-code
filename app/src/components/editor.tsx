@@ -1,30 +1,13 @@
 import React, { useCallback, useState } from "react";
-import {
-    DataDictionary,
-    DataType,
-    MessageSystem,
-    SchemaDictionary,
-} from "design-to-code";
+import { DataType, MessageSystem } from "design-to-code";
 import { ModularForm, ModularNavigation, ModularViewer } from "design-to-code-react";
-import { schemaDictionary as nativeElementSchemaDictionary } from "../configs/native.schema-dictionary";
 import "./editor.css";
 import MessageSystemWorker from "design-to-code/dist/message-system.min.js";
 import { MonacoEditor } from "./monaco-editor";
 import { mapDataDictionaryToMonacoEditorHTML } from "design-to-code/dist/esm/data-utilities/monaco";
 import { ScreenSelect } from "./screen-select";
 import { deviceOrScreenSize } from "./screen-select.constants";
-
-const initialDataDictionary: DataDictionary<unknown> = [
-    {
-        root: {
-            schemaId: "div",
-            data: {},
-        },
-    },
-    "root",
-];
-
-const initialSchemaDictionary: SchemaDictionary = nativeElementSchemaDictionary;
+import { initialDataDictionary, initialSchemaDictionary } from "../../shared/constants";
 
 const messageSystem = new MessageSystem({
     webWorker: new MessageSystemWorker(),
