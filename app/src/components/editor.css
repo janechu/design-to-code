@@ -2,13 +2,14 @@ main.editor {
     display: block;
     margin: 0;
     height: calc(100vh - var(--toolbar-height));
-    --editor-toolbar-height: 24px;
+    --editor-toolbar-height: 32px;
     --editor-height: calc(100vh - var(--toolbar-height) - var(--editor-toolbar-height));
 }
 
 .editor-toolbar {
-    background: red;
     width: 100%;
+    box-sizing: border-box;
+    padding: 4px 8px;
     height: var(--editor-toolbar-height);
 }
 
