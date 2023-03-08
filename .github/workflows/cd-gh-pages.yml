@@ -36,7 +36,7 @@ jobs:
       run: npm ci
 
     - name: Build
-      run: npm run build --if-present
+      run: npm run build --workspace=design-to-code --workspace=design-to-code-react
 
     - name: Build GitHub Pages
       run: npm run build:gh-pages

@@ -67,7 +67,9 @@ module.exports = {
             title: "Preview",
             inject: "body",
             template: path.resolve(appDir, "index.html"),
-            globalCssVariableStylesheet: "/public/global.css-variables.css",
+            globalCssVariableStylesheet: process.env.NODE_ENV === "production"
+                ? "/editor/public/global.css-variables.css"
+                : "/public/global.css-variables.css",
         }),
         new CopyWebpackPlugin({
             patterns: [
