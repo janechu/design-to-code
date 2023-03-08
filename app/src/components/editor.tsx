@@ -65,7 +65,7 @@ export function Editor() {
                                 setScreenId("none");
                                 return setViewWidth(e);
                             }}
-                            iframeSrc={"/preview"}
+                            iframeSrc={"./preview"}
                             messageSystem={messageSystem}
                             responsive={true}
                         />
