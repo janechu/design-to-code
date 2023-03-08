@@ -10,7 +10,7 @@
 
 }
 
-.dtc-navigation .dtc-navigation_itemRegion::before {
+.dtc-navigation .dtc-navigation_item-region::before {
     content: '';
     height: 100%;
     position: absolute;
@@ -59,6 +59,7 @@
 .dtc-navigation_item > [data-dictionaryid] {
     padding: 6px 8px;
     border-radius: var(--dtc-border-radius);
+    color: var(--dtc-accent-color);
 }
 
 .dtc-navigation_item > [data-dictionaryid]:focus-visible {
@@ -85,7 +86,7 @@
     border-left: 4px solid var(--dtc-text-color);
 }
 
-.dtc-navigation_item__active {
+.dtc-navigation_item__active.dtc-navigation_item > [data-dictionaryid] {
     color: var(--dtc-text-color);
     font-weight: 600;
 }

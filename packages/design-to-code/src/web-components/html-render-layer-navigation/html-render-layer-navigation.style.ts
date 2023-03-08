@@ -1,12 +1,4 @@
 import { css } from "@microsoft/fast-element";
-import {
-    AccentFillRestProperty,
-    BackgroundColorProperty,
-    FocusOutlineWidthProperty,
-    FontSize1Property,
-    ForegroundColorProperty,
-    LineHeight1Property,
-} from "../style/css-properties.js";
 
 export const htmlRenderLayerNavigationStyles = css`
     .navigation {
@@ -27,8 +19,8 @@ export const htmlRenderLayerNavigationStyles = css`
         width: 0;
         height: 0;
         pointer-events: none;
-        margin: calc(${FocusOutlineWidthProperty} * -1px) 0 0
-            calc(${FocusOutlineWidthProperty} * -1px);
+        margin: calc(var(--dtc-focus-outline-width) * -1px) 0 0
+            calc(var(--dtc-focus-outline-width) * -1px);
     }
     .navigation-select__insetY {
         margin-top: 0;
@@ -38,7 +30,7 @@ export const htmlRenderLayerNavigationStyles = css`
     }
     .navigation-select__active {
         display: block;
-        border: calc(${FocusOutlineWidthProperty} * 1px) solid ${AccentFillRestProperty};
+        border: calc(var(--dtc-focus-outline-width) * 1px) solid var(--dtc-accent-color);
     }
     .navigation-hover__active {
         display: block;
@@ -49,35 +41,28 @@ export const htmlRenderLayerNavigationStyles = css`
         width: 100%;
         height: 100%;
         opacity: 0.16;
-        border: calc(${FocusOutlineWidthProperty} * 1px) solid ${AccentFillRestProperty};
-        background-color: ${AccentFillRestProperty};
+        border: calc(var(--dtc-focus-outline-width) * 1px) solid $var(--dtc-accent-color);
+        background-color: var(--dtc-accent-color);
     }
     .select-pill,
     .hover-pill {
         position: absolute;
         box-sizing: border-box;
-        top: calc((${LineHeight1Property} + (${FocusOutlineWidthProperty} * 4px)) * -1);
-        line-height: ${LineHeight1Property};
-        border-radius: calc(${LineHeight1Property} / 2);
-        background-color: ${AccentFillRestProperty};
+        left: calc(var(--dtc-focus-outline-width) * -1px);
+        bottom: -20px;
+        line-height: 16px;
+        border-radius: var(--dtc-border-radius);
+        background-color: var(--dtc-accent-color);
         padding: 0 6px;
-        border: calc(${FocusOutlineWidthProperty} * 1px) solid ${AccentFillRestProperty};
-        font-size: ${FontSize1Property};
+        border: calc(var(--dtc-focus-outline-width) * 1px) solid var(--dtc-accent-color);
+        font-size: var(--dtc-text-size-default);
         text-transform: uppercase;
         font-weight: 700;
-        color: ${BackgroundColorProperty};
+        color: #fff;
         white-space: nowrap;
     }
-    .select-pill__inset {
-        top: calc(${FocusOutlineWidthProperty} * 1px + 2px);
-        left: calc(${FocusOutlineWidthProperty} * 1px + 2px);
-    }
-    .hover-pill__inset {
-        top: calc(${FocusOutlineWidthProperty} * 2px + 2px);
-        left: calc(${FocusOutlineWidthProperty} * 2px + 2px);
-    }
     .hover-pill {
-        background-color: ${BackgroundColorProperty};
-        color: ${ForegroundColorProperty};
+        background-color: #fff;
+        color: var(--dtc-l2-color);
     }
 `;
