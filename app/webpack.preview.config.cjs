@@ -18,7 +18,7 @@ module.exports = {
     },
     output: {
         path: outDir,
-        publicPath: process.env.NODE_ENV === "production" ? "/editor/preview/" : "/preview/",
+        publicPath: process.env.NODE_ENV === "production" ? "./editor/preview/" : "./preview/",
         filename: "[name].[contenthash].js",
     },
     mode: process.env.NODE_ENV || "development",
@@ -71,15 +71,15 @@ module.exports = {
                 ? "/editor/public/global.css-variables.css"
                 : "/public/global.css-variables.css",
         }),
-        new CopyWebpackPlugin({
-            patterns: [
-                {
-                    from: path.resolve(__dirname, "../packages", "design-to-code", "src", "web-components", "style", "*.css"),
-                    to: (context, absoluteFilename) => {
-                        return path.resolve(__dirname, "../www", "[name][ext]");
-                    }
-                }
-            ],
-        }),
+        // new CopyWebpackPlugin({
+        //     patterns: [
+        //         {
+        //             from: path.resolve(__dirname, "../packages", "design-to-code", "src", "web-components", "style", "*.css"),
+        //             to: (context, absoluteFilename) => {
+        //                 return path.resolve(__dirname, "../www", "[name][ext]");
+        //             }
+        //         }
+        //     ],
+        // }),
     ],
 };
