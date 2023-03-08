@@ -3,7 +3,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 const appDir = path.resolve(__dirname, "./preview");
 const outDir = path.resolve(__dirname, "./www/preview");
@@ -57,6 +56,9 @@ module.exports = {
                 test: /message\-system\.min\.js/,
                 use: {
                     loader: "worker-loader",
+                    options: {
+                        publicPath: "./",
+                    }
                 },
             },
         ],
@@ -71,15 +73,5 @@ module.exports = {
                 ? "/editor/public/global.css-variables.css"
                 : "/public/global.css-variables.css",
         }),
-        // new CopyWebpackPlugin({
-        //     patterns: [
-        //         {
-        //             from: path.resolve(__dirname, "../packages", "design-to-code", "src", "web-components", "style", "*.css"),
-        //             to: (context, absoluteFilename) => {
-        //                 return path.resolve(__dirname, "../www", "[name][ext]");
-        //             }
-        //         }
-        //     ],
-        // }),
     ],
 };

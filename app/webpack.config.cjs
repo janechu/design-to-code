@@ -48,6 +48,9 @@ const rootWebpackConfig = {
                 test: /message\-system\.min\.js/,
                 use: {
                     loader: "worker-loader",
+                    options: {
+                        publicPath: "./",
+                    }
                 },
             },
         ],
