@@ -1,5 +1,4 @@
 import { html, ref, ViewTemplate } from "@microsoft/fast-element";
-import { FocusOutlineWidthProperty } from "../style/css-properties.js";
 import { HTMLRenderLayerNavigation } from "./html-render-layer-navigation.js";
 
 export const htmlRenderLayerNavigationTemplate: ViewTemplate<HTMLRenderLayerNavigation> = html`
@@ -16,10 +15,10 @@ export const htmlRenderLayerNavigationTemplate: ViewTemplate<HTMLRenderLayerNavi
             style="top:${x => x.selectPosition.top}px;left:${x =>
                 x.selectPosition.left}px;width:${x =>
                 x.selectPosition.left === 0
-                    ? `calc(${x.selectPosition.width}px - ${FocusOutlineWidthProperty} * 2px)`
+                    ? `calc(${x.selectPosition.width}px - var(--dtc-focus-outline-width) * 2px)`
                     : `${x.selectPosition.width}px`};height:${x =>
                 x.selectPosition.top === 0
-                    ? `calc(${x.selectPosition.height}px - ${FocusOutlineWidthProperty} * 2px)`
+                    ? `calc(${x.selectPosition.height}px - var(--dtc-focus-outline-width) * 2px)`
                     : `${x.selectPosition.height}px`}"
         >
             <div

@@ -2,6 +2,8 @@
 /* eslint-disable no-undef */
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 const appDir = path.resolve(__dirname, "./preview");
 const outDir = path.resolve(__dirname, "./www/preview");
@@ -41,8 +43,15 @@ module.exports = {
                 },
             },
             {
-                test: /\.css$/i,
-                use: ["style-loader", "css-loader"],
+                test: /\.css$/,
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                    },
+                    {
+                        loader: "css-loader",
+                    },
+                ],
             },
             {
                 test: /message\-system\.min\.js/,
@@ -53,10 +62,22 @@ module.exports = {
         ],
     },
     plugins: [
+        new MiniCssExtractPlugin(),
         new HtmlWebpackPlugin({
             title: "Preview",
             inject: "body",
             template: path.resolve(appDir, "index.html"),
+            globalCssVariableStylesheet: "/public/global.css-variables.css",
+        }),
+        new CopyWebpackPlugin({
+            patterns: [
+                {
+                    from: path.resolve(__dirname, "../packages", "design-to-code", "src", "web-components", "style", "*.css"),
+                    to: (context, absoluteFilename) => {
+                        return path.resolve(__dirname, "../www", "[name][ext]");
+                    }
+                }
+            ],
         }),
     ],
 };

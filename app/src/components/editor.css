@@ -2,15 +2,30 @@ main.editor {
     display: block;
     margin: 0;
     height: calc(100vh - var(--toolbar-height));
-    --editor-toolbar-height: 32px;
+    --editor-toolbar-height: 28px;
     --editor-height: calc(100vh - var(--toolbar-height) - var(--editor-toolbar-height));
 }
 
 .editor-toolbar {
+    display: flex;
+    column-gap: 4px;
     width: 100%;
     box-sizing: border-box;
     padding: 4px 8px;
     height: var(--editor-toolbar-height);
+}
+
+.editor-toolbar .editor-badge,
+.editor-toolbar .dtc-common-select-span {
+    display: inline-flex;
+}
+
+.editor-badge {
+    color: var(--dtc-text-color);
+    font-size: var(--dtc-text-size-default);
+    background: var(--dtc-accent-color);
+    border-radius: var(--dtc-border-radius);
+    padding: 2px 4px;
 }
 
 .editor-container {
