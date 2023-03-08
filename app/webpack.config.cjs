@@ -20,7 +20,7 @@ const rootWebpackConfig = {
     },
     output: {
         path: outDir,
-        publicPath: "/",
+        publicPath: process.env.NODE_ENV === "production" ? "/editor" : "/",
         filename: "[name].[contenthash].js",
     },
     mode: process.env.NODE_ENV || "development",
