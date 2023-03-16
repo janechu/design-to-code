@@ -12,3 +12,8 @@ export const initialDataDictionary: DataDictionary<unknown> = [
 ];
 
 export const initialSchemaDictionary: SchemaDictionary = nativeElementSchemaDictionary;
+
+export const requestPreviewInitialize: string = "PREVIEW:INITIALIZE";
+
+export const originatedByPreview: string = "design-to-code::preview";
+export const originatedByEditor: string = "design-to-code::editor";

@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import { get } from "lodash-es";
 import { canUseDOM } from "exenv-es6";
 import rafThrottle from "raf-throttle";
 import {
@@ -20,19 +19,28 @@ export function Viewer(props: ViewerHandledProps & ViewerUnhandledProps) {
         onMessage: handleMessageSystem,
     };
 
-    if (props.messageSystem !== undefined) {
-        props.messageSystem.add(messageSystemConfig);
-    }
-
     const throttledHandleMouseMove = rafThrottle(handleMouseMove);
 
     useEffect(() => {
         document.addEventListener("mouseup", handleMouseUp);
         document.addEventListener("mousemove", throttledHandleMouseMove);
+        iframeRef.current.contentWindow.addEventListener("message", handleIframeMessage);
+
+        if (props.messageSystem !== undefined) {
+            props.messageSystem.add(messageSystemConfig);
+        }
 
         return function cleanup() {
             document.removeEventListener("mouseup", handleMouseUp);
             document.removeEventListener("mousemove", throttledHandleMouseMove);
+            iframeRef.current.contentWindow.removeEventListener(
+                "message",
+                handleIframeMessage
+            );
+
+            if (props.messageSystem !== undefined) {
+                props.messageSystem.remove(messageSystemConfig);
+            }
         };
     });
 
@@ -111,7 +119,7 @@ export function Viewer(props: ViewerHandledProps & ViewerUnhandledProps) {
     }
 
     function postMessage(message): void {
-        if (canUseDOM() && get(iframeRef, "current.contentWindow")) {
+        if (canUseDOM() && iframeRef?.current?.contentWindow) {
             iframeRef.current.contentWindow.postMessage(JSON.stringify(message), "*");
         }
     }

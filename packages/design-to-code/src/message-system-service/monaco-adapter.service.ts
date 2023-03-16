@@ -56,22 +56,27 @@ export class MonacoAdapter extends MessageSystemService<
      * Handles messages from the message system
      */
     handleMessageSystem = (e: MessageEvent): void => {
-        this.dictionaryId = e.data.activeDictionaryId;
-        this.dataDictionary = e.data.dataDictionary;
-        this.schemaDictionary = e.data.schemaDictionary;
+        if (
+            e.data.type !== MessageSystemType.custom &&
+            e.data.options?.originatorId !== monacoAdapterId
+        ) {
+            this.dictionaryId = e.data.activeDictionaryId;
+            this.dataDictionary = e.data.dataDictionary;
+            this.schemaDictionary = e.data.schemaDictionary;
 
-        if (e.data.options?.originatorId !== monacoAdapterId) {
-            this.monacoModelValue = [
-                mapDataDictionaryToMonacoEditorHTML(
-                    e.data.dataDictionary,
-                    e.data.schemaDictionary
-                ),
-            ];
-            this.registeredActions.forEach((action: MonacoAdapterAction) => {
-                if (action.matches(e.data.type)) {
-                    action.invoke();
-                }
-            });
+            if (e.data.options?.originatorId !== monacoAdapterId) {
+                this.monacoModelValue = [
+                    mapDataDictionaryToMonacoEditorHTML(
+                        e.data.dataDictionary,
+                        e.data.schemaDictionary
+                    ),
+                ];
+                this.registeredActions.forEach((action: MonacoAdapterAction) => {
+                    if (action.matches(e.data.type)) {
+                        action.invoke();
+                    }
+                });
+            }
         }
     };
 
