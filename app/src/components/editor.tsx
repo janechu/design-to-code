@@ -1,24 +1,55 @@
-import React, { useCallback, useState } from "react";
-import { DataType, MessageSystem } from "design-to-code";
+import React, { useCallback, useEffect, useState } from "react";
+import {
+    DataType,
+    InitializeMessageIncoming,
+    MessageSystem,
+    MessageSystemType,
+} from "design-to-code";
 import { ModularForm, ModularNavigation, ModularViewer } from "design-to-code-react";
 import "./editor.css";
 import MessageSystemWorker from "design-to-code/dist/message-system.min.js";
 import { MonacoEditor } from "./monaco-editor";
-import { mapDataDictionaryToMonacoEditorHTML } from "design-to-code/dist/esm/data-utilities/monaco";
 import { ScreenSelect } from "./screen-select";
 import { deviceOrScreenSize } from "./screen-select.constants";
-import { initialDataDictionary, initialSchemaDictionary } from "../../shared/constants";
+import {
+    initialDataDictionary,
+    initialSchemaDictionary,
+    originatedByEditor,
+    requestPreviewInitialize,
+} from "../../shared/constants";
 
 const messageSystem = new MessageSystem({
     webWorker: new MessageSystemWorker(),
-    dataDictionary: initialDataDictionary,
-    schemaDictionary: initialSchemaDictionary,
 });
 
+const handleMessageSystem = e => {
+    if (e.data?.value === requestPreviewInitialize) {
+        messageSystem.postMessage({
+            type: MessageSystemType.initialize,
+            dataDictionary: initialDataDictionary,
+            schemaDictionary: initialSchemaDictionary,
+            options: {
+                originatorId: originatedByEditor,
+            },
+        } as InitializeMessageIncoming);
+    }
+};
+
 export function Editor() {
+    const messageSystemConfig = {
+        onMessage: handleMessageSystem,
+    };
     const [viewWidth, setViewWidth] = useState(0);
     const [viewHeight, setViewHeight] = useState(0);
     const [screenId, setScreenId] = useState("none");
+
+    useEffect(() => {
+        messageSystem.add(messageSystemConfig);
+
+        return () => {
+            messageSystem.remove(messageSystemConfig);
+        };
+    });
 
     const onViewRefChange = useCallback(node => {
         if (node !== null) {
@@ -71,13 +102,7 @@ export function Editor() {
                         />
                     </div>
                     <div className="editor-view-monaco">
-                        <MonacoEditor
-                            messageSystem={messageSystem}
-                            initialValue={mapDataDictionaryToMonacoEditorHTML(
-                                initialDataDictionary,
-                                initialSchemaDictionary
-                            )}
-                        />
+                        <MonacoEditor messageSystem={messageSystem} />
                     </div>
                 </div>
                 <div className="editor-right-rail">

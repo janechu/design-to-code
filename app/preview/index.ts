@@ -1,11 +1,11 @@
-import { MessageSystem } from "design-to-code";
+import { MessageSystem, MessageSystemType } from "design-to-code";
 import { HTMLRender } from "design-to-code/dist/esm/web-components/html-render/html-render.js";
 import { DTCHTMLRender } from "design-to-code/dist/esm/web-components/html-render/html-render.define";
 import { DTCHTMLRenderLayerNavigation } from "design-to-code/dist/esm/web-components/html-render-layer-navigation/html-render-layer-navigation.define";
 import { DTCHTMLRenderLayerInlineEdit } from "design-to-code/dist/esm/web-components/html-render-layer-inline-edit/html-render-layer-inline-edit.define";
 import { nativeElementDefinitions } from "design-to-code/dist/esm/definitions";
 import MessageSystemWorker from "design-to-code/dist/message-system.min.js";
-import { initialDataDictionary, initialSchemaDictionary } from "../shared/constants";
+import { originatedByPreview, requestPreviewInitialize } from "../shared/constants";
 
 // tree-shaking
 DTCHTMLRender;
@@ -17,8 +17,6 @@ window.addEventListener("message", handleMessageSystem);
 
 const messageSystem = new MessageSystem({
     webWorker: new MessageSystemWorker(),
-    dataDictionary: initialDataDictionary,
-    schemaDictionary: initialSchemaDictionary,
 });
 
 messageSystem.add({
@@ -37,8 +35,8 @@ function handleMessageSystem(message: MessageEvent) {
 
         if (
             messageData !== undefined &&
-            (!(messageData as any).options ||
-                ((messageData as any).options as any).originatorId !== "preview")
+            (messageData as any)?.options?.originatorId !== originatedByPreview &&
+            (messageData as any)?.type === MessageSystemType.initialize // TODO: this "fix" does not address the core problem that messages are not syncing on different message types, we should investigate why this is happening and sync all message systems
         ) {
             messageSystem.postMessage(messageData as unknown as any);
         }
@@ -48,3 +46,15 @@ function handleMessageSystem(message: MessageEvent) {
 const htmlRender: HTMLRender = document.getElementById("htmlRender") as HTMLRender;
 htmlRender.markupDefinitions = Object.values(nativeElementDefinitions);
 htmlRender.messageSystem = messageSystem;
+
+window.postMessage(
+    {
+        type: MessageSystemType.custom,
+        action: "call",
+        value: requestPreviewInitialize,
+        options: {
+            originatorId: originatedByPreview,
+        },
+    },
+    "*"
+);
