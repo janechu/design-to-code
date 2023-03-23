@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { SectionValidationProps } from "./section.validation.props";
 import { ValidationError } from "design-to-code";
 import { classNames } from "@microsoft/fast-web-utilities";
-import cssVariables from "../../../style/css-variables.css";
-import invalidMessageStyle from "../../../style/invalid-message-style.css";
-import ellipsisStyle from "../../../style/ellipsis-style.css";
-import chevronStyle from "../../../style/chevron-style.css";
-import chevronUpStyle from "../../../style/chevron-up-style.css";
+import cssVariables from "design-to-code/dist/stylesheets/web-components/style/global.css-variables.css";
+import invalidMessageStyle from "design-to-code/dist/stylesheets/web-components/style/common.invalid-message.css";
+import ellipsisStyle from "design-to-code/dist/stylesheets/web-components/style/common.ellipsis.css";
+import chevronStyle from "design-to-code/dist/stylesheets/web-components/style/common.chevron.css";
+import chevronUpStyle from "design-to-code/dist/stylesheets/web-components/style/common.chevron-up.css";
 import style from "./section.validation.style.css";
 
 // tree-shaking

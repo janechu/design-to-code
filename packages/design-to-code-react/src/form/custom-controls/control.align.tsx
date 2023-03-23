@@ -1,7 +1,7 @@
 import React from "react";
 import { AlignControlProps, Alignment } from "./control.align.props";
 import { classNames } from "@microsoft/fast-web-utilities";
-import cssVariables from "../../style/css-variables.css";
+import cssVariables from "design-to-code/dist/stylesheets/web-components/style/global.css-variables.css";
 import alignStyle from "./control.align.style.css";
 
 // tree-shaking

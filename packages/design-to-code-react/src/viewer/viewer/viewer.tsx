@@ -6,7 +6,7 @@ import {
     ViewerProps,
     ViewerUnhandledProps,
 } from "./viewer.props";
-import cssVariables from "../../style/css-variables.css";
+import cssVariables from "design-to-code/dist/stylesheets/web-components/style/global.css-variables.css";
 import style from "./viewer.style.css";
 
 // tree-shaking

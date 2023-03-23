@@ -1,10 +1,10 @@
 import React from "react";
 import { SelectDeviceProps } from "./select-device.props";
 import { Device } from "./devices";
-import cssVariables from "../../style/css-variables.css";
-import ellipsisStyle from "../../style/ellipsis-style.css";
-import selectSpanStyle from "../../style/select-span-style.css";
-import selectInputStyle from "../../style/select-input-style.css";
+import cssVariables from "design-to-code/dist/stylesheets/web-components/style/global.css-variables.css";
+import ellipsisStyle from "design-to-code/dist/stylesheets/web-components/style/common.ellipsis.css";
+import selectSpanStyle from "design-to-code/dist/stylesheets/web-components/style/common.select-span.css";
+import selectInputStyle from "design-to-code/dist/stylesheets/web-components/style/common.select-input.css";
 import style from "./select-device.style.css";
 
 // tree-shaking
@@ -26,15 +26,13 @@ export function SelectDevice(props: SelectDeviceProps) {
     }
 
     function renderOptions(): React.ReactNode {
-        return props.devices.map(
-            (device: Device, index: number): React.ReactNode => {
-                return (
-                    <option value={device.id} key={device.id + index}>
-                        {device.displayName}
-                    </option>
-                );
-            }
-        );
+        return props.devices.map((device: Device, index: number): React.ReactNode => {
+            return (
+                <option value={device.id} key={device.id + index}>
+                    {device.displayName}
+                </option>
+            );
+        });
     }
 
     function handleOnChange(e: React.ChangeEvent<HTMLSelectElement>): void {

@@ -2,8 +2,8 @@ import React from "react";
 import { classNames, format } from "@microsoft/fast-web-utilities";
 import { SectionLinkControlProps } from "./control.section-link.props";
 import { isDefault } from "./utilities/form";
-import cssVariables from "../../style/css-variables.css";
-import defaultFontStyle from "../../style/default-font-style.css";
+import cssVariables from "design-to-code/dist/stylesheets/web-components/style/global.css-variables.css";
+import defaultFontStyle from "design-to-code/dist/stylesheets/web-components/style/common.default-font.css";
 import style from "./control.section-link.style.css";
 
 // tree-shaking

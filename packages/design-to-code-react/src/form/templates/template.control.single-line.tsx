@@ -8,15 +8,15 @@ import {
 } from "./template.control.utilities";
 import { SingleLineControlTemplateProps } from "./template.control.single-line.props";
 import { classNames } from "@microsoft/fast-web-utilities";
-import cssVariables from "../../style/css-variables.css";
-import controlSingleLineWrapperStyle from "../../style/control-single-line-wrapper-style.css";
-import formControlDisabledStyle from "../../style/form-control-disabled-style.css";
-import formControlIndicatorStyle from "../../style/form-control-indicator-style.css";
-import interactiveFormControlIndicatorStyle from "../../style/interactive-form-control-indicator-style.css";
-import labelStyle from "../../style/label-style.css";
-import invalidMessageStyle from "../../style/invalid-message-style.css";
-import softRemoveStyle from "../../style/soft-remove-style.css";
-import softRemoveInputStyle from "../../style/soft-remove-input-style.css";
+import cssVariables from "design-to-code/dist/stylesheets/web-components/style/global.css-variables.css";
+import controlSingleLineWrapperStyle from "design-to-code/dist/stylesheets/web-components/style/common.control-single-line-wrapper.css";
+import formControlDisabledStyle from "design-to-code/dist/stylesheets/web-components/style/common.form-control-disabled.css";
+import formControlIndicatorStyle from "design-to-code/dist/stylesheets/web-components/style/common.form-control-indicator.css";
+import interactiveFormControlIndicatorStyle from "design-to-code/dist/stylesheets/web-components/style/common.interactive-form-control-indicator.css";
+import labelStyle from "design-to-code/dist/stylesheets/web-components/style/common.label.css";
+import invalidMessageStyle from "design-to-code/dist/stylesheets/web-components/style/common.invalid-message.css";
+import softRemoveStyle from "design-to-code/dist/stylesheets/web-components/style/common.soft-remove.css";
+import softRemoveInputStyle from "design-to-code/dist/stylesheets/web-components/style/common.soft-remove-input.css";
 import style from "./template.control.single-line.style.css";
 import { FormHTMLElement } from "./template.control.utilities.props";
 

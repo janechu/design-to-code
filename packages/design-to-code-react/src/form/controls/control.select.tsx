@@ -2,10 +2,10 @@ import React from "react";
 import { SelectControlProps } from "./control.select.props";
 import { classNames } from "@microsoft/fast-web-utilities";
 import { isDefault } from "./utilities/form";
-import cssVariables from "../../style/css-variables.css";
-import selectSpanStyle from "../../style/select-span-style.css";
-import defaultFontStyle from "../../style/default-font-style.css";
-import selectInputStyle from "../../style/select-input-style.css";
+import cssVariables from "design-to-code/dist/stylesheets/web-components/style/global.css-variables.css";
+import selectSpanStyle from "design-to-code/dist/stylesheets/web-components/style/common.select-span.css";
+import defaultFontStyle from "design-to-code/dist/stylesheets/web-components/style/common.default-font.css";
+import selectInputStyle from "design-to-code/dist/stylesheets/web-components/style/common.select-input.css";
 import style from "./control.select.style.css";
 
 // tree-shaking

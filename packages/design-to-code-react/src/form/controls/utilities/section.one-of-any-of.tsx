@@ -1,12 +1,12 @@
 import React from "react";
 import { SectionOneOfAnyOfProps } from "./section.one-of-any-of.props";
 import { uniqueId } from "lodash-es";
-import cssVariables from "../../../style/css-variables.css";
-import controlStyle from "../../../style/control-style.css";
-import controlWrapperStyle from "../../../style/control-wrapper-style.css";
-import selectSpanStyle from "../../../style/select-span-style.css";
-import selectInputStyle from "../../../style/select-input-style.css";
-import labelStyle from "../../../style/label-style.css";
+import cssVariables from "design-to-code/dist/stylesheets/web-components/style/global.css-variables.css";
+import controlStyle from "design-to-code/dist/stylesheets/web-components/style/common.control.css";
+import controlWrapperStyle from "design-to-code/dist/stylesheets/web-components/style/common.control-wrapper.css";
+import selectSpanStyle from "design-to-code/dist/stylesheets/web-components/style/common.select-span.css";
+import selectInputStyle from "design-to-code/dist/stylesheets/web-components/style/common.select-input.css";
+import labelStyle from "design-to-code/dist/stylesheets/web-components/style/common.label.css";
 
 // tree-shaking
 cssVariables;

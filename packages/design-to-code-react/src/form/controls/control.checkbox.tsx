@@ -2,7 +2,7 @@ import React from "react";
 import { CheckboxControlProps } from "./control.checkbox.props";
 import { classNames } from "@microsoft/fast-web-utilities";
 import { isDefault } from "./utilities/form";
-import cssVariables from "../../style/css-variables.css";
+import cssVariables from "design-to-code/dist/stylesheets/web-components/style/global.css-variables.css";
 import style from "./control.checkbox.style.css";
 
 // tree-shaking

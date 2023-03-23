@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { TextareaControlProps } from "./control.textarea.props";
 import { classNames } from "@microsoft/fast-web-utilities";
 import { isDefault } from "./utilities/form";
-import cssVariables from "../../style/css-variables.css";
+import cssVariables from "design-to-code/dist/stylesheets/web-components/style/global.css-variables.css";
 import style from "./control.textarea.style.css";
 
 // tree-shaking

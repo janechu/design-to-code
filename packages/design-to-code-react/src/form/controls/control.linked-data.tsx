@@ -4,11 +4,11 @@ import { getDataFromSchema } from "design-to-code";
 import { DragItem, ItemType } from "../templates";
 import { ArrayAction, LinkedDataActionType } from "../templates/types";
 import { LinkedDataControlProps } from "./control.linked-data.props";
-import cssVariables from "../../style/css-variables.css";
-import cleanListStyle from "../../style/clean-list-style.css";
-import ellipsisStyle from "../../style/ellipsis-style.css";
-import softRemoveStyle from "../../style/soft-remove-style.css";
-import removeItemStyle from "../../style/remove-item-style.css";
+import cssVariables from "design-to-code/dist/stylesheets/web-components/style/global.css-variables.css";
+import cleanListStyle from "design-to-code/dist/stylesheets/web-components/style/common.clean-list.css";
+import ellipsisStyle from "design-to-code/dist/stylesheets/web-components/style/common.ellipsis.css";
+import softRemoveStyle from "design-to-code/dist/stylesheets/web-components/style/common.soft-remove.css";
+import removeItemStyle from "design-to-code/dist/stylesheets/web-components/style/common.remove-item.css";
 import style from "./control.linked-data.style.css";
 
 // tree-shaking
