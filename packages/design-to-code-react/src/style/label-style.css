@@ -1,8 +1,0 @@
-.dtc-common-label {
-    flex-grow: 1;
-    line-height: 16px;
-    box-sizing: border-box;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}

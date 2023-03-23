@@ -5,13 +5,13 @@ import { PropertyKeyword } from "design-to-code";
 import { DictionaryProps } from "./dictionary.props";
 import ControlSwitch from "./control-switch";
 import { generateExampleData, getErrorFromDataLocation } from "./form";
-import cssVariables from "../../../style/css-variables.css";
-import controlStyle from "../../../style/control-style.css";
-import labelStyle from "../../../style/label-style.css";
-import controlRegionStyle from "../../../style/control-region-style.css";
-import inputStyle from "../../../style/input-style.css";
-import removeItemStyle from "../../../style/remove-item-style.css";
-import addItemStyle from "../../../style/add-item-style.css";
+import cssVariables from "design-to-code/dist/stylesheets/web-components/style/global.css-variables.css";
+import controlStyle from "design-to-code/dist/stylesheets/web-components/style/common.control.css";
+import labelStyle from "design-to-code/dist/stylesheets/web-components/style/common.label.css";
+import controlRegionStyle from "design-to-code/dist/stylesheets/web-components/style/common.control-region.css";
+import inputStyle from "design-to-code/dist/stylesheets/web-components/style/common.input.css";
+import removeItemStyle from "design-to-code/dist/stylesheets/web-components/style/common.remove-item.css";
+import addItemStyle from "design-to-code/dist/stylesheets/web-components/style/common.add-item.css";
 import style from "./dictionary.style.css";
 
 // tree-shaking
@@ -28,9 +28,8 @@ style;
  *  control definition
  */
 function Dictionary(props: DictionaryProps) {
-    const rootElementRef: React.RefObject<HTMLDivElement> = React.createRef<
-        HTMLDivElement
-    >();
+    const rootElementRef: React.RefObject<HTMLDivElement> =
+        React.createRef<HTMLDivElement>();
 
     const [focusedPropertyKey, setFocusedPropertyKey] = useState(null);
     const [focusedPropertyKeyValue, setFocusedPropertyKeyValue] = useState(null);

@@ -2,9 +2,9 @@ import React from "react";
 import { NumberFieldControlProps } from "./control.number-field.props";
 import { classNames } from "@microsoft/fast-web-utilities";
 import { isDefault } from "./utilities/form";
-import cssVariables from "../../style/css-variables.css";
-import inputStyle from "../../style/input-style.css";
-import defaultFontStyle from "../../style/default-font-style.css";
+import cssVariables from "design-to-code/dist/stylesheets/web-components/style/global.css-variables.css";
+import inputStyle from "design-to-code/dist/stylesheets/web-components/style/common.input.css";
+import defaultFontStyle from "design-to-code/dist/stylesheets/web-components/style/common.default-font.css";
 import style from "./control.number-field.style.css";
 
 // tree-shaking

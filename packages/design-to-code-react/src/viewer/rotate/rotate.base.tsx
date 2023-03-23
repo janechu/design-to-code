@@ -1,7 +1,7 @@
 import React from "react";
 import { Orientation, RotateProps } from "./rotate.props";
-import cssVariables from "../../style/css-variables.css";
-import inputBackplateStyle from "../../style/input-backplate-style.css";
+import cssVariables from "design-to-code/dist/stylesheets/web-components/style/global.css-variables.css";
+import inputBackplateStyle from "design-to-code/dist/stylesheets/web-components/style/common.input-backplate.css";
 import style from "./rotate.style.css";
 
 // tree-shaking

@@ -1,8 +1,0 @@
-.dtc-common-invalid-message {
-    color: var(--dtc-error-color);
-    font-size: var(--dtc-text-size-status-message);
-    margin-right: 10px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}

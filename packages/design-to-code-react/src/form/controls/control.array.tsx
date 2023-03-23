@@ -5,15 +5,15 @@ import { ArrayControlProps, ArrayControlState } from "./control.array.props";
 import { DragItem, ItemType } from "../templates";
 import { ArrayAction } from "../templates/types";
 import { classNames } from "@microsoft/fast-web-utilities";
-import cssVariables from "../../style/css-variables.css";
-import addItemStyle from "../../style/add-item-style.css";
-import cleanListStyle from "../../style/clean-list-style.css";
-import defaultFontStyle from "../../style/default-font-style.css";
-import invalidMessageStyle from "../../style/invalid-message-style.css";
-import removeItemStyle from "../../style/remove-item-style.css";
-import labelStyle from "../../style/label-style.css";
-import labelRegionStyle from "../../style/label-region-style.css";
-import ellipsisStyle from "../../style/ellipsis-style.css";
+import cssVariables from "design-to-code/dist/stylesheets/web-components/style/global.css-variables.css";
+import addItemStyle from "design-to-code/dist/stylesheets/web-components/style/common.add-item.css";
+import cleanListStyle from "design-to-code/dist/stylesheets/web-components/style/common.clean-list.css";
+import defaultFontStyle from "design-to-code/dist/stylesheets/web-components/style/common.default-font.css";
+import invalidMessageStyle from "design-to-code/dist/stylesheets/web-components/style/common.invalid-message.css";
+import removeItemStyle from "design-to-code/dist/stylesheets/web-components/style/common.remove-item.css";
+import labelStyle from "design-to-code/dist/stylesheets/web-components/style/common.label.css";
+import labelRegionStyle from "design-to-code/dist/stylesheets/web-components/style/common.label-region.css";
+import ellipsisStyle from "design-to-code/dist/stylesheets/web-components/style/common.ellipsis.css";
 import style from "./control.array.style.css";
 
 // tree-shaking

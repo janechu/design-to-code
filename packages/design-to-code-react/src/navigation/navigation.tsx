@@ -40,9 +40,9 @@ import {
     getDragHoverState,
     isActiveItem,
 } from "./navigation.utilities";
-import cssVariables from "../style/css-variables.css";
-import inputStyle from "../style/input-style.css";
-import ellipsisStyle from "../style/ellipsis-style.css";
+import cssVariables from "design-to-code/dist/stylesheets/web-components/style/global.css-variables.css";
+import inputStyle from "design-to-code/dist/stylesheets/web-components/style/common.input.css";
+import ellipsisStyle from "design-to-code/dist/stylesheets/web-components/style/common.ellipsis.css";
 import style from "./navigation.style.css";
 
 // tree-shaking
@@ -210,7 +210,7 @@ function Navigation(props: NavigationHandledProps) {
         const isDroppable: boolean =
             isBlockedFromBeingDroppable &&
             ((isLinkedData && schema?.type === DataType.object && !isRootLinkedData) || // a piece of linked data that is not the root and is an object type
-            schema?.[dictionaryLink] || // an identified dictionary link
+                schema?.[dictionaryLink] || // an identified dictionary link
                 (isRootLinkedData && props.defaultLinkedDataDroppableDataLocation)); // the root linked data with an defined droppable data location
 
         const isTriggerRenderable: boolean = shouldTriggerRender(

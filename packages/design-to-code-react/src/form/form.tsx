@@ -42,7 +42,7 @@ import {
     TreeNavigationItem,
     Validation,
 } from "design-to-code";
-import cleanListStyle from "../style/clean-list-style.css";
+import cleanListStyle from "design-to-code/dist/stylesheets/web-components/style/common.clean-list.css";
 import style from "./form.style.css";
 
 // tree-shaking
@@ -345,25 +345,23 @@ const Form: React.FC<FormProps> = (
     }
 
     function renderBreadcrumbItems(items: BreadcrumbItem[]): React.ReactNode {
-        return items.map(
-            (item: BreadcrumbItem, index: number): JSX.Element => {
-                if (index === items.length - 1) {
-                    return (
-                        <li key={index}>
-                            <span>{item.text}</span>
-                        </li>
-                    );
-                }
-
+        return items.map((item: BreadcrumbItem, index: number): JSX.Element => {
+            if (index === items.length - 1) {
                 return (
                     <li key={index}>
-                        <a href={item.href} onClick={item.onClick}>
-                            {item.text}
-                        </a>
+                        <span>{item.text}</span>
                     </li>
                 );
             }
-        );
+
+            return (
+                <li key={index}>
+                    <a href={item.href} onClick={item.onClick}>
+                        {item.text}
+                    </a>
+                </li>
+            );
+        });
     }
 
     /**
