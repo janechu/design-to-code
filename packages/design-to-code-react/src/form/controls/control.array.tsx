@@ -15,6 +15,7 @@ import labelStyle from "design-to-code/dist/stylesheets/web-components/style/com
 import labelRegionStyle from "design-to-code/dist/stylesheets/web-components/style/common.label-region.css";
 import ellipsisStyle from "design-to-code/dist/stylesheets/web-components/style/common.ellipsis.css";
 import style from "./control.array.style.css";
+import dtcClassName from "design-to-code/dist/esm/web-components/style/class-names";
 
 // tree-shaking
 cssVariables;
@@ -41,7 +42,7 @@ function ArrayControl(props: ArrayControlProps) {
     function renderAddArrayItemTrigger(): React.ReactNode {
         return (
             <button
-                className={"dtc-array-control_add-item-button dtc-common-add-item"}
+                className={`dtc-array-control_add-item-button ${dtcClassName.commonAddItem}`}
                 aria-label={props.strings.arrayAddItemTip}
                 onClick={arrayItemClickHandlerFactory(ArrayAction.add)}
             />
@@ -58,8 +59,12 @@ function ArrayControl(props: ArrayControlProps) {
 
         if (props.maxItems > existingItemLength) {
             return (
-                <div className={"dtc-array-control_add-item dtc-common-label-region"}>
-                    <div className={"dtc-array-control_add-item-label dtc-common-label"}>
+                <div
+                    className={`dtc-array-control_add-item ${dtcClassName.commonLabelRegion}`}
+                >
+                    <div
+                        className={`dtc-array-control_add-item-label ${dtcClassName.commonLabel}`}
+                    >
                         {props.strings.arrayAddItemLabel}
                     </div>
                     {renderAddArrayItemTrigger()}
@@ -80,8 +85,7 @@ function ArrayControl(props: ArrayControlProps) {
             >
                 <span
                     className={classNames(
-                        "dtc-array-control_existing-item-list-item-link dtc-common-default-font dtc-common-ellipsis",
-                        "dtc-array-control_existing-item-list-item-link__default"
+                        `dtc-array-control_existing-item-list-item-link ${dtcClassName.commonDefaultFont} ${dtcClassName.commonEllipsis} dtc-array-control_existing-item-list-item-link__default`
                     )}
                 >
                     {value}
@@ -111,9 +115,7 @@ function ArrayControl(props: ArrayControlProps) {
         if (hasData) {
             return (
                 <ul
-                    className={
-                        "dtc-array-control_existing-item-list dtc-common-clean-list"
-                    }
+                    className={`dtc-array-control_existing-item-list ${dtcClassName.commonCleanList}`}
                 >
                     {renderArrayLinkItems()}
                 </ul>
@@ -123,9 +125,7 @@ function ArrayControl(props: ArrayControlProps) {
         if (hasDefault) {
             return (
                 <ul
-                    className={
-                        "dtc-array-control_existing-item-list dtc-common-clean-list"
-                    }
+                    className={`dtc-array-control_existing-item-list ${dtcClassName.commonCleanList}`}
                 >
                     {renderDefaultArrayLinkItems()}
                 </ul>
@@ -134,7 +134,7 @@ function ArrayControl(props: ArrayControlProps) {
 
         return (
             <ul
-                className={"dtc-array-control_existing-item-list dtc-common-clean-list"}
+                className={`dtc-array-control_existing-item-list ${dtcClassName.commonCleanList}`}
             ></ul>
         );
     }
@@ -155,9 +155,7 @@ function ArrayControl(props: ArrayControlProps) {
                             index={index}
                             minItems={props.minItems}
                             itemLength={getArrayLinks(currentData).length}
-                            itemRemoveClassName={
-                                "dtc-array-control_existing-item-remove-button dtc-common-remove-item"
-                            }
+                            itemRemoveClassName={`dtc-array-control_existing-item-remove-button ${dtcClassName.commonRemoveItem}`}
                             itemClassName={classNames(
                                 "dtc-array-control_existing-item-list-item",
                                 [
@@ -194,9 +192,7 @@ function ArrayControl(props: ArrayControlProps) {
             if (error.dataLocation.startsWith(`${props.dataLocation}.${index}`)) {
                 return (
                     <div
-                        className={
-                            "dtc-array-control_invalid-message dtc-common-invalid-message"
-                        }
+                        className={`dtc-array-control_invalid-message ${dtcClassName.commonInvalidMessage}`}
                     >
                         {error.invalidMessage}
                     </div>

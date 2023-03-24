@@ -5,6 +5,7 @@ import cssVariables from "design-to-code/dist/stylesheets/web-components/style/g
 import ellipsisStyle from "design-to-code/dist/stylesheets/web-components/style/common.ellipsis.css";
 import selectSpanStyle from "design-to-code/dist/stylesheets/web-components/style/common.select-span.css";
 import selectInputStyle from "design-to-code/dist/stylesheets/web-components/style/common.select-input.css";
+import dtcClassName from "design-to-code/dist/esm/web-components/style/class-names";
 import style from "./select-device.style.css";
 
 // tree-shaking
@@ -18,7 +19,9 @@ export function SelectDevice(props: SelectDeviceProps) {
     function renderLabel(): React.ReactNode {
         if (props.label) {
             return (
-                <label className={"dtc-select-device_label dtc-common-ellipsis"}>
+                <label
+                    className={`dtc-select-device_label ${dtcClassName.commonEllipsis}`}
+                >
                     {props.label}
                 </label>
             );
@@ -44,10 +47,10 @@ export function SelectDevice(props: SelectDeviceProps) {
             <div className={"dtc-select-device"}>
                 {renderLabel()}
                 <span
-                    className={"dtc-select-device_content-region dtc-common-select-span"}
+                    className={`dtc-select-device_content-region ${dtcClassName.commonSelectSpan}`}
                 >
                     <select
-                        className={"dtc-select-device_select dtc-common-select-input"}
+                        className={`dtc-select-device_select ${dtcClassName.commonSelectInput}`}
                         onChange={handleOnChange}
                         value={props.activeDeviceId}
                         disabled={props.disabled}

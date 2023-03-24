@@ -5,6 +5,7 @@ import {
     RenderRefControlConfig,
     RenderSelectControlConfig,
 } from "./control.css.utilities.props";
+import dtcClassName from "design-to-code/dist/esm/web-components/style/class-names";
 
 export function renderDefault(config: RenderRefControlConfig): JSX.Element {
     return renderTextInput(config);
@@ -55,7 +56,7 @@ export function renderNumber(config: RenderRefControlConfig): JSX.Element {
     return (
         <input
             type={"number"}
-            className={"dtc-number-field-control dtc-common-input"}
+            className={`dtc-number-field-control ${dtcClassName.commonInput}`}
             {...{
                 key: `${config.dictionaryId}::${config.dataLocation}`,
                 events: {
@@ -75,7 +76,7 @@ export function renderInteger(config: RenderRefControlConfig): JSX.Element {
     return (
         <input
             type={"number"}
-            className={"dtc-number-field-control dtc-common-input"}
+            className={`dtc-number-field-control ${dtcClassName.commonInput}`}
             {...{
                 key: `${config.dictionaryId}::${config.dataLocation}`,
                 events: {
@@ -142,9 +143,9 @@ export function renderSelection(config: RenderSelectControlConfig): JSX.Element 
     const currentValue = currentOption ? `${currentOption.value}` : "";
 
     return (
-        <span className="dtc-common-select-span">
+        <span className={dtcClassName.commonSelectSpan}>
             <select
-                className={"dtc-select-control_input dtc-common-select-input"}
+                className={`dtc-select-control_input ${dtcClassName.commonSelectInput}`}
                 key={`${config.dictionaryId}::${config.dataLocation}`}
                 onChange={getSelectionChangeHandler(config.handleChange)}
             >

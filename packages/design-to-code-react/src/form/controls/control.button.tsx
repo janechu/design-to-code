@@ -5,6 +5,7 @@ import { isDefault } from "./utilities/form";
 import cssVariables from "design-to-code/dist/stylesheets/web-components/style/global.css-variables.css";
 import inputStyle from "design-to-code/dist/stylesheets/web-components/style/common.input.css";
 import defaultFontStyle from "design-to-code/dist/stylesheets/web-components/style/common.default-font.css";
+import dtcClassName from "design-to-code/dist/esm/web-components/style/class-names";
 import style from "./control.button.style.css";
 
 // tree-shaking
@@ -38,10 +39,10 @@ function ButtonControl(props: ButtonControlProps & React.PropsWithChildren) {
         <React.Fragment>
             <button
                 className={classNames(
-                    "dtc-button-control dtc-common-input",
+                    `dtc-button-control ${dtcClassName.commonInput}`,
                     ["dtc-button-control__disabled", props.disabled],
                     [
-                        "dtc-button-control__default dtc-common-default-font",
+                        `dtc-button-control__default ${dtcClassName.commonDefaultFont}`,
                         isDefault(props.value, props.default),
                     ]
                 )}

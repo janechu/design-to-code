@@ -39,8 +39,8 @@ export const colorPickerTemplate: ViewTemplate<ColorPicker> = html`
                 <div
                     class="${x =>
                         x.disabled
-                            ? `${dtcClassName.textFieldControl} ${dtcClassName.textFieldControl__disabled}`
-                            : dtcClassName.textFieldControl}"
+                            ? `${dtcClassName.controlTextField} ${dtcClassName.controlTextField__disabled}`
+                            : dtcClassName.controlTextField}"
                 >
                     <div class="control-color"></div>
                     <input
@@ -102,7 +102,7 @@ export const colorPickerTemplate: ViewTemplate<ColorPicker> = html`
                     </div>
                 </div>
                 <div class="inputs">
-                    <div class="${dtcClassName.textFieldControl}">
+                    <div class="${dtcClassName.controlTextField}">
                         <span>R:</span>
                         <input
                             type="text"
@@ -113,7 +113,7 @@ export const colorPickerTemplate: ViewTemplate<ColorPicker> = html`
                             :value="${x => Math.round(x.uiValues.RGBColor.r * 255)}"
                         />
                     </div>
-                    <div class="${dtcClassName.textFieldControl}">
+                    <div class="${dtcClassName.controlTextField}">
                         <span>G:</span>
                         <input
                             type="text"
@@ -124,7 +124,7 @@ export const colorPickerTemplate: ViewTemplate<ColorPicker> = html`
                             :value="${x => Math.round(x.uiValues.RGBColor.g * 255)}"
                         />
                     </div>
-                    <div class="${dtcClassName.textFieldControl}">
+                    <div class="${dtcClassName.controlTextField}">
                         <span>B:</span>
                         <input
                             type="text"
@@ -135,7 +135,7 @@ export const colorPickerTemplate: ViewTemplate<ColorPicker> = html`
                             :value="${x => Math.round(x.uiValues.RGBColor.b * 255)}"
                         />
                     </div>
-                    <div class="${dtcClassName.textFieldControl}">
+                    <div class="${dtcClassName.controlTextField}">
                         <span>H:</span>
                         <input
                             type="text"
@@ -146,7 +146,7 @@ export const colorPickerTemplate: ViewTemplate<ColorPicker> = html`
                             :value="${x => Math.round(x.uiValues.HSVColor.h)}"
                         />
                     </div>
-                    <div class="${dtcClassName.textFieldControl}">
+                    <div class="${dtcClassName.controlTextField}">
                         <span>S:</span>
                         <input
                             type="text"
@@ -157,7 +157,7 @@ export const colorPickerTemplate: ViewTemplate<ColorPicker> = html`
                             :value="${x => Math.round(x.uiValues.HSVColor.s * 100)}"
                         />
                     </div>
-                    <div class="${dtcClassName.textFieldControl}">
+                    <div class="${dtcClassName.controlTextField}">
                         <span>V:</span>
                         <input
                             type="text"
@@ -168,7 +168,7 @@ export const colorPickerTemplate: ViewTemplate<ColorPicker> = html`
                             :value="${x => Math.round(x.uiValues.HSVColor.v * 100)}"
                         />
                     </div>
-                    <div class="${dtcClassName.textFieldControl}">
+                    <div class="${dtcClassName.controlTextField}">
                         <span>A:</span>
                         <input
                             type="text"

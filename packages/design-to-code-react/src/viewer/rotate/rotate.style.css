@@ -4,7 +4,7 @@
 }
 
 .dtc-rotate_control-input-container {
-    height: 21px;
+    display: flex;
 }
 
 .dtc-rotate_control-input:checked {

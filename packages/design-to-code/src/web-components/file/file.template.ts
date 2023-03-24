@@ -15,8 +15,8 @@ export const fileTemplate: ViewTemplate<File> = html`
             <button
                 class="${x => {
                     return x.disabled
-                        ? `${dtcClassName.commonInput} ${dtcClassName.commonDefaultFont} ${dtcClassName.buttonControl} ${dtcClassName.buttonControl__disabled}`
-                        : `${dtcClassName.commonInput} ${dtcClassName.commonDefaultFont} ${dtcClassName.buttonControl}`;
+                        ? `${dtcClassName.commonInput} ${dtcClassName.commonDefaultFont} ${dtcClassName.controlButton} ${dtcClassName.controlButton__disabled}`
+                        : `${dtcClassName.commonInput} ${dtcClassName.commonDefaultFont} ${dtcClassName.controlButton}`;
                 }}"
                 ?disabled="${x => x.disabled}"
                 @click="${x => x.handleClick()}"

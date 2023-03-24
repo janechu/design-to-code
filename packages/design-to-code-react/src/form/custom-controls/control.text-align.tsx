@@ -2,6 +2,7 @@ import React from "react";
 import { TextAlignControlProps } from "./control.text-align.props";
 import { classNames } from "@microsoft/fast-web-utilities";
 import cssVariables from "design-to-code/dist/stylesheets/web-components/style/global.css-variables.css";
+import dtcClassName from "design-to-code/dist/esm/web-components/style/class-names";
 import textAlignStyle from "./control.text-align.style.css";
 
 // tree-shaking
@@ -67,7 +68,7 @@ function TextAlignControl(props: TextAlignControlProps) {
                     <span>
                         <input
                             className={classNames(
-                                "dtc-text-align-control_input dtc-common-input-backplate",
+                                `dtc-text-align-control_input ${dtcClassName.commonInputBackplate}`,
                                 getInputClassName(direction)
                             )}
                             id={props.dataLocation}

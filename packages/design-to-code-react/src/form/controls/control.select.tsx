@@ -6,6 +6,7 @@ import cssVariables from "design-to-code/dist/stylesheets/web-components/style/g
 import selectSpanStyle from "design-to-code/dist/stylesheets/web-components/style/common.select-span.css";
 import defaultFontStyle from "design-to-code/dist/stylesheets/web-components/style/common.default-font.css";
 import selectInputStyle from "design-to-code/dist/stylesheets/web-components/style/common.select-input.css";
+import dtcClassName from "design-to-code/dist/esm/web-components/style/class-names";
 import style from "./control.select.style.css";
 
 // tree-shaking
@@ -67,16 +68,16 @@ function SelectControl(props: SelectControlProps) {
     return (
         <span
             className={classNames(
-                "dtc-select-control dtc-common-select-span",
+                `dtc-select-control ${dtcClassName.commonSelectSpan}`,
                 ["dtc-select-control__disabled", props.disabled],
                 [
-                    "dtc-select-control__default dtc-common-default-font",
+                    `dtc-select-control__default ${dtcClassName.commonDefaultFont}`,
                     isDefault(props.value, props.default),
                 ]
             )}
         >
             <select
-                className={"dtc-select-control_input dtc-common-select-input"}
+                className={`dtc-select-control_input ${dtcClassName.commonSelectInput}`}
                 onChange={handleChange()}
                 value={getValue()}
                 disabled={props.disabled}

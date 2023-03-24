@@ -5,6 +5,7 @@ import { isDefault } from "./utilities/form";
 import cssVariables from "design-to-code/dist/stylesheets/web-components/style/global.css-variables.css";
 import inputStyle from "design-to-code/dist/stylesheets/web-components/style/common.input.css";
 import defaultFontStyle from "design-to-code/dist/stylesheets/web-components/style/common.default-font.css";
+import dtcClassName from "design-to-code/dist/esm/web-components/style/class-names";
 import style from "./control.display.style.css";
 
 // tree-shaking
@@ -49,10 +50,10 @@ function DisplayControl(props: DisplayControlProps) {
     return (
         <input
             className={classNames(
-                "dtc-display-control dtc-common-input",
+                `dtc-display-control ${dtcClassName.commonInput}`,
                 ["dtc-display-control__disabled", props.disabled],
                 [
-                    "dtc-display-control__default dtc-common-default-font",
+                    `dtc-display-control__default ${dtcClassName.commonDefaultFont}`,
                     isDefault(props.value, props.default),
                 ]
             )}

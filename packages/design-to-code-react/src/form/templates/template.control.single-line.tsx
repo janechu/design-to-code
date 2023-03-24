@@ -18,6 +18,7 @@ import invalidMessageStyle from "design-to-code/dist/stylesheets/web-components/
 import softRemoveStyle from "design-to-code/dist/stylesheets/web-components/style/common.soft-remove.css";
 import softRemoveInputStyle from "design-to-code/dist/stylesheets/web-components/style/common.soft-remove-input.css";
 import style from "./template.control.single-line.style.css";
+import dtcClassName from "design-to-code/dist/esm/web-components/style/class-names";
 import { FormHTMLElement } from "./template.control.utilities.props";
 
 // tree-shaking
@@ -53,48 +54,40 @@ function SingleLineControlTemplate(props: SingleLineControlTemplateProps) {
     return (
         <div
             className={classNames("dtc-single-line-control-template", [
-                "dtc-single-line-control-template__disabled dtc-common-form-control-disabled",
+                `dtc-single-line-control-template__disabled ${dtcClassName.commonFormControlDisabled}`,
                 props.disabled,
             ])}
         >
             <div
-                className={
-                    "dtc-single-line-control-template_control dtc-common-control-single-line-wrapper"
-                }
+                className={`dtc-single-line-control-template_control ${dtcClassName.commonControlSingleLineWrapper}`}
             >
                 {props.control(getConfig(aggregateProps))}
                 <label
-                    className={"dtc-single-line-control-template_label dtc-common-label"}
+                    className={`dtc-single-line-control-template_label ${dtcClassName.commonLabel}`}
                     htmlFor={props.dataLocation}
                     title={props.labelTooltip}
                 >
                     {props.label}
                 </label>
                 {renderDefaultValueIndicator({
-                    className:
-                        "dtc-single-line-control-template_default-value-indicator dtc-common-interactive-form-control-indicator",
+                    className: `dtc-single-line-control-template_default-value-indicator ${dtcClassName.commonInteractiveFormControlIndicator}`,
                     ...aggregateProps,
                 })}
                 {renderBadge({
-                    className:
-                        "dtc-single-line-control-template_badge dtc-common-form-control-indicator",
+                    className: `dtc-single-line-control-template_badge ${dtcClassName.commonFormControlIndicator}`,
                     ...aggregateProps,
                 })}
                 <div
-                    className={
-                        "dtc-single-line-control-template_soft-remove dtc-common-soft-remove"
-                    }
+                    className={`dtc-single-line-control-template_soft-remove ${dtcClassName.commonSoftRemove}`}
                 >
                     {renderSoftRemove({
-                        className:
-                            "dtc-single-line-control-template_soft-remove-input dtc-common-soft-remove-input",
+                        className: `dtc-single-line-control-template_soft-remove-input ${dtcClassName.commonSoftRemoveInput}`,
                         ...aggregateProps,
                     })}
                 </div>
             </div>
             {renderInvalidMessage({
-                className:
-                    "dtc-single-line-control-template_invalid-message dtc-common-invalid-message",
+                className: `dtc-single-line-control-template_invalid-message ${dtcClassName.commonInvalidMessage}`,
                 ...aggregateProps,
             })}
         </div>

@@ -44,6 +44,7 @@ import {
 } from "design-to-code";
 import cleanListStyle from "design-to-code/dist/stylesheets/web-components/style/common.clean-list.css";
 import style from "./form.style.css";
+import dtcClassName from "design-to-code/dist/esm/web-components/style/class-names";
 
 // tree-shaking
 cleanListStyle;
@@ -337,7 +338,7 @@ const Form: React.FC<FormProps> = (
 
         if (breadcrumbs.length > 1) {
             return (
-                <ul className={"dtc-form_breadcrumbs dtc-common-clean-list"}>
+                <ul className={`dtc-form_breadcrumbs ${dtcClassName.commonCleanList}`}>
                     {renderBreadcrumbItems(breadcrumbs)}
                 </ul>
             );

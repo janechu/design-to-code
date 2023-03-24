@@ -91,11 +91,15 @@ export const cssLayoutStyles = css`
     [role="tooltip"] {
         display: none;
         font-size: var(--dtc-text-size-default);
+        background: var(--dtc-l3-outline-color);
+        padding: 4px 6px;
     }
 
     .radio-region-input:hover + [role="tooltip"],
     .radio-region-inputbutton:focus + [role="tooltip"] {
         display: block;
+        position: absolute;
+        z-index: 1;
     }
 
     svg {

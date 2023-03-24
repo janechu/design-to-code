@@ -1,5 +1,6 @@
 import React from "react";
 import { deviceOrScreenSize } from "./screen-select.constants";
+import dtcClassName from "design-to-code/dist/esm/web-components/style/class-names";
 
 interface ScreenSelectProps {
     /**
@@ -16,11 +17,11 @@ interface ScreenSelectProps {
 export function ScreenSelect(props: ScreenSelectProps) {
     return (
         <span
-            className={"dtc-select-control dtc-common-select-span"}
+            className={`dtc-select-control ${dtcClassName.commonSelectSpan}`}
             style={{ width: "100px" }}
         >
             <select
-                className={"dtc-select-control_input dtc-common-select-input"}
+                className={`dtc-select-control_input ${dtcClassName.commonSelectInput}`}
                 value={props.screenId}
                 onChange={props.handleChange}
             >
