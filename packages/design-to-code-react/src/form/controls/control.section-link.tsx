@@ -4,6 +4,7 @@ import { SectionLinkControlProps } from "./control.section-link.props";
 import { isDefault } from "./utilities/form";
 import cssVariables from "design-to-code/dist/stylesheets/web-components/style/global.css-variables.css";
 import defaultFontStyle from "design-to-code/dist/stylesheets/web-components/style/common.default-font.css";
+import dtcClassName from "design-to-code/dist/esm/web-components/style/class-names";
 import style from "./control.section-link.style.css";
 
 // tree-shaking
@@ -26,7 +27,7 @@ function SectionLinkControl(props: SectionLinkControlProps) {
                 ["dtc-section-link-control__disabled", props.disabled],
                 ["dtc-section-link-control__invalid", props.invalidMessage !== ""],
                 [
-                    "dtc-section-link-control__default dtc-common-default-font",
+                    `dtc-section-link-control__default ${dtcClassName.commonDefaultFont}`,
                     isDefault(props.value, props.default),
                 ]
             )}

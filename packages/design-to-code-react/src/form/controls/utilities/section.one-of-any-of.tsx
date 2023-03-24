@@ -7,6 +7,7 @@ import controlWrapperStyle from "design-to-code/dist/stylesheets/web-components/
 import selectSpanStyle from "design-to-code/dist/stylesheets/web-components/style/common.select-span.css";
 import selectInputStyle from "design-to-code/dist/stylesheets/web-components/style/common.select-input.css";
 import labelStyle from "design-to-code/dist/stylesheets/web-components/style/common.label.css";
+import dtcClassName from "design-to-code/dist/esm/web-components/style/class-names";
 
 // tree-shaking
 cssVariables;
@@ -32,21 +33,19 @@ function SectionOneOfAnyOf(props: SectionOneOfAnyOfProps) {
 
     return (
         <div
-            className={
-                "dtc-section-one-of-any-of dtc-common-control dtc-common-control-wrapper"
-            }
+            className={`dtc-section-one-of-any-of ${dtcClassName.commonControl} dtc-common-control-wrapper`}
         >
             <label
                 htmlFor={id}
-                className={"dtc-section-one-of-any-of_label dtc-common-label"}
+                className={`dtc-section-one-of-any-of_label ${dtcClassName.commonLabel}`}
             >
                 {props.label}
             </label>
             <span
-                className={"dtc-section-one-of-any-of_select-span dtc-common-select-span"}
+                className={`dtc-section-one-of-any-of_select-span ${dtcClassName.commonSelectSpan}`}
             >
                 <select
-                    className={"dtc-section-one-of-any-of_select dtc-common-select-input"}
+                    className={`dtc-section-one-of-any-of_select ${dtcClassName.commonSelectInput}`}
                     id={id}
                     onChange={handleChange}
                     value={getActiveIndex()}

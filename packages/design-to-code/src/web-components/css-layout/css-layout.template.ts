@@ -1,4 +1,5 @@
 import { html, repeat } from "@microsoft/fast-element";
+import dtcClassName from "../style/class-names.js";
 import { CSSLayout } from "./css-layout.js";
 
 /**
@@ -530,7 +531,7 @@ const columnGap = html`
 export const cssLayoutTemplate = html<CSSLayout>`
     <template>
         <link rel="stylesheet" href="${x => x.controlToggleStylesheet}" />
-        <div class="control-region dtc-toggle-control">
+        <div class="control-region ${dtcClassName.controlToggle}">
             <input
                 id="enable-flexbox"
                 class=""

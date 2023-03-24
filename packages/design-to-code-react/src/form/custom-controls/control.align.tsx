@@ -2,6 +2,7 @@ import React from "react";
 import { AlignControlProps, Alignment } from "./control.align.props";
 import { classNames } from "@microsoft/fast-web-utilities";
 import cssVariables from "design-to-code/dist/stylesheets/web-components/style/global.css-variables.css";
+import dtcClassName from "design-to-code/dist/esm/web-components/style/class-names";
 import alignStyle from "./control.align.style.css";
 
 // tree-shaking
@@ -36,7 +37,7 @@ function AlignControl(props: AlignControlProps) {
                     <span>
                         <input
                             className={classNames(
-                                "dtc-align-control_input dtc-common-input-backplate",
+                                `dtc-align-control_input ${dtcClassName.commonInputBackplate}`,
                                 [
                                     "dtc-align-control_input__bottom",
                                     direction === Alignment.bottom,

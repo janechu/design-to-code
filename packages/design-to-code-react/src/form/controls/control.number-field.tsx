@@ -5,6 +5,7 @@ import { isDefault } from "./utilities/form";
 import cssVariables from "design-to-code/dist/stylesheets/web-components/style/global.css-variables.css";
 import inputStyle from "design-to-code/dist/stylesheets/web-components/style/common.input.css";
 import defaultFontStyle from "design-to-code/dist/stylesheets/web-components/style/common.default-font.css";
+import dtcClassName from "design-to-code/dist/esm/web-components/style/class-names";
 import style from "./control.number-field.style.css";
 
 // tree-shaking
@@ -59,10 +60,10 @@ function NumberFieldControl(props: NumberFieldControlProps) {
     return (
         <input
             className={classNames(
-                "dtc-number-field-control dtc-common-input",
+                `dtc-number-field-control ${dtcClassName.commonInput}`,
                 ["dtc-number-field-control__disabled", props.disabled],
                 [
-                    "dtc-number-field-control__default dtc-common-default-font",
+                    `dtc-number-field-control__default ${dtcClassName.commonDefaultFont}`,
                     isDefault(props.value, props.default),
                 ]
             )}

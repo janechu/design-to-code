@@ -23,6 +23,7 @@ import labelStyle from "design-to-code/dist/stylesheets/web-components/style/com
 import invalidMessageStyle from "design-to-code/dist/stylesheets/web-components/style/common.invalid-message.css";
 import formControlIndicatorStyle from "design-to-code/dist/stylesheets/web-components/style/common.form-control-indicator.css";
 import style from "./template.control.standard.style.css";
+import dtcClassName from "design-to-code/dist/esm/web-components/style/class-names";
 import { FormHTMLElement } from "./template.control.utilities.props";
 
 // tree-shaking
@@ -69,67 +70,54 @@ function StandardControlTemplate(props: StandardControlTemplateProps) {
             className={classNames(
                 "dtc-standard-control-template dtc-common-control-wrapper",
                 [
-                    "dtc-standard-control-template__disabled dtc-common-form-control-disabled",
+                    `dtc-standard-control-template__disabled ${dtcClassName.commonFormControlDisabled}`,
                     props.disabled,
                 ]
             )}
         >
             <div
-                className={
-                    "dtc-standard-control-template_control-region dtc-common-control-region"
-                }
+                className={`dtc-standard-control-template_control-region ${dtcClassName.commonControlRegion}`}
             >
                 <div
-                    className={"dtc-standard-control-template_control dtc-common-control"}
+                    className={`dtc-standard-control-template_control ${dtcClassName.commonControl}`}
                 >
                     <div
-                        className={
-                            "dtc-standard-control-template_control-label-region dtc-common-label-region"
-                        }
+                        className={`dtc-standard-control-template_control-label-region ${dtcClassName.commonLabelRegion}`}
                     >
                         <label
                             htmlFor={props.dataLocation}
-                            className={
-                                "dtc-standard-control-template_control-label dtc-common-label"
-                            }
+                            className={`dtc-standard-control-template_control-label ${dtcClassName.commonLabel}`}
                             title={props.labelTooltip}
                         >
                             {props.label}
                         </label>
                         {renderConstValueIndicator({
-                            className:
-                                "dtc-standard-control-template_const-value-indicator dtc-common-interactive-form-control-indicator",
+                            className: `dtc-standard-control-template_const-value-indicator ${dtcClassName.commonInteractiveFormControlIndicator}`,
                             ...aggregateProps,
                         })}
                         {renderDefaultValueIndicator({
-                            className:
-                                "dtc-standard-control-template_default-value-indicator dtc-common-interactive-form-control-indicator",
+                            className: `dtc-standard-control-template_default-value-indicator ${dtcClassName.commonInteractiveFormControlIndicator}`,
                             ...aggregateProps,
                         })}
                         {renderBadge({
-                            className:
-                                "dtc-standard-control-template_badge dtc-common-form-control-indicator",
+                            className: `dtc-standard-control-template_badge ${dtcClassName.commonFormControlIndicator}`,
                             ...aggregateProps,
                         })}
                     </div>
                     {renderControl(ControlContext.default)}
                 </div>
                 <div
-                    className={
-                        "dtc-standard-control-template_soft-remove dtc-common-soft-remove"
-                    }
+                    className={`dtc-standard-control-template_soft-remove ${dtcClassName.commonSoftRemove}`}
                 >
                     {renderSoftRemove({
-                        className:
-                            "dtc-standard-control-template_soft-remove-input dtc-common-soft-remove-input",
+                        className: `dtc-standard-control-template_soft-remove-input ${dtcClassName.commonSoftRemoveInput}`,
                         ...aggregateProps,
                     })}
                 </div>
             </div>
             {renderControl(ControlContext.fill)}
             {renderInvalidMessage({
-                className:
-                    "dtc-standard-control-template_invalid-message dtc-common-invalid-message",
+                className: `dtc-standard-control-template_invalid-message ${dtcClassName.commonInvalidMessage}`,
                 ...aggregateProps,
             })}
         </div>

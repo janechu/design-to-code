@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import dtcClassName from "../style/class-names.js";
 
 test.describe("CSSLayout", () => {
     test.beforeEach(async ({ page }) => {
@@ -24,7 +25,9 @@ test.describe("CSSLayout", () => {
     test.skip("should not show the flexbox toggle if it has been pressed", async ({
         page,
     }) => {
-        const toggle = await page.locator(".control-region.dtc-toggle-control");
+        const toggle = await page.locator(
+            `.control-region.${dtcClassName.controlToggle}`
+        );
         await toggle.click();
 
         await expect(await page.locator(".flexbox-region__active").all()).toHaveLength(1);
@@ -33,7 +36,9 @@ test.describe("CSSLayout", () => {
     test("should add display:flex when the flexbox toggle is triggered", async ({
         page,
     }) => {
-        const toggle = await page.locator(".control-region.dtc-toggle-control");
+        const toggle = await page.locator(
+            `.control-region.${dtcClassName.controlToggle}`
+        );
         await toggle.click();
 
         await expect(await page.locator("#outputValue")).toHaveValue("display: flex;");
@@ -42,7 +47,9 @@ test.describe("CSSLayout", () => {
     test("should emit an updated flex-direction value when the flex-direction value is updated", async ({
         page,
     }) => {
-        const toggle = await page.locator(".control-region.dtc-toggle-control");
+        const toggle = await page.locator(
+            `.control-region.${dtcClassName.controlToggle}`
+        );
         await toggle.click();
 
         const flexDirectionInputs = await page
@@ -76,7 +83,9 @@ test.describe("CSSLayout", () => {
     test("should emit an updated justify-content value when the justify-content value is updated", async ({
         page,
     }) => {
-        const toggle = await page.locator(".control-region.dtc-toggle-control");
+        const toggle = await page.locator(
+            `.control-region.${dtcClassName.controlToggle}`
+        );
         await toggle.click();
 
         const justifyContentInputs = await page
@@ -128,7 +137,9 @@ test.describe("CSSLayout", () => {
     test("should emit an updated align-content value when the align-content value is updated", async ({
         page,
     }) => {
-        const toggle = await page.locator(".control-region.dtc-toggle-control");
+        const toggle = await page.locator(
+            `.control-region.${dtcClassName.controlToggle}`
+        );
         await toggle.click();
 
         const alignContentInputs = await page
@@ -180,7 +191,9 @@ test.describe("CSSLayout", () => {
     test("should emit an updated align-items value when the align-items value is updated", async ({
         page,
     }) => {
-        const toggle = await page.locator(".control-region.dtc-toggle-control");
+        const toggle = await page.locator(
+            `.control-region.${dtcClassName.controlToggle}`
+        );
         await toggle.click();
 
         const alignItemsInputs = await page.locator("input[name='align-items']").all();
@@ -212,7 +225,9 @@ test.describe("CSSLayout", () => {
     test("should emit an updated row gap value when the row gap value has been updated", async ({
         page,
     }) => {
-        const toggle = await page.locator(".control-region.dtc-toggle-control");
+        const toggle = await page.locator(
+            `.control-region.${dtcClassName.controlToggle}`
+        );
         await toggle.click();
 
         await page.locator("input[name='row-gap']").fill("5");
@@ -225,7 +240,9 @@ test.describe("CSSLayout", () => {
     test("should emit an updated column gap value when the column gap value has been updated", async ({
         page,
     }) => {
-        const toggle = await page.locator(".control-region.dtc-toggle-control");
+        const toggle = await page.locator(
+            `.control-region.${dtcClassName.controlToggle}`
+        );
         await toggle.click();
 
         await page.locator("input[name='column-gap']").fill("5");
@@ -238,7 +255,9 @@ test.describe("CSSLayout", () => {
     test("should emit an updated flex-wrap value when the flex-wrap value has been updated", async ({
         page,
     }) => {
-        const toggle = await page.locator(".control-region.dtc-toggle-control");
+        const toggle = await page.locator(
+            `.control-region.${dtcClassName.controlToggle}`
+        );
         await toggle.click();
 
         const flexWrapInputs = await page.locator("input[name='flex-wrap']").all();

@@ -8,6 +8,7 @@ import ellipsisStyle from "design-to-code/dist/stylesheets/web-components/style/
 import chevronStyle from "design-to-code/dist/stylesheets/web-components/style/common.chevron.css";
 import chevronUpStyle from "design-to-code/dist/stylesheets/web-components/style/common.chevron-up.css";
 import style from "./section.validation.style.css";
+import dtcClassName from "design-to-code/dist/esm/web-components/style/class-names";
 
 // tree-shaking
 cssVariables;
@@ -27,7 +28,7 @@ function SectionValidation(props: SectionValidationProps) {
     function renderInvalidMessage(): React.ReactNode {
         return (
             <div
-                className={"dtc-section-validation_message dtc-common-ellipsis"}
+                className={`dtc-section-validation_message ${dtcClassName.commonEllipsis}`}
                 title={props.invalidMessage}
             >
                 {props.invalidMessage}
@@ -40,9 +41,9 @@ function SectionValidation(props: SectionValidationProps) {
             return (
                 <button
                     className={classNames(
-                        "dtc-section-validation_expand-trigger dtc-common-chevron",
+                        `dtc-section-validation_expand-trigger ${dtcClassName.commonChevron}`,
                         [
-                            "dtc-section-validation_expand-trigger__active dtc-common-chevron dtc-common-chevron-up",
+                            `dtc-section-validation_expand-trigger__active ${dtcClassName.commonChevron} ${dtcClassName.commonChevronUp}`,
                             expanded,
                         ]
                     )}
@@ -70,17 +71,13 @@ function SectionValidation(props: SectionValidationProps) {
                     return (
                         <li
                             key={`${props.dataLocation}${index}`}
-                            className={
-                                "dtc-section-validation_error-list-item dtc-common-ellipsis"
-                            }
+                            className={`dtc-section-validation_error-list-item ${dtcClassName.commonEllipsis}`}
                         >
                             <span title={validationError.invalidMessage}>
                                 {validationError.invalidMessage}
                             </span>
                             <div
-                                className={
-                                    "dtc-section-validation_error-list-item-details dtc-common-ellipsis"
-                                }
+                                className={`dtc-section-validation_error-list-item-details ${dtcClassName.commonEllipsis}`}
                                 title={`data location: ${validationError.dataLocation}`}
                             >
                                 {validationError.dataLocation}
@@ -106,9 +103,7 @@ function SectionValidation(props: SectionValidationProps) {
         <div className={"dtc-section-validation"}>
             {renderExpandTrigger()}
             <div
-                className={
-                    "dtc-section-validation_control-region dtc-common-invalid-message"
-                }
+                className={`dtc-section-validation_control-region ${dtcClassName.commonInvalidMessage}`}
             >
                 {renderInvalidMessage()}
                 {renderValidationErrorContainer()}

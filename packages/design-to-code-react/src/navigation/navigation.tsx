@@ -43,6 +43,7 @@ import {
 import cssVariables from "design-to-code/dist/stylesheets/web-components/style/global.css-variables.css";
 import inputStyle from "design-to-code/dist/stylesheets/web-components/style/common.input.css";
 import ellipsisStyle from "design-to-code/dist/stylesheets/web-components/style/common.ellipsis.css";
+import dtcClassName from "design-to-code/dist/esm/web-components/style/class-names";
 import style from "./navigation.style.css";
 
 // tree-shaking
@@ -315,9 +316,7 @@ function Navigation(props: NavigationHandledProps) {
                 )}
                 expandTriggerClassName={"dtc-navigation_item-expand-trigger"}
                 contentClassName={"dtc-navigation_item-content"}
-                displayTextInputClassName={
-                    "dtc-navigation_item-display-text-input dtc-common-input"
-                }
+                displayTextInputClassName={`dtc-navigation_item-display-text-input ${dtcClassName.commonInput}`}
                 handleExpandClick={handleNavigationItemExpandClick(
                     dictionaryId,
                     navigationConfigId
@@ -868,7 +867,7 @@ function Navigation(props: NavigationHandledProps) {
         <div ref={rootElement} role={"tree"} className={"dtc-navigation"}>
             <div
                 role={"treeitem"}
-                className={"dtc-navigation_item dtc-common-ellipsis"}
+                className={`dtc-navigation_item ${dtcClassName.commonEllipsis}`}
                 aria-expanded={getExpandedState()}
             >
                 {renderDictionaryItem(

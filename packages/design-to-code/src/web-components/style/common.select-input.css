@@ -19,6 +19,7 @@
     text-overflow: ellipsis;
     border: none;
     color: var(--dtc-text-color);
+    padding: 4px 6px;
 }
 
 .dtc-common-select-input:-ms-expand {

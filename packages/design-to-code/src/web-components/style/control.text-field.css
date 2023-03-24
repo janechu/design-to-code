@@ -1,9 +1,9 @@
-.dtc-text-field-control {
+.dtc-control-text-field {
     display: flex;
     align-items: center;
 }
 
-.dtc-text-field-control input {
+.dtc-control-text-field input {
     width: 100%;
     border: none;
     outline: none;
@@ -14,7 +14,7 @@
     background-color: var(--dtc-l1-color);
 }
 
-.dtc-text-field-control.dtc-text-field-control__disabled input {
+.dtc-control-text-field.dtc-control-text-field__disabled input {
     color: var(--dtc-inactive-text-color);
     font-style: italic;
 }

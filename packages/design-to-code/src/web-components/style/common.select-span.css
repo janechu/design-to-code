@@ -6,8 +6,8 @@
 .dtc-common-select-span::before {
     content: '';
     position: absolute;
-    top: 9px;
-    right: 4px;
+    top: 10px;
+    right: 6px;
     border-left: 3px solid transparent;
     border-right: 3px solid transparent;
     border-top: 3px solid var(--dtc-text-color);

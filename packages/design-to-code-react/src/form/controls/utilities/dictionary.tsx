@@ -13,6 +13,7 @@ import inputStyle from "design-to-code/dist/stylesheets/web-components/style/com
 import removeItemStyle from "design-to-code/dist/stylesheets/web-components/style/common.remove-item.css";
 import addItemStyle from "design-to-code/dist/stylesheets/web-components/style/common.add-item.css";
 import style from "./dictionary.style.css";
+import dtcClassName from "design-to-code/dist/esm/web-components/style/class-names";
 
 // tree-shaking
 cssVariables;
@@ -38,7 +39,7 @@ function Dictionary(props: DictionaryProps) {
         if (props.additionalProperties === false) {
             rootElementRef.current
                 .querySelectorAll<HTMLInputElement>(
-                    `.${"dtc-dictionary_item-control-input dtc-common-input"}`
+                    `.${`dtc-dictionary_item-control-input ${dtcClassName.commonInput}`}`
                 )
                 .forEach((itemControlInput: HTMLInputElement) => {
                     itemControlInput.setCustomValidity(
@@ -52,19 +53,19 @@ function Dictionary(props: DictionaryProps) {
         if (isPlainObject(props.additionalProperties)) {
             return (
                 <div
-                    className={"dtc-dictionary_control-region dtc-common-control-region"}
+                    className={`dtc-dictionary_control-region ${dtcClassName.commonControlRegion}`}
                 >
-                    <div className={"dtc-dictionary_control dtc-common-control"}>
+                    <div
+                        className={`dtc-dictionary_control ${dtcClassName.commonControl}`}
+                    >
                         <label
-                            className={"dtc-dictionary_control-label dtc-common-label"}
+                            className={`dtc-dictionary_control-label ${dtcClassName.commonLabel}`}
                         >
                             {props.label}
                         </label>
                     </div>
                     <button
-                        className={
-                            "dtc-dictionary_control-add-trigger dtc-common-add-item"
-                        }
+                        className={`dtc-dictionary_control-add-trigger ${dtcClassName.commonAddItem}`}
                         aria-label={"Select to add item"}
                         onClick={handleOnAddItem}
                     />
@@ -76,16 +77,18 @@ function Dictionary(props: DictionaryProps) {
     function renderItemControl(propertyName: string): React.ReactNode {
         return (
             <div
-                className={"dtc-dictionary_item-control-region dtc-common-control-region"}
+                className={`dtc-dictionary_item-control-region ${dtcClassName.commonControlRegion}`}
             >
-                <div className={"dtc-dictionary_item-control dtc-common-control"}>
+                <div
+                    className={`dtc-dictionary_item-control ${dtcClassName.commonControl}`}
+                >
                     <label
-                        className={"dtc-dictionary_item-control-label dtc-common-label"}
+                        className={`dtc-dictionary_item-control-label ${dtcClassName.commonLabel}`}
                     >
                         {props.propertyLabel}
                     </label>
                     <input
-                        className={"dtc-dictionary_item-control-input dtc-common-input"}
+                        className={`dtc-dictionary_item-control-input ${dtcClassName.commonInput}`}
                         type={"text"}
                         value={
                             focusedPropertyKey === propertyName
@@ -99,9 +102,7 @@ function Dictionary(props: DictionaryProps) {
                         readOnly={props.additionalProperties === false}
                     />
                     <button
-                        className={
-                            "dtc-dictionary_item-control-remove-trigger dtc-common-remove-item"
-                        }
+                        className={`dtc-dictionary_item-control-remove-trigger ${dtcClassName.commonRemoveItem}`}
                         onClick={handleOnRemoveItem(propertyName)}
                     />
                 </div>

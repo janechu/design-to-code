@@ -10,6 +10,7 @@ import ellipsisStyle from "design-to-code/dist/stylesheets/web-components/style/
 import softRemoveStyle from "design-to-code/dist/stylesheets/web-components/style/common.soft-remove.css";
 import removeItemStyle from "design-to-code/dist/stylesheets/web-components/style/common.remove-item.css";
 import style from "./control.linked-data.style.css";
+import dtcClassName from "design-to-code/dist/esm/web-components/style/class-names";
 
 // tree-shaking
 cssVariables;
@@ -34,14 +35,10 @@ function LinkedDataControl(props: LinkedDataControlProps) {
         return (
             <div className={"dtc-linked-data-control_linked-data-list-control"}>
                 <span
-                    className={
-                        "dtc-linked-data-control_linked-data-list-input-region dtc-common-select-span"
-                    }
+                    className={`dtc-linked-data-control_linked-data-list-input-region ${dtcClassName.commonSelectSpan}`}
                 >
                     <input
-                        className={
-                            "dtc-linked-data-control_linked-data-list-input dtc-common-select-input"
-                        }
+                        className={`dtc-linked-data-control_linked-data-list-input ${dtcClassName.commonSelectInput}`}
                         type={"text"}
                         aria-autocomplete={"list"}
                         list={getLinkedDataInputId()}
@@ -82,9 +79,7 @@ function LinkedDataControl(props: LinkedDataControlProps) {
         if (childItems) {
             return (
                 <ul
-                    className={
-                        "dtc-linked-data-control_existing-linked-data dtc-common-clean-list"
-                    }
+                    className={`dtc-linked-data-control_existing-linked-data ${dtcClassName.commonCleanList}`}
                 >
                     {childItems}
                 </ul>
@@ -101,12 +96,8 @@ function LinkedDataControl(props: LinkedDataControlProps) {
                         itemClassName={
                             "dtc-linked-data-control_existing-linked-data-item"
                         }
-                        itemLinkClassName={
-                            "dtc-linked-data-control_existing-linked-data-item-link dtc-common-ellipsis"
-                        }
-                        itemRemoveClassName={
-                            "dtc-linked-data-control_delete-button dtc-common-remove-item"
-                        }
+                        itemLinkClassName={`dtc-linked-data-control_existing-linked-data-item-link ${dtcClassName.commonEllipsis}`}
+                        itemRemoveClassName={`dtc-linked-data-control_delete-button ${dtcClassName.commonRemoveItem}`}
                         minItems={0}
                         itemLength={1}
                         index={index}
