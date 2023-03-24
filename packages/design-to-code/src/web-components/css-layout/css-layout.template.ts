@@ -1,6 +1,6 @@
 import { html, repeat } from "@microsoft/fast-element";
-import { CSSLayout } from "./css-layout.js";
 import dtcClassName from "../style/class-names.js";
+import { CSSLayout } from "./css-layout.js";
 
 /**
  * CSS flex-direction icons

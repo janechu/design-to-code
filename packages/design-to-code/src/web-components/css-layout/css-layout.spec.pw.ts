@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import dtcClassName from "../style/class-names";
+import dtcClassName from "../style/class-names.js";
 
 test.describe("CSSLayout", () => {
     test.beforeEach(async ({ page }) => {
