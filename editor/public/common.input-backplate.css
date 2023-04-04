@@ -6,8 +6,8 @@
 
 .dtc-common-input-backplate {
     appearance: none;
-    height: 20px;
-    width: 20px;
+    height: 24px;
+    width: 24px;
     margin: 0;
     background-color: var(--dtc-l1-color);
 }
