@@ -73,7 +73,7 @@ export function Editor() {
     return (
         <main className="editor">
             <nav className="editor-toolbar">
-                <span className="editor-badge">1.0.0-alpha</span>
+                <span className="editor-badge">1.0.0-alpha.1</span>
                 <ScreenSelect handleChange={onSizeChange} screenId={screenId} />
             </nav>
             <div className="editor-container">
