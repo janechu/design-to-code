@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title><%= htmlWebpackPlugin.options.title %></title>
+        <style>
+            html,
+            body,
+            #root {
+                height: 100%;
+                font-family: Arial, Helvetica, sans-serif;
+                background-color: var(--dtc-l4-color);
+                padding: 20px;
+                color: white;
+            }
+        </style>
+        <link
+            rel="stylesheet"
+            href="<%= htmlWebpackPlugin.options.globalCssVariableStylesheet %>"
+        />
+    </head>
+    <body>
+        <div id="root">
+            <dtc-form
+                id="form"
+                array-control="dtc-array"
+                button-control="dtc-button"
+                checkbox-control="dtc-checkbox"
+                display-control="dtc-display"
+                number-field-control="dtc-number-field"
+                section-link-control="dtc-section-link"
+                select-control="dtc-select"
+                textarea-control="dtc-textarea"
+            ></dtc-form>
+            <pre id="data"></pre>
+            <button id="reset">reset</button>
+        </div>
+    </body>
+</html>

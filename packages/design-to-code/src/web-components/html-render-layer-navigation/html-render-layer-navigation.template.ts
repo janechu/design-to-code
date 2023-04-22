@@ -4,10 +4,10 @@ import { HTMLRenderLayerNavigation } from "./html-render-layer-navigation.js";
 export const htmlRenderLayerNavigationTemplate = html<HTMLRenderLayerNavigation>`
     <div class="navigation">
         <div
-            class="${x =>
+            class="navigation-select${x =>
                 x.selectLayerActive && !x.selectLayerHide
-                    ? "navigation-select navigation-select__active"
-                    : "navigation-select"}${x =>
+                    ? " navigation-select__active"
+                    : ""}${x =>
                 x.selectPosition.top === 0 ? " navigation-select__insetY" : ""}${x =>
                 x.selectPosition.left === 0 ? " navigation-select__insetX" : ""}"
             style="top:${x => x.selectPosition.top}px;left:${x =>
