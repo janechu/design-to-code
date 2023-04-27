@@ -1,9 +1,0 @@
-export type { DTCColorPicker } from "./color-picker/color-picker.define.js";
-export type { DTCCSSBoxModel } from "./css-box-model/css-box-model.define.js";
-export type { DTCCSSLayout } from "./css-layout/css-layout.define.js";
-export type { DTCFile } from "./file/file.define.js";
-export type { DTCFileActionObjectUrl } from "./file-action-objecturl/file-action-objecturl.define.js";
-export type { DTCHTMLRender } from "./html-render/html-render.define.js";
-export type { DTCHTMLRenderLayerInlineEdit } from "./html-render-layer-inline-edit/html-render-layer-inline-edit.define.js";
-export type { DTCHTMLRenderLayerNavigation } from "./html-render-layer-navigation/html-render-layer-navigation.define.js";
-export type { DTCUnitsTextField } from "./units-text-field/units-text-field.define.js";

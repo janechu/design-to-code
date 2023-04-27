@@ -1,6 +1,5 @@
 import {
     Constructable,
-    defaultExecutionContext,
     ExecutionContext,
     HTMLView,
     ViewTemplate,
@@ -145,11 +144,11 @@ export async function fixture<TElement = HTMLElement>(
     const document = options.document || globalThis.document;
     const parent = options.parent || document.createElement("div");
     const source = options.source || {};
-    const context = options.context || defaultExecutionContext;
+    const context = options.context;
 
     if (typeof templateNameOrRegistry === "string") {
         const html = `<${templateNameOrRegistry}></${templateNameOrRegistry}>`;
-        templateNameOrRegistry = new ViewTemplate(html, []);
+        templateNameOrRegistry = new ViewTemplate(html, {});
     } else if (isElementRegistry(templateNameOrRegistry)) {
         templateNameOrRegistry = [templateNameOrRegistry];
     }
@@ -163,7 +162,7 @@ export async function fixture<TElement = HTMLElement>(
         const context = container.get(DesignSystemRegistrationContext);
         const elementName = `${context.elementPrefix}-${first.definition.baseName}`;
         const html = `<${elementName}></${elementName}>`;
-        templateNameOrRegistry = new ViewTemplate(html, []);
+        templateNameOrRegistry = new ViewTemplate(html, {});
     }
 
     const view = templateNameOrRegistry.create();

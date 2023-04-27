@@ -1,6 +1,6 @@
-import { css, ElementStyles } from "@microsoft/fast-element";
+import { css } from "@microsoft/fast-element";
 
-export const colorPickerStyles: ElementStyles = css`
+export const colorPickerStyles = css`
     .popup {
         display: none;
         position: absolute;

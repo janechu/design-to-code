@@ -1,4 +1,4 @@
-import { FoundationElement } from "@microsoft/fast-foundation";
+import { FASTElement } from "@microsoft/fast-element";
 
 /**
  * Abstract base class for FileAction components for use with the File Component.
@@ -11,7 +11,7 @@ import { FoundationElement } from "@microsoft/fast-foundation";
  * passing a string array containing the list file references (i.e. file names, object URLs,
  * http urls, etc) depending on the purpose of the FileAction.
  */
-export abstract class FileAction extends FoundationElement {
+export abstract class FileAction extends FASTElement {
     protected _files: FileList;
     protected _fileReferences: string[];
 

@@ -1,7 +1,7 @@
-import { html, ref, slotted, ViewTemplate } from "@microsoft/fast-element";
+import { html, ref, slotted } from "@microsoft/fast-element";
 import { HTMLRender } from "./html-render.js";
 
-export const htmlRenderTemplate: ViewTemplate<HTMLRender> = html`
+export const htmlRenderTemplate = html<HTMLRender>`
     <div
         class="${x =>
             x.interactiveMode ? "container container__interactive" : "container"}"

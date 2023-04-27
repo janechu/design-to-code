@@ -19,7 +19,7 @@ test.describe("HTML Render Layer Navigation", () => {
         );
         expect(layer).not.toBeNull();
         await expect(layer).toHaveClass(
-            "navigation-select navigation-select__insetX navigation-select__active"
+            "navigation-select navigation-select__active navigation-select__insetX"
         );
     });
 
@@ -42,13 +42,19 @@ test.describe("HTML Render Layer Navigation", () => {
             "dtc-html-render-layer-navigation .navigation-hover"
         );
         expect(layer).not.toBeNull();
-        await expect(layer).not.toHaveClass("navigation-hover navigation-hover__active");
+        await expect(layer).not.toHaveClass([
+            "navigation-hover",
+            "navigation-hover__active",
+        ]);
 
         await page.mouse.move(55, 80);
         await getMessageAll(page, 2);
 
         layer = await page.locator("dtc-html-render-layer-navigation .navigation-hover");
-        await expect(layer).not.toHaveClass("navigation-hover navigation-hover__active");
+        await expect(layer).not.toHaveClass([
+            "navigation-hover",
+            "navigation-hover__active",
+        ]);
     });
 
     test("should select click target", async ({ page }) => {
@@ -76,7 +82,7 @@ test.describe("HTML Render Layer Navigation", () => {
         );
         expect(layer).not.toBeNull();
         await expect(layer).toHaveClass(
-            "navigation-select navigation-select__insetX navigation-select__active"
+            "navigation-select navigation-select__active navigation-select__insetX"
         );
 
         await page.click("#testbutton2");

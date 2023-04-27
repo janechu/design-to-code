@@ -1,4 +1,4 @@
-import { html, slotted, ViewTemplate } from "@microsoft/fast-element";
+import { html, slotted } from "@microsoft/fast-element";
 import dtcClassName from "../style/class-names.js";
 import { File } from "./file.js";
 
@@ -6,7 +6,7 @@ import { File } from "./file.js";
  * The template for the file component.
  * @public
  */
-export const fileTemplate: ViewTemplate<File> = html`
+export const fileTemplate = html<File>`
     <template>
         <div class="root" part="root">
             <link rel="stylesheet" href="${x => x.commonInputStylesheet}" />

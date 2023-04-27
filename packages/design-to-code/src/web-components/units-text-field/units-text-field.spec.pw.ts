@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import { DTCUnitsTextField } from "./units-text-field.define.js";
+import { UnitsTextField as DTCUnitsTextField } from "./units-text-field.js";
 
 test.describe("Units text-field", () => {
     test.beforeEach(async ({ page }) => {

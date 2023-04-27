@@ -5,7 +5,7 @@ import {
     parseColor,
     rgbToHSV,
 } from "@microsoft/fast-colors";
-import { attr, DOM, observable } from "@microsoft/fast-element";
+import { attr, observable, Updates } from "@microsoft/fast-element";
 import { isNullOrWhiteSpace } from "@microsoft/fast-web-utilities";
 import { FormAssociatedColorPicker } from "./color-picker.form-associated.js";
 
@@ -160,7 +160,7 @@ export class ColorPicker extends FormAssociatedColorPicker {
         this.proxy.setAttribute("type", "color");
 
         if (this.autofocus) {
-            DOM.queueUpdate(() => {
+            Updates.enqueue(() => {
                 this.focus();
             });
         }
