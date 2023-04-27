@@ -4,10 +4,10 @@ import {
     MessageSystemNavigationTypeAction,
     MessageSystemType,
 } from "../../../src";
-import { HTMLRender } from "../../../src/web-components/html-render/html-render.js";
-import "../../../src/web-components/html-render/html-render.define";
-import "../../../src/web-components/html-render-layer-navigation/html-render-layer-navigation.define";
-import "../../../src/web-components/html-render-layer-inline-edit/html-render-layer-inline-edit.define";
+import { HTMLRender } from "../../../src/web-components/html-render/html-render";
+import * as DTCHTMLRender from "../../../src/web-components/html-render/html-render.define.js";
+import * as DTCHTMLRenderLayerNavigation from "../../../src/web-components/html-render-layer-navigation/html-render-layer-navigation.define";
+import * as DTCHTMLRenderLayerInlineEdit from "../../../src/web-components/html-render-layer-inline-edit/html-render-layer-inline-edit.define";
 import { nativeElementDefinitions } from "../../../src/definitions/index.js";
 import dataDictionaryConfig from "../../../src/__test__/html-render/data-dictionary-config.js";
 import schemaDictionary from "../../../src/__test__/html-render/schema-dictionary.js";
@@ -20,6 +20,11 @@ import MessageSystemWorker from "worker-loader!../../../dist/message-system.min.
 import { customElement } from "@microsoft/fast-element";
 
 document.body.setAttribute("style", "margin: 0");
+
+// tree-shaking
+DTCHTMLRender;
+DTCHTMLRenderLayerNavigation;
+DTCHTMLRenderLayerInlineEdit;
 
 export const htmlRenderLayerNavigationTemplate: ViewTemplate<HTMLRenderLayerTest> = html`
     <div id="testContainer"></div>

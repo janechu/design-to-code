@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import { DTCFile } from "./file.define.js";
+import { File as DTCFile } from "./file.js";
 
 test.describe("File", () => {
     test.beforeEach(async ({ page }) => {
@@ -17,7 +17,7 @@ test.describe("File", () => {
 
     test("should trigger change event", async ({ page }) => {
         await page.evaluate(() => {
-            const element = document.getElementsByTagName("dtc-file")[0] as DTCFile;
+            const element = document.getElementsByTagName("dtc-file")[0];
 
             // This is a base 64 encoding of a 2x1 pixel jpeg image.
             const imageContent: string =
@@ -49,7 +49,7 @@ test.describe("File", () => {
                 },
             };
 
-            element.handleChange(fakeFileEvent as unknown as Event);
+            (element as DTCFile).handleChange(fakeFileEvent as unknown as Event);
         });
 
         const outputValue = await page.locator("#outputValue").inputValue();
