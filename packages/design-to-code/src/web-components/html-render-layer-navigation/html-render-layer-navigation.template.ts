@@ -30,7 +30,7 @@ export const htmlRenderLayerNavigationTemplate = html<HTMLRenderLayerNavigation>
             </div>
         </div>
         <div
-            class=" ${x =>
+            class="${x =>
                 x.hoverLayerActive && !x.hoverLayerHide
                     ? "navigation-hover navigation-hover__active"
                     : "navigation-hover"}"

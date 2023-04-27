@@ -18,10 +18,9 @@ test.describe("HTML Render Layer Navigation", () => {
             "dtc-html-render-layer-navigation .navigation-select"
         );
         expect(layer).not.toBeNull();
-        await expect(layer).toHaveClass([
-            "navigation-select navigation-select__insetX",
-            "navigation-select__active",
-        ]);
+        await expect(layer).toHaveClass(
+            "navigation-select navigation-select__active navigation-select__insetX"
+        );
     });
 
     test("should show hover on hover target", async ({ page }) => {
@@ -29,16 +28,13 @@ test.describe("HTML Render Layer Navigation", () => {
             "dtc-html-render-layer-navigation .navigation-hover"
         );
         expect(layer).not.toBeNull();
-        await expect(layer).not.toHaveClass([
-            "navigation-hover",
-            "navigation-hover__active",
-        ]);
+        await expect(layer).not.toHaveClass("navigation-hover navigation-hover__active");
 
         await page.mouse.move(55, 60);
         await getMessageAll(page, 3);
 
         layer = await page.locator("dtc-html-render-layer-navigation .navigation-hover");
-        await expect(layer).toHaveClass(["navigation-hover", "navigation-hover__active"]);
+        await expect(layer).toHaveClass("navigation-hover navigation-hover__active");
     });
 
     test("should not show hover on selected target", async ({ page }) => {
@@ -85,20 +81,15 @@ test.describe("HTML Render Layer Navigation", () => {
             "dtc-html-render-layer-navigation .navigation-select"
         );
         expect(layer).not.toBeNull();
-        await expect(layer).toHaveClass([
-            "navigation-select",
-            "navigation-select__insetX",
-            "navigation-select__active",
-        ]);
+        await expect(layer).toHaveClass(
+            "navigation-select navigation-select__active navigation-select__insetX"
+        );
 
         await page.click("#testbutton2");
         await getMessageAll(page, 3);
 
         layer = await page.locator("dtc-html-render-layer-navigation .navigation-select");
         expect(layer).not.toBeNull();
-        await expect(layer).toHaveClass([
-            "navigation-select",
-            "navigation-select__active",
-        ]);
+        await expect(layer).toHaveClass("navigation-select navigation-select__active");
     });
 });
