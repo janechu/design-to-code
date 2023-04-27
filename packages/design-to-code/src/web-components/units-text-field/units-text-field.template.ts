@@ -1,7 +1,7 @@
-import { html, ref, ViewTemplate } from "@microsoft/fast-element";
+import { html, ref } from "@microsoft/fast-element";
 import { UnitsTextField } from "./units-text-field.js";
 
-export const unitsTextFieldTemplate: ViewTemplate<UnitsTextField> = html`
+export const unitsTextFieldTemplate = html<UnitsTextField>`
     <label
         part="label"
         for="control"
@@ -17,6 +17,7 @@ export const unitsTextFieldTemplate: ViewTemplate<UnitsTextField> = html`
             class="control"
             part="control"
             id="control"
+            type="text"
             @input="${x => x.handleTextInput()}"
             @change="${x => x.handleChange()}"
             ?autofocus="${x => x.autofocus}"
@@ -32,7 +33,6 @@ export const unitsTextFieldTemplate: ViewTemplate<UnitsTextField> = html`
             size="${x => x.size}"
             ?spellcheck="${x => x.spellcheck}"
             :value="${x => x.value}"
-            type="${x => x.type}"
             aria-atomic="${x => x.ariaAtomic}"
             aria-busy="${x => x.ariaBusy}"
             aria-controls="${x => x.ariaControls}"

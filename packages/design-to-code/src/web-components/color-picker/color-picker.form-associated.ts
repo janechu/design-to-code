@@ -1,6 +1,7 @@
-import { FormAssociated, FoundationElement } from "@microsoft/fast-foundation";
+import { FormAssociated } from "../form-associated/form-associated.js";
+import { FASTElement } from "@microsoft/fast-element";
 
-class _ColorPicker extends FoundationElement {}
+class _ColorPicker extends FASTElement {}
 interface _ColorPicker extends FormAssociated {}
 
 /**

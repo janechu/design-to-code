@@ -1,12 +1,12 @@
-import { html, ref, ViewTemplate } from "@microsoft/fast-element";
+import { html, ref } from "@microsoft/fast-element";
 import dtcClassName from "../style/class-names.js";
-import { ColorPicker } from "./color-picker.js";
+import type { ColorPicker } from "./color-picker.js";
 
 /**
  * The template for the color picker component.
  * @public
  */
-export const colorPickerTemplate: ViewTemplate<ColorPicker> = html`
+export const colorPickerTemplate = html<ColorPicker>`
     <template
         @focus="${x => x.handleFocus()}"
         @blur="${x => x.handleBlur()}"

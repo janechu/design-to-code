@@ -1,7 +1,7 @@
-import { html, ref, ViewTemplate } from "@microsoft/fast-element";
+import { html, ref } from "@microsoft/fast-element";
 import { HTMLRenderLayerNavigation } from "./html-render-layer-navigation.js";
 
-export const htmlRenderLayerNavigationTemplate: ViewTemplate<HTMLRenderLayerNavigation> = html`
+export const htmlRenderLayerNavigationTemplate = html<HTMLRenderLayerNavigation>`
     <div class="navigation">
         <div
             class="navigation-select${x =>

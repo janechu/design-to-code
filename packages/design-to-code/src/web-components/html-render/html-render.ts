@@ -1,6 +1,5 @@
-import { attr, observable } from "@microsoft/fast-element";
+import { attr, FASTElement, observable } from "@microsoft/fast-element";
 import { isHTMLElement } from "@microsoft/fast-web-utilities";
-import { FoundationElement } from "@microsoft/fast-foundation";
 import {
     htmlMapper,
     htmlResolver,
@@ -27,7 +26,7 @@ import { ActivityType, HTMLRenderLayer } from "../html-render-layer/html-render-
  */
 export const htmlRenderOriginatorId = "dtc::html-renderer";
 
-export class HTMLRender extends FoundationElement {
+export class HTMLRender extends FASTElement {
     private layerActivityId: string = "HTMLRender";
     private dataDictionary: DataDictionary<unknown>;
 
@@ -167,9 +166,8 @@ export class HTMLRender extends FoundationElement {
             `[${this.dataDictionaryAttr}=${this.activeDictionaryId}]`
         );
         while (!el && this.dataDictionary[0][this.activeDictionaryId]?.parent) {
-            this.activeDictionaryId = this.dataDictionary[0][
-                this.activeDictionaryId
-            ].parent.id;
+            this.activeDictionaryId =
+                this.dataDictionary[0][this.activeDictionaryId].parent.id;
             el = this.shadowRoot.querySelector(
                 `[${this.dataDictionaryAttr}=${this.activeDictionaryId}]`
             );
@@ -351,9 +349,8 @@ export class HTMLRender extends FoundationElement {
             }
 
             // The childNode index should be the same as the dictionary index.
-            const newDataId: string = this.dataDictionary[0][targetEl.dataId].data[
-                "Slot"
-            ][childIndex].id;
+            const newDataId: string =
+                this.dataDictionary[0][targetEl.dataId].data["Slot"][childIndex].id;
 
             // Navigate to the text node
             this.messageSystem.postMessage({
@@ -440,16 +437,12 @@ export class HTMLRender extends FoundationElement {
             (config.dataDictionary[0][config.dictionaryId].data as HTMLElement)
                 .setAttribute
         ) {
-            (config.dataDictionary[0][config.dictionaryId]
-                .data as HTMLElement).setAttribute(
-                this.dataDictionaryAttr,
-                config.dictionaryId
-            );
-            (config.dataDictionary[0][config.dictionaryId]
-                .data as HTMLElement).setAttribute(
-                "taborder",
-                (this.tabCounter++).toString()
-            );
+            (
+                config.dataDictionary[0][config.dictionaryId].data as HTMLElement
+            ).setAttribute(this.dataDictionaryAttr, config.dictionaryId);
+            (
+                config.dataDictionary[0][config.dictionaryId].data as HTMLElement
+            ).setAttribute("taborder", (this.tabCounter++).toString());
             return config.dataDictionary[0][config.dictionaryId].data;
         } else {
             return null;

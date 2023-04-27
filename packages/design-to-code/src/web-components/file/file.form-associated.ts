@@ -1,6 +1,7 @@
-import { FormAssociated, FoundationElement } from "@microsoft/fast-foundation";
+import { FormAssociated } from "../form-associated/form-associated.js";
+import { FASTElement } from "@microsoft/fast-element";
 
-class _File extends FoundationElement {}
+class _File extends FASTElement {}
 interface _File extends FormAssociated {}
 
 /**
