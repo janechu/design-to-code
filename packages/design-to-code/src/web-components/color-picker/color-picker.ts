@@ -5,7 +5,7 @@ import {
     parseColor,
     rgbToHSV,
 } from "@microsoft/fast-colors";
-import { attr, Updates, observable } from "@microsoft/fast-element";
+import { attr, observable, Updates } from "@microsoft/fast-element";
 import { isNullOrWhiteSpace } from "@microsoft/fast-web-utilities";
 import { FormAssociatedColorPicker } from "./color-picker.form-associated.js";
 

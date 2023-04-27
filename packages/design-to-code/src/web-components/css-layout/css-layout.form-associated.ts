@@ -1,5 +1,5 @@
-import { FormAssociated } from "../form-associated/form-associated.js";
 import { FASTElement } from "@microsoft/fast-element";
+import { FormAssociated } from "../form-associated/form-associated.js";
 
 class _CSSLayout extends FASTElement {}
 interface _CSSLayout extends FormAssociated {}

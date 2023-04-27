@@ -1,11 +1,11 @@
 import { keyArrowDown, keyArrowUp } from "@microsoft/fast-web-utilities";
-import { FormAssociatedUnitsTextField } from "./units-text-field.form-associated.js";
 import {
     attr,
     nullableNumberConverter,
     observable,
     Updates,
 } from "@microsoft/fast-element";
+import { FormAssociatedUnitsTextField } from "./units-text-field.form-associated.js";
 
 export class UnitsTextField extends FormAssociatedUnitsTextField {
     // The word boundry is defined as any whitespace or comma.

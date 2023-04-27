@@ -484,7 +484,7 @@ export function FormAssociated<T extends ConstructableFormAssociated>(BaseCtor: 
          * The proxy implementation should be transparent to
          * the app author, so block these events from emitting.
          */
-        protected proxyEventsToBlock = ["change", "click"];
+        protected proxyEventsToBlock: Array<string> = ["change", "click"];
 
         constructor(...args: any[]) {
             super(...args);
