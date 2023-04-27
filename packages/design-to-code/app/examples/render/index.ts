@@ -5,9 +5,9 @@ import {
     MessageSystemType,
 } from "../../../src";
 import { HTMLRender } from "../../../src/web-components/html-render/html-render.js";
-import { DTCHTMLRender } from "../../../src/web-components/html-render/html-render.define";
-import { DTCHTMLRenderLayerNavigation } from "../../../src/web-components/html-render-layer-navigation/html-render-layer-navigation.define";
-import { DTCHTMLRenderLayerInlineEdit } from "../../../src/web-components/html-render-layer-inline-edit/html-render-layer-inline-edit.define";
+import "../../../src/web-components/html-render/html-render.define";
+import "../../../src/web-components/html-render-layer-navigation/html-render-layer-navigation.define";
+import "../../../src/web-components/html-render-layer-inline-edit/html-render-layer-inline-edit.define";
 import { nativeElementDefinitions } from "../../../src/definitions/index.js";
 import dataDictionaryConfig from "../../../src/__test__/html-render/data-dictionary-config.js";
 import schemaDictionary from "../../../src/__test__/html-render/schema-dictionary.js";
@@ -18,11 +18,6 @@ import {
 import { html, ViewTemplate } from "@microsoft/fast-element";
 import MessageSystemWorker from "worker-loader!../../../dist/message-system.min.js";
 import { customElement } from "@microsoft/fast-element";
-
-// tree-shaking
-DTCHTMLRender;
-DTCHTMLRenderLayerInlineEdit;
-DTCHTMLRenderLayerNavigation;
 
 document.body.setAttribute("style", "margin: 0");
 
