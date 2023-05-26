@@ -17,7 +17,6 @@ const Form: React.FC<any> = (props: React.PropsWithChildren<any>): React.ReactEl
     );
 };
 
-export * from "./custom-controls";
 export * from "./controls";
 export {
     ControlConfig,
