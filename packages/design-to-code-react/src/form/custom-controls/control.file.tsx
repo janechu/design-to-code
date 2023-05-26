@@ -3,7 +3,7 @@ import h from "../../utilities/web-components/pragma"; /* Note: Import wrapped c
 import React from "react";
 import { FileControlProps } from "./control.file.props";
 import { classNames } from "@microsoft/fast-web-utilities";
-import { DTCFile } from "design-to-code/dist/esm/web-components/file/file.define.js";
+import * as DTCFile from "design-to-code/dist/esm/web-components/file/file.define.js";
 
 // tree-shaking
 DTCFile;

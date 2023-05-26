@@ -1,12 +1,12 @@
 import * as testConfigs from "./form/";
-import { AlignControl, Form } from "../../src";
+import { Form } from "../../src";
+import { ControlConfig, StandardControlPlugin } from "../../src";
 import {
-    ControlConfig,
-    StandardControlPlugin,
+    AlignControl,
     TextAlignControl,
     ThemeControl,
     FileControl,
-} from "../../src";
+} from "../../src/form/custom-controls";
 import CSSControl from "../../src/form/custom-controls/control.css";
 import { properties as allCSSProperties } from "design-to-code/dist/esm/css-data";
 import { FormProps } from "../../src/form/form.props";
@@ -27,9 +27,9 @@ import { CSSPropertiesDictionary } from "design-to-code/dist/esm/data-utilities/
 import { ControlContext } from "../../src/form/templates/types";
 import { CSSStandardControlPlugin } from "../../src/form/custom-controls/css";
 import { CSSControlConfig } from "../../src/form/custom-controls/css/css.template.control.standard.props";
-import { DTCColorPicker } from "design-to-code/dist/esm/web-components/color-picker/color-picker.define.js";
-import { DTCFile } from "design-to-code/dist/esm/web-components/file/file.define.js";
-import { DTCFileActionObjectUrl } from "design-to-code/dist/esm/web-components/file-action-objecturl/file-action-objecturl.define.js";
+import * as DTCColorPicker from "design-to-code/dist/esm/web-components/color-picker/color-picker.define.js";
+import * as DTCFile from "design-to-code/dist/esm/web-components/file/file.define.js";
+import * as DTCFileActionObjectUrl from "design-to-code/dist/esm/web-components/file-action-objecturl/file-action-objecturl.define.js";
 import { CSSControlStylesheets } from "../../src/form/custom-controls/control.css.props";
 import { FileControlStylesheets } from "../../src/form/custom-controls/control.file.props";
 
@@ -170,7 +170,7 @@ class FormTestPage extends React.Component<{}, FormTestPageState> {
                 control: (config: ControlConfig): React.ReactNode => {
                     return (
                         <CSSControl
-                            css={(properties as unknown) as CSSPropertiesDictionary}
+                            css={properties as unknown as CSSPropertiesDictionary}
                             {...config}
                             key={`${config.dictionaryId}::${config.dataLocation}`}
                             stylesheets={cssControlStylesheets}
@@ -179,13 +179,12 @@ class FormTestPage extends React.Component<{}, FormTestPageState> {
                 },
             }),
             new StandardControlPlugin({
-                id:
-                    testConfigs.controlPluginCssWithOverrides.schema.properties
-                        .cssWithOverrides.formControlId,
+                id: testConfigs.controlPluginCssWithOverrides.schema.properties
+                    .cssWithOverrides.formControlId,
                 control: (config: ControlConfig): React.ReactNode => {
                     return (
                         <CSSControl
-                            css={(properties as unknown) as CSSPropertiesDictionary}
+                            css={properties as unknown as CSSPropertiesDictionary}
                             key={`${config.dictionaryId}::${config.dataLocation}`}
                             cssControls={[
                                 new CSSStandardControlPlugin({
