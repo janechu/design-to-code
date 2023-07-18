@@ -43,7 +43,7 @@ function SectionControl(props: SectionControlProps) {
     /**
      * The ID of the requested validation
      */
-    let oneOfAnyOfValidationRequestId: string = uniqueId("schemaset");
+    let oneOfAnyOfValidationRequestId: string = `${props.schema.$id}-${props.dataLocation}`;
 
     const invalidMessage: string = getErrorFromDataLocation(
         props.dataLocation,
@@ -76,6 +76,27 @@ function SectionControl(props: SectionControlProps) {
     const disabled: boolean = isDisabled();
 
     useEffect(() => {
+        if (checkIsDifferentSchema(schema, props.schema)) {
+            const updatedState = updateControlSectionState(props, {
+                schema,
+                oneOfAnyOf,
+                categories,
+            });
+
+            if (updatedState.oneOfAnyOf !== null) {
+                props.messageSystem.postMessage({
+                    type: MessageSystemType.custom,
+                    action: SchemaSetValidationAction.request,
+                    id: oneOfAnyOfValidationRequestId,
+                    schemas: props.schema[updatedState.oneOfAnyOf.type],
+                    data: props.value,
+                } as SchemaSetValidationMessageRequest);
+            }
+
+            setSchema(updatedState.schema);
+            setCategories(updatedState.categories);
+        }
+
         if (props.messageSystem !== undefined) {
             props.messageSystem.add(messageSystemConfig);
         }
@@ -87,32 +108,6 @@ function SectionControl(props: SectionControlProps) {
         };
     });
 
-    useEffect(() => {
-        if (checkIsDifferentSchema(schema, props.schema)) {
-            const updatedState = updateControlSectionState(props, {
-                schema,
-                oneOfAnyOf,
-                categories,
-            });
-
-            if (updatedState.oneOfAnyOf !== null) {
-                oneOfAnyOfValidationRequestId = uniqueId("schemaset");
-
-                props.messageSystem.postMessage({
-                    type: MessageSystemType.custom,
-                    action: SchemaSetValidationAction.request,
-                    id: oneOfAnyOfValidationRequestId,
-                    schemas: props.schema[oneOfAnyOf.type],
-                    data: props.value,
-                } as SchemaSetValidationMessageRequest);
-            }
-
-            setSchema(updatedState.schema);
-            setOneOfAnyOf(updatedState.oneOfAnyOf);
-            setCategories(updatedState.categories);
-        }
-    });
-
     /**
      * Handle the message system messages
      */
@@ -122,7 +117,8 @@ function SectionControl(props: SectionControlProps) {
                 if (
                     e.data.action === SchemaSetValidationAction.response &&
                     e.data.id === oneOfAnyOfValidationRequestId &&
-                    oneOfAnyOf !== null
+                    oneOfAnyOf !== null &&
+                    e.data.index !== undefined
                 ) {
                     setOneOfAnyOf({
                         type: oneOfAnyOf.type,
@@ -200,9 +196,8 @@ function SectionControl(props: SectionControlProps) {
     }
 
     function getFormControl(item: string, index: number): React.ReactNode {
-        const splitDataLocation: string[] = props.navigation[
-            item
-        ].relativeDataLocation.split(".");
+        const splitDataLocation: string[] =
+            props.navigation[item].relativeDataLocation.split(".");
         const propertyName: string = splitDataLocation[splitDataLocation.length - 1];
         const requiredArray: string[] | void =
             props.navigation[props.navigationConfigId].schema.required;
