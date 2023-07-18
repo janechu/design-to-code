@@ -12,10 +12,11 @@ export async function getMessage(page: Page, positionFromEnd: number): Promise<s
  * Get all messages on the page expected, this will keep running until the
  * expected number of messages is reached
  */
-export async function getMessageAll(page: Page, expectedLength: Number): Promise<Locator[]> {
-    const currentMessages = await page.locator(
-        "#messageContainer span"
-    ).all();
+export async function getMessageAll(
+    page: Page,
+    expectedLength: Number
+): Promise<Locator[]> {
+    const currentMessages = await page.locator("#messageContainer span").all();
 
     if (expectedLength === currentMessages.length) {
         return currentMessages;
