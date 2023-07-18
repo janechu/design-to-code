@@ -148,6 +148,7 @@ export function renderSelection(config: RenderSelectControlConfig): JSX.Element 
                 className={`dtc-select-control_input ${dtcClassName.commonSelectInput}`}
                 key={`${config.dictionaryId}::${config.dataLocation}`}
                 onChange={getSelectionChangeHandler(config.handleChange)}
+                value={currentValue}
             >
                 {config.options.map(option => {
                     return (
@@ -155,11 +156,6 @@ export function renderSelection(config: RenderSelectControlConfig): JSX.Element 
                             {...{
                                 value: `${option.value}`,
                                 key: `${config.dictionaryId}::${config.dataLocation}::${option.key}`,
-                                ...(`${option.value}` === currentValue
-                                    ? {
-                                          selected: true,
-                                      }
-                                    : {}),
                             }}
                         >
                             {option.displayName}
