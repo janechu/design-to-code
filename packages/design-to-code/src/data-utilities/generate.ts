@@ -62,7 +62,9 @@ function getDataFromSchema(schema: any): any {
                 ? CombiningKeyword.oneOf
                 : CombiningKeyword.anyOf;
 
-        return getDataFromSchema(schema[oneOfAnyOf][0]);
+        return schema[oneOfAnyOf][0]
+            ? getDataFromSchema(schema[oneOfAnyOf][0])
+            : undefined;
     }
 
     /* eslint-disable-next-line @typescript-eslint/no-use-before-define */

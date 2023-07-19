@@ -97,10 +97,6 @@ function ControlSwitch(props: ControlSwitchProps) {
             return ControlType.select;
         }
 
-        if (props.schema.oneOf || props.schema.anyOf) {
-            return ControlType.sectionLink;
-        }
-
         switch (props.schema.type) {
             case "boolean":
                 return ControlType.checkbox;
