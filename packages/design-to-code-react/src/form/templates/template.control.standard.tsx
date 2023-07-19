@@ -45,7 +45,7 @@ style;
  * Control template definition
  */
 function StandardControlTemplate(props: StandardControlTemplateProps) {
-    const ref: React.RefObject<FormHTMLElement> = React.createRef<FormHTMLElement>();
+    const ref: React.MutableRefObject<null> = React.createRef<null>();
     let cache: any = undefined;
 
     function setCache(updatedCache: any): void {

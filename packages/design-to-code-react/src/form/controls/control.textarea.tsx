@@ -64,7 +64,7 @@ function TextareaControl(props: TextareaControlProps) {
             value={getValue()}
             onChange={handleChange()}
             disabled={props.disabled}
-            ref={props.elementRef as React.Ref<HTMLTextAreaElement>}
+            ref={props.elementRef as React.MutableRefObject<HTMLTextAreaElement>}
             onFocus={handleFocus}
             onBlur={handleBlur}
             required={props.required}

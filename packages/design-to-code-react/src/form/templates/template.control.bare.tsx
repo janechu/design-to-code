@@ -8,7 +8,7 @@ import { FormHTMLElement } from "./template.control.utilities.props";
  * Control template definition
  */
 function BareControlTemplate(props: BareControlTemplateProps) {
-    const ref: React.RefObject<FormHTMLElement> = React.createRef<FormHTMLElement>();
+    const ref: React.MutableRefObject<null> = React.createRef<null>();
     let cache: any = undefined;
 
     function setCache(updatedCache: any): void {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { NumberFieldControlProps } from "./control.number-field.props";
 import { classNames } from "@microsoft/fast-web-utilities";
 import { isDefault } from "./utilities/form";
@@ -19,6 +19,7 @@ style;
  */
 function NumberFieldControl(props: NumberFieldControlProps) {
     let hasFocus: boolean = false;
+    let ref = useRef(0);
 
     function handleFocus(callback: () => void) {
         return (): void => {
@@ -57,6 +58,29 @@ function NumberFieldControl(props: NumberFieldControlProps) {
             : "";
     }
 
+    function handleWheel(e: WheelEvent): void {
+        e.preventDefault();
+    }
+
+    useEffect(() => {
+        if (props.elementRef.current) {
+            (props.elementRef.current as HTMLInputElement).addEventListener(
+                "wheel",
+                handleWheel,
+                { passive: false }
+            );
+        }
+
+        return function cancel() {
+            if (props.elementRef.current) {
+                (props.elementRef.current as HTMLInputElement).removeEventListener(
+                    "wheel",
+                    handleWheel
+                );
+            }
+        };
+    });
+
     return (
         <input
             className={classNames(
@@ -76,7 +100,7 @@ function NumberFieldControl(props: NumberFieldControlProps) {
             max={props.max}
             step={props.step}
             disabled={props.disabled}
-            ref={props.elementRef as React.Ref<HTMLInputElement>}
+            ref={props.elementRef}
             onBlur={handleBlur(props.updateValidity)}
             onFocus={handleFocus(props.reportValidity)}
             required={props.required}

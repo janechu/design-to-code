@@ -220,7 +220,7 @@ export function renderInvalidMessage(props: RenderInvalidMessageProps): React.Re
 }
 
 export interface UpdateValidityProps {
-    ref: React.RefObject<FormHTMLElement>;
+    ref: React.MutableRefObject<FormHTMLElement>;
     invalidMessage: string;
 }
 
@@ -243,7 +243,7 @@ export function updateValidity(props: UpdateValidityProps): () => void {
 }
 
 export interface ReportValidityProps {
-    ref: React.RefObject<FormHTMLElement>;
+    ref: React.MutableRefObject<FormHTMLElement>;
     invalidMessage: string;
     displayValidationBrowserDefault?: boolean;
 }
@@ -275,7 +275,7 @@ export interface GetConfigProps extends ControlTemplateUtilitiesProps {
     /**
      * The form element React ref
      */
-    ref: React.RefObject<FormHTMLElement>;
+    ref: React.MutableRefObject<null>;
 }
 
 export function getConfig(props: GetConfigProps): ControlConfig {

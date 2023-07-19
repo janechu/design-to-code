@@ -250,7 +250,7 @@ export interface CommonControlConfig {
     /**
      * The ref belonging to the form element injected as part of the control
      */
-    elementRef: React.Ref<FormHTMLElement>;
+    elementRef: React.MutableRefObject<null>;
 
     /**
      * The invalid error object
