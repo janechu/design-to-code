@@ -1,5 +1,8 @@
 import { expect, test } from "@playwright/test";
-import { normalizeDataLocationToDotNotation } from "./location.js";
+import {
+    normalizeDataLocationToDotNotation,
+    normalizeURIToDotNotation,
+} from "./location.js";
 
 test.describe("normalizeDataLocationToDotLocation", () => {
     test("should convert a bracket location to a dot location", () => {
@@ -17,5 +20,11 @@ test.describe("normalizeDataLocationToDotLocation", () => {
         expect(normalizeDataLocationToDotNotation("foo.0")).toEqual("foo.0");
         expect(normalizeDataLocationToDotNotation("foo.0.bar")).toEqual("foo.0.bar");
         expect(normalizeDataLocationToDotNotation("0.foo.bar")).toEqual("0.foo.bar");
+    });
+});
+
+test.describe("normalizeURIToDotNotation", () => {
+    test("should convert a fragment URI to dot location", () => {
+        expect(normalizeURIToDotNotation("#/foo/bar")).toEqual("foo.bar");
     });
 });
