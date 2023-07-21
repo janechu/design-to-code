@@ -333,4 +333,26 @@ test.describe("getDataFromSchema", () => {
             bar: true,
         });
     });
+    test("should return data when the schema references a definition", () => {
+        const schemaWithDefinition: any = {
+            $schema: "http://json-schema.org/schema#",
+            $id: "https://example.com/schemas/customer",
+            id: "definitions",
+            title: "A schema with definitions",
+            type: "object",
+            properties: {
+                a: { $ref: "#/$defs/name" },
+                b: { $ref: "#/$defs/name" },
+            },
+            required: ["a", "b"],
+            $defs: {
+                name: { type: "string" },
+            },
+        };
+
+        expect(getDataFromSchema(schemaWithDefinition)).toMatchObject({
+            a: "example text",
+            b: "example text",
+        });
+    });
 });
