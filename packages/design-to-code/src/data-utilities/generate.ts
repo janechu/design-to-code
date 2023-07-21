@@ -1,4 +1,6 @@
+import { get } from "lodash-es";
 import { CombiningKeyword, DataType, PropertyKeyword } from "./types.js";
+import { normalizeURIToDotNotation } from "./location.js";
 
 /**
  * This file contains all functionality for generating data
@@ -53,9 +55,20 @@ function getDefaultOrExample(schema: any): any | void {
 }
 
 /**
- * Gets a single example from a schema
+ * Resolves a schema from a $ref
  */
-function getDataFromSchema(schema: any): any {
+function getSchemaFromRef(baseSchema: any, schema: any): any {
+    if ((schema.$ref as string).startsWith("#/$defs/")) {
+        return get(baseSchema, normalizeURIToDotNotation(schema.$ref));
+    }
+
+    return schema;
+}
+
+/**
+ * Resolve data from a schema
+ */
+function resolveDataFromSchema(baseSchema: any, schema: any) {
     if (isOneOfAnyOf(schema)) {
         const oneOfAnyOf: CombiningKeyword =
             schema[CombiningKeyword.oneOf] !== undefined
@@ -63,18 +76,29 @@ function getDataFromSchema(schema: any): any {
                 : CombiningKeyword.anyOf;
 
         return schema[oneOfAnyOf][0]
-            ? getDataFromSchema(schema[oneOfAnyOf][0])
+            ? resolveDataFromSchema(baseSchema, schema[oneOfAnyOf][0])
             : undefined;
     }
 
+    if (typeof schema.$ref === "string") {
+        return resolveDataFromSchema(baseSchema, getSchemaFromRef(baseSchema, schema));
+    }
+
     /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
-    return getDataFromSchemaByDataType(schema);
+    return getDataFromSchemaByDataType(baseSchema, schema);
+}
+
+/**
+ * Gets a single example from a schema
+ */
+function getDataFromSchema(schema: any): any {
+    return resolveDataFromSchema(schema, schema);
 }
 
 /**
  * Gets an example by the type of data
  */
-function getDataFromSchemaByDataType(schema: any): any {
+function getDataFromSchemaByDataType(baseSchema: any, schema: any): any {
     const defaultOrExample: any = getDefaultOrExample(schema);
 
     if (typeof defaultOrExample !== "undefined") {
@@ -86,7 +110,8 @@ function getDataFromSchemaByDataType(schema: any): any {
 
         if (hasRequired(schema)) {
             for (const requiredItem of schema.required) {
-                exampleData[requiredItem] = getDataFromSchema(
+                exampleData[requiredItem] = resolveDataFromSchema(
+                    baseSchema,
                     schema[PropertyKeyword.properties][requiredItem]
                 );
             }
@@ -101,7 +126,7 @@ function getDataFromSchemaByDataType(schema: any): any {
             const minItems: number = schema.minItems ? schema.minItems : 2;
 
             for (let i: number = 0; i < minItems; i++) {
-                arrayData.push(getDataFromSchema(schema.items));
+                arrayData.push(resolveDataFromSchema(baseSchema, schema.items));
             }
 
             return arrayData;
