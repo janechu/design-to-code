@@ -13,7 +13,7 @@ import ControlPluginUtilities, {
     ControlPluginUtilitiesProps,
 } from "../../templates/plugin.control.utilities";
 import { ControlType } from "../../index";
-import { dictionaryLink } from "design-to-code";
+import { dictionaryLink, normalizeURIToDotNotation } from "design-to-code";
 import { XOR } from "design-to-code/dist/dts/data-utilities/type.utilities";
 
 function ControlSwitch(props: ControlSwitchProps) {
@@ -21,6 +21,21 @@ function ControlSwitch(props: ControlSwitchProps) {
      * Renders form items
      */
     function renderControl(): React.ReactNode {
+        // Check to see if this is a reference
+        if (typeof props.schema.$ref === "string") {
+            return (
+                <ControlSwitch
+                    {...props}
+                    schema={get(
+                        props.schemaDictionary[
+                            props.dataDictionary[0][props.dataDictionary[1]].schemaId
+                        ],
+                        normalizeURIToDotNotation(props.schema.$ref)
+                    )}
+                />
+            );
+        }
+
         let control: ControlPluginUtilities<ControlPluginUtilitiesProps>;
 
         // Check to see if there is any associated `controlId`

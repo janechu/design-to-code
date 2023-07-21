@@ -13,6 +13,7 @@ import controlPluginSchema from "./control-plugin.schema";
 import controlPluginCssWithOverridesSchema from "./control-plugin.css-with-overrides.schema";
 import controlPluginCssSchema from "./control-plugin.css.schema";
 import defaultsSchema from "./defaults.schema";
+import definitionsSchema from "./definitions.schema";
 import dictionarySchema from "./dictionary.schema";
 import disabledSchema from "./disabled.schema";
 import generalExampleSchema from "./general-example.schema";
@@ -46,6 +47,7 @@ export {
     controlPluginCssWithOverridesSchema,
     controlPluginCssSchema,
     defaultsSchema,
+    definitionsSchema,
     dictionarySchema,
     disabledSchema,
     generalExampleSchema,
