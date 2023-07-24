@@ -16,6 +16,7 @@ import {
     controlPluginCssWithOverridesSchema,
     controlPluginSchema as customControlSchema,
     defaultsSchema,
+    definitionsSchema,
     dictionarySchema,
     disabledSchema,
     generalSchema,
@@ -46,6 +47,10 @@ export const controlPluginCssWithOverrides: ExampleComponent = {
 
 export const controlPluginCss: ExampleComponent = {
     schema: controlPluginCssSchema,
+};
+
+export const definitions: ExampleComponent = {
+    schema: definitionsSchema,
 };
 
 export const textField: ExampleComponent = {
