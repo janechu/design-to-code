@@ -350,7 +350,7 @@ const Form: React.FC<FormProps> = (
             if (index === items.length - 1) {
                 return (
                     <li key={index}>
-                        <span>{item.text}</span>
+                        <span>{item.text || untitled}</span>
                     </li>
                 );
             }
@@ -358,7 +358,7 @@ const Form: React.FC<FormProps> = (
             return (
                 <li key={index}>
                     <a href={item.href} onClick={item.onClick}>
-                        {item.text}
+                        {item.text || untitled}
                     </a>
                 </li>
             );
