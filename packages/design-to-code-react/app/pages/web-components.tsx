@@ -44,7 +44,7 @@ class WebComponentTestPage extends React.Component<{}, WebComponentTestPageState
                 dataDictionary: [
                     {
                         foo: {
-                            schemaId: fancyButtonSchema.id,
+                            schemaId: fancyButtonSchema.$id,
                             data: {},
                         },
                     },
@@ -126,7 +126,7 @@ class WebComponentTestPage extends React.Component<{}, WebComponentTestPageState
         const schemaDictionary: SchemaDictionary = {};
 
         Object.keys(webComponentSchemas).forEach((webComponentSchemasKey: string) => {
-            schemaDictionary[webComponentSchemas[webComponentSchemasKey].schema.id] =
+            schemaDictionary[webComponentSchemas[webComponentSchemasKey].schema.$id] =
                 webComponentSchemas[webComponentSchemasKey].schema;
         });
 
@@ -184,7 +184,7 @@ class WebComponentTestPage extends React.Component<{}, WebComponentTestPageState
                 data: [
                     {
                         foo: {
-                            schemaId: webComponentSchemas[e.target.value].schema.id,
+                            schemaId: webComponentSchemas[e.target.value].schema.$id,
                             data,
                         },
                     },
@@ -200,7 +200,7 @@ class WebComponentTestPage extends React.Component<{}, WebComponentTestPageState
             (webComponentSchemasKey: any, index: number) => {
                 return (
                     <option key={index}>
-                        {webComponentSchemas[webComponentSchemasKey].schema.id}
+                        {webComponentSchemas[webComponentSchemasKey].schema.$id}
                     </option>
                 );
             }

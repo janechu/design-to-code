@@ -2,10 +2,10 @@ import { linkedDataSchema } from "design-to-code";
 
 export default {
     $schema: "http://json-schema.org/schema#",
+    $id: "disabled",
     title: "Component with all disabled types",
     description: "A test component's schema definition.",
     type: "object",
-    id: "disabled",
     disabled: true,
     properties: {
         textarea: {

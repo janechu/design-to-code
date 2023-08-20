@@ -1,9 +1,9 @@
 export default {
     $schema: "http://json-schema.org/schema#",
+    $id: "alignHorizontal",
     title: "Component with horizontal alignment",
     description: "A test component's schema definition.",
     type: "object",
-    id: "alignHorizontal",
     properties: {
         alignHorizontal: {
             title: "Horizontal alignment",

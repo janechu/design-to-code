@@ -8,7 +8,7 @@ const noChildren: any = {
 const children: DataDictionary<any> = [
     {
         foo: {
-            schemaId: childrenSchema.id,
+            schemaId: childrenSchema.$id,
             data: {
                 children: [
                     {
@@ -28,7 +28,7 @@ const children: DataDictionary<any> = [
                 id: "foo",
                 dataLocation: "children",
             },
-            schemaId: noChildrenSchema.id,
+            schemaId: noChildrenSchema.$id,
             data: {
                 text: "bar",
             },
@@ -38,7 +38,7 @@ const children: DataDictionary<any> = [
                 id: "foo",
                 dataLocation: "children",
             },
-            schemaId: noChildrenSchema.id,
+            schemaId: noChildrenSchema.$id,
             data: {
                 text: "bat",
             },
@@ -48,7 +48,7 @@ const children: DataDictionary<any> = [
                 id: "foo",
                 dataLocation: "children",
             },
-            schemaId: childrenSchema.id,
+            schemaId: childrenSchema.$id,
             data: {
                 children: [
                     {
@@ -62,7 +62,7 @@ const children: DataDictionary<any> = [
                 id: "baz",
                 dataLocation: "children",
             },
-            schemaId: noChildrenSchema.id,
+            schemaId: noChildrenSchema.$id,
             data: {},
         },
     },

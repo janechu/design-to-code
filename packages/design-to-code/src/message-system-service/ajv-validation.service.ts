@@ -176,12 +176,12 @@ export class AjvMapper {
     private validateData = (data: any, schema: any): ValidationError[] => {
         // if this data has never been validated against,
         // add the schema to ajv
-        if (this.schemaDictionary[schema.id] === undefined) {
-            this.schemaDictionary[schema.id] = schema;
-            this.ajv.addSchema(schema, schema.id);
+        if (this.schemaDictionary[schema.$id] === undefined) {
+            this.schemaDictionary[schema.$id] = schema;
+            this.ajv.addSchema(schema, schema.$id);
         }
 
-        const ajvValidationObject = this.ajv.validate(schema.id, data);
+        const ajvValidationObject = this.ajv.validate(schema.$id, data);
 
         if (ajvValidationObject === true) {
             return [];

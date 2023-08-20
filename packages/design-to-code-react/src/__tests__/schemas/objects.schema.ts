@@ -1,9 +1,9 @@
 export default {
     $schema: "http://json-schema.org/schema#",
+    $id: "objects",
     title: "Component with objects",
     description: "A test component's schema definition.",
     type: "object",
-    id: "objects",
     properties: {
         objectNoRequired: {
             title: "object with no required items",

@@ -136,14 +136,14 @@ describe("Navigation", () => {
             dataDictionary: [
                 {
                     "": {
-                        schemaId: schema.id,
+                        schemaId: schema.$id,
                         data,
                     },
                 },
                 "",
             ],
             schemaDictionary: {
-                [schema.id]: schema,
+                [schema.$id]: schema,
             },
         });
 
@@ -162,7 +162,7 @@ describe("Navigation", () => {
                     dataDictionary: [
                         {
                             "": {
-                                schemaId: schema.id,
+                                schemaId: schema.$id,
                                 data,
                             },
                         },
@@ -249,14 +249,14 @@ describe("Navigation", () => {
             dataDictionary: [
                 {
                     "": {
-                        schemaId: schema.id,
+                        schemaId: schema.$id,
                         data,
                     },
                 },
                 "",
             ],
             schemaDictionary: {
-                [schema.id]: schema,
+                [schema.$id]: schema,
             },
         });
 
@@ -275,7 +275,7 @@ describe("Navigation", () => {
                     dataDictionary: [
                         {
                             "": {
-                                schemaId: schema.id,
+                                schemaId: schema.$id,
                                 data,
                             },
                         },
@@ -343,14 +343,14 @@ describe("Navigation", () => {
             dataDictionary: [
                 {
                     "": {
-                        schemaId: schema.id,
+                        schemaId: schema.$id,
                         data,
                     },
                 },
                 "",
             ],
             schemaDictionary: {
-                [schema.id]: schema,
+                [schema.$id]: schema,
             },
         });
 
@@ -373,7 +373,7 @@ describe("Navigation", () => {
                     dataDictionary: [
                         {
                             "": {
-                                schemaId: schema.id,
+                                schemaId: schema.$id,
                                 data,
                             },
                         },
@@ -442,14 +442,14 @@ describe("Navigation", () => {
             dataDictionary: [
                 {
                     "": {
-                        schemaId: schema.id,
+                        schemaId: schema.$id,
                         data,
                     },
                 },
                 "",
             ],
             schemaDictionary: {
-                [schema.id]: schema,
+                [schema.$id]: schema,
             },
         });
 
@@ -468,7 +468,7 @@ describe("Navigation", () => {
                     dataDictionary: [
                         {
                             "": {
-                                schemaId: schema.id,
+                                schemaId: schema.$id,
                                 data,
                             },
                         },
@@ -553,14 +553,14 @@ describe("Navigation", () => {
             dataDictionary: [
                 {
                     "": {
-                        schemaId: schema.id,
+                        schemaId: schema.$id,
                         data,
                     },
                 },
                 "",
             ],
             schemaDictionary: {
-                [schema.id]: schema,
+                [schema.$id]: schema,
             },
         });
 
@@ -579,7 +579,7 @@ describe("Navigation", () => {
                     dataDictionary: [
                         {
                             "": {
-                                schemaId: schema.id,
+                                schemaId: schema.$id,
                                 data,
                             },
                         },
@@ -846,14 +846,14 @@ describe("Navigation", () => {
             dataDictionary: [
                 {
                     "": {
-                        schemaId: schema.id,
+                        schemaId: schema.$id,
                         data,
                     },
                 },
                 "",
             ],
             schemaDictionary: {
-                [schema.id]: schema,
+                [schema.$id]: schema,
             },
         });
 
@@ -872,7 +872,7 @@ describe("Navigation", () => {
                 dataDictionary: [
                     {
                         foo: {
-                            schemaId: schema.id,
+                            schemaId: schema.$id,
                             data: {
                                 children: [
                                     {
@@ -886,7 +886,7 @@ describe("Navigation", () => {
                                 id: "foo",
                                 dataLocation: "children",
                             },
-                            schemaId: schema.id,
+                            schemaId: schema.$id,
                             data: {
                                 text: "bar",
                             },
@@ -1108,15 +1108,15 @@ describe("Navigation", () => {
             dataDictionary: [
                 {
                     "": {
-                        schemaId: schema1.id,
+                        schemaId: schema1.$id,
                         data,
                     },
                 },
                 "",
             ],
             schemaDictionary: {
-                [schema1.id]: schema1,
-                [schema2.id]: schema2,
+                [schema1.$id]: schema1,
+                [schema2.$id]: schema2,
             },
         });
 
@@ -1135,7 +1135,7 @@ describe("Navigation", () => {
                 dataDictionary: [
                     {
                         foo: {
-                            schemaId: schema1.id,
+                            schemaId: schema1.$id,
                             data: {
                                 children: [
                                     {
@@ -1149,7 +1149,7 @@ describe("Navigation", () => {
                                 id: "foo",
                                 dataLocation: "children",
                             },
-                            schemaId: schema2.id,
+                            schemaId: schema2.$id,
                             data: "bar",
                         },
                     },
@@ -1231,14 +1231,14 @@ describe("Navigation", () => {
             dataDictionary: [
                 {
                     "": {
-                        schemaId: schema.id,
+                        schemaId: schema.$id,
                         data,
                     },
                 },
                 "",
             ],
             schemaDictionary: {
-                [schema.id]: schema,
+                [schema.$id]: schema,
             },
         });
 
@@ -1253,7 +1253,7 @@ describe("Navigation", () => {
                 dataDictionary: [
                     {
                         foo: {
-                            schemaId: schema.id,
+                            schemaId: schema.$id,
                             data: {
                                 children: {},
                             },
@@ -1307,14 +1307,14 @@ describe("Navigation", () => {
             dataDictionary: [
                 {
                     "": {
-                        schemaId: schema.id,
+                        schemaId: schema.$id,
                         data,
                     },
                 },
                 "",
             ],
             schemaDictionary: {
-                [schema.id]: schema,
+                [schema.$id]: schema,
             },
         });
 
@@ -1333,7 +1333,7 @@ describe("Navigation", () => {
                     dataDictionary: [
                         {
                             "": {
-                                schemaId: schema.id,
+                                schemaId: schema.$id,
                                 data,
                             },
                         },
@@ -1428,14 +1428,14 @@ describe("Navigation", () => {
             dataDictionary: [
                 {
                     "": {
-                        schemaId: schema.id,
+                        schemaId: schema.$id,
                         data,
                     },
                 },
                 "",
             ],
             schemaDictionary: {
-                [schema.id]: schema,
+                [schema.$id]: schema,
             },
         });
 
@@ -1454,7 +1454,7 @@ describe("Navigation", () => {
                     dataDictionary: [
                         {
                             "": {
-                                schemaId: schema.id,
+                                schemaId: schema.$id,
                                 data,
                             },
                         },
@@ -1548,14 +1548,14 @@ describe("Navigation", () => {
             dataDictionary: [
                 {
                     "": {
-                        schemaId: schema.id,
+                        schemaId: schema.$id,
                         data,
                     },
                 },
                 "",
             ],
             schemaDictionary: {
-                [schema.id]: schema,
+                [schema.$id]: schema,
             },
         });
 
@@ -1574,7 +1574,7 @@ describe("Navigation", () => {
                     dataDictionary: [
                         {
                             "": {
-                                schemaId: schema.id,
+                                schemaId: schema.$id,
                                 data,
                             },
                         },
@@ -1668,14 +1668,14 @@ describe("Navigation", () => {
             dataDictionary: [
                 {
                     "": {
-                        schemaId: schema.id,
+                        schemaId: schema.$id,
                         data,
                     },
                 },
                 "",
             ],
             schemaDictionary: {
-                [schema.id]: schema,
+                [schema.$id]: schema,
             },
         });
 
@@ -1694,7 +1694,7 @@ describe("Navigation", () => {
                     dataDictionary: [
                         {
                             "": {
-                                schemaId: schema.id,
+                                schemaId: schema.$id,
                                 data,
                             },
                         },
@@ -1776,7 +1776,7 @@ describe("Navigation", () => {
         const dataDictionary: DataDictionary<any> = [
             {
                 "": {
-                    schemaId: schema.id,
+                    schemaId: schema.$id,
                     data,
                 },
                 foo: {
@@ -1784,7 +1784,7 @@ describe("Navigation", () => {
                         id: "",
                         dataLocation: "children",
                     },
-                    schemaId: schema.id,
+                    schemaId: schema.$id,
                     data: {
                         bar: "Hello world",
                     },
@@ -1848,7 +1848,7 @@ describe("Navigation", () => {
             webWorker: "",
             dataDictionary,
             schemaDictionary: {
-                [schema.id]: schema,
+                [schema.$id]: schema,
             },
         });
 
@@ -1949,7 +1949,7 @@ describe("Navigation", () => {
         const dataDictionary: DataDictionary<any> = [
             {
                 "": {
-                    schemaId: schema.id,
+                    schemaId: schema.$id,
                     data,
                 },
                 foo: {
@@ -1957,7 +1957,7 @@ describe("Navigation", () => {
                         id: "",
                         dataLocation: "children",
                     },
-                    schemaId: schema.id,
+                    schemaId: schema.$id,
                     data: {
                         obj: {},
                     },
@@ -2033,7 +2033,7 @@ describe("Navigation", () => {
             webWorker: "",
             dataDictionary,
             schemaDictionary: {
-                [schema.id]: schema,
+                [schema.$id]: schema,
             },
         });
 
@@ -2160,14 +2160,14 @@ describe("Navigation", () => {
             dataDictionary: [
                 {
                     "": {
-                        schemaId: schema.id,
+                        schemaId: schema.$id,
                         data,
                     },
                 },
                 "",
             ],
             schemaDictionary: {
-                [schema.id]: schema,
+                [schema.$id]: schema,
             },
         });
 
@@ -2190,7 +2190,7 @@ describe("Navigation", () => {
                     dataDictionary: [
                         {
                             "": {
-                                schemaId: schema.id,
+                                schemaId: schema.$id,
                                 data,
                             },
                         },
@@ -2279,14 +2279,14 @@ describe("Navigation", () => {
             dataDictionary: [
                 {
                     "": {
-                        schemaId: schema.id,
+                        schemaId: schema.$id,
                         data,
                     },
                 },
                 "",
             ],
             schemaDictionary: {
-                [schema.id]: schema,
+                [schema.$id]: schema,
             },
         });
 
@@ -2309,7 +2309,7 @@ describe("Navigation", () => {
                     dataDictionary: [
                         {
                             "": {
-                                schemaId: schema.id,
+                                schemaId: schema.$id,
                                 data,
                             },
                         },
@@ -2376,14 +2376,14 @@ describe("Navigation", () => {
             dataDictionary: [
                 {
                     "": {
-                        schemaId: schema.id,
+                        schemaId: schema.$id,
                         data,
                     },
                 },
                 "",
             ],
             schemaDictionary: {
-                [schema.id]: schema,
+                [schema.$id]: schema,
             },
         });
 
@@ -2406,7 +2406,7 @@ describe("Navigation", () => {
                     dataDictionary: [
                         {
                             "": {
-                                schemaId: schema.id,
+                                schemaId: schema.$id,
                                 data,
                             },
                         },
@@ -2473,14 +2473,14 @@ describe("Navigation", () => {
             dataDictionary: [
                 {
                     "": {
-                        schemaId: schema.id,
+                        schemaId: schema.$id,
                         data,
                     },
                 },
                 "",
             ],
             schemaDictionary: {
-                [schema.id]: schema,
+                [schema.$id]: schema,
             },
         });
 
@@ -2503,7 +2503,7 @@ describe("Navigation", () => {
                     dataDictionary: [
                         {
                             "": {
-                                schemaId: schema.id,
+                                schemaId: schema.$id,
                                 data,
                             },
                         },
@@ -2570,14 +2570,14 @@ describe("Navigation", () => {
             dataDictionary: [
                 {
                     "": {
-                        schemaId: schema.id,
+                        schemaId: schema.$id,
                         data,
                     },
                 },
                 "",
             ],
             schemaDictionary: {
-                [schema.id]: schema,
+                [schema.$id]: schema,
             },
         });
 
@@ -2600,7 +2600,7 @@ describe("Navigation", () => {
                     dataDictionary: [
                         {
                             "": {
-                                schemaId: schema.id,
+                                schemaId: schema.$id,
                                 data,
                             },
                         },
@@ -2667,14 +2667,14 @@ describe("Navigation", () => {
             dataDictionary: [
                 {
                     "": {
-                        schemaId: schema.id,
+                        schemaId: schema.$id,
                         data,
                     },
                 },
                 "",
             ],
             schemaDictionary: {
-                [schema.id]: schema,
+                [schema.$id]: schema,
             },
         });
 
@@ -2697,7 +2697,7 @@ describe("Navigation", () => {
                     dataDictionary: [
                         {
                             "": {
-                                schemaId: schema.id,
+                                schemaId: schema.$id,
                                 data,
                             },
                         },

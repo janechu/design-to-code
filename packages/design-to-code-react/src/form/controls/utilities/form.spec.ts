@@ -30,20 +30,20 @@ describe("getSchemaByDataLocation", () => {
             },
         ]);
 
-        expect(schema.id).toBe(textFieldSchema.id);
+        expect(schema.$id).toBe(textFieldSchema.$id);
     });
     test("should return the schema given from data with a single child", () => {
         const data: any = {
             children: {
-                id: childrenSchema.id,
+                id: childrenSchema.$id,
                 props: {
                     children: [
                         {
-                            id: childrenSchema.id,
+                            id: childrenSchema.$id,
                             props: {},
                         },
                         {
-                            id: textFieldSchema.id,
+                            id: textFieldSchema.$id,
                             props: {
                                 tag: "span",
                                 text: "test",
@@ -65,7 +65,7 @@ describe("getSchemaByDataLocation", () => {
                 },
             ]
         );
-        expect(schema1.id).toBe(childrenSchema.id);
+        expect(schema1.$id).toBe(childrenSchema.$id);
 
         const schema2: any = getSchemaByDataLocation(
             childrenSchema,
@@ -79,7 +79,7 @@ describe("getSchemaByDataLocation", () => {
                 },
             ]
         );
-        expect(schema2.id).toBe(textFieldSchema.id);
+        expect(schema2.$id).toBe(textFieldSchema.$id);
     });
 });
 

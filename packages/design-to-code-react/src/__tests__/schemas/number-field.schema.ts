@@ -1,9 +1,9 @@
 export default {
     $schema: "http://json-schema.org/schema#",
+    $id: "numberField",
     title: "Component with number-field",
     description: "A test component's schema definition.",
     type: "object",
-    id: "numberField",
     properties: {
         level: {
             title: "Level",

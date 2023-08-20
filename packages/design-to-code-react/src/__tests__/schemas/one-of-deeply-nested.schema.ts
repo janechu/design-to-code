@@ -1,8 +1,8 @@
 export default {
     $schema: "http://json-schema.org/schema#",
+    $id: "oneOfArrays",
     title: "Complex nesting arrays with oneOf",
     type: "object",
-    id: "oneOfArrays",
     properties: {
         propertyKey: {
             title: "Property key",

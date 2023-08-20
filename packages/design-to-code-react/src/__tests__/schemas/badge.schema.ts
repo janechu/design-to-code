@@ -2,10 +2,10 @@ import { linkedDataSchema } from "design-to-code";
 
 export default {
     $schema: "http://json-schema.org/schema#",
+    $id: "badge",
     title: "Badge",
     description: "A test component's schema definition.",
     type: "object",
-    id: "badge",
     properties: {
         string: {
             title: "Textarea",

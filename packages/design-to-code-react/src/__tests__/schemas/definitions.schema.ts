@@ -1,6 +1,6 @@
 export default {
     $schema: "http://json-schema.org/schema#",
-    id: "definitions",
+    $id: "definitions",
     title: "A schema with definitions",
     type: "object",
     properties: {

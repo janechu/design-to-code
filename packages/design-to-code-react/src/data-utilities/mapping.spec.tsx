@@ -45,7 +45,7 @@ describe("reactMapper", () => {
             resolver: reactResolver,
             schemaDictionary: {
                 foo: {
-                    id: "foo",
+                    $id: "foo",
                     type: "object",
                     properties: {
                         text: {
@@ -105,7 +105,7 @@ describe("reactMapper", () => {
             resolver: reactResolver,
             schemaDictionary: {
                 foo: {
-                    id: "foo",
+                    $id: "foo",
                     type: "object",
                     properties: {
                         children: {
@@ -114,7 +114,7 @@ describe("reactMapper", () => {
                     },
                 },
                 bar: {
-                    id: "bar",
+                    $id: "bar",
                     type: "string",
                 },
             },
@@ -169,7 +169,7 @@ describe("reactMapper", () => {
                 resolver: reactResolver,
                 schemaDictionary: {
                     foo: {
-                        id: "foo",
+                        $id: "foo",
                         type: "object",
                         properties: {
                             children: {
@@ -178,7 +178,7 @@ describe("reactMapper", () => {
                         },
                     },
                     bar: {
-                        id: "bar",
+                        $id: "bar",
                         type: "object",
                         properties: {
                             children: {
@@ -187,7 +187,7 @@ describe("reactMapper", () => {
                         },
                     },
                     bat: {
-                        id: "bat",
+                        $id: "bat",
                         type: DataType.string,
                     },
                 },
@@ -220,7 +220,7 @@ describe("reactMapper", () => {
             resolver: reactResolver,
             schemaDictionary: {
                 foo: {
-                    id: "foo",
+                    $id: "foo",
                     type: "object",
                     properties: {
                         text: {
@@ -282,7 +282,7 @@ describe("reactMapper", () => {
             resolver: reactResolver,
             schemaDictionary: {
                 foo: {
-                    id: "foo",
+                    $id: "foo",
                     type: "object",
                     properties: {
                         children: {

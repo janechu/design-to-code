@@ -142,7 +142,7 @@ test.describe("AjvMapper", () => {
                     dataDictionary: [
                         {
                             foo: {
-                                schemaId: schema.id,
+                                schemaId: schema.$id,
                                 data: undefined,
                             },
                         },
@@ -234,7 +234,7 @@ test.describe("AjvMapper", () => {
                     dataDictionary: [
                         {
                             foo: {
-                                schemaId: schema.id,
+                                schemaId: schema.$id,
                                 data: undefined,
                             },
                         },
@@ -326,7 +326,7 @@ test.describe("AjvMapper", () => {
         const dataDictionary: DataDictionary<unknown> = [
             {
                 foo: {
-                    schemaId: schema.id,
+                    schemaId: schema.$id,
                     data,
                 },
             },

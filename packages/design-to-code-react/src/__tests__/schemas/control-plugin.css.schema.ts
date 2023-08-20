@@ -2,10 +2,10 @@ import { linkedDataSchema } from "design-to-code";
 
 export default {
     $schema: "http://json-schema.org/schema#",
+    $id: "controlPluginCss",
     title: "Component with custom CSS controls",
     description: "A test component's schema definition.",
     type: "object",
-    id: "controlPluginCss",
     properties: {
         css: {
             title: "CSS",

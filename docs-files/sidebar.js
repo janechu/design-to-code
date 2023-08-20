@@ -14,6 +14,11 @@ module.exports = {
             path: "introduction",
         },
         {
+            type: "doc",
+            label: "Supported formats",
+            path: "support",
+        },
+        {
             type: "category",
             label: "Message System",
             description:

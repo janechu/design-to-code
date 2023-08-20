@@ -1,9 +1,9 @@
 export default {
     $schema: "http://json-schema.org/schema#",
+    $id: "dictionary",
     title: "Component with additional properties",
     description: "A test component's schema definition.",
     type: "object",
-    id: "dictionary",
     propertyTitle: "Item key",
     properties: {
         additionalObjects: {

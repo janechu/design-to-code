@@ -252,7 +252,7 @@ class FormTestPage extends React.Component<{}, FormTestPageState> {
                 dataDictionary: [
                     {
                         foo: {
-                            schemaId: testConfigs.controlPluginCss.schema.id,
+                            schemaId: testConfigs.controlPluginCss.schema.$id,
                             data: exampleData,
                         },
                     },
@@ -272,7 +272,7 @@ class FormTestPage extends React.Component<{}, FormTestPageState> {
             dataDictionary: [
                 {
                     foo: {
-                        schemaId: testConfigs.controlPluginCss.schema.id,
+                        schemaId: testConfigs.controlPluginCss.schema.$id,
                         data: exampleData,
                     },
                 },
@@ -309,7 +309,7 @@ class FormTestPage extends React.Component<{}, FormTestPageState> {
                     <div>
                         <select
                             onChange={this.handleComponentUpdate}
-                            defaultValue={testConfigs.controlPluginCss.schema.id}
+                            defaultValue={testConfigs.controlPluginCss.schema.$id}
                         >
                             {this.getComponentOptions()}
                         </select>
@@ -365,7 +365,7 @@ class FormTestPage extends React.Component<{}, FormTestPageState> {
     }
 
     private renderDataSetComponentOptions(): React.ReactNode {
-        if (this.state.schema.id === testConfigs.allControlTypes.schema.id) {
+        if (this.state.schema.$id === testConfigs.allControlTypes.schema.$id) {
             return (
                 <select onChange={this.handleDataSetUpdate}>
                     {this.getComponentDataSets()}
@@ -378,7 +378,7 @@ class FormTestPage extends React.Component<{}, FormTestPageState> {
         const schemaDictionary: SchemaDictionary = {};
 
         Object.keys(testConfigs).forEach((testConfigKey: string) => {
-            schemaDictionary[testConfigs[testConfigKey].schema.id] =
+            schemaDictionary[testConfigs[testConfigKey].schema.$id] =
                 testConfigs[testConfigKey].schema;
         });
 
@@ -528,8 +528,8 @@ class FormTestPage extends React.Component<{}, FormTestPageState> {
     private handleComponentUpdate = (e: React.ChangeEvent<HTMLSelectElement>): void => {
         const data: any = !!testConfigs[e.target.value].data
             ? testConfigs[e.target.value].data
-            : testConfigs[e.target.value].schema.id ===
-              testConfigs.allControlTypes.schema.id
+            : testConfigs[e.target.value].schema.$id ===
+              testConfigs.allControlTypes.schema.$id
             ? this.state.dataSet
             : getDataFromSchema(testConfigs[e.target.value].schema);
 
@@ -539,7 +539,7 @@ class FormTestPage extends React.Component<{}, FormTestPageState> {
                 data: [
                     {
                         foo: {
-                            schemaId: testConfigs[e.target.value].schema.id,
+                            schemaId: testConfigs[e.target.value].schema.$id,
                             data,
                         },
                     },
@@ -552,7 +552,9 @@ class FormTestPage extends React.Component<{}, FormTestPageState> {
 
     private getComponentOptions(): JSX.Element[] {
         return Object.keys(testConfigs).map((testComponentKey: any, index: number) => {
-            return <option key={index}>{testConfigs[testComponentKey].schema.id}</option>;
+            return (
+                <option key={index}>{testConfigs[testComponentKey].schema.$id}</option>
+            );
         });
     }
 }
