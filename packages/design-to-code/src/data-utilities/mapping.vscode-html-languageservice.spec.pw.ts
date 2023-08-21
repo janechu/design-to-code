@@ -86,7 +86,7 @@ test.describe("mapVSCodeParsedHTMLToDataDictionary", () => {
                 const value = (window as any).dtc.mapVSCodeParsedHTMLToDataDictionary({
                     value: ["foobar"],
                     schemaDictionary: {
-                        [textSchema.id]: textSchema,
+                        [textSchema.$id]: textSchema,
                     },
                 });
                 const root: string = value[1];
@@ -97,7 +97,7 @@ test.describe("mapVSCodeParsedHTMLToDataDictionary", () => {
         );
 
         await expect(mappedValue).toMatchObject({
-            schemaId: textSchema.id,
+            schemaId: textSchema.$id,
             data: "foobar",
         });
     });
@@ -110,7 +110,7 @@ test.describe("mapVSCodeParsedHTMLToDataDictionary", () => {
                 const value = (window as any).dtc.mapVSCodeParsedHTMLToDataDictionary({
                     value: ["<div>", "</div>"],
                     schemaDictionary: {
-                        [divSchema.id]: divSchema,
+                        [divSchema.$id]: divSchema,
                     },
                 });
                 const root: string = value[1];
@@ -121,7 +121,7 @@ test.describe("mapVSCodeParsedHTMLToDataDictionary", () => {
         );
 
         await expect(mappedValue).toMatchObject({
-            schemaId: divSchema.id,
+            schemaId: divSchema.$id,
             data: {},
         });
     });
@@ -134,7 +134,7 @@ test.describe("mapVSCodeParsedHTMLToDataDictionary", () => {
                 const value = (window as any).dtc.mapVSCodeParsedHTMLToDataDictionary({
                     value: ["<div>\n", "</div>"],
                     schemaDictionary: {
-                        [divSchema.id]: divSchema,
+                        [divSchema.$id]: divSchema,
                     },
                 });
                 const root: string = value[1];
@@ -144,7 +144,7 @@ test.describe("mapVSCodeParsedHTMLToDataDictionary", () => {
         );
 
         await expect(mappedValue).toMatchObject({
-            schemaId: divSchema.id,
+            schemaId: divSchema.$id,
             data: {},
         });
     });
@@ -157,7 +157,7 @@ test.describe("mapVSCodeParsedHTMLToDataDictionary", () => {
                 const value = (window as any).dtc.mapVSCodeParsedHTMLToDataDictionary({
                     value: ['<input id="bar" />'],
                     schemaDictionary: {
-                        [inputSchema.id]: inputSchema,
+                        [inputSchema.$id]: inputSchema,
                     },
                 });
                 const root: string = value[1];
@@ -167,7 +167,7 @@ test.describe("mapVSCodeParsedHTMLToDataDictionary", () => {
         );
 
         await expect(mappedValue).toMatchObject({
-            schemaId: inputSchema.id,
+            schemaId: inputSchema.$id,
             data: {
                 id: "bar",
             },
@@ -182,7 +182,7 @@ test.describe("mapVSCodeParsedHTMLToDataDictionary", () => {
                 const value = (window as any).dtc.mapVSCodeParsedHTMLToDataDictionary({
                     value: ['<input name="1" />'],
                     schemaDictionary: {
-                        [inputSchema.id]: inputSchema,
+                        [inputSchema.$id]: inputSchema,
                     },
                 });
                 const root: string = value[1];
@@ -192,7 +192,7 @@ test.describe("mapVSCodeParsedHTMLToDataDictionary", () => {
         );
 
         await expect(mappedValue).toMatchObject({
-            schemaId: inputSchema.id,
+            schemaId: inputSchema.$id,
             data: {
                 name: "1",
             },
@@ -207,7 +207,7 @@ test.describe("mapVSCodeParsedHTMLToDataDictionary", () => {
                 const value = (window as any).dtc.mapVSCodeParsedHTMLToDataDictionary({
                     value: ['<input slot="bar" />'],
                     schemaDictionary: {
-                        [inputSchema.id]: inputSchema,
+                        [inputSchema.$id]: inputSchema,
                     },
                 });
                 const root: string = value[1];
@@ -217,7 +217,7 @@ test.describe("mapVSCodeParsedHTMLToDataDictionary", () => {
         );
 
         await expect(mappedValue).toMatchObject({
-            schemaId: inputSchema.id,
+            schemaId: inputSchema.$id,
             data: {},
         });
     });
@@ -230,7 +230,7 @@ test.describe("mapVSCodeParsedHTMLToDataDictionary", () => {
                 const value = (window as any).dtc.mapVSCodeParsedHTMLToDataDictionary({
                     value: ['<input value="5" />'],
                     schemaDictionary: {
-                        [inputSchema.id]: inputSchema,
+                        [inputSchema.$id]: inputSchema,
                     },
                 });
                 const root: string = value[1];
@@ -240,7 +240,7 @@ test.describe("mapVSCodeParsedHTMLToDataDictionary", () => {
         );
 
         await expect(mappedValue).toMatchObject({
-            schemaId: inputSchema.id,
+            schemaId: inputSchema.$id,
             data: {
                 value: 5,
             },
@@ -255,7 +255,7 @@ test.describe("mapVSCodeParsedHTMLToDataDictionary", () => {
                 const value = (window as any).dtc.mapVSCodeParsedHTMLToDataDictionary({
                     value: ["<input required />"],
                     schemaDictionary: {
-                        [inputSchema.id]: inputSchema,
+                        [inputSchema.$id]: inputSchema,
                     },
                 });
                 const root: string = value[1];
@@ -265,7 +265,7 @@ test.describe("mapVSCodeParsedHTMLToDataDictionary", () => {
         );
 
         await expect(mappedValue).toMatchObject({
-            schemaId: inputSchema.id,
+            schemaId: inputSchema.$id,
             data: {
                 required: true,
             },
@@ -280,7 +280,7 @@ test.describe("mapVSCodeParsedHTMLToDataDictionary", () => {
                 const value = (window as any).dtc.mapVSCodeParsedHTMLToDataDictionary({
                     value: ['<input data-id="foo" />'],
                     schemaDictionary: {
-                        [inputSchema.id]: inputSchema,
+                        [inputSchema.$id]: inputSchema,
                     },
                 });
                 const root: string = value[1];
@@ -290,7 +290,7 @@ test.describe("mapVSCodeParsedHTMLToDataDictionary", () => {
         );
 
         await expect(mappedValue).toMatchObject({
-            schemaId: inputSchema.id,
+            schemaId: inputSchema.$id,
             data: {
                 "data-id": "foo",
             },
@@ -305,7 +305,7 @@ test.describe("mapVSCodeParsedHTMLToDataDictionary", () => {
                 const value = (window as any).dtc.mapVSCodeParsedHTMLToDataDictionary({
                     value: ["<input data-id />"],
                     schemaDictionary: {
-                        [inputSchema.id]: inputSchema,
+                        [inputSchema.$id]: inputSchema,
                     },
                 });
                 const root: string = value[1];
@@ -315,7 +315,7 @@ test.describe("mapVSCodeParsedHTMLToDataDictionary", () => {
         );
 
         await expect(mappedValue).toMatchObject({
-            schemaId: inputSchema.id,
+            schemaId: inputSchema.$id,
             data: {
                 "data-id": true,
             },
@@ -330,7 +330,7 @@ test.describe("mapVSCodeParsedHTMLToDataDictionary", () => {
                 const value = (window as any).dtc.mapVSCodeParsedHTMLToDataDictionary({
                     value: ["<input data-id= bar />"],
                     schemaDictionary: {
-                        [inputSchema.id]: inputSchema,
+                        [inputSchema.$id]: inputSchema,
                     },
                 });
                 const root: string = value[1];
@@ -351,8 +351,8 @@ test.describe("mapVSCodeParsedHTMLToDataDictionary", () => {
                 const value = (window as any).dtc.mapVSCodeParsedHTMLToDataDictionary({
                     value: ["<div>", "<input />", "</div>"],
                     schemaDictionary: {
-                        [inputSchema.id]: inputSchema,
-                        [divSchema.id]: divSchema,
+                        [inputSchema.$id]: inputSchema,
+                        [divSchema.$id]: divSchema,
                     },
                 });
                 const root: string = value[1];
@@ -363,7 +363,7 @@ test.describe("mapVSCodeParsedHTMLToDataDictionary", () => {
         );
         const mappedValue = JSON.parse(mappedValueAsString[0]);
 
-        await expect(mappedValue.schemaId).toEqual(inputSchema.id);
+        await expect(mappedValue.schemaId).toEqual(inputSchema.$id);
         await expect(mappedValue.data).toMatchObject({});
         await expect(mappedValue.parent.id).toEqual(mappedValueAsString[1]);
         await expect(mappedValue.parent.dataLocation).toEqual("Slot");
@@ -378,8 +378,8 @@ test.describe("mapVSCodeParsedHTMLToDataDictionary", () => {
                 const value = (window as any).dtc.mapVSCodeParsedHTMLToDataDictionary({
                     value: ["<div>", "foobar", "</div>"],
                     schemaDictionary: {
-                        [textSchema.id]: textSchema,
-                        [divSchema.id]: divSchema,
+                        [textSchema.$id]: textSchema,
+                        [divSchema.$id]: divSchema,
                     },
                 });
                 const root: string = value[1];
@@ -390,7 +390,7 @@ test.describe("mapVSCodeParsedHTMLToDataDictionary", () => {
         );
         const mappedValue = JSON.parse(mappedValueAsString[0]);
 
-        await expect(mappedValue.schemaId).toEqual(textSchema.id);
+        await expect(mappedValue.schemaId).toEqual(textSchema.$id);
         await expect(mappedValue.data).toEqual("foobar");
         await expect(mappedValue.parent.id).toEqual(mappedValueAsString[1]);
         await expect(mappedValue.parent.dataLocation).toEqual("Slot");
@@ -410,9 +410,9 @@ test.describe("mapVSCodeParsedHTMLToDataDictionary", () => {
                 const value = (window as any).dtc.mapVSCodeParsedHTMLToDataDictionary({
                     value: ["<div>", "foobar", "<input />", "</div>"],
                     schemaDictionary: {
-                        [textSchema.id]: textSchema,
-                        [divSchema.id]: divSchema,
-                        [inputSchema.id]: inputSchema,
+                        [textSchema.$id]: textSchema,
+                        [divSchema.$id]: divSchema,
+                        [inputSchema.$id]: inputSchema,
                     },
                 });
                 const root: string = value[1];
@@ -433,11 +433,11 @@ test.describe("mapVSCodeParsedHTMLToDataDictionary", () => {
         const stringMappedValue = JSON.parse(mappedValueAsString[0]);
         const inputMappedValue = JSON.parse(mappedValueAsString[1]);
 
-        await expect(stringMappedValue.schemaId).toEqual(textSchema.id);
+        await expect(stringMappedValue.schemaId).toEqual(textSchema.$id);
         await expect(stringMappedValue.data).toEqual("foobar");
         await expect(stringMappedValue.parent.id).toEqual(mappedValueAsString[2]);
         await expect(stringMappedValue.parent.dataLocation).toEqual("Slot");
-        await expect(inputMappedValue.schemaId).toEqual(inputSchema.id);
+        await expect(inputMappedValue.schemaId).toEqual(inputSchema.$id);
         await expect(inputMappedValue.data).toMatchObject({});
         await expect(inputMappedValue.parent.id).toEqual(mappedValueAsString[2]);
         await expect(inputMappedValue.parent.dataLocation).toEqual("Slot");
@@ -457,9 +457,9 @@ test.describe("mapVSCodeParsedHTMLToDataDictionary", () => {
                 const value = (window as any).dtc.mapVSCodeParsedHTMLToDataDictionary({
                     value: ["<div>", "<input />", "foobar", "</div>"],
                     schemaDictionary: {
-                        [textSchema.id]: textSchema,
-                        [divSchema.id]: divSchema,
-                        [inputSchema.id]: inputSchema,
+                        [textSchema.$id]: textSchema,
+                        [divSchema.$id]: divSchema,
+                        [inputSchema.$id]: inputSchema,
                     },
                 });
                 const root: string = value[1];
@@ -480,11 +480,11 @@ test.describe("mapVSCodeParsedHTMLToDataDictionary", () => {
         const stringMappedValue = JSON.parse(mappedValueAsString[0]);
         const inputMappedValue = JSON.parse(mappedValueAsString[1]);
 
-        await expect(inputMappedValue.schemaId).toEqual(inputSchema.id);
+        await expect(inputMappedValue.schemaId).toEqual(inputSchema.$id);
         await expect(inputMappedValue.data).toMatchObject({});
         await expect(inputMappedValue.parent.id).toEqual(mappedValueAsString[2]);
         await expect(inputMappedValue.parent.dataLocation).toEqual("Slot");
-        await expect(stringMappedValue.schemaId).toEqual(textSchema.id);
+        await expect(stringMappedValue.schemaId).toEqual(textSchema.$id);
         await expect(stringMappedValue.data).toEqual("foobar");
         await expect(stringMappedValue.parent.id).toEqual(mappedValueAsString[2]);
         await expect(stringMappedValue.parent.dataLocation).toEqual("Slot");
@@ -504,9 +504,9 @@ test.describe("mapVSCodeParsedHTMLToDataDictionary", () => {
                 const value = (window as any).dtc.mapVSCodeParsedHTMLToDataDictionary({
                     value: ["<div>", "<input />", "foobar", "<input />", "</div>"],
                     schemaDictionary: {
-                        [textSchema.id]: textSchema,
-                        [divSchema.id]: divSchema,
-                        [inputSchema.id]: inputSchema,
+                        [textSchema.$id]: textSchema,
+                        [divSchema.$id]: divSchema,
+                        [inputSchema.$id]: inputSchema,
                     },
                 });
                 const root: string = value[1];
@@ -530,15 +530,15 @@ test.describe("mapVSCodeParsedHTMLToDataDictionary", () => {
         const inputMappedValue1 = JSON.parse(mappedValueAsString[1]);
         const inputMappedValue2 = JSON.parse(mappedValueAsString[2]);
 
-        await expect(inputMappedValue1.schemaId).toEqual(inputSchema.id);
+        await expect(inputMappedValue1.schemaId).toEqual(inputSchema.$id);
         await expect(inputMappedValue1.data).toMatchObject({});
         await expect(inputMappedValue1.parent.id).toEqual(mappedValueAsString[3]);
         await expect(inputMappedValue1.parent.dataLocation).toEqual("Slot");
-        await expect(stringMappedValue.schemaId).toEqual(textSchema.id);
+        await expect(stringMappedValue.schemaId).toEqual(textSchema.$id);
         await expect(stringMappedValue.data).toEqual("foobar");
         await expect(stringMappedValue.parent.id).toEqual(mappedValueAsString[3]);
         await expect(stringMappedValue.parent.dataLocation).toEqual("Slot");
-        await expect(inputMappedValue2.schemaId).toEqual(inputSchema.id);
+        await expect(inputMappedValue2.schemaId).toEqual(inputSchema.$id);
         await expect(inputMappedValue2.data).toMatchObject({});
         await expect(inputMappedValue2.parent.id).toEqual(mappedValueAsString[3]);
         await expect(inputMappedValue2.parent.dataLocation).toEqual("Slot");
@@ -560,10 +560,10 @@ test.describe("mapVSCodeParsedHTMLToDataDictionary", () => {
                 const value = (window as any).dtc.mapVSCodeParsedHTMLToDataDictionary({
                     value: ["<div>", "<span>", "foobar", "</span>", "</div>"],
                     schemaDictionary: {
-                        [textSchema.id]: textSchema,
-                        [divSchema.id]: divSchema,
-                        [inputSchema.id]: inputSchema,
-                        [spanSchema.id]: spanSchema,
+                        [textSchema.$id]: textSchema,
+                        [divSchema.$id]: divSchema,
+                        [inputSchema.$id]: inputSchema,
+                        [spanSchema.$id]: spanSchema,
                     },
                 });
 
@@ -632,11 +632,11 @@ test.describe("mapVSCodeParsedHTMLToDataDictionary", () => {
                         "</foo-bar>",
                     ],
                     schemaDictionary: {
-                        [textSchema.id]: textSchema,
-                        [divSchema.id]: divSchema,
-                        [inputSchema.id]: inputSchema,
-                        [spanSchema.id]: spanSchema,
-                        [customSchema.id]: customSchema,
+                        [textSchema.$id]: textSchema,
+                        [divSchema.$id]: divSchema,
+                        [inputSchema.$id]: inputSchema,
+                        [spanSchema.$id]: spanSchema,
+                        [customSchema.$id]: customSchema,
                     },
                 });
 
@@ -1867,7 +1867,7 @@ test.describe("mapVSCodeHTMLAndDataDictionaryToDataDictionary", () => {
                             "root",
                         ],
                         {
-                            [inputSchema.id]: inputSchema,
+                            [inputSchema.$id]: inputSchema,
                         }
                     )
                 );
@@ -1876,7 +1876,7 @@ test.describe("mapVSCodeHTMLAndDataDictionaryToDataDictionary", () => {
         );
 
         await expect(JSON.parse(mappedDataAsString)[0].root).toMatchObject({
-            schemaId: inputSchema.id,
+            schemaId: inputSchema.$id,
             data: {
                 required: true,
             },
@@ -1900,7 +1900,7 @@ test.describe("mapVSCodeHTMLAndDataDictionaryToDataDictionary", () => {
                             "root",
                         ],
                         {
-                            [inputSchema.id]: inputSchema,
+                            [inputSchema.$id]: inputSchema,
                         }
                     )
                 );
@@ -1909,7 +1909,7 @@ test.describe("mapVSCodeHTMLAndDataDictionaryToDataDictionary", () => {
         );
 
         await expect(JSON.parse(mappedDataAsString)[0].root).toMatchObject({
-            schemaId: inputSchema.id,
+            schemaId: inputSchema.$id,
             data: {
                 value: 5,
             },
@@ -1923,7 +1923,7 @@ test.describe("mapVSCodeHTMLAndDataDictionaryToDataDictionary", () => {
                     (window as any).dtc.mapVSCodeParsedHTMLToDataDictionary({
                         value: ['<input name="foo" />'],
                         schemaDictionary: {
-                            [inputSchema.id]: inputSchema,
+                            [inputSchema.$id]: inputSchema,
                         },
                     })
                 );
@@ -1934,7 +1934,7 @@ test.describe("mapVSCodeHTMLAndDataDictionaryToDataDictionary", () => {
         const root: string = mappedData[1];
 
         await expect(mappedData[0][root]).toMatchObject({
-            schemaId: inputSchema.id,
+            schemaId: inputSchema.$id,
             data: {
                 name: "foo",
             },
@@ -1950,7 +1950,7 @@ test.describe("mapVSCodeHTMLAndDataDictionaryToDataDictionary", () => {
                     (window as any).dtc.mapVSCodeParsedHTMLToDataDictionary({
                         value: ['<input name="1" />'],
                         schemaDictionary: {
-                            [inputSchema.id]: inputSchema,
+                            [inputSchema.$id]: inputSchema,
                         },
                     })
                 );
@@ -1961,7 +1961,7 @@ test.describe("mapVSCodeHTMLAndDataDictionaryToDataDictionary", () => {
         const mappedData = JSON.parse(mappedDataAsString);
         const root: string = mappedData[1];
         expect(mappedData[0][root]).toMatchObject({
-            schemaId: inputSchema.id,
+            schemaId: inputSchema.$id,
             data: {
                 name: "1",
             },

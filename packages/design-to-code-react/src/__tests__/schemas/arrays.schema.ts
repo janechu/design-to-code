@@ -1,9 +1,9 @@
 export default {
     $schema: "http://json-schema.org/schema#",
+    $id: "arrays",
     title: "Component with array",
     description: "A test component's schema definition.",
     type: "object",
-    id: "arrays",
     properties: {
         strings: {
             title: "Array of strings",

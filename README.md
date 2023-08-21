@@ -2,6 +2,8 @@
 
 This is the Design to Code project, containing a set of packages that can be combined to create complex workflows. The goal of these workflows is to allow users to create and modify their own web based experiences, from individual web components to completed web sites.
 
+Check out our [documentation site](https://janechu.github.io/design-to-code/) to get started.
+
 ## Packages
 
 ### `design-to-code`

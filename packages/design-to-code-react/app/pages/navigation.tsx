@@ -27,8 +27,8 @@ class NavigationTestPage extends React.Component<{}, NavigationTestPageState> {
                 webWorker: "message-system.js",
                 dataDictionary: children,
                 schemaDictionary: {
-                    [childrenSchema.id]: childrenSchema,
-                    [noChildrenSchema.id]: noChildrenSchema,
+                    [childrenSchema.$id]: childrenSchema,
+                    [noChildrenSchema.$id]: noChildrenSchema,
                 },
             });
         }
@@ -203,8 +203,8 @@ class NavigationTestPage extends React.Component<{}, NavigationTestPageState> {
 
     private handleSetDefaultLinkedDataDatalocation = (e: React.ChangeEvent): void => {
         this.setState({
-            defaultLinkedDataDroppableDataLocation: !this.state
-                .defaultLinkedDataDroppableDataLocation,
+            defaultLinkedDataDroppableDataLocation:
+                !this.state.defaultLinkedDataDroppableDataLocation,
         });
     };
 

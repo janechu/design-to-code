@@ -1,9 +1,9 @@
 export default {
     $schema: "http://json-schema.org/schema#",
+    $id: "defaults",
     title: "Component with defaults",
     description: "A test component's schema definition.",
     type: "object",
-    id: "defaults",
     properties: {
         a: {
             title: "With default",

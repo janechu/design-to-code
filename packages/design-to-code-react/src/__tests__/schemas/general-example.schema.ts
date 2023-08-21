@@ -2,10 +2,10 @@ import { linkedDataSchema } from "design-to-code";
 
 export default {
     $schema: "http://json-schema.org/schema#",
+    $id: "generalExample",
     title: "General example",
     description: "A test component's schema definition.",
     type: "object",
-    id: "generalExample",
     properties: {
         title: {
             title: "Title",

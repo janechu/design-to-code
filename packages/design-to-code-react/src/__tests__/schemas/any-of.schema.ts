@@ -1,9 +1,9 @@
 export default {
     $schema: "http://json-schema.org/schema#",
+    $id: "anyOf",
     title: "Component with anyOf",
     description: "A test component's schema definition.",
     type: "object",
-    id: "anyOf",
     anyOf: [
         {
             description: "String",

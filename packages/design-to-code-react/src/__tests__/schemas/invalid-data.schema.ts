@@ -1,9 +1,9 @@
 export default {
     $schema: "http://json-schema.org/schema#",
+    $id: "invalidData",
     title: "Component with invalid data",
     description: "A test component's schema definition.",
     type: "object",
-    id: "invalidData",
     properties: {
         invalidBooleanWrongType: {
             title: "Invalid boolean wrong type",

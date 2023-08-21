@@ -395,7 +395,7 @@ export function getSchemaByDataLocation(
     const id: string | undefined = subData ? subData.id : void 0;
     const childOptionWithMatchingSchemaId: any = childOptions.find(
         (childOption: FormChildOptionItem) => {
-            return childOption.schema.id === id;
+            return childOption.schema.$id === id;
         }
     );
 
@@ -414,9 +414,8 @@ export function getErrorFromDataLocation(
     let error: string = "";
 
     if (Array.isArray(validationErrors)) {
-        const normalizedDataLocation: string = normalizeDataLocationToDotNotation(
-            dataLocation
-        );
+        const normalizedDataLocation: string =
+            normalizeDataLocationToDotNotation(dataLocation);
 
         for (const validationError of validationErrors) {
             if (normalizedDataLocation === validationError.dataLocation) {
@@ -427,9 +426,8 @@ export function getErrorFromDataLocation(
                 if (normalizedDataLocation === "") {
                     containsInvalidData = true;
                 } else {
-                    const dataLocations: string[] = validationError.dataLocation.split(
-                        "."
-                    );
+                    const dataLocations: string[] =
+                        validationError.dataLocation.split(".");
 
                     containsInvalidData = dataLocations.some(
                         (value: string, index: number) => {
@@ -507,7 +505,7 @@ export function updateControlSectionState(
               }
             : null,
         categories:
-            state !== undefined && props.schema.id === state.schema.id
+            state !== undefined && props.schema.$id === state.schema.$id
                 ? getUpdatedCategories(state.categories)
                 : getCategoryStateFromCategoryDictionary(
                       props.categories,

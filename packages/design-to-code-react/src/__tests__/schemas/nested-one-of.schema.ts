@@ -1,9 +1,9 @@
 export default {
     $schema: "http://json-schema.org/schema#",
+    $id: "nestedOneOf",
     title: "Component with a nested oneOf",
     description: "A test component's schema definition.",
     type: "object",
-    id: "nestedOneOf",
     properties: {
         single: {
             title: "Single oneOf",

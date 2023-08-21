@@ -2,11 +2,11 @@ import { linkedDataSchema } from "design-to-code";
 
 export default {
     $schema: "http://json-schema.org/schema#",
+    $id: "children",
     title: "Component with children",
     alias: "With Children",
     description: "A test component's schema definition.",
     type: "object",
-    id: "children",
     properties: {
         objectContainingNestedChildren: {
             title: "Object with nested children",

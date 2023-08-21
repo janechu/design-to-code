@@ -60,7 +60,7 @@ class FormAndNavigationTestPage extends React.Component<{}, FormTestPageState> {
                 dataDictionary: [
                     {
                         "": {
-                            schemaId: testConfigs.textField.schema.id,
+                            schemaId: testConfigs.textField.schema.$id,
                             data: exampleData,
                         },
                     },
@@ -77,7 +77,7 @@ class FormAndNavigationTestPage extends React.Component<{}, FormTestPageState> {
             dataDictionary: [
                 {
                     "": {
-                        schemaId: testConfigs.textField.schema.id,
+                        schemaId: testConfigs.textField.schema.$id,
                         data: exampleData,
                     },
                 },
@@ -170,7 +170,7 @@ class FormAndNavigationTestPage extends React.Component<{}, FormTestPageState> {
         const schemaDictionary: SchemaDictionary = {};
 
         Object.keys(testConfigs).forEach((testConfigKey: string) => {
-            schemaDictionary[testConfigs[testConfigKey].schema.id] =
+            schemaDictionary[testConfigs[testConfigKey].schema.$id] =
                 testConfigs[testConfigKey].schema;
         });
 
@@ -287,7 +287,7 @@ class FormAndNavigationTestPage extends React.Component<{}, FormTestPageState> {
                 data: [
                     {
                         "": {
-                            schemaId: testConfigs[e.target.value].schema.id,
+                            schemaId: testConfigs[e.target.value].schema.$id,
                             data,
                         },
                     },
@@ -300,7 +300,9 @@ class FormAndNavigationTestPage extends React.Component<{}, FormTestPageState> {
 
     private getComponentOptions(): JSX.Element[] {
         return Object.keys(testConfigs).map((testComponentKey: any, index: number) => {
-            return <option key={index}>{testConfigs[testComponentKey].schema.id}</option>;
+            return (
+                <option key={index}>{testConfigs[testComponentKey].schema.$id}</option>
+            );
         });
     }
 }

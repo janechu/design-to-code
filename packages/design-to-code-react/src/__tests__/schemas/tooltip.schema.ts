@@ -1,9 +1,9 @@
 export default {
     $schema: "http://json-schema.org/schema#",
+    $id: "tooltip",
     title: "Component with tooltips",
     description: "A test component's schema definition.",
     type: "object",
-    id: "tooltip",
     properties: {
         labelOnStandardControl: {
             title: "My label 1",

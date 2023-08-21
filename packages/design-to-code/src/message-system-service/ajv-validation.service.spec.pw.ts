@@ -134,7 +134,7 @@ test.describe("AjvMapper", () => {
         const mappedData = await page.evaluate(
             ([dataTypeObject, messageTypeInitialize]: [DataType, MessageSystemType]) => {
                 const schema: any = {
-                    id: "foo",
+                    $id: "foo",
                 };
                 const data = undefined;
                 const messageSystem = new (window as any).dtc.MessageSystem({
@@ -142,7 +142,7 @@ test.describe("AjvMapper", () => {
                     dataDictionary: [
                         {
                             foo: {
-                                schemaId: schema.id,
+                                schemaId: schema.$id,
                                 data: undefined,
                             },
                         },
@@ -225,7 +225,7 @@ test.describe("AjvMapper", () => {
             ([dataTypeObject, messageTypeInitialize]: [DataType, MessageSystemType]) => {
                 const schema: any = {
                     $schema: "http://json-schema.org/schema#",
-                    id: "foo",
+                    $id: "foo",
                     type: "string",
                 };
                 const data = 42;
@@ -234,7 +234,7 @@ test.describe("AjvMapper", () => {
                     dataDictionary: [
                         {
                             foo: {
-                                schemaId: schema.id,
+                                schemaId: schema.$id,
                                 data: undefined,
                             },
                         },
@@ -318,7 +318,7 @@ test.describe("AjvMapper", () => {
     test.describe("should call the message callback if a data message has been sent", async () => {
         const schema: any = {
             $schema: "http://json-schema.org/schema#",
-            id: "foo",
+            $id: "foo",
             type: "string",
         };
         const schemaAsString = JSON.stringify(schema);
@@ -326,7 +326,7 @@ test.describe("AjvMapper", () => {
         const dataDictionary: DataDictionary<unknown> = [
             {
                 foo: {
-                    schemaId: schema.id,
+                    schemaId: schema.$id,
                     data,
                 },
             },
@@ -480,7 +480,7 @@ test.describe("AjvMapper", () => {
                     const navigationDictionary = JSON.parse(navigationDictionaryAsString);
                     const schema2: any = {
                         $schema: "http://json-schema.org/schema#",
-                        id: "bar",
+                        $id: "bar",
                         type: "boolean",
                     };
                     const messageSystem = new (window as any).dtc.MessageSystem({

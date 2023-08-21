@@ -1,9 +1,9 @@
 export default {
     $schema: "http://json-schema.org/schema#",
+    $id: "checkbox",
     title: "Component with checkbox",
     description: "A test component's schema definition.",
     type: "object",
-    id: "checkbox",
     properties: {
         toggle: {
             title: "Required Checkbox",

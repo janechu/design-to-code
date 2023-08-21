@@ -2,10 +2,10 @@ import { linkedDataSchema } from "design-to-code";
 
 export default {
     $schema: "http://json-schema.org/schema#",
+    $id: "children-with-react-props",
     title: "Component with custom properties ",
     description: "A test component's schema definition.",
     type: "object",
-    id: "children-with-react-props",
     properties: {
         boolean: {
             title: "Boolean",

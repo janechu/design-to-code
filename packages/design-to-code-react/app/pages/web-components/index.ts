@@ -7,12 +7,12 @@ export enum TestDataType {
 }
 
 const webComponentSchemas: any = {
-    [fancyButtonSchema.id]: {
+    [fancyButtonSchema.$id]: {
         data: {},
         type: TestDataType.element,
         schema: fancyButtonSchema,
     },
-    [textSchema.id]: {
+    [textSchema.$id]: {
         data: "foo",
         type: TestDataType.string,
         schema: textSchema,

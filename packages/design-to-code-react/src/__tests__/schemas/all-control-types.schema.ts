@@ -2,10 +2,10 @@ import { linkedDataSchema } from "design-to-code";
 
 export default {
     $schema: "http://json-schema.org/schema#",
+    $id: "allControlTypes",
     title: "Component with all control types",
     description: "A test component's schema definition.",
     type: "object",
-    id: "allControlTypes",
     properties: {
         textarea: {
             title: "textarea",

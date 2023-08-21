@@ -67,7 +67,7 @@ export function reactMapper(
         const allAvailableProps = Object.keys(config.schema[PropertyKeyword.properties]);
 
         config.dataDictionary[0][config.dictionaryId].data = {
-            component: componentDictionary[config.schema.id],
+            component: componentDictionary[config.schema.$id],
             props: allAvailableProps
                 .filter(potentialProp => {
                     // remove slots from the attributes list
