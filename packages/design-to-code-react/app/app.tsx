@@ -7,6 +7,7 @@ import { FormTestPage } from "./pages/form";
 import { FormAndNavigationTestPage } from "./pages/form-and-navigation";
 import { WebComponentTestPage } from "./pages/web-components";
 import WebComponentViewerContent from "./pages/web-components/web-component-viewer-content";
+import { FunctionFormTestPage } from "./pages/function-form";
 
 class App extends React.Component<{}, {}> {
     public render(): React.ReactNode {
@@ -19,6 +20,10 @@ class App extends React.Component<{}, {}> {
                         <Route path={"/viewer"} element={<ViewerPage />} />
                         <Route path={"/viewer/content"} element={<ViewerContentPage />} />
                         <Route path={"/form"} element={<FormTestPage />} />
+                        <Route
+                            path={"/function-form"}
+                            element={<FunctionFormTestPage />}
+                        />
                         <Route
                             path={"/form-and-navigation"}
                             element={<FormAndNavigationTestPage />}
@@ -45,6 +50,9 @@ class App extends React.Component<{}, {}> {
                     <ul>
                         <li>
                             <Link to="/form">Form</Link>
+                        </li>
+                        <li>
+                            <Link to="/function-form">Function Form</Link>
                         </li>
                         <li>
                             <Link to="/navigation">Navigation</Link>
