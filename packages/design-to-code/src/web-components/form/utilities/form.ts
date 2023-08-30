@@ -47,8 +47,8 @@ function checkIsObjectAndSetType(schemaSection: any): any {
     return schemaSection.type;
 }
 
-function getArrayExample(schemaSection: any): any[] {
-    const example: any = getDataFromSchema(schemaSection.items);
+function getArrayExample(baseSchema: any, schemaSection: any): any[] {
+    const example: any = getDataFromSchema(baseSchema, schemaSection.items);
 
     if (schemaSection.minItems) {
         return new Array(schemaSection.length - 1).fill(example);
@@ -60,7 +60,11 @@ function getArrayExample(schemaSection: any): any[] {
 /**
  * Generates example data for a newly added optional schema item
  */
-export function generateExampleData(schema: any, propertyLocation: string): any {
+export function generateExampleData(
+    baseSchema: any,
+    schema: any,
+    propertyLocation: string
+): any {
     let schemaSection: any =
         propertyLocation === "" ? schema : get(schema, propertyLocation);
     const oneOfAnyOf: CombiningKeyword | null = getOneOfAnyOfType(schemaSection);
@@ -76,8 +80,8 @@ export function generateExampleData(schema: any, propertyLocation: string): any 
     schemaSection.type = checkIsObjectAndSetType(schemaSection);
 
     if (schemaSection.items) {
-        return getArrayExample(schemaSection);
+        return getArrayExample(baseSchema, schemaSection);
     }
 
-    return getDataFromSchema(schemaSection);
+    return getDataFromSchema(baseSchema, schemaSection);
 }

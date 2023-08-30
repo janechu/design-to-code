@@ -100,47 +100,6 @@ export function getIsNotRequired(item: any, not?: string[]): boolean {
 }
 
 /**
- * Resolves generated example data with any matching data in the cache
- */
-export function resolveExampleDataWithCachedData(schema: any, cachedData: any): any {
-    const exampleData: any = generateExampleData(schema, "");
-    const curatedCachedData: any = cloneDeep(cachedData);
-
-    // removes any cached items which do not match and item in
-    // the example data and are not included in the schema properties
-    Object.keys(curatedCachedData).forEach((item: string) => {
-        if (
-            typeof exampleData[item] === "undefined" &&
-            schema.properties &&
-            !schema.properties[item]
-        ) {
-            unset(curatedCachedData, item);
-        }
-    });
-
-    // look through the data cache, find any matching properties and merge them together
-    return mergeWith(exampleData, curatedCachedData, cachedDataResolver.bind(schema));
-}
-
-/**
- * Resolves cached data into example data if the schema still validates with the new data
- */
-function cachedDataResolver(objValue: any, srcValue: any, key: number, object: any): any {
-    if (
-        typeof srcValue !== "undefined" &&
-        typeof objValue !== "undefined" &&
-        typeof srcValue === typeof objValue
-    ) {
-        const newObj: any = cloneDeep(object);
-        set(newObj, key, srcValue);
-
-        return srcValue;
-    } else {
-        return void 0;
-    }
-}
-
-/**
  * Normalizes a location for getting and setting values
  */
 export function getNormalizedLocation(
@@ -160,8 +119,8 @@ export function getNormalizedLocation(
     return normalizedLocation;
 }
 
-function getArrayExample(schemaSection: any): any[] {
-    const example: any = getDataFromSchema(schemaSection.items);
+function getArrayExample(baseSchema: any, schemaSection: any): any[] {
+    const example: any = getDataFromSchema(baseSchema, schemaSection.items);
 
     if (schemaSection.minItems) {
         return new Array(schemaSection.length - 1).fill(example);
@@ -189,7 +148,11 @@ function getOneOfAnyOfType(schemaSection: any): CombiningKeyword | null {
 /**
  * Generates example data for a newly added optional schema item
  */
-export function generateExampleData(schema: any, propertyLocation: string): any {
+export function generateExampleData(
+    baseSchema: any,
+    schema: any,
+    propertyLocation: string
+): any {
     let schemaSection: any =
         propertyLocation === "" ? schema : get(schema, propertyLocation);
     const oneOfAnyOf: CombiningKeyword | null = getOneOfAnyOfType(schemaSection);
@@ -205,10 +168,10 @@ export function generateExampleData(schema: any, propertyLocation: string): any 
     schemaSection.type = checkIsObjectAndSetType(schemaSection);
 
     if (schemaSection.items) {
-        return getArrayExample(schemaSection);
+        return getArrayExample(baseSchema, schemaSection);
     }
 
-    return getDataFromSchema(schemaSection);
+    return getDataFromSchema(baseSchema, schemaSection);
 }
 
 /**
@@ -262,7 +225,7 @@ export function checkHasOneOfAnyOf(oneOf: any, anyOf: any): boolean {
 }
 
 export function checkIsDifferentSchema(currentSchema: any, nextSchema: any): boolean {
-    return nextSchema !== currentSchema;
+    return JSON.stringify(nextSchema) !== JSON.stringify(currentSchema);
 }
 
 export function checkIsDifferentData(currentData: any, nextData: any): boolean {

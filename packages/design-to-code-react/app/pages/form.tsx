@@ -244,7 +244,10 @@ class FormTestPage extends React.Component<{}, FormTestPageState> {
             }),
         ];
 
-        const exampleData: any = getDataFromSchema(testConfigs.controlPluginCss.schema);
+        const exampleData: any = getDataFromSchema(
+            testConfigs.controlPluginCss.schema,
+            testConfigs.controlPluginCss.schema
+        );
 
         if ((window as any).Worker) {
             fastMessageSystem = new MessageSystem({
@@ -531,7 +534,10 @@ class FormTestPage extends React.Component<{}, FormTestPageState> {
             : testConfigs[e.target.value].schema.$id ===
               testConfigs.allControlTypes.schema.$id
             ? this.state.dataSet
-            : getDataFromSchema(testConfigs[e.target.value].schema);
+            : getDataFromSchema(
+                  testConfigs[e.target.value].schema,
+                  testConfigs[e.target.value].schema
+              );
 
         if ((window as any).Worker && fastMessageSystem) {
             fastMessageSystem.postMessage({

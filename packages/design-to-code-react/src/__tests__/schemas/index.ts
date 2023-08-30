@@ -26,6 +26,7 @@ import numberFieldSchema from "./number-field.schema";
 import objectsSchema from "./objects.schema";
 import oneOfDeeplyNestedSchema from "./one-of-deeply-nested.schema";
 import oneOfSchema from "./one-of.schema";
+import recursiveDefinitionsSchema from "./recursive-definitions.schema";
 import textFieldSchema from "./text-field.schema";
 import textareaSchema from "./textarea.schema";
 import textSchema from "./text.schema";
@@ -60,6 +61,7 @@ export {
     objectsSchema,
     oneOfDeeplyNestedSchema,
     oneOfSchema,
+    recursiveDefinitionsSchema,
     textFieldSchema,
     textareaSchema,
     textSchema,

@@ -28,6 +28,7 @@ import {
     objectsSchema,
     oneOfDeeplyNestedSchema as oneOfArraysSchema,
     oneOfSchema,
+    recursiveDefinitionsSchema,
     textareaSchema,
     textSchema,
     tooltipSchema,
@@ -145,4 +146,8 @@ export const tooltip: ExampleComponent = {
 
 export const disabled: ExampleComponent = {
     schema: disabledSchema,
+};
+
+export const recursiveDefinitions: ExampleComponent = {
+    schema: recursiveDefinitionsSchema,
 };

@@ -2,7 +2,7 @@ import { attr, FASTElement, observable } from "@microsoft/fast-element";
 import { XOR } from "../../../../data-utilities/type.utilities.js";
 import { ControlType } from "../../utilities/types.js";
 import { dictionaryLink } from "../../../../index.js";
-import { generateExampleData, isConst, isSelect } from "../../utilities/form.js";
+import { isConst, isSelect } from "../../utilities/form.js";
 
 export class SwitchControl extends FASTElement {
     @attr({ attribute: "array-control" })

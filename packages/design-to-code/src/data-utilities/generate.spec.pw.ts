@@ -10,7 +10,7 @@ test.describe("getDataFromSchema", () => {
             default: "foo",
         };
 
-        expect(getDataFromSchema(schema)).toEqual("foo");
+        expect(getDataFromSchema(schema, schema)).toEqual("foo");
     });
     test("should return the first example from the examples array", () => {
         const schema: any = {
@@ -119,21 +119,7 @@ test.describe("getDataFromSchema", () => {
         const exampleData: any = getDataFromSchema(schema);
 
         expect(Array.isArray(exampleData)).toEqual(true);
-        expect(exampleData).not.toHaveLength(0);
-    });
-    test("should return an array with minItems", () => {
-        const schema: any = {
-            type: "array",
-            items: {
-                type: "string",
-            },
-            minItems: 4,
-        };
-
-        const exampleData: any = getDataFromSchema(schema);
-
-        expect(Array.isArray(exampleData)).toEqual(true);
-        expect(exampleData).toHaveLength(4);
+        expect(exampleData).toHaveLength(0);
     });
     test("should return an empty object", () => {
         const schemaWithObjectTypeAndProperties: any = {
@@ -178,102 +164,6 @@ test.describe("getDataFromSchema", () => {
         );
 
         expect(schemaWithOptionalPropertiesExampleData).toMatchObject({});
-    });
-    test("should return an object with required properties", () => {
-        const schemaWithEmptyRequiredProperties: any = {
-            properties: {
-                bool: {
-                    type: "boolean",
-                },
-            },
-            required: [],
-        };
-
-        const schemaWithEmptyRequiredPropertiesExampleData: any = getDataFromSchema(
-            schemaWithEmptyRequiredProperties
-        );
-
-        expect(schemaWithEmptyRequiredPropertiesExampleData).toMatchObject({});
-
-        const schemaWithRequiredProperties: any = {
-            properties: {
-                bool: {
-                    type: "boolean",
-                },
-            },
-            required: ["bool"],
-        };
-
-        const schemaWithRequiredPropertiesExampleData: any = getDataFromSchema(
-            schemaWithRequiredProperties
-        );
-
-        expect(schemaWithRequiredPropertiesExampleData).toMatchObject({ bool: true });
-
-        const schemaWithRequiredAndOptionalProperties: any = {
-            properties: {
-                bool: {
-                    type: "boolean",
-                },
-                string: {
-                    type: "string",
-                },
-            },
-            required: ["bool"],
-        };
-
-        const schemaWithRequiredAndOptionalPropertiesExampleData: any = getDataFromSchema(
-            schemaWithRequiredAndOptionalProperties
-        );
-
-        expect(schemaWithRequiredAndOptionalPropertiesExampleData).toMatchObject({
-            bool: true,
-        });
-    });
-    test("should return a nested object", () => {
-        const schemaWithNestedObject: any = {
-            type: "object",
-            properties: {
-                object: {
-                    type: "object",
-                    properties: {},
-                },
-            },
-            required: ["object"],
-        };
-
-        const schemaWithNestedObjectExampleData: any =
-            getDataFromSchema(schemaWithNestedObject);
-
-        expect(schemaWithNestedObjectExampleData).toMatchObject({ object: {} });
-    });
-    test("should return a nested object with other required types", () => {
-        const schemaWithNestedObjectAndOtherProperties: any = {
-            type: "object",
-            properties: {
-                object: {
-                    type: "object",
-                    properties: {
-                        string: {
-                            type: "string",
-                        },
-                    },
-                    required: ["string"],
-                },
-                bool: {
-                    type: "boolean",
-                },
-            },
-            required: ["object", "bool"],
-        };
-
-        const schemaWithNestedObjectAndOtherPropertiesExampleData: any =
-            getDataFromSchema(schemaWithNestedObjectAndOtherProperties);
-
-        expect(schemaWithNestedObjectAndOtherPropertiesExampleData).toMatchObject({
-            object: { string: "example text" },
-            bool: true,
-        });
     });
     test("should return data corresponding to an anyOf", () => {
         const schemaWithAnyOf: any = {
@@ -328,10 +218,7 @@ test.describe("getDataFromSchema", () => {
             required: ["foo", "bar"],
         };
 
-        expect(getDataFromSchema(schemaWithNestedOneOfs)).toMatchObject({
-            foo: "example text",
-            bar: true,
-        });
+        expect(getDataFromSchema(schemaWithNestedOneOfs)).toMatchObject({});
     });
     test("should return data when the schema references a definition", () => {
         const schemaWithDefinition: any = {
@@ -350,9 +237,59 @@ test.describe("getDataFromSchema", () => {
             },
         };
 
-        expect(getDataFromSchema(schemaWithDefinition)).toMatchObject({
-            a: "example text",
-            b: "example text",
-        });
+        expect(
+            getDataFromSchema(schemaWithDefinition, schemaWithDefinition.properties.a)
+        ).toEqual("");
+    });
+    test("should generate from a recursive definition which includes a oneOf", () => {
+        const schemaWithDefinition: any = {
+            $schema: "http://json-schema.org/schema#",
+            $id: "https://example.com/schemas/customer",
+            title: "A schema with definitions",
+            $ref: "#/$defs/names",
+            $defs: {
+                name: {
+                    type: "object",
+                    properties: {
+                        first: {
+                            type: "string",
+                        },
+                        last: {
+                            oneOf: [
+                                {
+                                    type: "object",
+                                    properties: {
+                                        array: {
+                                            type: "array",
+                                            items: {
+                                                type: "object",
+                                                properties: {
+                                                    name: {
+                                                        $ref: "#/$defs/questions",
+                                                    },
+                                                },
+                                            },
+                                        },
+                                    },
+                                    required: ["array"],
+                                },
+                            ],
+                        },
+                    },
+                    required: ["first", "last"],
+                },
+                names: {
+                    title: "names",
+                    type: "array",
+                    items: {
+                        $ref: "#/$defs/name",
+                    },
+                },
+            },
+        };
+
+        const exampleData = getDataFromSchema(schemaWithDefinition);
+        expect(Array.isArray(exampleData)).toEqual(true);
+        expect(exampleData).toHaveLength(0);
     });
 });

@@ -6,8 +6,6 @@ import { normalizeURIToDotNotation } from "./location.js";
  * This file contains all functionality for generating data
  */
 
-const exampleString: string = "example text";
-
 function isOneOfAnyOf(schema: any): boolean {
     return schema[CombiningKeyword.oneOf] || schema[CombiningKeyword.anyOf];
 }
@@ -18,10 +16,6 @@ function isObjectDataType(schema: any): boolean {
 
 function hasExample(examples: any[]): boolean {
     return Array.isArray(examples) && examples.length > 0;
-}
-
-function hasRequired(schema: any): boolean {
-    return Array.isArray(schema.required) && schema.required.length > 0;
 }
 
 function hasEnum(schema: any): boolean {
@@ -85,20 +79,26 @@ function resolveDataFromSchema(baseSchema: any, schema: any) {
     }
 
     /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
-    return getDataFromSchemaByDataType(baseSchema, schema);
+    return getDataFromSchemaByDataType(schema);
 }
 
 /**
  * Gets a single example from a schema
+ * @param baseSchema - the root schema
+ * @param schema - a sub schema
  */
-function getDataFromSchema(schema: any): any {
-    return resolveDataFromSchema(schema, schema);
+function getDataFromSchema(baseSchema: any, schema?: any): any {
+    if (schema) {
+        return resolveDataFromSchema(baseSchema, schema);
+    }
+
+    return resolveDataFromSchema(baseSchema, baseSchema);
 }
 
 /**
  * Gets an example by the type of data
  */
-function getDataFromSchemaByDataType(baseSchema: any, schema: any): any {
+function getDataFromSchemaByDataType(schema: any): any {
     const defaultOrExample: any = getDefaultOrExample(schema);
 
     if (typeof defaultOrExample !== "undefined") {
@@ -106,39 +106,21 @@ function getDataFromSchemaByDataType(baseSchema: any, schema: any): any {
     }
 
     if (isObjectDataType(schema)) {
-        const exampleData: any = {};
-
-        if (hasRequired(schema)) {
-            for (const requiredItem of schema.required) {
-                exampleData[requiredItem] = resolveDataFromSchema(
-                    baseSchema,
-                    schema[PropertyKeyword.properties][requiredItem]
-                );
-            }
-        }
-
-        return exampleData;
+        return {};
     }
 
     switch (schema.type) {
         case DataType.array: {
-            const arrayData: any[] = [];
-            const minItems: number = schema.minItems ? schema.minItems : 2;
-
-            for (let i: number = 0; i < minItems; i++) {
-                arrayData.push(resolveDataFromSchema(baseSchema, schema.items));
-            }
-
-            return arrayData;
+            return [];
         }
         case DataType.boolean:
-            return true;
+            return false;
         case DataType.null:
             return null;
         case DataType.string:
-            return exampleString;
+            return "";
         case DataType.number:
-            return Math.round(Math.random() * 100);
+            return 0;
     }
 }
 

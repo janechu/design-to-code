@@ -3,7 +3,10 @@ import { MessageSystem, getDataFromSchema, SchemaDictionary } from "design-to-co
 import * as testConfigs from "./form/";
 import { Form } from "../../src";
 
-const exampleData: any = getDataFromSchema(testConfigs.objects.schema);
+const exampleData: any = getDataFromSchema(
+    testConfigs.recursiveDefinitions.schema,
+    testConfigs.recursiveDefinitions.schema
+);
 
 function generateSchemaDictionary(): SchemaDictionary {
     const schemaDictionary: SchemaDictionary = {};
@@ -21,7 +24,7 @@ const messageSystem = new MessageSystem({
     dataDictionary: [
         {
             foo: {
-                schemaId: testConfigs.objects.schema.$id,
+                schemaId: testConfigs.recursiveDefinitions.schema.$id,
                 data: exampleData,
             },
         },

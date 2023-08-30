@@ -200,7 +200,13 @@ function Dictionary(props: DictionaryProps) {
                     props.dataLocation === "" ? "" : `${props.dataLocation}.`
                 }${key}`,
                 dictionaryId: props.dictionaryId,
-                value: generateExampleData(props.additionalProperties, ""),
+                value: generateExampleData(
+                    props.schemaDictionary[
+                        props.dataDictionary[0][props.dictionaryId].schemaId
+                    ],
+                    props.additionalProperties,
+                    ""
+                ),
             });
         }
     }

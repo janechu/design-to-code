@@ -51,19 +51,7 @@ function SectionControl(props: SectionControlProps) {
     );
 
     const [schema, setSchema] = useState(props.schema);
-    const [oneOfAnyOf, setOneOfAnyOf] = useState(
-        props.navigation[props.navigationConfigId].schema[CombiningKeyword.anyOf]
-            ? {
-                  type: CombiningKeyword.anyOf,
-                  activeIndex: -1,
-              }
-            : props.navigation[props.navigationConfigId].schema[CombiningKeyword.oneOf]
-            ? {
-                  type: CombiningKeyword.oneOf,
-                  activeIndex: -1,
-              }
-            : null
-    );
+    const [oneOfAnyOf, setOneOfAnyOf] = useState(null);
     const [categories, setCategories] = useState(
         getCategoryStateFromCategoryDictionary(
             props.categories,
@@ -95,6 +83,21 @@ function SectionControl(props: SectionControlProps) {
 
             setSchema(updatedState.schema);
             setCategories(updatedState.categories);
+            setOneOfAnyOf(
+                props.navigation[props.navigationConfigId].schema[CombiningKeyword.anyOf]
+                    ? {
+                          type: CombiningKeyword.anyOf,
+                          activeIndex: -1,
+                      }
+                    : props.navigation[props.navigationConfigId].schema[
+                          CombiningKeyword.oneOf
+                      ]
+                    ? {
+                          type: CombiningKeyword.oneOf,
+                          activeIndex: -1,
+                      }
+                    : null
+            );
         }
 
         if (props.messageSystem !== undefined) {
@@ -154,7 +157,7 @@ function SectionControl(props: SectionControlProps) {
         index: number
     ): React.ReactNode {
         // if this is a root level object use it to generate the form and do not generate a link
-        if (schema.type === "object" && propertyName === "" && oneOfAnyOf === null) {
+        if (schema.type === "object" && propertyName === "") {
             return getFormControls();
         }
 

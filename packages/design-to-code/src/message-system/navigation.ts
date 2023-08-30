@@ -5,6 +5,7 @@ import {
     itemsKeyword,
     PropertyKeyword,
 } from "../data-utilities/types.js";
+import { normalizeURIToDotNotation } from "../data-utilities/location.js";
 import {
     NavigationConfig,
     NavigationConfigDictionary,
@@ -15,6 +16,8 @@ import { DataDictionary, Parent } from "./data.props.js";
 
 function getNavigationRecursive(
     schema: any,
+    schemaId: string,
+    schemaDictionary: SchemaDictionary,
     disabled: boolean,
     displayTextDataLocation?: string,
     data?: any,
@@ -28,11 +31,13 @@ function getNavigationRecursive(
     /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
     const items: NavigationConfig[] = getNavigationItems(
         schema,
+        schemaId,
+        schemaDictionary,
         disabled,
         data,
         dataLocation,
         schemaLocation,
-        self,
+        schema.$ref ? parent : self,
         displayTextDataLocation
     );
     const text: string =
@@ -40,11 +45,27 @@ function getNavigationRecursive(
             ? get(data, displayTextDataLocation, schema.title)
             : schema.title;
 
+    if (items[self]) {
+        return [
+            {
+                ...items.reduce(
+                    (accum: TreeNavigation, item: NavigationConfig): TreeNavigation => {
+                        return { ...accum, ...item[0] };
+                    },
+                    {}
+                ),
+            },
+            self,
+        ];
+    }
+
     return [
         {
             [self]: {
                 self,
-                parent,
+                // ensure the root dictionary item always has a null parent
+                // in the event that there is a root level $ref is present
+                parent: self === "" ? null : parent,
                 parentDictionaryItem:
                     dictionaryParent !== undefined
                         ? {
@@ -76,12 +97,16 @@ function getNavigationRecursive(
 
 export function getNavigation(
     schema: any,
+    schemaId: string,
+    schemaDictionary: SchemaDictionary,
     data?: any,
     parent?: Parent,
     displayTextDataLocation?: string
 ): NavigationConfig {
     return getNavigationRecursive(
         schema,
+        schemaId,
+        schemaDictionary,
         !!schema.disabled,
         displayTextDataLocation,
         data,
@@ -101,6 +126,8 @@ export function getNavigationDictionary(
             {
                 [dataKey]: getNavigation(
                     schemaDictionary[data[0][dataKey].schemaId],
+                    data[0][dataKey].schemaId,
+                    schemaDictionary,
                     data[0][dataKey].data,
                     data[0][dataKey].parent,
                     displayTextDataLocation
@@ -128,6 +155,8 @@ export function getNavigationDictionary(
 
 function getNavigationItems(
     schema: any,
+    schemaId: string,
+    schemaDictionary: SchemaDictionary,
     disabled: boolean,
     data: any,
     dataLocation: string,
@@ -153,6 +182,8 @@ function getNavigationItems(
 
             return getNavigationRecursive(
                 subSchema,
+                schemaId,
+                schemaDictionary,
                 disabled || !!subSchema.disabled,
                 displayTextDataLocation,
                 data,
@@ -171,6 +202,8 @@ function getNavigationItems(
                 return Object.keys(schema.properties).map((propertyKey: string) => {
                     return getNavigationRecursive(
                         schema.properties[propertyKey],
+                        schemaId,
+                        schemaDictionary,
                         disabled || !!schema.properties[propertyKey].disabled,
                         displayTextDataLocation,
                         get(data, propertyKey) ? data[propertyKey] : void 0,
@@ -188,6 +221,8 @@ function getNavigationItems(
                 return data.map((value: any, index: number) => {
                     return getNavigationRecursive(
                         schema.items,
+                        schemaId,
+                        schemaDictionary,
                         disabled || !!schema.items.disabled,
                         displayTextDataLocation,
                         data[index],
@@ -199,6 +234,29 @@ function getNavigationItems(
                         parent
                     );
                 });
+            }
+        default:
+        case DataType.unknown:
+            if (schema.$ref) {
+                if (schema.$ref.startsWith("#/$defs/")) {
+                    return [
+                        getNavigationRecursive(
+                            get(
+                                schemaDictionary[schemaId],
+                                normalizeURIToDotNotation(schema.$ref)
+                            ),
+                            schemaId,
+                            schemaDictionary,
+                            disabled,
+                            displayTextDataLocation,
+                            data,
+                            undefined,
+                            dataLocation,
+                            schema.$ref.slice(2).split("/").join("."),
+                            parent
+                        ),
+                    ];
+                }
             }
     }
 
