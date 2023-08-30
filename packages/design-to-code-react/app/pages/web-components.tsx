@@ -176,7 +176,10 @@ class WebComponentTestPage extends React.Component<{}, WebComponentTestPageState
     private handleComponentUpdate = (e: React.ChangeEvent<HTMLSelectElement>): void => {
         const data: any = !!webComponentSchemas[e.target.value].data
             ? webComponentSchemas[e.target.value].data
-            : getDataFromSchema(webComponentSchemas[e.target.value].schema);
+            : getDataFromSchema(
+                  webComponentSchemas[e.target.value].schema,
+                  webComponentSchemas[e.target.value].schema
+              );
 
         if ((window as any).Worker && fastMessageSystem) {
             fastMessageSystem.postMessage({

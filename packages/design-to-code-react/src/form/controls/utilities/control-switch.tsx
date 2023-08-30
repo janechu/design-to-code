@@ -233,7 +233,11 @@ function ControlSwitch(props: ControlSwitchProps) {
     }
 
     function handleAddExampleData(additionalSchemaPathSyntax: string): any {
-        return generateExampleData(props.schema, additionalSchemaPathSyntax);
+        return generateExampleData(
+            props.schemaDictionary[props.dataDictionary[0][props.dictionaryId].schemaId],
+            props.schema,
+            additionalSchemaPathSyntax
+        );
     }
 
     /**

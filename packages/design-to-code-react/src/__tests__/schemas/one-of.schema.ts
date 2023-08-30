@@ -5,7 +5,6 @@ export default {
     $id: "oneOf",
     title: "Component with oneOf",
     description: "A test component's schema definition.",
-    type: "object",
     oneOf: [
         {
             description: "string",

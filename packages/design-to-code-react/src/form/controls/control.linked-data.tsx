@@ -259,7 +259,10 @@ function LinkedDataControl(props: LinkedDataControlProps) {
                             id: props.dictionaryId,
                             dataLocation: props.dataLocation,
                         },
-                        data: getDataFromSchema(props.schemaDictionary[schemaId]),
+                        data: getDataFromSchema(
+                            props.schemaDictionary[schemaId],
+                            props.schemaDictionary[schemaId]
+                        ),
                     },
                 ],
                 isLinkedData: true,
