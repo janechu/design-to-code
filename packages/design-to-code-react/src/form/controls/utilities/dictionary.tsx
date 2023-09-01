@@ -55,9 +55,7 @@ function Dictionary(props: DictionaryProps) {
                 <div
                     className={`dtc-dictionary_control-region ${dtcClassName.commonControlRegion}`}
                 >
-                    <div
-                        className={`dtc-dictionary_control ${dtcClassName.commonControl}`}
-                    >
+                    <div className={`dtc-dictionary_control`}>
                         <label
                             className={`dtc-dictionary_control-label ${dtcClassName.commonLabel}`}
                         >
@@ -79,9 +77,7 @@ function Dictionary(props: DictionaryProps) {
             <div
                 className={`dtc-dictionary_item-control-region ${dtcClassName.commonControlRegion}`}
             >
-                <div
-                    className={`dtc-dictionary_item-control ${dtcClassName.commonControl}`}
-                >
+                <div className={`dtc-dictionary_item-control`}>
                     <label
                         className={`dtc-dictionary_item-control-label ${dtcClassName.commonLabel}`}
                     >
