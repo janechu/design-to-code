@@ -11,12 +11,12 @@
     background: var(--dtc-l1-color);
 }
 
-.dtc-section-validation_errorList {
+.dtc-section-validation_error-list {
     margin: 10px 0 5px 0;
     padding: 0;
     list-style: inside;
 }
 
-.dtc-section-validation_errorListItemDetails {
+.dtc-section-validation_error-list-item-details {
     font-style: italic;
 }
