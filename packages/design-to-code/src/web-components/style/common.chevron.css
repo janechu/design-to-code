@@ -23,7 +23,8 @@
     pointer-events: none;
     background: var(--dtc-text-color);
     transform: rotate(45deg);
-};
+}
+
 .dtc-common-chevron::before {
     width: 7px;
     height: 1px;
