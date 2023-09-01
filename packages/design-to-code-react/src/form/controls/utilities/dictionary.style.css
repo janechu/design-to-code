@@ -1,5 +1,6 @@
 .dtc-dictionary_item-control {
     line-height: 20px;
+    width: 100%;
 }
 
 .dtc-dictionary_item-control-label {
@@ -8,7 +9,7 @@
 }
 
 .dtc-dictionary_item-control-input {
-    width: calc(100% - 4px);
+    width: calc(100% - 40px);
     position: relative;
     color: var(--dtc-text-color);
     font-size: var(--dtc-text-size-default);
@@ -16,7 +17,7 @@
 }
 
 .dtc-dictionary_item-control-remove-trigger {
-    bottom: 2px;
+    bottom: 6px;
     top: unset;
 }
 
