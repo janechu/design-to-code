@@ -32,6 +32,11 @@ import textareaSchema from "./textarea.schema";
 import textSchema from "./text.schema";
 import tooltipSchema from "./tooltip.schema";
 
+/**
+ * Default controls
+ */
+import controlDefaultTextareaSchema from "./control.default.textarea.schema";
+
 export {
     alignHorizontalSchema,
     allControlTypesSchema,
@@ -47,6 +52,7 @@ export {
     controlPluginSchema,
     controlPluginCssWithOverridesSchema,
     controlPluginCssSchema,
+    controlDefaultTextareaSchema,
     defaultsSchema,
     definitionsSchema,
     dictionarySchema,

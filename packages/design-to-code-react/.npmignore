@@ -1,5 +1,6 @@
 # App files
 app/
+www/
 
 # Source files
 src/
@@ -7,8 +8,10 @@ src/
 # Tests
 __tests__/
 coverage/
+snapshots/
 *.spec.*
 *.test.*
+server.cjs
 
 # Config files
 .prettierignore
@@ -18,3 +21,4 @@ babel.config.js
 tsconfig.build.json
 tsconfig.json
 webpack.config.cjs
+playwright.config.ts

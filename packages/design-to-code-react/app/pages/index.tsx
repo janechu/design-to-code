@@ -7,7 +7,7 @@ export function IndexPage() {
             <nav>
                 <ul>
                     <li>
-                        <Link to="/form?schema=text">Form</Link>
+                        <Link to="/form?schema=controlDefaultTextarea">Form</Link>
                     </li>
                     <li>
                         <Link to="/navigation">Navigation</Link>
