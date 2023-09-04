@@ -3,7 +3,6 @@ const port = 8080;
 const config: PlaywrightTestConfig = {
     testDir: "src",
     forbidOnly: !!process.env.CI,
-    globalSetup: "playwright.global-setup.ts",
     use: {
         baseURL: `http://localhost:${port}`,
         viewport: {
