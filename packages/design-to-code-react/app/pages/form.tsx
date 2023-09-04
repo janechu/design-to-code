@@ -1,568 +1,104 @@
-import * as testConfigs from "./form/";
-import { Form } from "../../src";
-import { ControlConfig, StandardControlPlugin } from "../../src";
+import React, { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import {
-    AlignControl,
-    TextAlignControl,
-    ThemeControl,
-    FileControl,
-} from "../../src/form/custom-controls";
-import CSSControl from "../../src/form/custom-controls/control.css";
-import { properties as allCSSProperties } from "design-to-code/dist/esm/css-data";
-import { FormProps } from "../../src/form/form.props";
-import {
-    FormAttributeSettingsMappingToPropertyNames,
-    FormChildOptionItem,
-} from "../../src/form/types";
-import React from "react";
-import {
-    AjvMapper,
-    DataDictionary,
-    getDataFromSchema,
     MessageSystem,
+    getDataFromSchema,
     MessageSystemType,
     SchemaDictionary,
 } from "design-to-code";
-import { CSSPropertiesDictionary } from "design-to-code/dist/esm/data-utilities/mapping.mdn-data";
-import { ControlContext } from "../../src/form/templates/types";
-import { CSSStandardControlPlugin } from "../../src/form/custom-controls/css";
-import { CSSControlConfig } from "../../src/form/custom-controls/css/css.template.control.standard.props";
-import * as DTCColorPicker from "design-to-code/dist/esm/web-components/color-picker/color-picker.define.js";
-import * as DTCFile from "design-to-code/dist/esm/web-components/file/file.define.js";
-import * as DTCFileActionObjectUrl from "design-to-code/dist/esm/web-components/file-action-objecturl/file-action-objecturl.define.js";
-import { CSSControlStylesheets } from "../../src/form/custom-controls/control.css.props";
-import { FileControlStylesheets } from "../../src/form/custom-controls/control.file.props";
+import * as testConfigs from "./form";
+import { Form } from "../../src";
 
-// tree-shaking
-DTCColorPicker;
-DTCFile;
-DTCFileActionObjectUrl;
+const messageSystem = new MessageSystem({
+    webWorker: "message-system.js",
+});
 
-export type componentDataOnChange = (e: React.ChangeEvent<HTMLFormElement>) => void;
+function getExampleData(schema: string | null) {
+    if (schema) {
+        return getDataFromSchema(testConfigs[schema].schema, testConfigs[schema].schema);
+    }
 
-export interface FormTestPageState {
-    schema: any;
-    data: any;
-    dataDictionary: DataDictionary<unknown>;
-    navigation: any;
-    attributeAssignment?: FormAttributeSettingsMappingToPropertyNames;
-    showExtendedControls: boolean;
-    defaultBrowserErrors?: boolean;
-    inlineErrors?: boolean;
-    dataSet?: any;
+    return {};
 }
 
-export interface GroupItem {
-    items: any;
-    type: string;
+function generateSchemaDictionary(): SchemaDictionary {
+    const schemaDictionary: SchemaDictionary = {};
+
+    Object.keys(testConfigs).forEach((testConfigKey: string) => {
+        schemaDictionary[testConfigs[testConfigKey].schema.$id] =
+            testConfigs[testConfigKey].schema;
+    });
+
+    return schemaDictionary;
 }
 
-export interface DataSet {
-    displayName: string;
-    data: any;
-}
-
-const properties = {
-    "border-width": allCSSProperties["border-width"],
-    "border-style": allCSSProperties["border-style"],
-    "border-color": allCSSProperties["border-color"],
-    "outline-offset": allCSSProperties["outline-offset"],
-    "animation-delay": allCSSProperties["animation-delay"],
-};
-
-const dataSets: DataSet[] = [
-    {
-        displayName: "Data set 1 (all defined)",
-        data: {
-            textarea: "alpha",
-            "section-link": {},
-            checkbox: true,
-            button: null,
-            array: ["foo", "bar"],
-            "number-field": 42,
-            select: "foo",
-        },
-    },
-    {
-        displayName: "Data set 2 (select defined)",
-        data: {
-            textarea: "beta",
-            "section-link": {},
-            display: "foobar",
-            checkbox: false,
-            "number-field": 24,
-            select: "bar",
-        },
-    },
-    {
-        displayName: "Data set 3 (none defined)",
-        data: {},
-    },
-];
-
-const cssControlStylesheets: CSSControlStylesheets = {
-    controlTextFieldStylesheet: "/public/control.text-field.css",
-    commonInputStylesheet: "/public/common.input.css",
-    commonDefaultFontStylesheet: "/public/common.default-font.css",
-};
-
-const fileControlStylesheets: FileControlStylesheets = {
-    controlButtonStylesheet: "/public/control.button.css",
-    commonInputStylesheet: "/public/common.input.css",
-    commonDefaultFontStylesheet: "/public/common.default-font.css",
-};
-
-let fastMessageSystem: MessageSystem;
-let ajvMapper: AjvMapper;
-
-class FormTestPage extends React.Component<{}, FormTestPageState> {
-    /**
-     * These are the children that can be added
-     */
-    private childOptions: FormChildOptionItem[];
-
-    /**
-     * The custom control plugins used in the form
-     */
-    private controlPlugins: StandardControlPlugin[];
-
-    constructor(props: {}) {
-        super(props);
-
-        this.childOptions = this.getChildOptions();
-
-        this.controlPlugins = [
-            new StandardControlPlugin({
-                id: testConfigs.customControl.schema.properties.file.formControlId,
-                control: (config: ControlConfig): React.ReactNode => {
-                    return (
-                        <FileControl
-                            {...config}
-                            accept=".jpg,.jpeg,.png,.gif"
-                            stylesheets={fileControlStylesheets}
-                        >
-                            Add Image
-                        </FileControl>
-                    );
-                },
-            }),
-            new StandardControlPlugin({
-                id: testConfigs.customControl.schema.properties.textAlign.formControlId,
-                control: (config: ControlConfig): React.ReactNode => {
-                    return <TextAlignControl {...config} />;
-                },
-            }),
-            new StandardControlPlugin({
-                id: testConfigs.customControl.schema.properties.align.formControlId,
-                control: (config: ControlConfig): React.ReactNode => {
-                    return <AlignControl {...config} />;
-                },
-            }),
-            new StandardControlPlugin({
-                id: testConfigs.customControl.schema.properties.theme.formControlId,
-                control: (config: ControlConfig): React.ReactNode => {
-                    return <ThemeControl {...config} />;
-                },
-            }),
-            new StandardControlPlugin({
-                id: testConfigs.controlPluginCss.schema.properties.css.formControlId,
-                context: ControlContext.fill,
-                control: (config: ControlConfig): React.ReactNode => {
-                    return (
-                        <CSSControl
-                            css={properties as unknown as CSSPropertiesDictionary}
-                            {...config}
-                            key={`${config.dictionaryId}::${config.dataLocation}`}
-                            stylesheets={cssControlStylesheets}
-                        />
-                    );
-                },
-            }),
-            new StandardControlPlugin({
-                id: testConfigs.controlPluginCssWithOverrides.schema.properties
-                    .cssWithOverrides.formControlId,
-                control: (config: ControlConfig): React.ReactNode => {
-                    return (
-                        <CSSControl
-                            css={properties as unknown as CSSPropertiesDictionary}
-                            key={`${config.dictionaryId}::${config.dataLocation}`}
-                            cssControls={[
-                                new CSSStandardControlPlugin({
-                                    id: "foo",
-                                    propertyNames: ["align-content", "align-items"],
-                                    control: (config: CSSControlConfig) => {
-                                        const handleChange = (
-                                            propertyName: string
-                                        ): ((
-                                            e: React.ChangeEvent<HTMLInputElement>
-                                        ) => void) => {
-                                            return (
-                                                e: React.ChangeEvent<HTMLInputElement>
-                                            ) => {
-                                                config.onChange({
-                                                    [propertyName]: e.target.value,
-                                                });
-                                            };
-                                        };
-
-                                        return (
-                                            <div>
-                                                <div>
-                                                    <label htmlFor={"align-content"}>
-                                                        align-content
-                                                    </label>
-                                                    <br />
-                                                    <input
-                                                        id={"align-content"}
-                                                        onChange={handleChange(
-                                                            "align-content"
-                                                        )}
-                                                    />
-                                                </div>
-                                                <div>
-                                                    <label htmlFor={"align-items"}>
-                                                        align-items
-                                                    </label>
-                                                    <br />
-                                                    <input
-                                                        id={"align-items"}
-                                                        onChange={handleChange(
-                                                            "align-items"
-                                                        )}
-                                                    />
-                                                </div>
-                                            </div>
-                                        );
-                                    },
-                                }),
-                            ]}
-                            {...config}
-                            stylesheets={cssControlStylesheets}
-                        />
-                    );
-                },
-            }),
-        ];
-
-        const exampleData: any = getDataFromSchema(
-            testConfigs.controlPluginCss.schema,
-            testConfigs.controlPluginCss.schema
-        );
-
-        if ((window as any).Worker) {
-            fastMessageSystem = new MessageSystem({
-                webWorker: "message-system.js",
-                dataDictionary: [
-                    {
-                        foo: {
-                            schemaId: testConfigs.controlPluginCss.schema.$id,
-                            data: exampleData,
-                        },
-                    },
-                    "foo",
-                ],
-                schemaDictionary: this.generateSchemaDictionary(),
-            });
-            ajvMapper = new AjvMapper({
-                messageSystem: fastMessageSystem,
-            });
-            fastMessageSystem.add({ onMessage: this.handleMessageSystem });
-        }
-
-        this.state = {
-            schema: testConfigs.controlPluginCss.schema,
-            data: exampleData,
-            dataDictionary: [
+function initializeMessageSystem(schema: string | null, exampleData: any) {
+    if (schema) {
+        messageSystem.postMessage({
+            type: MessageSystemType.initialize,
+            data: [
                 {
                     foo: {
-                        schemaId: testConfigs.controlPluginCss.schema.$id,
+                        schemaId: testConfigs[schema].schema.$id,
                         data: exampleData,
                     },
                 },
                 "foo",
             ],
-            navigation: void 0,
-            showExtendedControls: false,
-            inlineErrors: void 0,
-            defaultBrowserErrors: void 0,
-            dataSet: dataSets[0].data,
-        };
-    }
-
-    public render(): JSX.Element {
-        return (
-            <div style={{}}>
-                <div
-                    style={{
-                        width: "300px",
-                        height: "100vh",
-                        float: "left",
-                        fontFamily:
-                            "Segoe UI, SegoeUI, Helvetica Neue, Helvetica, Arial, sans-serif",
-                    }}
-                >
-                    <Form {...this.coerceFormProps()} />
-                </div>
-                <div
-                    style={{
-                        float: "left",
-                        marginLeft: "8px",
-                    }}
-                >
-                    <div>
-                        <select
-                            onChange={this.handleComponentUpdate}
-                            defaultValue={testConfigs.controlPluginCss.schema.$id}
-                        >
-                            {this.getComponentOptions()}
-                        </select>
-                        {this.renderDataSetComponentOptions()}
-                        <br />
-                        <br />
-                        <label htmlFor={"useCSSOverrides"}>
-                            Show CSS property overrides
-                        </label>
-                        <br />
-                        <input
-                            id={"showInlineErrors"}
-                            type="checkbox"
-                            value={(!!this.state.inlineErrors).toString()}
-                            onChange={this.handleShowInlineErrors}
-                        />
-                        <label htmlFor={"showInlineErrors"}>Show inline errors</label>
-                        <br />
-                        <input
-                            id={"showBrowserErrors"}
-                            type="checkbox"
-                            value={(!!this.state.defaultBrowserErrors).toString()}
-                            onChange={this.handleShowBrowserErrors}
-                        />
-                        <label htmlFor={"showBrowserErrors"}>
-                            Show default browser errors
-                        </label>
-                        <br />
-                    </div>
-                    <h2>Data Dictionary</h2>
-                    <pre
-                        style={{
-                            padding: "12px",
-                            background: "rgb(244, 245, 246)",
-                            borderRadius: "4px",
-                        }}
-                    >
-                        {JSON.stringify(this.state.dataDictionary, null, 2)}
-                    </pre>
-                    <h2>Navigation</h2>
-                    <pre
-                        style={{
-                            padding: "12px",
-                            background: "rgb(244, 245, 246)",
-                            borderRadius: "4px",
-                        }}
-                    >
-                        {JSON.stringify(this.state.navigation, null, 2)}
-                    </pre>
-                </div>
-            </div>
-        );
-    }
-
-    private renderDataSetComponentOptions(): React.ReactNode {
-        if (this.state.schema.$id === testConfigs.allControlTypes.schema.$id) {
-            return (
-                <select onChange={this.handleDataSetUpdate}>
-                    {this.getComponentDataSets()}
-                </select>
-            );
-        }
-    }
-
-    private generateSchemaDictionary(): SchemaDictionary {
-        const schemaDictionary: SchemaDictionary = {};
-
-        Object.keys(testConfigs).forEach((testConfigKey: string) => {
-            schemaDictionary[testConfigs[testConfigKey].schema.$id] =
-                testConfigs[testConfigKey].schema;
-        });
-
-        return schemaDictionary;
-    }
-
-    /**
-     * Gets the child options for the schema form
-     */
-    private getChildOptions(): FormChildOptionItem[] {
-        const childOptions: FormChildOptionItem[] = [];
-        const groups: GroupItem[] = [
-            {
-                items: testConfigs,
-                type: "components",
-            },
-        ];
-
-        for (const group of groups) {
-            Object.keys(group.items).map((itemName: any, key: number): void => {
-                if (typeof testConfigs[itemName].schema !== "undefined") {
-                    const childObj: FormChildOptionItem = {
-                        name: testConfigs[itemName].schema.title || "Untitled",
-                        component: testConfigs[itemName].component,
-                        schema: testConfigs[itemName].schema,
-                    };
-
-                    childOptions.push(childObj);
-                }
-            });
-        }
-
-        return childOptions;
-    }
-
-    private getComponentDataSets(): React.ReactNode {
-        return dataSets.map((dataSet: DataSet, index: number) => {
-            return (
-                <option key={index} value={index}>
-                    {dataSet.displayName}
-                </option>
-            );
-        });
-    }
-
-    private coerceFormProps(): FormProps {
-        const formProps: FormProps = {
-            messageSystem: fastMessageSystem,
-            controls: this.controlPlugins,
-            categories: {
-                category: {
-                    "": [
-                        {
-                            title: "String & Boolean",
-                            dataLocations: ["string", "boolean"],
-                        },
-                        {
-                            title: "Empty",
-                            dataLocations: [],
-                        },
-                        {
-                            title: "No match",
-                            dataLocations: ["foo", "bar"],
-                        },
-                        {
-                            title: "Advanced",
-                            dataLocations: ["array", "object"],
-                            expandByDefault: false,
-                        },
-                    ],
-                    object: [
-                        {
-                            title: "Test",
-                            dataLocations: ["object.string"],
-                        },
-                    ],
-                },
-            },
-        };
-
-        if (typeof this.state.defaultBrowserErrors === "boolean") {
-            formProps.displayValidationBrowserDefault = this.state.defaultBrowserErrors;
-        }
-
-        if (typeof this.state.inlineErrors === "boolean") {
-            formProps.displayValidationInline = this.state.inlineErrors;
-        }
-
-        return formProps;
-    }
-
-    private handleMessageSystem = (e: MessageEvent): void => {
-        switch (e.data.type) {
-            case MessageSystemType.initialize:
-                if (e.data.data && e.data.navigation) {
-                    this.setState({
-                        data: e.data.data,
-                        navigation: e.data.navigation,
-                    });
-                }
-            case MessageSystemType.data:
-                if (e.data.data) {
-                    this.setState({
-                        data: e.data.data,
-                        dataDictionary: e.data.dataDictionary,
-                    });
-                }
-            case MessageSystemType.navigation:
-                if (e.data.navigation) {
-                    this.setState({
-                        navigation: e.data.navigation,
-                    });
-                }
-        }
-    };
-
-    private handleDataSetUpdate = (e: React.ChangeEvent<HTMLSelectElement>): void => {
-        this.setState({
-            data: dataSets[parseInt(e.target.value, 10)].data,
-        });
-    };
-
-    private handleShowInlineErrors = (e: React.ChangeEvent<HTMLInputElement>): void => {
-        if (e.target.value === "true") {
-            this.setState({
-                inlineErrors: false,
-            });
-        } else {
-            this.setState({
-                inlineErrors: true,
-            });
-        }
-    };
-
-    private handleShowBrowserErrors = (e: React.ChangeEvent<HTMLInputElement>): void => {
-        if (e.target.value === "true") {
-            this.setState({
-                defaultBrowserErrors: false,
-            });
-        } else {
-            this.setState({
-                defaultBrowserErrors: true,
-            });
-        }
-    };
-
-    private handleComponentUpdate = (e: React.ChangeEvent<HTMLSelectElement>): void => {
-        const data: any = !!testConfigs[e.target.value].data
-            ? testConfigs[e.target.value].data
-            : testConfigs[e.target.value].schema.$id ===
-              testConfigs.allControlTypes.schema.$id
-            ? this.state.dataSet
-            : getDataFromSchema(
-                  testConfigs[e.target.value].schema,
-                  testConfigs[e.target.value].schema
-              );
-
-        if ((window as any).Worker && fastMessageSystem) {
-            fastMessageSystem.postMessage({
-                type: MessageSystemType.initialize,
-                data: [
-                    {
-                        foo: {
-                            schemaId: testConfigs[e.target.value].schema.$id,
-                            data,
-                        },
-                    },
-                    "foo",
-                ],
-                schemaDictionary: this.generateSchemaDictionary(),
-            });
-        }
-    };
-
-    private getComponentOptions(): JSX.Element[] {
-        return Object.keys(testConfigs).map((testComponentKey: any, index: number) => {
-            return (
-                <option key={index}>{testConfigs[testComponentKey].schema.$id}</option>
-            );
+            schemaDictionary: generateSchemaDictionary(),
         });
     }
 }
 
-export { FormTestPage };
+export function FormTestPage() {
+    const [data, setData] = useState({});
+    const [ready, setReady] = useState(false);
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    const handleMessageSystem = e => {
+        switch (e.data?.type) {
+            case "data":
+                setData(e.data.data);
+        }
+    };
+
+    useEffect(() => {
+        const messageSystemConfig = {
+            onMessage: handleMessageSystem,
+        };
+        messageSystem.add(messageSystemConfig);
+        initializeMessageSystem(
+            searchParams.get("schema"),
+            getExampleData(searchParams.get("schema"))
+        );
+        setReady(true);
+
+        return () => {
+            messageSystem.remove(messageSystemConfig);
+        };
+    }, []);
+
+    function handleSchemaUpdate(e) {
+        initializeMessageSystem(e.target.value, getExampleData(e.target.value));
+        setSearchParams({ schema: e.target.value });
+    }
+
+    return ready ? (
+        <div>
+            <select
+                onChange={handleSchemaUpdate}
+                defaultValue={searchParams.get("schema") || void 0}
+            >
+                {Object.keys(testConfigs).map((testConfigKey: string, index: number) => {
+                    return (
+                        <option key={index} value={testConfigKey}>
+                            {testConfigKey}
+                        </option>
+                    );
+                })}
+            </select>
+            <Form messageSystem={messageSystem} />
+            <pre>{JSON.stringify(data, null, 2)}</pre>
+        </div>
+    ) : null;
+}
