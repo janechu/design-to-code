@@ -1,17 +1,32 @@
-import { PlaywrightTestConfig } from "@playwright/test";
+import { devices, PlaywrightTestConfig } from "@playwright/test";
+const port = 8080;
 const config: PlaywrightTestConfig = {
     testDir: "src",
-    testMatch: "**/?(*.)+(spec).+(pw).+(ts)",
-    globalSetup: "playwright.global-setup.ts",
+    forbidOnly: !!process.env.CI,
     use: {
-        baseURL: "http://localhost:7001",
+        baseURL: `http://localhost:${port}`,
+        viewport: {
+            width: 1280,
+            height: 720,
+        },
     },
-    webServer: {
-        command: "npm run start",
-        url: "http://localhost:7001",
-        timeout: 240 * 1000,
-        reuseExistingServer: !process.env.CI,
+    projects: [
+        {
+            name: "chromium",
+            use: { ...devices["Desktop Chrome"] },
+            testMatch: "**/?(*.)+(spec).+(pw).+(ts)",
+            snapshotDir: "snapshots",
+        },
+    ],
+    webServer: [
+        {
+            command: "npm run start:test",
+            port,
+            timeout: 120 * 1000,
+        },
+    ],
+    expect: {
+        toHaveScreenshot: { maxDiffPixels: 100 },
     },
-    fullyParallel: true,
 };
 export default config;

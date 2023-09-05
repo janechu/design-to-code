@@ -29,7 +29,7 @@
     "prepare": "npm run clean:dist && npm run build",
     "prettier": "prettier --config ../../.prettierrc --write \"**/*.ts\"",
     "prettier:diff": "prettier --config ../../.prettierrc \"**/*.ts\" --list-different",
-    "start": "node ./www/server.cjs",
+    "start:test": "node ./www/server.cjs",
     "start:examples:form": "webpack serve --config app/examples/form/webpack.dev.cjs",
     "test": "npm run eslint && npm run test:playwright",
     "test:playwright": "npx playwright test",
