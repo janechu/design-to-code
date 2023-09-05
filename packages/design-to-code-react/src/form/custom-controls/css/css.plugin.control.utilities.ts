@@ -1,4 +1,3 @@
-import React from "react";
 import { CSSControlConfig } from "./css.template.control.standard.props";
 
 export interface CSSControlPluginUtilitiesCommon {

@@ -11,5 +11,5 @@ var publicDir = path.resolve(__dirname);
 app.use("/", express.static(publicDir, { maxAge: "0d" }));
 
 // Serve up application on specified port
-var port = process.env.PORT || 7001;
+var port = process.env.PORT || 8080;
 app.listen(port);

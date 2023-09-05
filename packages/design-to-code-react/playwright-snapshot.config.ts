@@ -12,9 +12,9 @@ const config: PlaywrightTestConfig = {
     },
     projects: [
         {
-            name: "chromium",
-            use: { ...devices["Desktop Chrome"] },
-            testMatch: "**/?(*.)+(spec).+(pw).+(ts)",
+            name: "firefox",
+            use: { ...devices["Desktop Firefox"] },
+            testMatch: "**/?(*.)+(spec).+(pw).+(snapshot).+(ts)",
             snapshotDir: "snapshots",
         },
     ],

@@ -67,3 +67,6 @@ obj/
 
 # Except the docs folder README
 !/docs/README.md
+
+# Ignore Playwright snapshot test results
+test-results/

@@ -417,7 +417,7 @@ function SectionControl(props: SectionControlProps) {
                         navigationItem.schemaLocation,
                         props.dataLocation,
                         navigationItem.self,
-                        true,
+                        props.required,
                         props.disabled || schema.disabled,
                         "",
                         invalidMessage,

@@ -59,14 +59,14 @@ export interface ViewerHandledProps {
 
 export type ViewerProps = ViewerUnhandledProps & ViewerHandledProps;
 
-export interface CustomViewerCallMessage extends CustomMessage<{}, {}> {
+export interface CustomViewerCallMessage extends CustomMessage<object, object> {
     /**
      * A message send from the Viewer iframe window
      */
     action: ViewerCustomAction.call;
 }
 
-export interface CustomViewerResponseMessage extends CustomMessage<{}, {}> {
+export interface CustomViewerResponseMessage extends CustomMessage<object, object> {
     /**
      * A message responding that the viewer iframe message is responding to
      */

@@ -6,7 +6,7 @@ import {
     MessageSystemType,
     SchemaDictionary,
 } from "design-to-code";
-import * as testConfigs from "./form";
+import * as testConfigs from "./form/index";
 import { Form } from "../../src";
 
 const messageSystem = new MessageSystem({
@@ -58,25 +58,31 @@ export function FormTestPage() {
     const handleMessageSystem = e => {
         switch (e.data?.type) {
             case "data":
+            case "initialize":
                 setData(e.data.data);
         }
     };
 
     useEffect(() => {
+        // run on first load
         const messageSystemConfig = {
             onMessage: handleMessageSystem,
         };
         messageSystem.add(messageSystemConfig);
-        initializeMessageSystem(
-            searchParams.get("schema"),
-            getExampleData(searchParams.get("schema"))
-        );
         setReady(true);
 
         return () => {
             messageSystem.remove(messageSystemConfig);
         };
     }, []);
+
+    useEffect(() => {
+        // run when ready (second load)
+        initializeMessageSystem(
+            searchParams.get("schema"),
+            getExampleData(searchParams.get("schema"))
+        );
+    }, [ready]);
 
     function handleSchemaUpdate(e) {
         initializeMessageSystem(e.target.value, getExampleData(e.target.value));
@@ -87,7 +93,7 @@ export function FormTestPage() {
         <div>
             <select
                 onChange={handleSchemaUpdate}
-                defaultValue={searchParams.get("schema") || void 0}
+                defaultValue={searchParams?.get("schema") || void 0}
             >
                 {Object.keys(testConfigs).map((testConfigKey: string, index: number) => {
                     return (
