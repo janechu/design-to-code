@@ -14,7 +14,7 @@ const config: PlaywrightTestConfig = {
         {
             name: "chromium",
             use: { ...devices["Desktop Chrome"] },
-            testMatch: "**/?(*.)+(spec).+(pw).+(ts)",
+            testMatch: "**/?(*.)+(spec).+(pw).+(snapshot).+(ts)",
             snapshotDir: "snapshots",
         },
     ],

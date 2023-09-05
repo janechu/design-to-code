@@ -27,7 +27,7 @@
     "start:test": "node ./server.cjs",
     "test": "npm run eslint && npm run test:playwright",
     "test:playwright": "npx playwright test",
-    "test:playwright:webpack": "npx playwright test --config=playwright-webpack.config.ts",
+    "test:snapshots": "npx playwright test --config=playwright-snapshot.config.ts",
     "eslint": "eslint . --ext .ts",
     "eslint:fix": "eslint . --ext .ts --fix",
     "watch": "npm run build -- -w --preserveWatchOutput"

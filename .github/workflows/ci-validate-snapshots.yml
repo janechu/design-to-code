@@ -57,7 +57,7 @@ jobs:
       run: npx playwright install
 
     - name: Test design to code react package
-      run: npm run test --workspace=design-to-code-react
+      run: npm run test:snapshots --workspace=design-to-code-react
 
     - name: Build docs site
       run: npm run build:gh-pages
