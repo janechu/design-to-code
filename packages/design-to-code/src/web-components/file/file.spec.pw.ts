@@ -54,6 +54,6 @@ test.describe("File", () => {
 
         const outputValue = await page.locator("#outputValue").inputValue();
 
-        await expect(outputValue.startsWith("blob:http://localhost:7001")).toBe(true);
+        await expect(outputValue.startsWith("blob:http://localhost:8080")).toBe(true);
     });
 });
