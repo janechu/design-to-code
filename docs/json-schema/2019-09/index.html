@@ -482,7 +482,7 @@
                     
                     <li>
                         <a
-                            class=""
+                            class="active"
                             href="https://janechu.github.io/design-to-code/docs/json-schema/2019-09"
                         >
                             Draft 2019-09 (formerly known as Draft 8)
@@ -673,7 +673,7 @@
                     
                     <li>
                         <a
-                            class="active"
+                            class=""
                             href="https://janechu.github.io/design-to-code/docs/design-to-code/1.x/message-system-services/data-validation"
                         >
                             Data Validation
@@ -706,27 +706,510 @@
 </div>
 
                 <div class="container">
-                    <table>
-    <caption>
-        package:
-        <code>design-to-code</code>
-    </caption>
-    <thead>
-        <tr>
-            <th colspan="1">
-                version
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td><em>1.x - current</em></td>
-        </tr>
-        
-    </tbody>
-</table>
-                    <div class="content"><h1 id="data-validation">Data Validation</h1>
-<p>TBD</p>
+                    
+                    <div class="content"><h1 id="draft-2019-09-formerly-known-as-draft-8"><a href="https://json-schema.org/draft/2019-09/schema">Draft 2019-09 (formerly known as Draft 8)</a></h1>
+<ul>
+<li><strong>Supported</strong>: Yes</li>
+<li><a href="https://json-schema.org/specification-links.html#draft-2019-09-formerly-known-as-draft-8">Specification</a></li>
+</ul>
+<h2 id="general-use">General use</h2>
+<hr>
+<h3 id="json-schema-meta-schema"><a href="https://json-schema.org/draft/2019-09/schema">JSON Schema meta-schema</a></h3>
+<table>
+<thead>
+<tr>
+<th>keywords</th>
+<th>supported</th>
+<th>notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>definitions</code></td>
+<td>no</td>
+<td>use <code>$defs</code> instead</td>
+</tr>
+<tr>
+<td><code>dependencies</code></td>
+<td>no</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="json-hyper-schema-link-description-object-meta-schema"><a href="https://json-schema.org/draft/2019-09/links">JSON Hyper-Schema Link Description Object meta-schema</a></h3>
+<table>
+<thead>
+<tr>
+<th>keywords</th>
+<th>supported</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>rel</code></td>
+<td>no</td>
+</tr>
+<tr>
+<td><code>href</code></td>
+<td>no</td>
+</tr>
+</tbody></table>
+<h2 id="individual-vocabulary">Individual Vocabulary</h2>
+<hr>
+<h3 id="core-vocabulary-meta-schema"><a href="https://json-schema.org/draft/2019-09/meta/core">Core Vocabulary meta-schema</a></h3>
+<table>
+<thead>
+<tr>
+<th>keywords</th>
+<th>supported</th>
+<th>required</th>
+<th>acceptable values</th>
+<th>notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>$id</code></td>
+<td>yes</td>
+<td>yes</td>
+<td></td>
+<td>Used as identification in the <code>MessageSystem</code> as the <code>schemaDictionary</code></td>
+</tr>
+<tr>
+<td><code>$schema</code></td>
+<td>yes</td>
+<td>yes</td>
+<td><code>&quot;https://json-schema.org/draft/2019-09/schema&quot;</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>$anchor</code></td>
+<td>no</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>$ref</code></td>
+<td>yes</td>
+<td></td>
+<td>Only references to the relative schemas <code>$def</code> property</td>
+<td></td>
+</tr>
+<tr>
+<td><code>$recursiveRef</code></td>
+<td>no</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>$recursiveAnchor</code></td>
+<td>no</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>$vocabulary</code></td>
+<td>no</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>$comment</code></td>
+<td>no</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>$def</code></td>
+<td>yes</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="applicator-vocabulary-meta-schema"><a href="https://json-schema.org/draft/2019-09/meta/applicator">Applicator Vocabulary meta-schema</a></h3>
+<table>
+<thead>
+<tr>
+<th>keywords</th>
+<th>associated type</th>
+<th>supported</th>
+<th><code>&lt;form&gt;</code> notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>additionalItems</code></td>
+<td><code>&quot;array&quot;</code></td>
+<td>no</td>
+<td></td>
+</tr>
+<tr>
+<td><code>unevaluatedItems</code></td>
+<td><code>&quot;array&quot;</code></td>
+<td>no</td>
+<td></td>
+</tr>
+<tr>
+<td><code>items</code></td>
+<td><code>&quot;array&quot;</code></td>
+<td>yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>contains</code></td>
+<td><code>&quot;array&quot;</code></td>
+<td>no</td>
+<td></td>
+</tr>
+<tr>
+<td><code>additionalProperties</code></td>
+<td><code>&quot;object&quot;</code></td>
+<td>yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>unevaluatedProperties</code></td>
+<td><code>&quot;object&quot;</code></td>
+<td>no</td>
+<td></td>
+</tr>
+<tr>
+<td><code>properties</code></td>
+<td><code>&quot;object&quot;</code></td>
+<td>yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>patternProperties</code></td>
+<td><code>&quot;object&quot;</code></td>
+<td>no</td>
+<td></td>
+</tr>
+<tr>
+<td><code>dependentSchemas</code></td>
+<td></td>
+<td>no</td>
+<td></td>
+</tr>
+<tr>
+<td><code>propertyNames</code></td>
+<td><code>&quot;object&quot;</code></td>
+<td>no</td>
+<td></td>
+</tr>
+<tr>
+<td><code>if</code></td>
+<td></td>
+<td>no</td>
+<td></td>
+</tr>
+<tr>
+<td><code>then</code></td>
+<td></td>
+<td>no</td>
+<td></td>
+</tr>
+<tr>
+<td><code>else</code></td>
+<td></td>
+<td>no</td>
+<td></td>
+</tr>
+<tr>
+<td><code>not</code></td>
+<td></td>
+<td>no</td>
+<td></td>
+</tr>
+<tr>
+<td><code>oneOf</code></td>
+<td></td>
+<td>yes</td>
+<td>Generates a <code>&lt;select&gt;</code></td>
+</tr>
+<tr>
+<td><code>anyOf</code></td>
+<td></td>
+<td>yes</td>
+<td>Generates a <code>&lt;select&gt;</code></td>
+</tr>
+<tr>
+<td><code>allOf</code></td>
+<td></td>
+<td>no</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="validation-vocabulary-meta-schema"><a href="https://json-schema.org/draft/2019-09/meta/validation">Validation Vocabulary meta-schema</a></h3>
+<table>
+<thead>
+<tr>
+<th>keywords</th>
+<th>associated type</th>
+<th>supported</th>
+<th>required</th>
+<th>acceptable values</th>
+<th><code>&lt;form&gt;</code> notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>multipleOf</code></td>
+<td><code>&quot;number&quot;</code></td>
+<td>yes</td>
+<td></td>
+<td></td>
+<td>Converts to the <code>&lt;input&gt;</code> <code>step</code> attribute</td>
+</tr>
+<tr>
+<td><code>maximum</code></td>
+<td><code>&quot;number&quot;</code></td>
+<td>yes</td>
+<td></td>
+<td></td>
+<td>Converts to the <code>&lt;input&gt;</code> <code>max</code> attribute</td>
+</tr>
+<tr>
+<td><code>exclusiveMaximum</code></td>
+<td><code>&quot;number&quot;</code></td>
+<td>no</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>minimum</code></td>
+<td><code>&quot;number&quot;</code></td>
+<td>yes</td>
+<td></td>
+<td></td>
+<td>Converts to the <code>&lt;input&gt;</code> <code>min</code> attribute</td>
+</tr>
+<tr>
+<td><code>exclusiveMinimum</code></td>
+<td><code>&quot;number&quot;</code></td>
+<td>no</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>maxLength</code></td>
+<td><code>&quot;string&quot;</code></td>
+<td>no</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>minLength</code></td>
+<td><code>&quot;string&quot;</code></td>
+<td>no</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>pattern</code></td>
+<td><code>&quot;string&quot;</code></td>
+<td>no</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>minItems</code></td>
+<td><code>&quot;array&quot;</code></td>
+<td>yes</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>maxItems</code></td>
+<td><code>&quot;array&quot;</code></td>
+<td>yes</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>uniqueItems</code></td>
+<td><code>&quot;array&quot;</code></td>
+<td>no</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>minContains</code></td>
+<td><code>&quot;array&quot;</code></td>
+<td>no</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>maxContains</code></td>
+<td><code>&quot;array&quot;</code></td>
+<td>no</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>maxProperties</code></td>
+<td><code>&quot;object&quot;</code></td>
+<td>no</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>minProperties</code></td>
+<td><code>&quot;object&quot;</code></td>
+<td>no</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>required</code></td>
+<td><code>&quot;object&quot;</code></td>
+<td>yes</td>
+<td></td>
+<td></td>
+<td>Converts to the form elements <code>required</code> attribute</td>
+</tr>
+<tr>
+<td><code>dependentRequired</code></td>
+<td><code>&quot;object&quot;</code></td>
+<td>no</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>const</code></td>
+<td>all</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>enum</code></td>
+<td>all</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Converts form elements to a <code>&lt;select&gt;</code></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td></td>
+<td>yes</td>
+<td>yes</td>
+<td><code>&quot;string&quot; | &quot;number&quot; | &quot;array&quot; | &quot;object&quot; | &quot;boolean&quot; | &quot;null&quot;</code></td>
+<td>Generates form elements e.g. <code>&quot;boolean&quot;</code> converts to <code>&lt;input type=&quot;checkbox&quot;&gt;</code></td>
+</tr>
+</tbody></table>
+<h3 id="format-vocabulary-meta-schema"><a href="https://json-schema.org/draft/2019-09/meta/format">Format Vocabulary meta-schema</a></h3>
+<table>
+<thead>
+<tr>
+<th>keywords</th>
+<th>supported</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>format</code></td>
+<td>no</td>
+</tr>
+</tbody></table>
+<h3 id="content-vocabulary-meta-schema"><a href="https://json-schema.org/draft/2019-09/meta/content">Content Vocabulary meta-schema</a></h3>
+<table>
+<thead>
+<tr>
+<th>keywords</th>
+<th>supported</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>contentMediaType</code></td>
+<td>no</td>
+</tr>
+<tr>
+<td><code>contentEncoding</code></td>
+<td>no</td>
+</tr>
+<tr>
+<td><code>contentSchema</code></td>
+<td>no</td>
+</tr>
+</tbody></table>
+<h3 id="meta-data-vocabulary-meta-schema"><a href="https://json-schema.org/draft/2019-09/meta/meta-data">Meta-Data Vocabulary meta-schema</a></h3>
+<table>
+<thead>
+<tr>
+<th>keywords</th>
+<th>supported</th>
+<th>notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>title</code></td>
+<td>yes</td>
+<td>Converts to a <code>&lt;label&gt;</code></td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>yes</td>
+<td>Converts to a <code>title</code> attribute</td>
+</tr>
+<tr>
+<td><code>default</code></td>
+<td>yes</td>
+<td>Displays in the form element if no value is assigned</td>
+</tr>
+<tr>
+<td><code>deprecated</code></td>
+<td>yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>readOnly</code></td>
+<td>yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>writeOnly</code></td>
+<td>yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>examples</code></td>
+<td>yes</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="hyper-schema-vocabulary-meta-schema"><a href="https://json-schema.org/draft/2019-09/meta/hyper-schema">Hyper-Schema Vocabulary meta-schema</a></h3>
+<table>
+<thead>
+<tr>
+<th>keywords</th>
+<th>supported</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>base</code></td>
+<td>no</td>
+</tr>
+<tr>
+<td><code>links</code></td>
+<td>no</td>
+</tr>
+</tbody></table>
 </div>
                     <div class="index"></div>
                 </div>

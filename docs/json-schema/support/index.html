@@ -473,7 +473,7 @@
                     
                     <li>
                         <a
-                            class=""
+                            class="active"
                             href="https://janechu.github.io/design-to-code/docs/json-schema/support"
                         >
                             Support
@@ -673,7 +673,7 @@
                     
                     <li>
                         <a
-                            class="active"
+                            class=""
                             href="https://janechu.github.io/design-to-code/docs/design-to-code/1.x/message-system-services/data-validation"
                         >
                             Data Validation
@@ -706,27 +706,61 @@
 </div>
 
                 <div class="container">
-                    <table>
-    <caption>
-        package:
-        <code>design-to-code</code>
-    </caption>
-    <thead>
-        <tr>
-            <th colspan="1">
-                version
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td><em>1.x - current</em></td>
-        </tr>
-        
-    </tbody>
-</table>
-                    <div class="content"><h1 id="data-validation">Data Validation</h1>
-<p>TBD</p>
+                    
+                    <div class="content"><h1 id="json-schema">JSON schema</h1>
+<h2 id="dialects">Dialects</h2>
+<p>Dialects, denoted by the <code>$schema</code> key word, have various levels of support. It is the goal of this project to support the most recent drafts and have some capability for backwards compatibility.</p>
+<h2 id="support">Support</h2>
+<p>Support is based on the JSON schema <a href="https://json-schema.org/specification.html">specifications</a> for each dialect. Some key words may be required for the project to accurately interpret the JSON schema.</p>
+<table>
+<thead>
+<tr>
+<th>Dialect</th>
+<th>Supported</th>
+<th>Documentation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://json-schema.org/draft/2020-12/schema">2020-12</a></td>
+<td>No (Future support in consideration)</td>
+<td><a href="https://json-schema.org/specification-links.html#2020-12">Specification</a></td>
+</tr>
+<tr>
+<td><a href="https://json-schema.org/draft/2019-09/schema">2019-09</a></td>
+<td>Yes</td>
+<td><a href="https://json-schema.org/specification-links.html#draft-2019-09-formerly-known-as-draft-8">Specification</a></td>
+</tr>
+<tr>
+<td><a href="http://json-schema.org/draft-07/schema#">Draft 7</a></td>
+<td>No</td>
+<td><a href="https://json-schema.org/specification-links.html#draft-7">Specification</a></td>
+</tr>
+<tr>
+<td><a href="http://json-schema.org/draft-06/schema#">Draft 6</a></td>
+<td>No</td>
+<td><a href="https://json-schema.org/specification-links.html#draft-6">Specification</a></td>
+</tr>
+<tr>
+<td><a href="http://json-schema.org/draft-04/schema#">Draft 4 &amp; 5</a></td>
+<td>No</td>
+<td><a href="https://json-schema.org/specification-links.html#draft-5">Specification</a></td>
+</tr>
+<tr>
+<td><a href="http://json-schema.org/draft-03/schema">Draft 3</a></td>
+<td>No</td>
+<td><a href="https://json-schema.org/specification-links.html#draft-3">Specificaton</a></td>
+</tr>
+<tr>
+<td><a href="http://json-schema.org/draft-02/schema">Draft 2</a></td>
+<td>No</td>
+<td><a href="https://json-schema.org/specification-links.html#draft-2">Specification</a></td>
+</tr>
+<tr>
+<td><a href="http://json-schema.org/draft-01/schema">Draft 1</a></td>
+<td>No</td>
+<td><a href="https://json-schema.org/specification-links.html#draft-1">Specification</a></td>
+</tr>
+</tbody></table>
 </div>
                     <div class="index"></div>
                 </div>
