@@ -83,14 +83,10 @@ export class Form extends FASTElement {
 
     public handleMessageSystem = (e: MessageEvent) => {
         let setState = false;
-        let updatedActiveDictionaryId: string = e.data.activeDictionaryId;
 
         switch (e.data.type) {
             case MessageSystemType.initialize:
             case MessageSystemType.data:
-                updatedActiveDictionaryId = e.data?.activeDictionaryId
-                    ? e.data.activeDictionaryId
-                    : this.activeDictionaryId;
             case MessageSystemType.navigation:
             case MessageSystemType.validation:
             case MessageSystemType.schemaDictionary:

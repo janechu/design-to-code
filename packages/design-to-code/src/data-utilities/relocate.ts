@@ -41,9 +41,8 @@ function getParentDataLocation(
     dataLocation: string,
     arrayIndexCallback: (index: number) => void
 ): string {
-    const dataLocationAsDotNotation: string = normalizeDataLocationToDotNotation(
-        dataLocation
-    );
+    const dataLocationAsDotNotation: string =
+        normalizeDataLocationToDotNotation(dataLocation);
     const dataLocationSegments: string[] = dataLocationAsDotNotation.split(".");
 
     arrayIndexCallback(
@@ -87,7 +86,7 @@ function getArrayDataUpdatedWithSourceData(config: UpdateDataWithSourceConfig): 
 /**
  * Get updated data that is not in an array
  */
-function getNonArrayDataUpdatedWithSourceData<T>(
+function getNonArrayDataUpdatedWithSourceData(
     config: UpdateDataWithSourceConfig
 ): unknown {
     set(config.data as object, config.targetDataLocation, config.sourceData);

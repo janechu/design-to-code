@@ -1,10 +1,6 @@
 import { expect, test } from "@playwright/test";
 import { Register } from "../../message-system/message-system.props.js";
-import {
-    MessageSystemDataTypeAction,
-    MessageSystemHistoryTypeAction,
-    MessageSystemNavigationTypeAction,
-} from "../../message-system/message-system.utilities.props.js";
+import { MessageSystemNavigationTypeAction } from "../../message-system/message-system.utilities.props.js";
 import { MessageSystemType } from "../../message-system/types.js";
 
 /* eslint-disable @typescript-eslint/no-empty-function */
@@ -31,10 +27,8 @@ test.describe("ShortcutsActionUndo", () => {
                 string
             ]) => {
                 const inputElement = document.createElement("input");
-                let callbackArgs = null;
                 let callbackCount = 0;
                 const postMessageCallback: any = (config: any) => {
-                    callbackArgs = config;
                     callbackCount++;
                 };
                 const messageSystem = new (window as any).dtc.MessageSystem({

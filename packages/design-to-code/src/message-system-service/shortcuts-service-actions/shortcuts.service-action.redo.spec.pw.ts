@@ -32,10 +32,8 @@ test.describe("ShortcutsActionRedo", () => {
                 messageSystemHistoryTypeActionPrevious,
             ]: [string, string, string, string]) => {
                 const inputElement = document.createElement("input");
-                let callbackArgs = null;
                 let callbackCount = 0;
                 const postMessageCallback: any = (config: any) => {
-                    callbackArgs = config;
                     callbackCount++;
                 };
                 const messageSystem = new (window as any).dtc.MessageSystem({

@@ -4,7 +4,6 @@ import { DataDictionary } from "../message-system/index.js";
 import { linkedDataSchema } from "../schemas/index.js";
 import {
     mapDataDictionary,
-    MapperConfig,
     mapWebComponentDefinitionToJSONSchema,
     ResolverConfig,
 } from "./mapping.js";

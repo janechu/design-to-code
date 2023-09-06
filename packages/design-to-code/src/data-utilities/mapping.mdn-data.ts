@@ -179,10 +179,6 @@ export interface CSSBracketsSyntaxItem {
     refCombinatorType: CombinatorType;
 }
 
-interface IsolatedSyntaxGroups {
-    ref: XOR<string, IsolatedSyntaxGroups[]>;
-}
-
 export enum CombinatorType {
     brackets = "brackets",
     juxtaposition = "juxtaposition",
@@ -539,9 +535,8 @@ export function mapMixedCombinatorTypes(syntax: string): string {
     let mixedCombinatorTypes: string = syntax.trim();
     const firstCombinatorType: CombinatorType = mapCombinatorType(mixedCombinatorTypes);
     const combinatorSplitString: string = getCombinatorSplitString(firstCombinatorType);
-    let syntaxSplitByCombinatorType: string[] = mixedCombinatorTypes.split(
-        combinatorSplitString
-    );
+    let syntaxSplitByCombinatorType: string[] =
+        mixedCombinatorTypes.split(combinatorSplitString);
     let adjoiningCombinatorSplitString: string = "";
 
     syntaxSplitByCombinatorType = normalizeSplitForGroupedItems(
@@ -554,10 +549,8 @@ export function mapMixedCombinatorTypes(syntax: string): string {
         firstCombinatorType,
         syntaxSplitByCombinatorType
     );
-    let {
-        containsMixedCombinatorTypes,
-        indexLastSplitOccured,
-    } = normalizedForJuxtaposition;
+    let { containsMixedCombinatorTypes, indexLastSplitOccured } =
+        normalizedForJuxtaposition;
     const { syntaxSplitByAllCombinatorTypes } = normalizedForJuxtaposition;
 
     // go through, ignore grouped items but save them for recursion later,
@@ -567,9 +560,8 @@ export function mapMixedCombinatorTypes(syntax: string): string {
 
         if (mappedCombinatorType !== "none" && mappedCombinatorType !== "brackets") {
             indexLastSplitOccured = index;
-            adjoiningCombinatorSplitString = getCombinatorSplitString(
-                mappedCombinatorType
-            );
+            adjoiningCombinatorSplitString =
+                getCombinatorSplitString(mappedCombinatorType);
             containsMixedCombinatorTypes =
                 typeof adjoiningCombinatorSplitString !== "undefined";
 
@@ -783,10 +775,8 @@ export function mapCSSGroups(
 
     for (let i = 0, syntaxLength = syntax.length; i < syntaxLength; i++) {
         if (syntax[i] === "[") {
-            const endOfGroupAndGroupMultiplier: BracketAndMultiplier = resolveEndOfGroupAndGroupMultiplier(
-                syntax.slice(i),
-                i
-            );
+            const endOfGroupAndGroupMultiplier: BracketAndMultiplier =
+                resolveEndOfGroupAndGroupMultiplier(syntax.slice(i), i);
             const lastBracket: number = brackets.length - 1;
 
             if (
@@ -935,58 +925,54 @@ function resolveCombinatorSplitCSSItems(
     syntaxKeys: string[],
     typeKeys: string[]
 ): CSSPropertyRef[] {
-    return splitByCombinatorType.map(
-        (splitSyntaxItem: string): CSSPropertyRef => {
-            const groupItemIndex = groups.findIndex((group: BracketSyntaxRange) => {
-                return group.id === splitSyntaxItem;
-            });
+    return splitByCombinatorType.map((splitSyntaxItem: string): CSSPropertyRef => {
+        const groupItemIndex = groups.findIndex((group: BracketSyntaxRange) => {
+            return group.id === splitSyntaxItem;
+        });
 
-            if (groupItemIndex !== -1) {
-                const stringLiteral: "/" | "," | null = mapStringLiterals(
-                    groups[groupItemIndex].syntax
-                );
-                const multiplier: Multiplier | null = mapMultiplierType(
-                    groups[groupItemIndex].syntax
-                );
-                const groupCombinatorType: CombinatorType = mapCombinatorType(
-                    groups[groupItemIndex].normalizedSyntax
-                );
+        if (groupItemIndex !== -1) {
+            const stringLiteral: "/" | "," | null = mapStringLiterals(
+                groups[groupItemIndex].syntax
+            );
+            const multiplier: Multiplier | null = mapMultiplierType(
+                groups[groupItemIndex].syntax
+            );
+            const groupCombinatorType: CombinatorType = mapCombinatorType(
+                groups[groupItemIndex].normalizedSyntax
+            );
 
-                return {
-                    ref: resolveCSSGroups(
-                        groups[groupItemIndex].normalizedSyntax,
-                        syntaxKeys,
-                        typeKeys,
-                        groups[groupItemIndex].contains
-                    ),
-                    refCombinatorType: groupCombinatorType,
-                    type: "group",
-                    prepend: stringLiteral,
-                    multiplier,
-                };
-            } else {
-                const stringLiteral: "/" | "," | null = mapStringLiterals(
-                    splitSyntaxItem
-                );
-                const multiplier: Multiplier | null = mapMultiplierType(splitSyntaxItem);
-                const normalizedSplitSyntaxItem = splitSyntaxItem
-                    .replace(removeAllMultiplierRegex, "")
-                    .replace(removeStringLiteralRegex, "");
-                const itemCombinatorType: CombinatorType = mapCombinatorType(
-                    normalizedSplitSyntaxItem
-                );
-
-                return resolveCSS(
-                    splitSyntaxItem,
-                    itemCombinatorType,
-                    stringLiteral,
-                    multiplier,
+            return {
+                ref: resolveCSSGroups(
+                    groups[groupItemIndex].normalizedSyntax,
                     syntaxKeys,
-                    typeKeys
-                );
-            }
+                    typeKeys,
+                    groups[groupItemIndex].contains
+                ),
+                refCombinatorType: groupCombinatorType,
+                type: "group",
+                prepend: stringLiteral,
+                multiplier,
+            };
+        } else {
+            const stringLiteral: "/" | "," | null = mapStringLiterals(splitSyntaxItem);
+            const multiplier: Multiplier | null = mapMultiplierType(splitSyntaxItem);
+            const normalizedSplitSyntaxItem = splitSyntaxItem
+                .replace(removeAllMultiplierRegex, "")
+                .replace(removeStringLiteralRegex, "");
+            const itemCombinatorType: CombinatorType = mapCombinatorType(
+                normalizedSplitSyntaxItem
+            );
+
+            return resolveCSS(
+                splitSyntaxItem,
+                itemCombinatorType,
+                stringLiteral,
+                multiplier,
+                syntaxKeys,
+                typeKeys
+            );
         }
-    );
+    });
 }
 
 function resolveCombinatorSplitCSS(
@@ -1194,14 +1180,12 @@ export function mapCSSSyntaxes(mdnCSS: MDNCSS): CSSSyntaxDictionary {
     const typeKeys: string[] = Object.keys(mdnCSS.types);
 
     return Object.entries(mdnCSS.syntaxes)
-        .map(
-            ([key, value]: [string, MDNCSSSyntaxConfig]): CSSSyntax => {
-                return {
-                    name: key,
-                    value: resolveCSSSyntax(value.syntax, syntaxKeys, typeKeys),
-                };
-            }
-        )
+        .map(([key, value]: [string, MDNCSSSyntaxConfig]): CSSSyntax => {
+            return {
+                name: key,
+                value: resolveCSSSyntax(value.syntax, syntaxKeys, typeKeys),
+            };
+        })
         .reduce<CSSSyntaxDictionary>(
             (
                 resolvedDictionary: CSSSyntaxDictionary,
@@ -1229,9 +1213,8 @@ export function mapCSSInlineStyleToCSSPropertyDictionary(
             const cssPropertyAndValue = cssDeclaration.split(":");
 
             if (cssPropertyAndValue.length === 2) {
-                cssPropertyDictionary[
-                    cssPropertyAndValue[0].trim()
-                ] = cssPropertyAndValue[1].trim();
+                cssPropertyDictionary[cssPropertyAndValue[0].trim()] =
+                    cssPropertyAndValue[1].trim();
             }
         });
     }

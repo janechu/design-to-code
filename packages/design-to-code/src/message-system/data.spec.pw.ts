@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 import { getLinkedData, getLinkedDataDictionary, getLinkedDataList } from "./data.js";
-import { Data, LinkedDataPromise } from "./data.props.js";
+import { LinkedDataPromise } from "./data.props.js";
 
 test.describe("getLinkedDataDictionary", () => {
     test("should get a linked data dictionary", () => {
