@@ -58,8 +58,8 @@ function mapPropertyWithPlugin(plugin: ReactMapDataDictionaryPlugin, value: any)
  */
 export function reactMapper(
     componentDictionary: ComponentDictionary
-): (config: MapperConfig<JSX.Element>) => void {
-    return (config: MapperConfig<JSX.Element>): void => {
+): (config: MapperConfig) => void {
+    return (config: MapperConfig): void => {
         if (typeof config.dataDictionary[0][config.dictionaryId].data === "string") {
             return;
         }
