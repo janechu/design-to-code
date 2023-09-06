@@ -40,10 +40,3 @@ const mySchemaDictionary: SchemaDictionary = {
     }
 }
 ```
-
-## JSON Schema caveats
-
-For ease of use, keep JSON Schemas as simple as possible. Avoid use of the following keywords which are currently not supported by the `design-to-code` or `design-to-code-react` packages:
-
-- `allOf`
-- `$ref`
