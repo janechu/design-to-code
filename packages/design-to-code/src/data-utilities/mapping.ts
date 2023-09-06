@@ -20,7 +20,7 @@ import {
 
 export const dataSetName: string = "data-design-to-code-name";
 
-export interface MapperConfig<T> {
+export interface MapperConfig {
     /**
      * Data that maps to the JSON schema
      */
@@ -74,7 +74,7 @@ export interface MapDataConfig<T> {
     /**
      * The mapper that will update the data in the dictionary
      */
-    mapper: (config: MapperConfig<T>) => T;
+    mapper: (config: MapperConfig) => T;
 
     /**
      * The resolver that resolves the data dictionary into another structure
@@ -145,7 +145,7 @@ interface ResolveDataInDataDictionaryConfig<T> {
     /**
      * The mapping function
      */
-    mapper: (config: MapperConfig<T>) => T;
+    mapper: (config: MapperConfig) => T;
 
     /**
      * The plugins used to map data
@@ -219,12 +219,14 @@ export function resolveDataInDataDictionary<T>(
                 !linkedDataIds.includes(key)
             ) {
                 linkedDataIds = linkedDataIds.concat(
-                    (config.dataDictionary[0][config.dataDictionary[0][key].parent.id]
-                        .data as object)[
-                        config.dataDictionary[0][key].parent.dataLocation
-                    ].map((slotItem: LinkedData): string => {
-                        return slotItem.id;
-                    })
+                    (
+                        config.dataDictionary[0][config.dataDictionary[0][key].parent.id]
+                            .data as object
+                    )[config.dataDictionary[0][key].parent.dataLocation].map(
+                        (slotItem: LinkedData): string => {
+                            return slotItem.id;
+                        }
+                    )
                 );
             }
         }
@@ -233,10 +235,9 @@ export function resolveDataInDataDictionary<T>(
     config.mapper({
         dictionaryId: config.dictionaryId,
         dataDictionary: config.dataDictionary,
-        schema:
-            config.schemaDictionary[
-                config.dataDictionary[0][config.dictionaryId].schemaId
-            ],
+        schema: config.schemaDictionary[
+            config.dataDictionary[0][config.dictionaryId].schemaId
+        ],
         mapperPlugins: config.mapperPlugins,
     });
 
@@ -306,14 +307,13 @@ export function mapDataDictionary<T>(config: MapDataConfig<T>): T {
  */
 export function htmlMapper(
     elementDictionary: ElementDictionary
-): (config: MapperConfig<string>) => void {
-    return (config: MapperConfig<string>): void => {
+): (config: MapperConfig) => void {
+    return (config: MapperConfig): void => {
         const data = config.dataDictionary[0][config.dictionaryId].data;
 
         if (typeof data === "string") {
-            config.dataDictionary[0][config.dictionaryId].data = document.createTextNode(
-                data
-            );
+            config.dataDictionary[0][config.dictionaryId].data =
+                document.createTextNode(data);
         } else if (
             config.schema.type === DataType.object &&
             config.schema[ReservedElementMappingKeyword.mapsToTagName] &&
@@ -404,9 +404,9 @@ export function htmlResolver(config: ResolverConfig<any>): HTMLElement | Text {
     return config.dataDictionary[0][config.dictionaryId].data;
 }
 
-function mapAttributesToJSONSchema(
-    attributes: WebComponentAttribute[]
-): { [key: string]: any } {
+function mapAttributesToJSONSchema(attributes: WebComponentAttribute[]): {
+    [key: string]: any;
+} {
     return attributes.reduce(
         (accumulation: { [key: string]: any }, attribute: WebComponentAttribute) => {
             const optionalAttributeProperties: {

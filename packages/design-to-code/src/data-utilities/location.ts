@@ -1,5 +1,3 @@
-import { get } from "lodash-es";
-
 export const squareBracketsRegex: RegExp = /\[(\d+)\]/g;
 export const firstCharacterDotRegex: RegExp = /^(\.)/;
 

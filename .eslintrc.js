@@ -67,7 +67,7 @@ module.exports = {
         "no-prototype-builtins": "off",
         "no-fallthrough": "off",
         "no-unexpected-multiline": "off",
-        "@typescript-eslint/no-unused-vars": ["warn", { args: "none" }],
+        "@typescript-eslint/no-unused-vars": ["error", { args: "none" }],
         "react/no-children-prop": "off",
         "@typescript-eslint/no-explicit-any": "off",
     },
