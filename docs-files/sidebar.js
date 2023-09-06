@@ -14,9 +14,23 @@ module.exports = {
             path: "introduction",
         },
         {
-            type: "doc",
-            label: "Supported formats",
-            path: "support",
+            type: "category",
+            label: "JSON schema",
+            description:
+                "The underlying functionality of the project relies on JSON schema.",
+            path: "json-schema",
+            items: [
+                {
+                    type: "doc",
+                    label: "Support",
+                    path: "json-schema/support",
+                },
+                {
+                    type: "doc",
+                    label: "Draft 2019-09 (formerly known as Draft 8)",
+                    path: "json-schema/2019-09",
+                },
+            ],
         },
         {
             type: "category",
