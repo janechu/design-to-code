@@ -238,7 +238,7 @@ function getNavigationItems(
         default:
         case DataType.unknown:
             if (schema.$ref) {
-                if (schema.$ref.startsWith("#/$defs/")) {
+                if (schema.$ref.startsWith("#/")) {
                     return [
                         getNavigationRecursive(
                             get(

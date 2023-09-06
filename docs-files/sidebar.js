@@ -17,7 +17,7 @@ module.exports = {
             type: "category",
             label: "JSON schema",
             description:
-                "The underlying functionality of the project relies on JSON schema.",
+                "The underlying functionality of the project relies on JSON schema. This is used for generating HTML form elements and validation.",
             path: "json-schema",
             items: [
                 {
