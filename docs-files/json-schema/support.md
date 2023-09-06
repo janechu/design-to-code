@@ -11,7 +11,7 @@ Support is based on the JSON schema [specifications](https://json-schema.org/spe
 |Dialect|Supported|Documentation|
 |-|-|-|
 |[2020-12](https://json-schema.org/draft/2020-12/schema)|No (Future support in consideration)|[Specification](https://json-schema.org/specification-links.html#2020-12)|
-|[2019-09](https://json-schema.org/draft/2019-09/schema)|Yes|[Specification](https://json-schema.org/specification-links.html#draft-2019-09-formerly-known-as-draft-8)|
+|[2019-09](https://json-schema.org/draft/2019-09/schema)|[Yes](../2019-09)|[Specification](https://json-schema.org/specification-links.html#draft-2019-09-formerly-known-as-draft-8)|
 |[Draft 7](http://json-schema.org/draft-07/schema#)|No|[Specification](https://json-schema.org/specification-links.html#draft-7)|
 |[Draft 6](http://json-schema.org/draft-06/schema#)|No|[Specification](https://json-schema.org/specification-links.html#draft-6)|
 |[Draft 4 & 5](http://json-schema.org/draft-04/schema#)|No|[Specification](https://json-schema.org/specification-links.html#draft-5)|
