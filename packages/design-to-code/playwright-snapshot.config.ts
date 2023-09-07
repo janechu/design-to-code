@@ -12,9 +12,10 @@ const config: PlaywrightTestConfig = {
     },
     projects: [
         {
-            name: "chromium",
-            use: { ...devices["Desktop Chrome"] },
-            testMatch: "**/?(*.)+(spec).+(pw).+(ts)",
+            name: "firefox",
+            use: { ...devices["Desktop Firefox"] },
+            testMatch: "**/?(*.)+(spec).+(pw).+(snapshot).+(ts)",
+            snapshotDir: "snapshots",
         },
     ],
     webServer: [
@@ -24,5 +25,8 @@ const config: PlaywrightTestConfig = {
             timeout: 120 * 1000,
         },
     ],
+    expect: {
+        toHaveScreenshot: { maxDiffPixels: 100 },
+    },
 };
 export default config;

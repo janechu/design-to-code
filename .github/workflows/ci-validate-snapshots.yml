@@ -56,6 +56,9 @@ jobs:
     - name: Install playwright browsers
       run: npx playwright install
 
+    - name: Test design to code package
+      run: npm run test:snapshots --workspace=design-to-code
+
     - name: Test design to code react package
       run: npm run test:snapshots --workspace=design-to-code-react
 
