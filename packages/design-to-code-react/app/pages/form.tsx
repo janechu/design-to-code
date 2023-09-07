@@ -15,6 +15,12 @@ const messageSystem = new MessageSystem({
 
 function getExampleData(schema: string | null) {
     if (schema) {
+        const keys = Object.keys(testConfigs[schema]);
+
+        if (keys.includes("data")) {
+            return testConfigs[schema].data;
+        }
+
         return getDataFromSchema(testConfigs[schema].schema, testConfigs[schema].schema);
     }
 
@@ -51,7 +57,7 @@ function initializeMessageSystem(schema: string | null, exampleData: any) {
 }
 
 export function FormTestPage() {
-    const [data, setData] = useState({});
+    const [data, setData] = useState();
     const [ready, setReady] = useState(false);
     const [searchParams, setSearchParams] = useSearchParams();
 
