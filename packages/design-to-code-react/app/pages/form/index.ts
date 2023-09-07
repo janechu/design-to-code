@@ -12,7 +12,7 @@ import {
     checkboxSchema,
     childrenSchema,
     constSchema as constKeywordSchema,
-    controlDefaultTextareaSchema,
+    controlTextareaSchema,
     controlPluginCssSchema,
     controlPluginCssWithOverridesSchema,
     controlPluginSchema as customControlSchema,
@@ -153,6 +153,6 @@ export const recursiveDefinitions: ExampleComponent = {
     schema: recursiveDefinitionsSchema,
 };
 
-export const controlDefaultTextarea: ExampleComponent = {
-    schema: controlDefaultTextareaSchema,
+export const controlTextarea: ExampleComponent = {
+    schema: controlTextareaSchema,
 };
