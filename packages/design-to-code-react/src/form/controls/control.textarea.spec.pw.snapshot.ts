@@ -6,5 +6,9 @@ test.describe("textarea", () => {
             await page.goto("/form?schema=controlTextarea");
             await expect(page).toHaveScreenshot();
         });
+        test("default", async ({ page }) => {
+            await page.goto("/form?schema=controlTextareaDefault");
+            await expect(page).toHaveScreenshot();
+        });
     });
 });

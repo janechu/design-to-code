@@ -1,7 +1,6 @@
 export default {
     $schema: "http://json-schema.org/schema#",
     $id: "controlTextarea",
-    description: "Default textarea.",
-    title: "Default textarea control",
+    title: "Textarea control",
     type: "string",
 };

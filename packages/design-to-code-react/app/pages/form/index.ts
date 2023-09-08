@@ -14,6 +14,7 @@ import {
     constSchema as constKeywordSchema,
     controlPluginCssSchema,
     controlPluginCssWithOverridesSchema,
+    controlTextareaDefaultSchema,
     controlTextareaSchema,
     controlPluginSchema as customControlSchema,
     defaultsSchema,
@@ -155,4 +156,9 @@ export const recursiveDefinitions: ExampleComponent = {
 
 export const controlTextarea: ExampleComponent = {
     schema: controlTextareaSchema,
+};
+
+export const controlTextareaDefault: ExampleComponent = {
+    schema: controlTextareaDefaultSchema,
+    data: undefined,
 };

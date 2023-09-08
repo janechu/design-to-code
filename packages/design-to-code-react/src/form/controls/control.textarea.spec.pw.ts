@@ -19,19 +19,25 @@ test.describe("TextareaControl", () => {
 
         await expect(textarea.getAttribute("disabled")).toBeTruthy();
     });
-    test.skip("should have the default class when default prop is passed", async ({
+    test("should have the default class when default prop is passed", async ({
         page,
     }) => {
-        await page.goto("/form?schema=controlDefaultTextarea");
+        await page.goto("/form?schema=controlTextareaDefault");
 
         await page.waitForSelector("textarea");
 
+        await page.evaluate(async () => {
+            const textarea = document.getElementsByTagName("textarea");
+
+            textarea.item(0).innerHTML = void 0;
+        });
+
         const textarea = await page.locator("textarea");
 
-        expect(
-            (await textarea.getAttribute("class")).includes(
-                "dtc-textarea-control__default"
-            )
+        await expect(
+            (
+                await textarea.getAttribute("class")
+            ).includes("dtc-textarea-control__default")
         ).toBe(true);
     });
     test("should send a message to the Message System when the input is changed", async ({
@@ -49,19 +55,19 @@ test.describe("TextareaControl", () => {
 
         await expect(JSON.parse(await pre.textContent())).toEqual("foo");
     });
-    test.skip("should show default values if they exist and no data is available", async ({
+    test("should show default values if they exist and no data is available", async ({
         page,
     }) => {
-        await page.goto("/form?schema=controlDefaultTextarea");
+        await page.goto("/form?schema=controlTextareaDefault");
 
         await page.waitForSelector("textarea");
 
         const textarea = await page.locator("textarea");
 
-        await expect(await textarea.inputValue()).toEqual("bar");
+        await expect(await textarea.inputValue()).toEqual("foobar");
     });
-    test.skip("should not show default values if data exists", async ({ page }) => {
-        await page.goto("/form?schema=controlDefaultTextarea");
+    test("should not show default values if data exists", async ({ page }) => {
+        await page.goto("/form?schema=controlTextareaDefault");
 
         await page.waitForSelector("textarea");
 
