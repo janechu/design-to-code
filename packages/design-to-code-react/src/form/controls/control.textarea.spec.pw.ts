@@ -10,14 +10,14 @@ test.describe("TextareaControl", () => {
 
         await expect(await textarea.count()).toEqual(1);
     });
-    test.skip("should be disabled when disabled props is passed", async ({ page }) => {
-        await page.goto("/form?schema=controlDisabledTextarea");
+    test("should be disabled when disabled props is passed", async ({ page }) => {
+        await page.goto("/form?schema=controlTextareaDisabled");
 
         await page.waitForSelector("textarea");
 
         const textarea = await page.locator("textarea");
 
-        await expect(textarea.getAttribute("disabled")).toBeTruthy();
+        await expect(await textarea.getAttribute("disabled")).toEqual("");
     });
     test("should have the default class when default prop is passed", async ({
         page,

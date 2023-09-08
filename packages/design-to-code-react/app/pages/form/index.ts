@@ -15,6 +15,7 @@ import {
     controlPluginCssSchema,
     controlPluginCssWithOverridesSchema,
     controlTextareaDefaultSchema,
+    controlTextareaDisabledSchema,
     controlTextareaSchema,
     controlPluginSchema as customControlSchema,
     defaultsSchema,
@@ -161,4 +162,8 @@ export const controlTextarea: ExampleComponent = {
 export const controlTextareaDefault: ExampleComponent = {
     schema: controlTextareaDefaultSchema,
     data: undefined,
+};
+
+export const controlTextareaDisabled: ExampleComponent = {
+    schema: controlTextareaDisabledSchema,
 };
