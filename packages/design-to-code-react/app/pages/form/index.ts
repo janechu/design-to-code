@@ -35,6 +35,9 @@ import {
     textareaSchema,
     textSchema,
     tooltipSchema,
+    controlCheckboxSchema,
+    controlCheckboxDefaultSchema,
+    controlCheckboxDisabledSchema,
 } from "../../../src/__tests__/schemas";
 
 export const category: ExampleComponent = {
@@ -166,4 +169,17 @@ export const controlTextareaDefault: ExampleComponent = {
 
 export const controlTextareaDisabled: ExampleComponent = {
     schema: controlTextareaDisabledSchema,
+};
+
+export const controlCheckbox: ExampleComponent = {
+    schema: controlCheckboxSchema,
+};
+
+export const controlCheckboxDefault: ExampleComponent = {
+    schema: controlCheckboxDefaultSchema,
+    data: undefined,
+};
+
+export const controlCheckboxDisabled: ExampleComponent = {
+    schema: controlCheckboxDisabledSchema,
 };
