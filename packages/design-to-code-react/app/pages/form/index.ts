@@ -12,6 +12,9 @@ import {
     checkboxSchema,
     childrenSchema,
     constSchema as constKeywordSchema,
+    controlArrayDefaultSchema,
+    controlArrayDisabledSchema,
+    controlArraySchema,
     controlCheckboxDefaultSchema,
     controlCheckboxDisabledSchema,
     controlCheckboxSchema,
@@ -198,4 +201,16 @@ export const controlSelectDefault: ExampleComponent = {
 
 export const controlSelectDisabled: ExampleComponent = {
     schema: controlSelectDisabledSchema,
+};
+
+export const controlArray: ExampleComponent = {
+    schema: controlArraySchema,
+};
+
+export const controlArrayDefault: ExampleComponent = {
+    schema: controlArrayDefaultSchema,
+};
+
+export const controlArrayDisabled: ExampleComponent = {
+    schema: controlArrayDisabledSchema,
 };
