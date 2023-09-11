@@ -35,12 +35,14 @@ export function getBreadcrumbs(
      * Items that do not need to be represented in breadcrumbs
      * because they are shown at the same level as simple controls
      * unless it is the root dictionary ID:
-     * - Arrays
+     * - Array if the array is root item
      * - The parent item of another dictionary link
      */
     if (
         navigationConfigId === activeNavigationConfigId ||
-        (navigation[navigationConfigId].type !== DataType.array &&
+        ((navigation[navigationConfigId].type !== DataType.array ||
+            (navigation[navigationConfigId].type === DataType.array &&
+                navigation[navigationConfigId].relativeDataLocation === "")) &&
             !(
                 navigation[navigationConfigId].parent &&
                 navigation[navigation[navigationConfigId].parent].schema[dictionaryLink]
