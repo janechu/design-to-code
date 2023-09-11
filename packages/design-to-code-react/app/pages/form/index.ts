@@ -17,6 +17,9 @@ import {
     controlCheckboxSchema,
     controlPluginCssSchema,
     controlPluginCssWithOverridesSchema,
+    controlSelectDefaultSchema,
+    controlSelectDisabledSchema,
+    controlSelectSchema,
     controlTextareaDefaultSchema,
     controlTextareaDisabledSchema,
     controlTextareaSchema,
@@ -182,4 +185,17 @@ export const controlCheckboxDefault: ExampleComponent = {
 
 export const controlCheckboxDisabled: ExampleComponent = {
     schema: controlCheckboxDisabledSchema,
+};
+
+export const controlSelect: ExampleComponent = {
+    schema: controlSelectSchema,
+};
+
+export const controlSelectDefault: ExampleComponent = {
+    schema: controlSelectDefaultSchema,
+    data: undefined,
+};
+
+export const controlSelectDisabled: ExampleComponent = {
+    schema: controlSelectDisabledSchema,
 };
