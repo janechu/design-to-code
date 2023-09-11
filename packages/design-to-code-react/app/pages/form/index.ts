@@ -12,6 +12,9 @@ import {
     checkboxSchema,
     childrenSchema,
     constSchema as constKeywordSchema,
+    controlCheckboxDefaultSchema,
+    controlCheckboxDisabledSchema,
+    controlCheckboxSchema,
     controlPluginCssSchema,
     controlPluginCssWithOverridesSchema,
     controlTextareaDefaultSchema,
@@ -166,4 +169,17 @@ export const controlTextareaDefault: ExampleComponent = {
 
 export const controlTextareaDisabled: ExampleComponent = {
     schema: controlTextareaDisabledSchema,
+};
+
+export const controlCheckbox: ExampleComponent = {
+    schema: controlCheckboxSchema,
+};
+
+export const controlCheckboxDefault: ExampleComponent = {
+    schema: controlCheckboxDefaultSchema,
+    data: undefined,
+};
+
+export const controlCheckboxDisabled: ExampleComponent = {
+    schema: controlCheckboxDisabledSchema,
 };
