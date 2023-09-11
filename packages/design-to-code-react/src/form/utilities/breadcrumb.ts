@@ -26,7 +26,8 @@ export function getBreadcrumbs(
     activeNavigationConfigId: string,
     dictionaryId: string,
     navigationConfigId: string,
-    handleClick: HandleBreadcrumbClick
+    handleClick: HandleBreadcrumbClick,
+    untitled: string
 ): BreadcrumbItem[] {
     let navigationItems: BreadcrumbItem[] = [];
 
@@ -34,12 +35,14 @@ export function getBreadcrumbs(
      * Items that do not need to be represented in breadcrumbs
      * because they are shown at the same level as simple controls
      * unless it is the root dictionary ID:
-     * - Arrays
+     * - Array if the array is root item
      * - The parent item of another dictionary link
      */
     if (
         navigationConfigId === activeNavigationConfigId ||
-        (navigation[navigationConfigId].type !== DataType.array &&
+        ((navigation[navigationConfigId].type !== DataType.array ||
+            (navigation[navigationConfigId].type === DataType.array &&
+                navigation[navigationConfigId].relativeDataLocation === "")) &&
             !(
                 navigation[navigationConfigId].parent &&
                 navigation[navigation[navigationConfigId].parent].schema[dictionaryLink]
@@ -47,7 +50,7 @@ export function getBreadcrumbs(
     ) {
         navigationItems.push({
             href: navigation[navigationConfigId].self,
-            text: navigation[navigationConfigId].text,
+            text: navigation[navigationConfigId].text || untitled,
             onClick: handleClick(dictionaryId, navigationConfigId),
         });
     }
@@ -59,7 +62,8 @@ export function getBreadcrumbs(
                 activeNavigationConfigId,
                 dictionaryId,
                 navigation[navigationConfigId].parent,
-                handleClick
+                handleClick,
+                untitled
             )
         );
     }
@@ -76,7 +80,8 @@ export function resolveDictionaryBreadcrumbs(
     dictionaryId: string,
     navigationConfigId: string,
     handleClick: HandleBreadcrumbClick,
-    breadcrumbItemList: BreadcrumbItem[][] = []
+    breadcrumbItemList: BreadcrumbItem[][] = [],
+    untitled: string
 ): BreadcrumbItem[] {
     const breadcrumbItems: BreadcrumbItem[][] = breadcrumbItemList.concat([
         getBreadcrumbs(
@@ -84,7 +89,8 @@ export function resolveDictionaryBreadcrumbs(
             activeNavigationConfigId,
             dictionaryId,
             navigationConfigId,
-            handleClick
+            handleClick,
+            untitled
         ),
     ]);
 
@@ -99,7 +105,8 @@ export function resolveDictionaryBreadcrumbs(
             breadcrumbParent.id,
             breadcrumbParent.dataLocation, // unsafe replace with a search to find the dictionary id of this
             handleClick,
-            breadcrumbItems
+            breadcrumbItems,
+            untitled
         );
     }
 
@@ -118,13 +125,16 @@ export function getDictionaryBreadcrumbs(
     navigationDictionary: NavigationConfigDictionary,
     dictionaryId: string,
     navigationConfigId: string,
-    handleClick: HandleBreadcrumbClick
+    handleClick: HandleBreadcrumbClick,
+    untitled: string
 ): BreadcrumbItem[] {
     return resolveDictionaryBreadcrumbs(
         navigationDictionary,
         navigationConfigId,
         dictionaryId,
         navigationConfigId,
-        handleClick
+        handleClick,
+        [],
+        untitled
     ).reverse();
 }

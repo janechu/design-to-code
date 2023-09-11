@@ -35,6 +35,9 @@ import tooltipSchema from "./tooltip.schema";
 /**
  * Controls
  */
+import controlArraySchema from "./control.array.schema";
+import controlArrayDisabledSchema from "./control.array.disabled.schema";
+import controlArrayDefaultSchema from "./control.array.default.schema";
 import controlCheckboxSchema from "./control.checkbox.schema";
 import controlCheckboxDefaultSchema from "./control.checkbox.default.schema";
 import controlCheckboxDisabledSchema from "./control.checkbox.disabled.schema";
@@ -60,6 +63,9 @@ export {
     controlPluginSchema,
     controlPluginCssWithOverridesSchema,
     controlPluginCssSchema,
+    controlArraySchema,
+    controlArrayDefaultSchema,
+    controlArrayDisabledSchema,
     controlCheckboxSchema,
     controlCheckboxDefaultSchema,
     controlCheckboxDisabledSchema,

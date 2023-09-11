@@ -333,7 +333,8 @@ const Form: React.FC<FormProps> = (
             navigationDictionary,
             activeDictionaryId,
             activeNavigationConfigId,
-            handleBreadcrumbClick
+            handleBreadcrumbClick,
+            untitled
         );
 
         if (breadcrumbs.length > 1) {
@@ -482,7 +483,10 @@ const Form: React.FC<FormProps> = (
                     });
                 }
             } else if (config.isArray) {
-                const updatedData: any = cloneDeep(get(data, config.dataLocation));
+                const updatedData: any[] =
+                    config.dataLocation === ""
+                        ? cloneDeep(data)
+                        : cloneDeep(get(data, config.dataLocation)) || [];
                 let newArray: any[];
 
                 if (typeof config.index !== "undefined") {
