@@ -38,6 +38,9 @@ import tooltipSchema from "./tooltip.schema";
 import controlCheckboxSchema from "./control.checkbox.schema";
 import controlCheckboxDefaultSchema from "./control.checkbox.default.schema";
 import controlCheckboxDisabledSchema from "./control.checkbox.disabled.schema";
+import controlSelectSchema from "./control.select.schema";
+import controlSelectDefaultSchema from "./control.select.default.schema";
+import controlSelectDisabledSchema from "./control.select.disabled.schema";
 import controlTextareaSchema from "./control.textarea.schema";
 import controlTextareaDefaultSchema from "./control.textarea.default.schema";
 import controlTextareaDisabledSchema from "./control.textarea.disabled.schema";
@@ -63,6 +66,9 @@ export {
     controlTextareaDefaultSchema,
     controlTextareaDisabledSchema,
     controlTextareaSchema,
+    controlSelectSchema,
+    controlSelectDefaultSchema,
+    controlSelectDisabledSchema,
     defaultsSchema,
     definitionsSchema,
     dictionarySchema,
