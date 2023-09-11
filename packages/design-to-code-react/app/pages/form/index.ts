@@ -12,6 +12,9 @@ import {
     checkboxSchema,
     childrenSchema,
     constSchema as constKeywordSchema,
+    controlCheckboxDefaultSchema,
+    controlCheckboxDisabledSchema,
+    controlCheckboxSchema,
     controlPluginCssSchema,
     controlPluginCssWithOverridesSchema,
     controlTextareaDefaultSchema,
@@ -35,9 +38,6 @@ import {
     textareaSchema,
     textSchema,
     tooltipSchema,
-    controlCheckboxSchema,
-    controlCheckboxDefaultSchema,
-    controlCheckboxDisabledSchema,
 } from "../../../src/__tests__/schemas";
 
 export const category: ExampleComponent = {
