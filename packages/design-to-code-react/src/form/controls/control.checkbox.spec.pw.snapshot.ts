@@ -14,5 +14,17 @@ test.describe("checkbox", () => {
             await page.goto("/form?schema=controlCheckboxDisabled");
             await expect(page).toHaveScreenshot();
         });
+        test.describe("invalid", () => {
+            test("default", async ({ page }) => {
+                await page.goto("/form?schema=controlCheckboxInvalid");
+                await expect(page).toHaveScreenshot();
+            });
+            test("inline", async ({ page }) => {
+                await page.goto(
+                    "/form?schema=controlCheckboxInvalid&displayValidationInline=true"
+                );
+                await expect(page).toHaveScreenshot();
+            });
+        });
     });
 });
