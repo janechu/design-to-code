@@ -1,9 +1,9 @@
-import ajv from "ajv";
+import Ajv, { ValidateFunction } from "ajv";
 import { expect, test } from "@playwright/test";
 import { webComponentSchema } from "./index.js";
 
-const validator: ajv.Ajv = new ajv({ schemaId: "auto", allErrors: true });
-const validationFn: ajv.ValidateFunction = validator.compile(webComponentSchema);
+const validator: Ajv = new Ajv({ allErrors: true });
+const validationFn: ValidateFunction = validator.compile(webComponentSchema);
 
 test.describe.only("web component schema", () => {
     test("should be valid against a web component schema", () => {

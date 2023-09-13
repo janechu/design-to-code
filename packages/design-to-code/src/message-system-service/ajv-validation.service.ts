@@ -1,4 +1,4 @@
-import Ajv, { DependenciesParams } from "ajv";
+import Ajv, { ErrorObject } from "ajv";
 import {
     MessageSystem,
     MessageSystemDataTypeAction,
@@ -21,6 +21,11 @@ export interface AjvMapperConfig {
      * used for sending and receiving validation to the message system
      */
     messageSystem: MessageSystem;
+
+    /**
+     * Strict mode for Ajv library
+     */
+    strict: boolean;
 }
 
 export class AjvMapper {
@@ -30,7 +35,7 @@ export class AjvMapper {
     private schemaDictionary: SchemaDictionary = {};
     private messageSystem: MessageSystem;
     private messageSystemConfig: { onMessage: (e: MessageEvent) => void };
-    private ajv: Ajv.Ajv = new Ajv({ schemaId: "auto", allErrors: true });
+    private ajv: Ajv;
 
     constructor(config: AjvMapperConfig) {
         if (config.messageSystem !== undefined) {
@@ -41,6 +46,7 @@ export class AjvMapper {
         }
 
         this.messageSystem = config.messageSystem;
+        this.ajv = new Ajv({ allErrors: true, strict: config.strict });
     }
 
     /**
@@ -186,14 +192,11 @@ export class AjvMapper {
         if (ajvValidationObject === true) {
             return [];
         } else {
-            return this.ajv.errors.map((AjvError: Ajv.ErrorObject) => {
-                let ajvPath = AjvError.dataPath;
+            return this.ajv.errors.map((AjvError: ErrorObject) => {
+                let ajvPath = AjvError.instancePath;
 
                 if (AjvError.keyword === "required") {
-                    ajvPath = [
-                        ajvPath,
-                        (AjvError.params as DependenciesParams).missingProperty,
-                    ].join(".");
+                    ajvPath = [ajvPath, AjvError.params.missingProperty].join(".");
                 }
 
                 return {
