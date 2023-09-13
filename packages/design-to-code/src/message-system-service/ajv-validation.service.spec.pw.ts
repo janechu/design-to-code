@@ -860,12 +860,12 @@ test.describe("AjvMapper", () => {
         const containsValidSchema: any[] = [
             {
                 $schema: "http://json-schema.org/schema#",
-                id: "bar",
+                $id: "bar",
                 type: "string",
             },
             {
                 $schema: "http://json-schema.org/schema#",
-                id: "foo",
+                $id: "foo",
                 type: "number",
             },
         ];
@@ -873,12 +873,12 @@ test.describe("AjvMapper", () => {
         const containsInvalidSchema: any[] = [
             {
                 $schema: "http://json-schema.org/schema#",
-                id: "bar",
+                $id: "bar",
                 type: "string",
             },
             {
                 $schema: "http://json-schema.org/schema#",
-                id: "foo",
+                $id: "foo",
                 type: "boolean",
             },
         ];
