@@ -311,7 +311,7 @@ test.describe("AjvMapper", () => {
         expect(JSON.parse(mappedData)).toMatchObject([
             {
                 dataLocation: "",
-                invalidMessage: "should be string",
+                invalidMessage: "must be string",
             },
         ]);
     });
@@ -447,7 +447,7 @@ test.describe("AjvMapper", () => {
             expect(JSON.parse(mappedData)).toMatchObject([
                 {
                     dataLocation: "",
-                    invalidMessage: "should be string",
+                    invalidMessage: "must be string",
                 },
             ]);
         });
@@ -572,7 +572,7 @@ test.describe("AjvMapper", () => {
             expect(JSON.parse(mappedData)).toMatchObject([
                 {
                     dataLocation: "",
-                    invalidMessage: "should be boolean",
+                    invalidMessage: "must be boolean",
                 },
             ]);
         });
@@ -665,7 +665,7 @@ test.describe("AjvMapper", () => {
             expect(JSON.parse(mappedData)).toMatchObject([
                 {
                     dataLocation: "",
-                    invalidMessage: "should be string",
+                    invalidMessage: "must be string",
                 },
             ]);
         });
@@ -758,7 +758,7 @@ test.describe("AjvMapper", () => {
             expect(JSON.parse(mappedData)).toMatchObject([
                 {
                     dataLocation: "",
-                    invalidMessage: "should be string",
+                    invalidMessage: "must be string",
                 },
             ]);
         });
@@ -851,7 +851,7 @@ test.describe("AjvMapper", () => {
             expect(JSON.parse(mappedData)).toMatchObject([
                 {
                     dataLocation: "",
-                    invalidMessage: "should be string",
+                    invalidMessage: "must be string",
                 },
             ]);
         });
