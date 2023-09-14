@@ -31,6 +31,7 @@ import textFieldSchema from "./text-field.schema";
 import textareaSchema from "./textarea.schema";
 import textSchema from "./text.schema";
 import tooltipSchema from "./tooltip.schema";
+import shippingSchema from "./shipping.schema";
 
 /**
  * Controls
@@ -49,6 +50,7 @@ import controlTextareaDefaultSchema from "./control.textarea.default.schema";
 import controlTextareaDisabledSchema from "./control.textarea.disabled.schema";
 
 export {
+    shippingSchema,
     alignHorizontalSchema,
     allControlTypesSchema,
     anyOfSchema,

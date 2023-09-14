@@ -1,4 +1,4 @@
-import Ajv, { ErrorObject, Options } from "ajv";
+import Ajv2019, { ErrorObject, Options } from "ajv";
 import {
     MessageSystem,
     MessageSystemDataTypeAction,
@@ -15,7 +15,7 @@ import { normalizeDataLocationToDotNotation } from "../data-utilities/location.j
 
 export const ajvValidationId = "design-to-code::ajv-validation-service";
 
-export interface AjvMapperConfig {
+export interface AjvValidatorConfig {
     /**
      * The message system
      * used for sending and receiving validation to the message system
@@ -28,16 +28,16 @@ export interface AjvMapperConfig {
     ajvOptions?: Options;
 }
 
-export class AjvMapper {
+export class AjvValidator {
     private activeDictionaryId: string;
     private navigationDictionary: NavigationConfigDictionary;
     private validation: Validation = {};
     private schemaDictionary: SchemaDictionary = {};
     private messageSystem: MessageSystem;
     private messageSystemConfig: { onMessage: (e: MessageEvent) => void };
-    private ajv: Ajv;
+    private ajv: Ajv2019;
 
-    constructor(config: AjvMapperConfig) {
+    constructor(config: AjvValidatorConfig) {
         if (config.messageSystem !== undefined) {
             this.messageSystemConfig = {
                 onMessage: this.handleMessageSystem,
@@ -49,7 +49,7 @@ export class AjvMapper {
 
         const ajvOptions = config.ajvOptions ? config.ajvOptions : {};
 
-        this.ajv = new Ajv({ allErrors: true, ...ajvOptions });
+        this.ajv = new Ajv2019({ allErrors: true, ...ajvOptions });
     }
 
     /**
@@ -183,6 +183,19 @@ export class AjvMapper {
      * Validates the data
      */
     private validateData = (data: any, schema: any): ValidationError[] => {
+        // convert the $schema keyword to use http://json-schema.org/schema#
+        // as dialect 2019-09 is implied but will throw an error
+        if (
+            schema.$schema !== "https://json-schema.org/draft/2019-09/schema" &&
+            schema.$schema !== "http://json-schema.org/schema#"
+        ) {
+            console.warn(
+                `$schema ${schema.$schema} is not officially supported by the ajv validation service`
+            );
+        }
+
+        schema.$schema = "http://json-schema.org/schema#";
+
         // if this data has never been validated against,
         // add the schema to ajv
         if (this.schemaDictionary[schema.$id] === undefined) {

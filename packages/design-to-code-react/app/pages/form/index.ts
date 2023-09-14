@@ -4,6 +4,7 @@ export interface ExampleComponent {
 }
 
 import {
+    shippingSchema,
     allControlTypesSchema,
     anyOfSchema,
     arraysSchema,
@@ -233,4 +234,8 @@ export const controlArrayDisabled: ExampleComponent = {
 export const controlArrayInvalid: ExampleComponent = {
     schema: controlArraySchema,
     data: "foo",
+};
+
+export const shipping: ExampleComponent = {
+    schema: shippingSchema,
 };

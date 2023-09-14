@@ -14,10 +14,10 @@ import {
     UpdateDataMessageOutgoing,
 } from "../message-system/index.js";
 import { DataType } from "../data-utilities/types.js";
-import { AjvMapper, ajvValidationId } from "./ajv-validation.service.js";
+import { AjvValidator, ajvValidationId } from "./ajv-validator.service.js";
 
 /* eslint-disable @typescript-eslint/no-empty-function */
-test.describe("AjvMapper", () => {
+test.describe("AjvValidator", () => {
     test.beforeEach(async ({ page }) => {
         await page.goto("/message-system");
     });
@@ -39,7 +39,7 @@ test.describe("AjvMapper", () => {
                 },
             });
 
-            new (window as any).dtc.AjvMapper({
+            new (window as any).dtc.AjvValidator({
                 messageSystem,
             });
 
@@ -50,7 +50,7 @@ test.describe("AjvMapper", () => {
     });
     test("should not throw if the message system is undefined", async ({ page }) => {
         const didNotError = await page.evaluate(() => {
-            new (window as any).dtc.AjvMapper({
+            new (window as any).dtc.AjvValidator({
                 messageSystem: undefined,
             });
 
@@ -79,7 +79,7 @@ test.describe("AjvMapper", () => {
 
             const size1 = messageSystem["register"].size;
 
-            new (window as any).dtc.AjvMapper({
+            new (window as any).dtc.AjvValidator({
                 messageSystem,
             });
 
@@ -111,7 +111,7 @@ test.describe("AjvMapper", () => {
 
             const size1 = messageSystem["register"].size;
 
-            const ajvMapper = new (window as any).dtc.AjvMapper({
+            const ajvMapper = new (window as any).dtc.AjvValidator({
                 messageSystem,
             });
 
@@ -153,7 +153,7 @@ test.describe("AjvMapper", () => {
                     },
                 });
 
-                const ajvMapper = new (window as any).dtc.AjvMapper({
+                const ajvMapper = new (window as any).dtc.AjvValidator({
                     messageSystem,
                 });
 
@@ -245,7 +245,7 @@ test.describe("AjvMapper", () => {
                     },
                 });
 
-                const ajvMapper: AjvMapper = new (window as any).dtc.AjvMapper({
+                const ajvMapper: AjvValidator = new (window as any).dtc.AjvValidator({
                     messageSystem,
                 });
 
@@ -391,7 +391,7 @@ test.describe("AjvMapper", () => {
                             foo: schema,
                         },
                     });
-                    const ajvMapper: AjvMapper = new (window as any).dtc.AjvMapper({
+                    const ajvMapper: AjvValidator = new (window as any).dtc.AjvValidator({
                         messageSystem,
                     });
 
@@ -491,7 +491,7 @@ test.describe("AjvMapper", () => {
                             bar: schema2,
                         },
                     });
-                    const ajvMapper: AjvMapper = new (window as any).dtc.AjvMapper({
+                    const ajvMapper: AjvValidator = new (window as any).dtc.AjvValidator({
                         messageSystem,
                     });
 
@@ -609,7 +609,7 @@ test.describe("AjvMapper", () => {
                             foo: schema,
                         },
                     });
-                    const ajvMapper: AjvMapper = new (window as any).dtc.AjvMapper({
+                    const ajvMapper: AjvValidator = new (window as any).dtc.AjvValidator({
                         messageSystem,
                     });
 
@@ -702,7 +702,7 @@ test.describe("AjvMapper", () => {
                             foo: schema,
                         },
                     });
-                    const ajvMapper: AjvMapper = new (window as any).dtc.AjvMapper({
+                    const ajvMapper: AjvValidator = new (window as any).dtc.AjvValidator({
                         messageSystem,
                     });
 
@@ -795,7 +795,7 @@ test.describe("AjvMapper", () => {
                             foo: schema,
                         },
                     });
-                    const ajvMapper: AjvMapper = new (window as any).dtc.AjvMapper({
+                    const ajvMapper: AjvValidator = new (window as any).dtc.AjvValidator({
                         messageSystem,
                     });
 
@@ -910,7 +910,7 @@ test.describe("AjvMapper", () => {
                         schemaDictionary: null,
                     });
                     messageSystem.postMessage = postMessageCallback;
-                    new (window as any).dtc.AjvMapper({
+                    new (window as any).dtc.AjvValidator({
                         messageSystem,
                     });
                     messageSystem.add({
@@ -980,7 +980,7 @@ test.describe("AjvMapper", () => {
                         schemaDictionary: null,
                     });
                     messageSystem.postMessage = postMessageCallback;
-                    new (window as any).dtc.AjvMapper({
+                    new (window as any).dtc.AjvValidator({
                         messageSystem,
                     });
                     messageSystem.add({
@@ -1044,7 +1044,7 @@ test.describe("AjvMapper", () => {
                         schemaDictionary: null,
                     });
                     messageSystem.postMessage = postMessageCallback;
-                    new (window as any).dtc.AjvMapper({
+                    new (window as any).dtc.AjvValidator({
                         messageSystem,
                     });
                     messageSystem.add({
