@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import {
+    AjvMapper,
     MessageSystem,
     getDataFromSchema,
     MessageSystemType,
@@ -11,6 +12,13 @@ import { Form } from "../../src";
 
 const messageSystem = new MessageSystem({
     webWorker: "message-system.js",
+});
+new AjvMapper({
+    messageSystem,
+    ajvOptions: {
+        strict: false,
+        useDefaults: true,
+    },
 });
 
 function getExampleData(schema: string | null) {
@@ -60,6 +68,7 @@ export function FormTestPage() {
     const [data, setData] = useState();
     const [ready, setReady] = useState(false);
     const [searchParams, setSearchParams] = useSearchParams();
+    const [displayValidationInline, setDisplayValidationInline] = useState(false);
 
     const handleMessageSystem = e => {
         switch (e.data?.type) {
@@ -88,6 +97,12 @@ export function FormTestPage() {
             searchParams.get("schema"),
             getExampleData(searchParams.get("schema"))
         );
+
+        const displayValidationInline = searchParams.get("displayValidationInline");
+
+        if (displayValidationInline) {
+            setDisplayValidationInline(!!displayValidationInline);
+        }
     }, [ready]);
 
     function handleSchemaUpdate(e) {
@@ -109,7 +124,10 @@ export function FormTestPage() {
                     );
                 })}
             </select>
-            <Form messageSystem={messageSystem} />
+            <Form
+                messageSystem={messageSystem}
+                displayValidationInline={displayValidationInline}
+            />
             <pre>{JSON.stringify(data, null, 2)}</pre>
         </div>
     ) : null;

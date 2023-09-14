@@ -177,6 +177,11 @@ export const controlTextareaDisabled: ExampleComponent = {
     schema: controlTextareaDisabledSchema,
 };
 
+export const controlTextareaInvalid: ExampleComponent = {
+    schema: controlTextareaSchema,
+    data: 42,
+};
+
 export const controlCheckbox: ExampleComponent = {
     schema: controlCheckboxSchema,
 };
@@ -188,6 +193,11 @@ export const controlCheckboxDefault: ExampleComponent = {
 
 export const controlCheckboxDisabled: ExampleComponent = {
     schema: controlCheckboxDisabledSchema,
+};
+
+export const controlCheckboxInvalid: ExampleComponent = {
+    schema: controlCheckboxSchema,
+    data: "foo",
 };
 
 export const controlSelect: ExampleComponent = {
@@ -203,6 +213,11 @@ export const controlSelectDisabled: ExampleComponent = {
     schema: controlSelectDisabledSchema,
 };
 
+export const controlSelectInvalid: ExampleComponent = {
+    schema: controlSelectSchema,
+    data: true,
+};
+
 export const controlArray: ExampleComponent = {
     schema: controlArraySchema,
 };
@@ -213,4 +228,9 @@ export const controlArrayDefault: ExampleComponent = {
 
 export const controlArrayDisabled: ExampleComponent = {
     schema: controlArrayDisabledSchema,
+};
+
+export const controlArrayInvalid: ExampleComponent = {
+    schema: controlArraySchema,
+    data: "foo",
 };

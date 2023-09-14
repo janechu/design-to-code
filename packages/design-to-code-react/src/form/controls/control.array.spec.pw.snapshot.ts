@@ -14,5 +14,17 @@ test.describe("array", () => {
             await page.goto("/form?schema=controlArrayDisabled");
             await expect(page).toHaveScreenshot();
         });
+        test.describe("invalid", () => {
+            test("default", async ({ page }) => {
+                await page.goto("/form?schema=controlArrayInvalid");
+                await expect(page).toHaveScreenshot();
+            });
+            test("inline", async ({ page }) => {
+                await page.goto(
+                    "/form?schema=controlArrayInvalid&displayValidationInline=true"
+                );
+                await expect(page).toHaveScreenshot();
+            });
+        });
     });
 });
