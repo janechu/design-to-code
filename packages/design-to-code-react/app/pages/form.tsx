@@ -15,6 +15,10 @@ const messageSystem = new MessageSystem({
 });
 new AjvMapper({
     messageSystem,
+    ajvOptions: {
+        strict: false,
+        useDefaults: true,
+    },
 });
 
 function getExampleData(schema: string | null) {

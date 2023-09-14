@@ -19,6 +19,13 @@ test.describe("textarea", () => {
                 await page.goto("/form?schema=controlTextareaInvalid");
                 await expect(page).toHaveScreenshot();
             });
+            test("blur", async ({ page }) => {
+                await page.goto("/form?schema=controlTextareaInvalid");
+                await page.waitForSelector("textarea");
+                await page.locator("textarea").focus();
+                await page.locator("textarea").blur();
+                await expect(page).toHaveScreenshot();
+            });
             test("inline", async ({ page }) => {
                 await page.goto(
                     "/form?schema=controlTextareaInvalid&displayValidationInline=true"

@@ -1,4 +1,4 @@
-import Ajv, { ErrorObject } from "ajv";
+import Ajv, { ErrorObject, Options } from "ajv";
 import {
     MessageSystem,
     MessageSystemDataTypeAction,
@@ -23,9 +23,9 @@ export interface AjvMapperConfig {
     messageSystem: MessageSystem;
 
     /**
-     * Strict mode for Ajv library
+     * Ajv library options
      */
-    strict: boolean;
+    ajvOptions?: Options;
 }
 
 export class AjvMapper {
@@ -46,7 +46,10 @@ export class AjvMapper {
         }
 
         this.messageSystem = config.messageSystem;
-        this.ajv = new Ajv({ allErrors: true, strict: config.strict });
+
+        const ajvOptions = config.ajvOptions ? config.ajvOptions : {};
+
+        this.ajv = new Ajv({ allErrors: true, ...ajvOptions });
     }
 
     /**
