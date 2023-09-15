@@ -14,7 +14,7 @@ import {
     UpdateDataMessageOutgoing,
 } from "../message-system/index.js";
 import { DataType } from "../data-utilities/types.js";
-import { AjvValidator, ajvValidationId } from "./ajv-validator.service.js";
+import { ajvValidationId, AjvValidator } from "./ajv-validator.service.js";
 
 /* eslint-disable @typescript-eslint/no-empty-function */
 test.describe("AjvValidator", () => {

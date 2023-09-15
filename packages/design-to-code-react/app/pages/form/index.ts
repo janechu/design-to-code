@@ -4,7 +4,6 @@ export interface ExampleComponent {
 }
 
 import {
-    shippingSchema,
     allControlTypesSchema,
     anyOfSchema,
     arraysSchema,
@@ -42,6 +41,7 @@ import {
     oneOfDeeplyNestedSchema as oneOfArraysSchema,
     oneOfSchema,
     recursiveDefinitionsSchema,
+    shippingSchema,
     textareaSchema,
     textSchema,
     tooltipSchema,
