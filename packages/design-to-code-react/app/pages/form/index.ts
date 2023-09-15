@@ -18,6 +18,9 @@ import {
     controlCheckboxDefaultSchema,
     controlCheckboxDisabledSchema,
     controlCheckboxSchema,
+    controlNumberFieldDefaultSchema,
+    controlNumberFieldDisabledSchema,
+    controlNumberFieldSchema,
     controlPluginCssSchema,
     controlPluginCssWithOverridesSchema,
     controlSelectDefaultSchema,
@@ -165,77 +168,88 @@ export const recursiveDefinitions: ExampleComponent = {
     schema: recursiveDefinitionsSchema,
 };
 
+/**
+ * Control specific schemas
+ */
+
+// Textarea control
 export const controlTextarea: ExampleComponent = {
     schema: controlTextareaSchema,
 };
-
 export const controlTextareaDefault: ExampleComponent = {
     schema: controlTextareaDefaultSchema,
     data: undefined,
 };
-
 export const controlTextareaDisabled: ExampleComponent = {
     schema: controlTextareaDisabledSchema,
 };
-
 export const controlTextareaInvalid: ExampleComponent = {
     schema: controlTextareaSchema,
     data: 42,
 };
-
+// Checkbox control
 export const controlCheckbox: ExampleComponent = {
     schema: controlCheckboxSchema,
 };
-
 export const controlCheckboxDefault: ExampleComponent = {
     schema: controlCheckboxDefaultSchema,
     data: undefined,
 };
-
 export const controlCheckboxDisabled: ExampleComponent = {
     schema: controlCheckboxDisabledSchema,
 };
-
 export const controlCheckboxInvalid: ExampleComponent = {
     schema: controlCheckboxSchema,
     data: "foo",
 };
-
+// Select control
 export const controlSelect: ExampleComponent = {
     schema: controlSelectSchema,
 };
-
 export const controlSelectDefault: ExampleComponent = {
     schema: controlSelectDefaultSchema,
     data: undefined,
 };
-
 export const controlSelectDisabled: ExampleComponent = {
     schema: controlSelectDisabledSchema,
 };
-
 export const controlSelectInvalid: ExampleComponent = {
     schema: controlSelectSchema,
     data: true,
 };
-
+// Array control
 export const controlArray: ExampleComponent = {
     schema: controlArraySchema,
 };
-
 export const controlArrayDefault: ExampleComponent = {
     schema: controlArrayDefaultSchema,
 };
-
 export const controlArrayDisabled: ExampleComponent = {
     schema: controlArrayDisabledSchema,
 };
-
 export const controlArrayInvalid: ExampleComponent = {
     schema: controlArraySchema,
     data: "foo",
 };
+// Number-field control
+export const controlNumberField: ExampleComponent = {
+    schema: controlNumberFieldSchema,
+};
+export const controlNumberFieldDisabled: ExampleComponent = {
+    schema: controlNumberFieldDisabledSchema,
+};
+export const controlNumberFieldDefault: ExampleComponent = {
+    schema: controlNumberFieldDefaultSchema,
+    data: undefined,
+};
+export const controlNumberFieldInvalid: ExampleComponent = {
+    schema: controlNumberFieldSchema,
+    data: "foo",
+};
 
+/**
+ * Common use case schemas
+ */
 export const shipping: ExampleComponent = {
     schema: shippingSchema,
 };
