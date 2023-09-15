@@ -1,5 +1,5 @@
 import {
-    AjvMapper,
+    AjvValidator,
     MessageSystem,
     MonacoAdapter,
     MonacoAdapterAction,
@@ -20,7 +20,7 @@ import schemaDictionary from "design-to-code/dist/esm/message-system-service/sho
  * These utilities are used for testing in browser
  */
 (window as any).dtc = {
-    AjvMapper,
+    AjvValidator,
     MessageSystem,
     MonacoAdapter,
     MonacoAdapterAction,

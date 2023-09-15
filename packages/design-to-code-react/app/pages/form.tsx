@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import {
-    AjvMapper,
+    AjvValidator,
     MessageSystem,
     getDataFromSchema,
     MessageSystemType,
@@ -13,7 +13,7 @@ import { Form } from "../../src";
 const messageSystem = new MessageSystem({
     webWorker: "message-system.js",
 });
-new AjvMapper({
+new AjvValidator({
     messageSystem,
     ajvOptions: {
         strict: false,

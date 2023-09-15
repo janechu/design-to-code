@@ -41,6 +41,7 @@ import {
     oneOfDeeplyNestedSchema as oneOfArraysSchema,
     oneOfSchema,
     recursiveDefinitionsSchema,
+    shippingSchema,
     textareaSchema,
     textSchema,
     tooltipSchema,
@@ -233,4 +234,8 @@ export const controlArrayDisabled: ExampleComponent = {
 export const controlArrayInvalid: ExampleComponent = {
     schema: controlArraySchema,
     data: "foo",
+};
+
+export const shipping: ExampleComponent = {
+    schema: shippingSchema,
 };
