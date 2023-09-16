@@ -1,4 +1,14 @@
 .dtc-button-control {
     width: 100%;
     text-align: start;
+    color: var(--dtc-text-color);
+    background: var(--dtc-l1-color);
+}
+
+.dtc-button-control.dtc-button-control__default {
+    font-style: italic;
+}
+
+.dtc-button-control:invalid {
+    border: 1px solid var(--dtc-error-color);
 }
