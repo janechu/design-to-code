@@ -6,7 +6,6 @@
 }
 
 .dtc-display-control.dtc-display-control__default {
-    color: var(--dtc-text-color);
     font-style: italic;
 }
 

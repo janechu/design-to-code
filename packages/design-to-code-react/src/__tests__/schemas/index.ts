@@ -39,6 +39,9 @@ import shippingSchema from "./shipping.schema";
 import controlArraySchema from "./control.array.schema";
 import controlArrayDisabledSchema from "./control.array.disabled.schema";
 import controlArrayDefaultSchema from "./control.array.default.schema";
+import controlButtonSchema from "./control.button.schema";
+import controlButtonDisabledSchema from "./control.button.disabled.schema";
+import controlButtonDefaultSchema from "./control.button.default.schema";
 import controlCheckboxSchema from "./control.checkbox.schema";
 import controlCheckboxDefaultSchema from "./control.checkbox.default.schema";
 import controlCheckboxDisabledSchema from "./control.checkbox.disabled.schema";
@@ -74,6 +77,9 @@ export {
     controlArraySchema,
     controlArrayDefaultSchema,
     controlArrayDisabledSchema,
+    controlButtonSchema,
+    controlButtonDefaultSchema,
+    controlButtonDisabledSchema,
     controlCheckboxSchema,
     controlCheckboxDefaultSchema,
     controlCheckboxDisabledSchema,

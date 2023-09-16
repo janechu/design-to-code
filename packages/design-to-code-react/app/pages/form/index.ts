@@ -15,6 +15,9 @@ import {
     controlArrayDefaultSchema,
     controlArrayDisabledSchema,
     controlArraySchema,
+    controlButtonDefaultSchema,
+    controlButtonDisabledSchema,
+    controlButtonSchema,
     controlCheckboxDefaultSchema,
     controlCheckboxDisabledSchema,
     controlCheckboxSchema,
@@ -263,6 +266,21 @@ export const controlDisplayDefault: ExampleComponent = {
 export const controlDisplayInvalid: ExampleComponent = {
     schema: controlDisplaySchema,
     data: "bar",
+};
+// Button control
+export const controlButton: ExampleComponent = {
+    schema: controlButtonSchema,
+};
+export const controlButtonDisabled: ExampleComponent = {
+    schema: controlButtonDisabledSchema,
+};
+export const controlButtonDefault: ExampleComponent = {
+    schema: controlButtonDefaultSchema,
+    data: undefined,
+};
+export const controlButtonInvalid: ExampleComponent = {
+    schema: controlButtonSchema,
+    data: "foo",
 };
 
 /**
