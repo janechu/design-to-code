@@ -48,6 +48,9 @@ import controlSelectDisabledSchema from "./control.select.disabled.schema";
 import controlTextareaSchema from "./control.textarea.schema";
 import controlTextareaDefaultSchema from "./control.textarea.default.schema";
 import controlTextareaDisabledSchema from "./control.textarea.disabled.schema";
+import controlNumberFieldSchema from "./control.number-field.schema";
+import controlNumberFieldDisabledSchema from "./control.number-field.disabled.schema";
+import controlNumberFieldDefaultSchema from "./control.number-field.default.schema";
 
 export {
     shippingSchema,
@@ -71,6 +74,9 @@ export {
     controlCheckboxSchema,
     controlCheckboxDefaultSchema,
     controlCheckboxDisabledSchema,
+    controlNumberFieldSchema,
+    controlNumberFieldDefaultSchema,
+    controlNumberFieldDisabledSchema,
     controlTextareaDefaultSchema,
     controlTextareaDisabledSchema,
     controlTextareaSchema,

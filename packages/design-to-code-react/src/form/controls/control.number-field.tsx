@@ -19,10 +19,10 @@ style;
  */
 function NumberFieldControl(props: NumberFieldControlProps) {
     let hasFocus: boolean = false;
-    let ref = useRef(0);
 
     function handleFocus(callback: () => void) {
         return (): void => {
+            props.reportValidity();
             hasFocus = true;
             if (callback) callback();
         };
@@ -30,6 +30,7 @@ function NumberFieldControl(props: NumberFieldControlProps) {
 
     function handleBlur(callback: () => void) {
         return (): void => {
+            props.updateValidity();
             hasFocus = false;
             if (callback) callback();
         };
