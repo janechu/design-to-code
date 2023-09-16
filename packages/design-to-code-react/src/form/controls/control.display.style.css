@@ -1,3 +1,15 @@
 .dtc-display-control {
     width: 100%;
+    color: var(--dtc-text-color);
+    background: var(--dtc-l1-color);
+    box-sizing: border-box;
+}
+
+.dtc-display-control.dtc-display-control__default {
+    color: var(--dtc-text-color);
+    font-style: italic;
+}
+
+.dtc-display-control:invalid {
+    border: 1px solid var(--dtc-error-color);
 }
