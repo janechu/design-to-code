@@ -18,6 +18,9 @@ import {
     controlCheckboxDefaultSchema,
     controlCheckboxDisabledSchema,
     controlCheckboxSchema,
+    controlDisplayDefaultSchema,
+    controlDisplayDisabledSchema,
+    controlDisplaySchema,
     controlNumberFieldDefaultSchema,
     controlNumberFieldDisabledSchema,
     controlNumberFieldSchema,
@@ -245,6 +248,21 @@ export const controlNumberFieldDefault: ExampleComponent = {
 export const controlNumberFieldInvalid: ExampleComponent = {
     schema: controlNumberFieldSchema,
     data: "foo",
+};
+// Display control
+export const controlDisplay: ExampleComponent = {
+    schema: controlDisplaySchema,
+};
+export const controlDisplayDisabled: ExampleComponent = {
+    schema: controlDisplayDisabledSchema,
+};
+export const controlDisplayDefault: ExampleComponent = {
+    schema: controlDisplayDefaultSchema,
+    data: undefined,
+};
+export const controlDisplayInvalid: ExampleComponent = {
+    schema: controlDisplaySchema,
+    data: "bar",
 };
 
 /**
