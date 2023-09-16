@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test.describe.only("DisplayControl", () => {
+test.describe("DisplayControl", () => {
     test("should generate an HTML input element", async ({ page }) => {
         await page.goto("/form?schema=controlDisplay");
 
