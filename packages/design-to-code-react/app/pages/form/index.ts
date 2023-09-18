@@ -29,6 +29,9 @@ import {
     controlNumberFieldSchema,
     controlPluginCssSchema,
     controlPluginCssWithOverridesSchema,
+    controlSectionLinkDefaultSchema,
+    controlSectionLinkDisabledSchema,
+    controlSectionLinkSchema,
     controlSelectDefaultSchema,
     controlSelectDisabledSchema,
     controlSelectSchema,
@@ -281,6 +284,21 @@ export const controlButtonDefault: ExampleComponent = {
 export const controlButtonInvalid: ExampleComponent = {
     schema: controlButtonSchema,
     data: "foo",
+};
+// Section link
+export const controlSectionLink: ExampleComponent = {
+    schema: controlSectionLinkSchema,
+    data: { nestedObject: {} },
+};
+export const controlSectionLinkDisabled: ExampleComponent = {
+    schema: controlSectionLinkDisabledSchema,
+};
+export const controlSectionLinkDefault: ExampleComponent = {
+    schema: controlSectionLinkDefaultSchema,
+    data: undefined,
+};
+export const controlSectionLinkInvalid: ExampleComponent = {
+    schema: controlSectionLinkSchema,
 };
 
 /**
