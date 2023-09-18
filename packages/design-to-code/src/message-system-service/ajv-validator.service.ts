@@ -11,7 +11,10 @@ import {
     Validation,
     ValidationError,
 } from "../message-system/index.js";
-import { normalizeDataLocationToDotNotation } from "../data-utilities/location.js";
+import {
+    normalizeDataLocationToDotNotation,
+    normalizeURIToDotNotation,
+} from "../data-utilities/location.js";
 
 export const ajvValidationId = "design-to-code::ajv-validation-service";
 
@@ -157,10 +160,12 @@ export class AjvValidator {
      */
     private normalizeAjvDataPath(dataPath: string): string {
         return normalizeDataLocationToDotNotation(
-            dataPath
-                .replace(/(\[')/g, ".")
-                .replace(/('\])/g, "")
-                .replace(/^(\.+)/, "")
+            normalizeURIToDotNotation(
+                dataPath
+                    .replace(/(\[')/g, ".")
+                    .replace(/('\])/g, "")
+                    .replace(/^(\.+)/, "")
+            )
         );
     }
 
