@@ -57,6 +57,9 @@ import controlNumberFieldDefaultSchema from "./control.number-field.default.sche
 import controlDisplaySchema from "./control.display.schema";
 import controlDisplayDisabledSchema from "./control.display.disabled.schema";
 import controlDisplayDefaultSchema from "./control.display.default.schema";
+import controlSectionLinkSchema from "./control.section-link.schema";
+import controlSectionLinkDefaultSchema from "./control.section-link.default.schema";
+import controlSectionLinkDisabledSchema from "./control.section-link.disabled.schema";
 
 export {
     shippingSchema,
@@ -95,6 +98,9 @@ export {
     controlSelectSchema,
     controlSelectDefaultSchema,
     controlSelectDisabledSchema,
+    controlSectionLinkSchema,
+    controlSectionLinkDefaultSchema,
+    controlSectionLinkDisabledSchema,
     defaultsSchema,
     definitionsSchema,
     dictionarySchema,
