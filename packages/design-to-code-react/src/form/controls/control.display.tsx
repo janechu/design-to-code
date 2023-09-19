@@ -64,7 +64,6 @@ function DisplayControl(props: DisplayControlProps) {
             value={getDisplayValue(props.value)}
             onChange={handleInputChange}
             disabled={props.disabled}
-            required={props.required}
         />
     );
 }

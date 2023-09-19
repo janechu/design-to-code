@@ -5,6 +5,7 @@ import {
     renderConstValueIndicator,
     renderDefaultValueIndicator,
     renderInvalidMessage,
+    renderRequired,
     renderSoftRemove,
 } from "./template.control.utilities";
 import { StandardControlTemplateProps } from "./template.control.standard.props";
@@ -12,6 +13,7 @@ import { ControlContext } from "./types";
 import { classNames } from "@microsoft/fast-web-utilities";
 import cssVariables from "design-to-code/dist/stylesheets/web-components/style/global.css-variables.css";
 import interactiveFormControlIndicatorStyle from "design-to-code/dist/stylesheets/web-components/style/common.interactive-form-control-indicator.css";
+import requiredStyle from "design-to-code/dist/stylesheets/web-components/style/common.required.css";
 import softRemoveStyle from "design-to-code/dist/stylesheets/web-components/style/common.soft-remove.css";
 import softRemoveInputStyle from "design-to-code/dist/stylesheets/web-components/style/common.soft-remove-input.css";
 import controlWrapperStyle from "design-to-code/dist/stylesheets/web-components/style/common.control-wrapper.css";
@@ -31,6 +33,7 @@ cssVariables;
 interactiveFormControlIndicatorStyle;
 softRemoveStyle;
 softRemoveInputStyle;
+requiredStyle;
 controlWrapperStyle;
 formControlDisabledStyle;
 controlRegionStyle;
@@ -89,7 +92,11 @@ function StandardControlTemplate(props: StandardControlTemplateProps) {
                             className={`dtc-standard-control-template_control-label ${dtcClassName.commonLabel}`}
                             title={props.labelTooltip}
                         >
-                            {props.label}
+                            {props.label}{" "}
+                            {renderRequired({
+                                required: props.required,
+                                className: dtcClassName.commonRequired,
+                            })}
                         </label>
                         {renderConstValueIndicator({
                             className: `dtc-standard-control-template_const-value-indicator ${dtcClassName.commonInteractiveFormControlIndicator}`,

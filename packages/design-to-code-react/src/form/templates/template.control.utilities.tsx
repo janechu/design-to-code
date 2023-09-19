@@ -219,6 +219,18 @@ export function renderInvalidMessage(props: RenderInvalidMessageProps): React.Re
     }
 }
 
+export interface RenderRequiredProps {
+    required: boolean;
+    className: string;
+}
+
+/**
+ * Renders an indicator that a field is required
+ */
+export function renderRequired(props: RenderRequiredProps): React.ReactNode {
+    return props.required ? <span className={props.className}>(required)</span> : null;
+}
+
 export interface UpdateValidityProps {
     ref: React.MutableRefObject<FormHTMLElement>;
     invalidMessage: string;
