@@ -4,6 +4,7 @@ import {
     renderBadge,
     renderDefaultValueIndicator,
     renderInvalidMessage,
+    renderRequired,
     renderSoftRemove,
 } from "./template.control.utilities";
 import { SingleLineControlTemplateProps } from "./template.control.single-line.props";
@@ -17,6 +18,7 @@ import labelStyle from "design-to-code/dist/stylesheets/web-components/style/com
 import invalidMessageStyle from "design-to-code/dist/stylesheets/web-components/style/common.invalid-message.css";
 import softRemoveStyle from "design-to-code/dist/stylesheets/web-components/style/common.soft-remove.css";
 import softRemoveInputStyle from "design-to-code/dist/stylesheets/web-components/style/common.soft-remove-input.css";
+import requiredStyle from "design-to-code/dist/stylesheets/web-components/style/common.required.css";
 import style from "./template.control.single-line.style.css";
 import dtcClassName from "design-to-code/dist/esm/web-components/style/class-names";
 import { FormHTMLElement } from "./template.control.utilities.props";
@@ -31,6 +33,7 @@ labelStyle;
 invalidMessageStyle;
 softRemoveStyle;
 softRemoveInputStyle;
+requiredStyle;
 style;
 
 /**
@@ -67,7 +70,11 @@ function SingleLineControlTemplate(props: SingleLineControlTemplateProps) {
                     htmlFor={props.dataLocation}
                     title={props.labelTooltip}
                 >
-                    {props.label}
+                    {props.label}{" "}
+                    {renderRequired({
+                        required: props.required,
+                        className: dtcClassName.commonRequired,
+                    })}
                 </label>
                 {renderDefaultValueIndicator({
                     className: `dtc-single-line-control-template_default-value-indicator ${dtcClassName.commonInteractiveFormControlIndicator}`,

@@ -18,6 +18,7 @@ const dtcClassName = {
     commonLabelRegion: "dtc-common-label-region",
     commonLabel: "dtc-common-label",
     commonRemoveItem: "dtc-common-remove-item",
+    commonRequired: "dtc-common-required",
     commonSelectInput: "dtc-common-select-input",
     commonSelectSpan: "dtc-common-select-span",
     commonSoftRemoveInput: "dtc-common-soft-remove-input",
