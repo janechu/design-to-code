@@ -84,7 +84,6 @@ function SelectControl(props: SelectControlProps) {
                 ref={props.elementRef as React.Ref<HTMLSelectElement>}
                 onBlur={props.updateValidity}
                 onFocus={props.reportValidity}
-                required={props.required}
             >
                 {renderOptions()}
             </select>

@@ -60,7 +60,6 @@ function ButtonControl(props: ButtonControlProps & React.PropsWithChildren) {
                 value={props.value || ""}
                 onChange={handleInputChange}
                 disabled={props.disabled}
-                required={props.required}
             />
         </React.Fragment>
     );

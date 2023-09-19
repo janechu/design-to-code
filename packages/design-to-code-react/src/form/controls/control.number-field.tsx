@@ -104,7 +104,6 @@ function NumberFieldControl(props: NumberFieldControlProps) {
             ref={props.elementRef}
             onBlur={handleBlur(props.updateValidity)}
             onFocus={handleFocus(props.reportValidity)}
-            required={props.required}
         />
     );
 }
