@@ -51,7 +51,7 @@ function SectionControl(props: SectionControlProps) {
     );
 
     const [schema, setSchema] = useState(props.schema);
-    const [oneOfAnyOf, setOneOfAnyOf] = useState(null);
+    const [oneOfAnyOf, setOneOfAnyOf] = useState(getOneOfAnyOf());
     const [categories, setCategories] = useState(
         getCategoryStateFromCategoryDictionary(
             props.categories,
@@ -83,21 +83,7 @@ function SectionControl(props: SectionControlProps) {
 
             setSchema(updatedState.schema);
             setCategories(updatedState.categories);
-            setOneOfAnyOf(
-                props.navigation[props.navigationConfigId].schema[CombiningKeyword.anyOf]
-                    ? {
-                          type: CombiningKeyword.anyOf,
-                          activeIndex: -1,
-                      }
-                    : props.navigation[props.navigationConfigId].schema[
-                          CombiningKeyword.oneOf
-                      ]
-                    ? {
-                          type: CombiningKeyword.oneOf,
-                          activeIndex: -1,
-                      }
-                    : null
-            );
+            setOneOfAnyOf(getOneOfAnyOf());
         }
 
         if (props.messageSystem !== undefined) {
@@ -110,6 +96,20 @@ function SectionControl(props: SectionControlProps) {
             }
         };
     });
+
+    function getOneOfAnyOf() {
+        return props.navigation[props.navigationConfigId].schema[CombiningKeyword.anyOf]
+            ? {
+                  type: CombiningKeyword.anyOf,
+                  activeIndex: -1,
+              }
+            : props.navigation[props.navigationConfigId].schema[CombiningKeyword.oneOf]
+            ? {
+                  type: CombiningKeyword.oneOf,
+                  activeIndex: -1,
+              }
+            : null;
+    }
 
     /**
      * Handle the message system messages
