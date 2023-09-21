@@ -29,9 +29,12 @@ import {
     controlNumberFieldSchema,
     controlPluginCssSchema,
     controlPluginCssWithOverridesSchema,
+    controlSectionDisabledSchema,
     controlSectionLinkDefaultSchema,
     controlSectionLinkDisabledSchema,
     controlSectionLinkSchema,
+    controlSectionOneOfSchema,
+    controlSectionSchema,
     controlSelectDefaultSchema,
     controlSelectDisabledSchema,
     controlSelectSchema,
@@ -299,6 +302,21 @@ export const controlSectionLinkDefault: ExampleComponent = {
 };
 export const controlSectionLinkInvalid: ExampleComponent = {
     schema: controlSectionLinkSchema,
+};
+// Section
+export const controlSection: ExampleComponent = {
+    schema: controlSectionSchema,
+    data: {},
+};
+export const controlSectionDisabled: ExampleComponent = {
+    schema: controlSectionDisabledSchema,
+};
+export const controlSectionOneOf: ExampleComponent = {
+    schema: controlSectionOneOfSchema,
+    data: "foo",
+};
+export const controlSectionInvalid: ExampleComponent = {
+    schema: controlSectionSchema,
 };
 
 /**

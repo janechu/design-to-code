@@ -60,6 +60,9 @@ import controlDisplayDefaultSchema from "./control.display.default.schema";
 import controlSectionLinkSchema from "./control.section-link.schema";
 import controlSectionLinkDefaultSchema from "./control.section-link.default.schema";
 import controlSectionLinkDisabledSchema from "./control.section-link.disabled.schema";
+import controlSectionSchema from "./control.section.schema";
+import controlSectionOneOfSchema from "./control.section.one-of.schema";
+import controlSectionDisabledSchema from "./control.section.disabled.schema";
 
 export {
     shippingSchema,
@@ -101,6 +104,9 @@ export {
     controlSectionLinkSchema,
     controlSectionLinkDefaultSchema,
     controlSectionLinkDisabledSchema,
+    controlSectionSchema,
+    controlSectionOneOfSchema,
+    controlSectionDisabledSchema,
     defaultsSchema,
     definitionsSchema,
     dictionarySchema,
