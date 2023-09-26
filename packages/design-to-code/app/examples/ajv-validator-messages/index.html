@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title><%= htmlWebpackPlugin.options.title %></title>
+        <style>
+            html,
+            body,
+            #root {
+                width: 100%;
+                height: 100%;
+                font-family: Arial, Helvetica, sans-serif;
+                background-color: var(--dtc-l4-color);
+                color: white;
+                padding: 0;
+                margin: 0;
+            }
+        </style>
+        <link
+            rel="stylesheet"
+            href="<%= htmlWebpackPlugin.options.globalCssVariableStylesheet %>"
+        />
+    </head>
+    <body>
+        <div id="root">
+            <button id="setValidData">Set Valid Data</button>
+            <button id="showSuccess">Show Success Message</button>
+            <dtc-ajv-validator-messages id="validator"></dtc-ajv-validator-messages>
+            <input id="activeNavigationConfigIdInput" type="text" style="width: 800px" />
+        </div>
+    </body>
+</html>
