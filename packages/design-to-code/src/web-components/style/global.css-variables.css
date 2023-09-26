@@ -10,6 +10,7 @@ body, html {
     --dtc-text-color: #F7F7F7;
     --dtc-inactive-text-color: #A2A2A2;
     --dtc-error-color: red;
+    --dtc-success-color: green;
     --dtc-disable-opacity: 0.3;
     --dtc-code-highlight-css-key: #9CDCFE;
     --dtc-code-highlight-css-value: #D4D4D4;

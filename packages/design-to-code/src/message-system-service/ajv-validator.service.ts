@@ -220,8 +220,12 @@ export class AjvValidator {
                     ajvPath = [ajvPath, AjvError.params.missingProperty].join(".");
                 }
 
+                const dataLocation = this.normalizeAjvDataPath(ajvPath);
+
                 return {
-                    dataLocation: this.normalizeAjvDataPath(ajvPath),
+                    dataLocation,
+                    activeDictionaryId: this.activeDictionaryId,
+                    activeNavigationConfigId: dataLocation,
                     invalidMessage: AjvError.message,
                 };
             });
