@@ -32,6 +32,12 @@ test.describe("checkbox", () => {
                 );
                 await expect(page).toHaveScreenshot();
             });
+            test("error list", async ({ page }) => {
+                await page.goto(
+                    "/form?schema=controlCheckboxInvalid&displayValidationInline=true&displayValidationErrorList=true"
+                );
+                await expect(page).toHaveScreenshot();
+            });
         });
     });
 });

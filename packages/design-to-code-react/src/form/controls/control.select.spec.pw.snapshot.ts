@@ -32,6 +32,12 @@ test.describe("select", () => {
                 );
                 await expect(page).toHaveScreenshot();
             });
+            test("error list", async ({ page }) => {
+                await page.goto(
+                    "/form?schema=controlSelectInvalid&displayValidationInline=true&displayValidationErrorList=true"
+                );
+                await expect(page).toHaveScreenshot();
+            });
         });
     });
 });

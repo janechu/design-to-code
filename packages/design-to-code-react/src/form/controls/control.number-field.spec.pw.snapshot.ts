@@ -32,6 +32,12 @@ test.describe("numberField", () => {
                 );
                 await expect(page).toHaveScreenshot();
             });
+            test("error list", async ({ page }) => {
+                await page.goto(
+                    "/form?schema=controlNumberFieldInvalid&displayValidationInline=true&displayValidationErrorList=true"
+                );
+                await expect(page).toHaveScreenshot();
+            });
         });
     });
 });

@@ -393,7 +393,7 @@ function SectionControl(props: SectionControlProps) {
     }
 
     function renderFormValidation(invalidMessage: string): JSX.Element {
-        if (invalidMessage !== "") {
+        if (props.displayValidationErrorList && invalidMessage !== "") {
             return (
                 <SectionControlValidation
                     invalidMessage={invalidMessage}

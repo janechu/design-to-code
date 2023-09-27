@@ -32,6 +32,12 @@ test.describe("display", () => {
                 );
                 await expect(page).toHaveScreenshot();
             });
+            test("error list", async ({ page }) => {
+                await page.goto(
+                    "/form?schema=controlDisplayInvalid&displayValidationInline=true&displayValidationErrorList=true"
+                );
+                await expect(page).toHaveScreenshot();
+            });
         });
     });
 });

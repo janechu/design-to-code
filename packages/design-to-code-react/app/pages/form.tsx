@@ -69,6 +69,7 @@ export function FormTestPage() {
     const [ready, setReady] = useState(false);
     const [searchParams, setSearchParams] = useSearchParams();
     const [displayValidationInline, setDisplayValidationInline] = useState(false);
+    const [displayValidationErrorList, setDisplayValidationErrorList] = useState(false);
 
     const handleMessageSystem = e => {
         switch (e.data?.type) {
@@ -99,9 +100,14 @@ export function FormTestPage() {
         );
 
         const displayValidationInline = searchParams.get("displayValidationInline");
+        const displayValidationErrorList = searchParams.get("displayValidationErrorList");
 
         if (displayValidationInline) {
             setDisplayValidationInline(!!displayValidationInline);
+        }
+
+        if (displayValidationErrorList) {
+            setDisplayValidationErrorList(!!displayValidationErrorList);
         }
     }, [ready]);
 
@@ -127,6 +133,7 @@ export function FormTestPage() {
             <Form
                 messageSystem={messageSystem}
                 displayValidationInline={displayValidationInline}
+                displayValidationErrorList={displayValidationErrorList}
             />
             <pre>{JSON.stringify(data, null, 2)}</pre>
         </div>

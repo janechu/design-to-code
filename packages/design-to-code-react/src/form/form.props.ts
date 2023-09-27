@@ -80,6 +80,12 @@ export interface FormProps {
     displayValidationBrowserDefault?: boolean;
 
     /**
+     * Display the validation error messages at the top
+     * of the form
+     */
+    displayValidationErrorList?: boolean;
+
+    /**
      * The custom control plugins which will be used
      * instead of the default control plugins
      */

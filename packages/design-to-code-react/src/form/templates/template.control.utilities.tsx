@@ -319,6 +319,7 @@ export function getConfig(props: GetConfigProps): ControlConfig {
         validationErrors: props.validationErrors,
         displayValidationBrowserDefault: props.displayValidationBrowserDefault,
         displayValidationInline: props.displayValidationInline,
+        displayValidationErrorList: props.displayValidationErrorList,
         minItems: props.minItems,
         maxItems: props.maxItems,
         onAddExampleData: props.onAddExampleData,

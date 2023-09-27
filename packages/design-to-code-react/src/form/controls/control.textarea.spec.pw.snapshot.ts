@@ -32,6 +32,12 @@ test.describe("textarea", () => {
                 );
                 await expect(page).toHaveScreenshot();
             });
+            test("error list", async ({ page }) => {
+                await page.goto(
+                    "/form?schema=controlTextareaInvalid&displayValidationInline=true&displayValidationErrorList=true"
+                );
+                await expect(page).toHaveScreenshot();
+            });
         });
     });
 });

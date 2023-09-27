@@ -428,6 +428,7 @@ const Form: React.FC<FormProps> = (
             validationErrors: validationErrors[activeDictionaryId],
             displayValidationBrowserDefault: props.displayValidationBrowserDefault,
             displayValidationInline: props.displayValidationInline,
+            displayValidationErrorList: props.displayValidationErrorList,
             messageSystem: props.messageSystem,
             strings: strings,
             messageSystemOptions: options,
