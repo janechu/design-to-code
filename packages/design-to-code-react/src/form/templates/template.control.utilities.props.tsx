@@ -149,6 +149,12 @@ export interface ControlTemplateUtilitiesProps
     displayValidationBrowserDefault?: boolean;
 
     /**
+     * Display the validation error messages at the top
+     * of the form
+     */
+    displayValidationErrorList?: boolean;
+
+    /**
      * Enable soft remove
      * defaults to true
      */
@@ -261,6 +267,12 @@ export interface CommonControlConfig {
      * Display the validation inline
      */
     displayValidationInline?: boolean;
+
+    /**
+     * Display the validation error messages at the top
+     * of the form
+     */
+    displayValidationErrorList?: boolean;
 
     /**
      * Callback for reporting validity on
