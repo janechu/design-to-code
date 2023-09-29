@@ -93,4 +93,15 @@ test.describe("ArrayControl", () => {
 
         await expect(await fieldset.getAttribute("disabled")).toEqual("");
     });
+    test("should map to an arrays value if the location of the value has been added to the JSON schema", async ({
+        page,
+    }) => {
+        await page.goto("/form?schema=controlArrayDisplayText");
+
+        await page.waitForSelector(".dtc-array-control");
+
+        const listItem = await page.locator("li");
+
+        expect(await listItem.textContent()).toEqual("foo");
+    });
 });
