@@ -38,6 +38,7 @@ The `Form` leverages [CSS variables](https://developer.mozilla.org/en-US/docs/We
 - `--dtc-text-color`
 - `--dtc-l3-fill-color`
 - `--dtc-error-color`
+- `--dtc-success-color`
 - `--dtc-floating-color`
 
 ## Adding a custom control
@@ -62,4 +63,33 @@ import { ModularForm, StandardControlPlugin } from "design-to-code-react";
         })
     ]}
 />
+```
+
+## Mapping
+
+The form contains some additional mapping metadata that can be injected into a JSON schema.
+
+### Arrays
+
+If your array contains complex data and you want a part of that data to be used as the text for the item, add the `dtc:form:control:array:display-text` key with the data location (using lodash path syntax) and when that value is filled out it will be used for display.
+
+Example JSON schema:
+```json
+{
+    "$schema": "http://json-schema.org/schema#",
+    "$id": "controlArrayDisplayText",
+    "title": "Array control with display text",
+    "type": "array",
+    "dtc:form:control:array:display-text": "text",
+    "items": {
+        "title": "Array item",
+        "type": "object",
+        "properties": {
+            "text": {
+                "title": "Text",
+                "type": "string"
+            }
+        }
+    }
+};
 ```

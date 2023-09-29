@@ -14,6 +14,7 @@ import {
     constSchema as constKeywordSchema,
     controlArrayDefaultSchema,
     controlArrayDisabledSchema,
+    controlArrayDisplayTextSchema,
     controlArraySchema,
     controlButtonDefaultSchema,
     controlButtonDisabledSchema,
@@ -242,6 +243,14 @@ export const controlArrayDisabled: ExampleComponent = {
 export const controlArrayInvalid: ExampleComponent = {
     schema: controlArraySchema,
     data: "foo",
+};
+export const controlArrayDisplayText: ExampleComponent = {
+    schema: controlArrayDisplayTextSchema,
+    data: [
+        {
+            text: "foo",
+        },
+    ],
 };
 // Number-field control
 export const controlNumberField: ExampleComponent = {

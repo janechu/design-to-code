@@ -29,6 +29,8 @@ labelRegionStyle;
 ellipsisStyle;
 style;
 
+export const displayTextDataLocationKey: string = "dtc:form:control:array:display-text";
+
 /**
  * Form control definition
  */
@@ -98,7 +100,7 @@ function ArrayControl(props: ArrayControlProps) {
      * Renders default array items
      */
     function renderDefaultArrayLinkItems(): React.ReactNode {
-        return getArrayLinks(props.default).map(
+        return getArrayLinks(props.default, props.schema[displayTextDataLocationKey]).map(
             (value: any, index: number): React.ReactNode => {
                 return renderDefaultArrayLinkItem(value, index);
             }
@@ -144,7 +146,7 @@ function ArrayControl(props: ArrayControlProps) {
      */
     function renderArrayLinkItems(): React.ReactNode {
         const currentData: unknown[] = dragging ? data : props.value;
-        return getArrayLinks(currentData).map(
+        return getArrayLinks(currentData, props.schema[displayTextDataLocationKey]).map(
             (text: string, index: number): React.ReactNode => {
                 const invalidError: React.ReactNode = renderValidationError(index);
 
@@ -154,7 +156,12 @@ function ArrayControl(props: ArrayControlProps) {
                             key={index}
                             index={index}
                             minItems={props.minItems}
-                            itemLength={getArrayLinks(currentData).length}
+                            itemLength={
+                                getArrayLinks(
+                                    currentData,
+                                    props.schema[displayTextDataLocationKey]
+                                ).length
+                            }
                             itemRemoveClassName={`dtc-array-control_existing-item-remove-button ${dtcClassName.commonRemoveItem}`}
                             itemClassName={classNames(
                                 "dtc-array-control_existing-item-list-item",
