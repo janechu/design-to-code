@@ -753,6 +753,7 @@ import { ModularForm } from &quot;design-to-code-react&quot;;
 <li><code>--dtc-text-color</code></li>
 <li><code>--dtc-l3-fill-color</code></li>
 <li><code>--dtc-error-color</code></li>
+<li><code>--dtc-success-color</code></li>
 <li><code>--dtc-floating-color</code></li>
 </ul>
 <h2 id="adding-a-custom-control">Adding a custom control</h2>
@@ -774,6 +775,29 @@ import { ModularForm } from &quot;design-to-code-react&quot;;
         })
     ]}
 /&gt;
+</code></pre>
+<h2 id="mapping">Mapping</h2>
+<p>The form contains some additional mapping metadata that can be injected into a JSON schema.</p>
+<h3 id="arrays">Arrays</h3>
+<p>If your array contains complex data and you want a part of that data to be used as the text for the item, add the <code>dtc:form:control:array:display-text</code> key with the data location (using lodash path syntax) and when that value is filled out it will be used for display.</p>
+<p>Example JSON schema:</p>
+<pre><code class="language-json">{
+    &quot;$schema&quot;: &quot;http://json-schema.org/schema#&quot;,
+    &quot;$id&quot;: &quot;controlArrayDisplayText&quot;,
+    &quot;title&quot;: &quot;Array control with display text&quot;,
+    &quot;type&quot;: &quot;array&quot;,
+    &quot;dtc:form:control:array:display-text&quot;: &quot;text&quot;,
+    &quot;items&quot;: {
+        &quot;title&quot;: &quot;Array item&quot;,
+        &quot;type&quot;: &quot;object&quot;,
+        &quot;properties&quot;: {
+            &quot;text&quot;: {
+                &quot;title&quot;: &quot;Text&quot;,
+                &quot;type&quot;: &quot;string&quot;
+            }
+        }
+    }
+};
 </code></pre>
 </div>
                     <div class="index"></div>
