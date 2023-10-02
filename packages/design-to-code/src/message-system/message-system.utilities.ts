@@ -26,11 +26,14 @@ import {
     MessageSystemNavigationTypeAction,
     MessageSystemOutgoing,
     MessageSystemSchemaDictionaryTypeAction,
+    MessageSystemSchemaValidationTypeAction,
     MessageSystemValidationTypeAction,
     NavigationMessageIncoming,
     NavigationMessageOutgoing,
     SchemaDictionaryMessageIncoming,
     SchemaDictionaryMessageOutgoing,
+    SchemaValidationMessageIncoming,
+    SchemaValidationMessageOutgoing,
     ValidationMessageIncoming,
     ValidationMessageOutgoing,
 } from "./message-system.utilities.props.js";
@@ -83,6 +86,35 @@ function getCustomMessage<C, OConfig>(
     data: CustomMessage<C, OConfig>
 ): CustomMessage<C, OConfig> {
     return data;
+}
+
+/**
+ * Handles all schema validation messages
+ */
+function getSchemaValidationMessage(
+    data: SchemaValidationMessageIncoming,
+    historyId: string
+): SchemaValidationMessageOutgoing | null {
+    switch (data.action) {
+        case MessageSystemSchemaValidationTypeAction.update:
+            return {
+                type: MessageSystemType.schemaValidation,
+                action: MessageSystemSchemaValidationTypeAction.update,
+                activeDictionaryId,
+                dictionaryId: activeDictionaryId,
+                dataDictionary,
+                navigationDictionary,
+                activeHistoryIndex,
+                activeNavigationConfigId,
+                schemaDictionary,
+                historyId,
+                validation,
+                validationErrors: data.validationErrors,
+                options: data.options,
+            };
+        default:
+            return null;
+    }
 }
 
 /**
@@ -978,6 +1010,16 @@ export function getMessage<C = object>(
                     getNavigationMessage(data[0] as NavigationMessageIncoming, historyId),
                     data[1],
                 ] as InternalOutgoingMessage<NavigationMessageOutgoing>,
+            ];
+        case MessageSystemType.schemaValidation:
+            return [
+                [
+                    getSchemaValidationMessage(
+                        data[0] as SchemaValidationMessageIncoming,
+                        historyId
+                    ),
+                    data[1],
+                ] as InternalOutgoingMessage<SchemaValidationMessageOutgoing>,
             ];
         case MessageSystemType.validation:
             return [

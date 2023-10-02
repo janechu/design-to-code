@@ -1,12 +1,26 @@
+import { XOR } from "../data-utilities/type.utilities.js";
 import { CustomMessage } from "./message-system.utilities.props.js";
 
 export interface Validation {
     [dictionaryId: string]: ValidationError[];
 }
 
-export interface ValidationError {
+export interface InstanceValidationError {
     dataLocation: string;
     invalidMessage: string;
+}
+
+export interface SchemaValidationError {
+    invalidMessage: string;
+}
+
+export type ValidationError = XOR<InstanceValidationError, SchemaValidationError>;
+
+export type ValidationType = "schema" | "instance";
+
+export interface ValidationConfig {
+    type: ValidationType;
+    errors: ValidationError[];
 }
 
 export enum SchemaSetValidationAction {

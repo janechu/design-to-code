@@ -32,6 +32,10 @@ export enum MessageSystemValidationTypeAction {
     get = "get",
 }
 
+export enum MessageSystemSchemaValidationTypeAction {
+    update = "update",
+}
+
 export enum MessageSystemHistoryTypeAction {
     get = "get",
     previous = "previous",
@@ -143,6 +147,26 @@ export interface InitializeMessageOutgoing<TConfig = object>
      * @deprecated
      */
     historyLimit: number;
+}
+
+/**
+ * The message that the schema validation should be updated
+ */
+export interface UpdateSchemaValidationMessageIncoming<TConfig = object>
+    extends ArbitraryMessageIncoming<TConfig> {
+    type: MessageSystemType.schemaValidation;
+    action: MessageSystemSchemaValidationTypeAction.update;
+    validationErrors: ValidationError[];
+}
+
+/**
+ * The message that the schema validation has been updated
+ */
+export interface UpdateSchemaValidationMessageOutgoing<TConfig = object>
+    extends ArbitraryMessageOutgoing<TConfig> {
+    type: MessageSystemType.schemaValidation;
+    action: MessageSystemSchemaValidationTypeAction.update;
+    validationErrors: ValidationError[];
 }
 
 /**
@@ -591,6 +615,16 @@ export type NavigationMessageOutgoing =
     | GetNavigationMessageOutgoing;
 
 /**
+ * Incoming schema validation messages to the message system
+ */
+export type SchemaValidationMessageIncoming = UpdateSchemaValidationMessageIncoming;
+
+/**
+ * Outgoing schema validation messages to the message system
+ */
+export type SchemaValidationMessageOutgoing = UpdateSchemaValidationMessageOutgoing;
+
+/**
  * Incoming validation messages to the message system
  */
 export type ValidationMessageIncoming =
@@ -636,6 +670,7 @@ export type MessageSystemIncoming<C = object, OConfig = object> =
     | HistoryMessageIncoming
     | SchemaDictionaryMessageIncoming
     | NavigationMessageIncoming
+    | SchemaValidationMessageIncoming
     | ValidationMessageIncoming
     | CustomMessage<C, OConfig>;
 
@@ -649,6 +684,7 @@ export type InternalMessageSystemIncoming<C = object, OConfig = object> =
     | InternalIncomingMessage<HistoryMessageIncoming>
     | InternalIncomingMessage<SchemaDictionaryMessageIncoming>
     | InternalIncomingMessage<NavigationMessageIncoming>
+    | InternalIncomingMessage<SchemaValidationMessageIncoming>
     | InternalIncomingMessage<ValidationMessageIncoming>
     | InternalOutgoingMessage<CustomMessage<C, OConfig>>;
 
@@ -662,6 +698,7 @@ export type MessageSystemOutgoing<C = object, OConfig = object> =
     | HistoryMessageOutgoing
     | SchemaDictionaryMessageOutgoing
     | NavigationMessageOutgoing
+    | SchemaValidationMessageOutgoing
     | ValidationMessageOutgoing
     | CustomMessage<C, OConfig>;
 
@@ -676,5 +713,6 @@ export type InternalMessageSystemOutgoing<C = object, OConfig = object> =
     | InternalOutgoingMessage<HistoryMessageOutgoing>
     | InternalOutgoingMessage<SchemaDictionaryMessageOutgoing>
     | InternalOutgoingMessage<NavigationMessageOutgoing>
+    | InternalOutgoingMessage<SchemaValidationMessageOutgoing>
     | InternalOutgoingMessage<ValidationMessageOutgoing>
     | InternalOutgoingMessage<CustomMessage<C, OConfig>>;

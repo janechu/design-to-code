@@ -64,6 +64,11 @@ import controlSectionSchema from "./control.section.schema";
 import controlSectionOneOfSchema from "./control.section.one-of.schema";
 import controlSectionDisabledSchema from "./control.section.disabled.schema";
 
+/**
+ * Invalid schema
+ */
+import invalidSchema from "./invalid.schema";
+
 export {
     shippingSchema,
     alignHorizontalSchema,
@@ -126,4 +131,5 @@ export {
     textareaSchema,
     textSchema,
     tooltipSchema,
+    invalidSchema,
 };

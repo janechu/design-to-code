@@ -15,6 +15,25 @@
                 color: white;
                 padding: 0;
                 margin: 0;
+                font-family: Arial, sans-serif;
+            }
+
+            button {
+                border: 1px solid #fff;
+                cursor: pointer;
+                padding: 5px;
+                outline: 0;
+                background: #111;
+                color: #fff;
+            }
+
+            input {
+                padding: 0;
+                margin: 0;
+                outline: 0;
+                border: 0;
+                background: #fff;
+                color: #111;
             }
         </style>
         <link
@@ -25,9 +44,10 @@
     <body>
         <div id="root">
             <button id="setValidData">Set Valid Data</button>
+            <button id="setInvalidSchema">Set Invalid Schema</button>
             <button id="showSuccess">Show Success Message</button>
             <dtc-ajv-validator-messages id="validator"></dtc-ajv-validator-messages>
-            <input id="activeNavigationConfigIdInput" type="text" style="width: 800px" />
+            <input id="activeNavigationConfigIdInput" type="text" style="width: 300px" />
         </div>
     </body>
 </html>
