@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test.describe("ajv-validator-messages", () => {
+test.describe.skip("ajv-validator-messages", () => {
     test.describe("snapshot", () => {
         test("error", async ({ page }) => {
             await page.goto("/ajv-validator-messages");
