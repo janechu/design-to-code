@@ -6,5 +6,6 @@ export enum MessageSystemType {
     navigation = "navigation",
     initialize = "initialize",
     validation = "validation",
+    schemaValidation = "schema-validation",
     schemaDictionary = "schema-dictionary",
 }

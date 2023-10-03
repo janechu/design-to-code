@@ -32,6 +32,7 @@
     "start:test": "node ./www/server.cjs",
     "start:examples:form": "webpack serve --config app/examples/form/webpack.dev.cjs",
     "start:examples:ajv-validator-messages": "webpack serve --config app/examples/ajv-validator-messages/webpack.dev.cjs",
+    "start:examples:message-system": "webpack serve --config app/examples/message-system/webpack.dev.cjs",
     "test": "npm run eslint && npm run test:playwright",
     "test:playwright": "npx playwright test",
     "test:snapshots": "npx playwright test --config=playwright-snapshot.config.ts",

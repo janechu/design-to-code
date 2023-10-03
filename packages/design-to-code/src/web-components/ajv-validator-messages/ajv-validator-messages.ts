@@ -24,7 +24,7 @@ export class AjvValidatorMessages extends FASTElement {
     }
 
     private handleMessageSystem = (e: MessageEvent): void => {
-        if (e.data.type === "validation") {
+        if (e.data.type === "validation" || e.data.type === "schema-validation") {
             this.errors = e.data.validationErrors;
         }
     };
@@ -33,11 +33,13 @@ export class AjvValidatorMessages extends FASTElement {
     public errors: AjvMessage[] = [];
 
     public handleMessageClick = (message: AjvMessage): void => {
-        this.messageSystem.postMessage({
-            type: MessageSystemType.navigation,
-            action: MessageSystemNavigationTypeAction.update,
-            activeDictionaryId: message.activeDictionaryId,
-            activeNavigationConfigId: message.activeNavigationConfigId,
-        });
+        if (message.activeDictionaryId && message.activeNavigationConfigId) {
+            this.messageSystem.postMessage({
+                type: MessageSystemType.navigation,
+                action: MessageSystemNavigationTypeAction.update,
+                activeDictionaryId: message.activeDictionaryId,
+                activeNavigationConfigId: message.activeNavigationConfigId,
+            });
+        }
     };
 }

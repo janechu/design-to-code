@@ -20,7 +20,7 @@ export const ajvValidatorMessagesTemplate = html<AjvValidatorMessages>`
                 x => x.errors.length === 0 && x.showSuccess,
                 html`
                     <span class="success">
-                        No errors found. JSON validates against the schema
+                        No errors found. JSON validates against the schema.
                     </span>
                 `
             )}

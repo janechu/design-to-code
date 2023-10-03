@@ -2,6 +2,7 @@ import Ajv2019, { ErrorObject, Options } from "ajv";
 import {
     MessageSystem,
     MessageSystemDataTypeAction,
+    MessageSystemSchemaValidationTypeAction,
     MessageSystemType,
     MessageSystemValidationTypeAction,
     NavigationConfigDictionary,
@@ -9,6 +10,7 @@ import {
     SchemaSetValidationAction,
     SchemaSetValidationMessageResponse,
     Validation,
+    ValidationConfig,
     ValidationError,
 } from "../message-system/index.js";
 import {
@@ -35,6 +37,7 @@ export class AjvValidator {
     private activeDictionaryId: string;
     private navigationDictionary: NavigationConfigDictionary;
     private validation: Validation = {};
+    private schemaValidation: ValidationError[] = [];
     private schemaDictionary: SchemaDictionary = {};
     private messageSystem: MessageSystem;
     private messageSystemConfig: { onMessage: (e: MessageEvent) => void };
@@ -63,16 +66,46 @@ export class AjvValidator {
         this.messageSystem.remove(this.messageSystemConfig);
     }
 
+    private postMessage(validationErrors: ValidationConfig, dictionaryId: string): void {
+        if (validationErrors.type === "instance") {
+            this.validation[dictionaryId] = validationErrors.errors;
+
+            this.messageSystem.postMessage({
+                type: MessageSystemType.validation,
+                action: MessageSystemValidationTypeAction.update,
+                validationErrors: this.validation[dictionaryId],
+                dictionaryId: dictionaryId,
+                options: {
+                    originatorId: ajvValidationId,
+                },
+            });
+        } else {
+            this.schemaValidation = validationErrors.errors;
+
+            this.messageSystem.postMessage({
+                type: MessageSystemType.schemaValidation,
+                action: MessageSystemSchemaValidationTypeAction.update,
+                validationErrors: this.schemaValidation,
+                options: {
+                    originatorId: ajvValidationId,
+                },
+            });
+        }
+    }
+
     /**
      * Handles messages from the message system
      */
     private handleMessageSystem = (e: MessageEvent): void => {
+        let validationErrors;
+
         switch (e.data.type) {
             case MessageSystemType.initialize:
                 this.activeDictionaryId = e.data.activeDictionaryId;
                 this.navigationDictionary = e.data.navigationDictionary;
                 this.validation = {};
-                this.validation[e.data.activeDictionaryId] = this.validateData(
+
+                validationErrors = this.validate(
                     this.navigationDictionary[0][e.data.activeDictionaryId][0][
                         this.navigationDictionary[0][e.data.activeDictionaryId][1]
                     ].data,
@@ -81,15 +114,7 @@ export class AjvValidator {
                     ].schema
                 );
 
-                this.messageSystem.postMessage({
-                    type: MessageSystemType.validation,
-                    action: MessageSystemValidationTypeAction.update,
-                    validationErrors: this.validation[e.data.activeDictionaryId],
-                    dictionaryId: e.data.activeDictionaryId,
-                    options: {
-                        originatorId: ajvValidationId,
-                    },
-                });
+                this.postMessage(validationErrors, e.data.activeDictionaryId);
 
                 break;
             case MessageSystemType.data:
@@ -103,22 +128,14 @@ export class AjvValidator {
 
                     if (e.data.action === MessageSystemDataTypeAction.addLinkedData) {
                         const linkedDataRootId: string = e.data.navigation[1];
-                        this.validation[linkedDataRootId] = this.validateData(
+                        const validationErrors = this.validate(
                             e.data.navigation[0][linkedDataRootId].data,
                             e.data.navigation[0][linkedDataRootId].schema
                         );
 
-                        this.messageSystem.postMessage({
-                            type: MessageSystemType.validation,
-                            action: MessageSystemValidationTypeAction.update,
-                            validationErrors: this.validation[linkedDataRootId],
-                            dictionaryId: linkedDataRootId,
-                            options: {
-                                originatorId: ajvValidationId,
-                            },
-                        });
+                        this.postMessage(validationErrors, linkedDataRootId);
                     } else {
-                        this.validation[this.activeDictionaryId] = this.validateData(
+                        const validationErrors = this.validate(
                             this.navigationDictionary[0][this.activeDictionaryId][0][
                                 this.navigationDictionary[0][this.activeDictionaryId][1]
                             ].data,
@@ -127,15 +144,7 @@ export class AjvValidator {
                             ].schema
                         );
 
-                        this.messageSystem.postMessage({
-                            type: MessageSystemType.validation,
-                            action: MessageSystemValidationTypeAction.update,
-                            validationErrors: this.validation[this.activeDictionaryId],
-                            dictionaryId: this.activeDictionaryId,
-                            options: {
-                                originatorId: ajvValidationId,
-                            },
-                        });
+                        this.postMessage(validationErrors, this.activeDictionaryId);
                     }
                 }
 
@@ -185,9 +194,9 @@ export class AjvValidator {
     }
 
     /**
-     * Validates the data
+     * Validates the data and schema
      */
-    private validateData = (data: any, schema: any): ValidationError[] => {
+    private validate = (data: any, schema: any): ValidationConfig => {
         // convert the $schema keyword to use http://json-schema.org/schema#
         // as dialect 2019-09 is implied but will throw an error
         if (
@@ -205,30 +214,62 @@ export class AjvValidator {
         // add the schema to ajv
         if (this.schemaDictionary[schema.$id] === undefined) {
             this.schemaDictionary[schema.$id] = schema;
-            this.ajv.addSchema(schema, schema.$id);
+
+            const ajvSchemaValidationObject = this.ajv.validateSchema(schema);
+
+            if (ajvSchemaValidationObject === true) {
+                this.ajv.addSchema(schema, schema.$id);
+            } else {
+                return {
+                    type: "schema",
+                    errors: this.getErrors("schema", schema.$id),
+                };
+            }
         }
 
         const ajvValidationObject = this.ajv.validate(schema.$id, data);
 
         if (ajvValidationObject === true) {
-            return [];
+            return {
+                type: "instance",
+                errors: [],
+            };
         } else {
-            return this.ajv.errors.map((AjvError: ErrorObject) => {
-                let ajvPath = AjvError.instancePath;
-
-                if (AjvError.keyword === "required") {
-                    ajvPath = [ajvPath, AjvError.params.missingProperty].join(".");
-                }
-
-                const dataLocation = this.normalizeAjvDataPath(ajvPath);
-
-                return {
-                    dataLocation,
-                    activeDictionaryId: this.activeDictionaryId,
-                    activeNavigationConfigId: dataLocation,
-                    invalidMessage: AjvError.message,
-                };
-            });
+            return {
+                type: "instance",
+                errors: this.getErrors("instance", schema.$id),
+            };
         }
     };
+
+    private getErrors(
+        source: "schema" | "instance",
+        schemaId: string
+    ): ValidationError[] {
+        switch (source) {
+            case "instance":
+                return (this.ajv.errors || []).map((AjvError: ErrorObject) => {
+                    let ajvPath = AjvError.instancePath;
+
+                    if (AjvError.keyword === "required") {
+                        ajvPath = [ajvPath, AjvError.params.missingProperty].join(".");
+                    }
+
+                    const dataLocation = this.normalizeAjvDataPath(ajvPath);
+
+                    return {
+                        dataLocation,
+                        activeDictionaryId: this.activeDictionaryId,
+                        activeNavigationConfigId: dataLocation,
+                        invalidMessage: AjvError.message,
+                    };
+                });
+            case "schema":
+                return [
+                    {
+                        invalidMessage: `${schemaId} is an invalid schema`,
+                    },
+                ];
+        }
+    }
 }

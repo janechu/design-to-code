@@ -1073,4 +1073,100 @@ test.describe("AjvValidator", () => {
             expect(callbackData).toHaveLength(0);
         });
     });
+    test("should convert ajv errors for invalid schemas to the error format expected by the message system", async ({
+        page,
+    }) => {
+        const mappedData = await page.evaluate(
+            ([dataTypeObject, messageTypeInitialize]: [DataType, MessageSystemType]) => {
+                const schema = {
+                    $schema: "http://json-schema.org/schema#",
+                    $id: "foo",
+                    type: "error",
+                };
+                const data = 42;
+                const messageSystem = new (window as any).dtc.MessageSystem({
+                    webWorker: "",
+                    dataDictionary: [
+                        {
+                            foo: {
+                                schemaId: schema.$id,
+                                data: undefined,
+                            },
+                        },
+                        "foo",
+                    ],
+                    schemaDictionary: {
+                        foo: schema,
+                    },
+                });
+
+                const ajvMapper = new (window as any).dtc.AjvValidator({
+                    messageSystem,
+                });
+
+                const navigation = [
+                    {
+                        foo: {
+                            self: "foo",
+                            parent: null,
+                            relativeDataLocation: "",
+                            schemaLocation: "",
+                            schema,
+                            disabled: false,
+                            data,
+                            text: "foo",
+                            type: dataTypeObject,
+                            items: [],
+                        },
+                    },
+                    "foo",
+                ];
+
+                messageSystem["register"].forEach(registeredItem => {
+                    registeredItem.onMessage({
+                        data: {
+                            type: messageTypeInitialize,
+                            activeDictionaryId: "foo",
+                            activeNavigationConfigId: "foo",
+                            schema,
+                            data,
+                            dataDictionary: [
+                                {
+                                    foo: {
+                                        schemaId: "foo",
+                                        data,
+                                    },
+                                },
+                                "foo",
+                            ],
+                            navigationDictionary: [
+                                {
+                                    foo: navigation,
+                                },
+                                "foo",
+                            ],
+                            navigation,
+                            schemaDictionary: {
+                                foo: schema,
+                            },
+                            validation: {},
+                            activeHistoryIndex: 0,
+                            dictionaryId: "foo",
+                            historyId: "1",
+                            historyLimit: 30,
+                        },
+                    });
+                });
+
+                return JSON.stringify(ajvMapper["schemaValidation"]);
+            },
+            [DataType.object, MessageSystemType.initialize]
+        );
+
+        expect(JSON.parse(mappedData)).toMatchObject([
+            {
+                invalidMessage: "foo is an invalid schema",
+            },
+        ]);
+    });
 });

@@ -22,35 +22,45 @@ const activeNavigationConfigIdInput: HTMLInputElement = document.getElementById(
 const setValidData: HTMLButtonElement = document.getElementById(
     "setValidData"
 ) as HTMLButtonElement;
+const setInvalidSchema: HTMLButtonElement = document.getElementById(
+    "setInvalidSchema"
+) as HTMLButtonElement;
 const showSuccess: HTMLButtonElement = document.getElementById(
     "showSuccess"
 ) as HTMLButtonElement;
 
 if ((window as any).Worker) {
-    fastMessageSystem = new MessageSystem({
-        webWorker: fastMessageSystemWorker,
-        dataDictionary: [
-            {
-                root: {
-                    schemaId: "root",
-                    data: {},
-                },
-            },
-            "root",
-        ],
-        schemaDictionary: {
+    const initialInvalidDataDictionary = [
+        {
             root: {
-                $schema: "https://json-schema.org/draft/2019-09/schema",
-                $id: "root",
-                type: "object",
-                properties: {
-                    foo: {
-                        type: "string",
-                    },
-                },
-                required: ["foo"],
+                schemaId: "root",
+                data: {},
             },
         },
+        "root",
+    ];
+    const initialSchemaDictionary = {
+        root: {
+            $schema: "https://json-schema.org/draft/2019-09/schema",
+            $id: "root",
+            type: "object",
+            properties: {
+                foo: {
+                    type: "string",
+                },
+            },
+            required: ["foo"],
+        },
+        error: {
+            $schema: "https://json-schema.org/draft/2019-09/schema",
+            $id: "error",
+            type: "error",
+        },
+    };
+    fastMessageSystem = new MessageSystem({
+        webWorker: fastMessageSystemWorker,
+        dataDictionary: initialInvalidDataDictionary as any,
+        schemaDictionary: initialSchemaDictionary,
     });
     ajvValidatorMessages.messageSystem = fastMessageSystem;
     new AjvValidator({
@@ -71,6 +81,22 @@ if ((window as any).Worker) {
             action: MessageSystemDataTypeAction.update,
             data: "bar",
             dataLocation: "foo",
+        });
+    });
+
+    setInvalidSchema.addEventListener("click", () => {
+        fastMessageSystem.postMessage({
+            type: MessageSystemType.initialize,
+            dataDictionary: [
+                {
+                    root: {
+                        schemaId: "error",
+                        data: {},
+                    },
+                },
+                "root",
+            ],
+            schemaDictionary: initialSchemaDictionary,
         });
     });
 
