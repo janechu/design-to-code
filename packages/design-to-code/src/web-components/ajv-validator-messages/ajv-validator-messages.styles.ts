@@ -29,6 +29,9 @@ export const ajvValidatorMessagesStyles = css`
         text-decoration: none;
         padding-inline-start: 24px;
         white-space: nowrap;
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .error:before,
