@@ -13,7 +13,10 @@ export const guidanceTemplate = html<Guidance>`
                     :value=${x => x.filterText}
                 />
             </div>
-            <ul>
+            <ul
+                class="${x =>
+                    x.documents.length !== x.filteredDocuments.length ? " filtered" : ""}"
+            >
                 ${repeat(
                     x => x.filteredDocuments,
                     html`

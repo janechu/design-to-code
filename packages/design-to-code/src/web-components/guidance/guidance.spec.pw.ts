@@ -27,7 +27,9 @@ test.describe("Guidance", () => {
         const guidance = await page.locator("#guidance");
         const listItem = await guidance.locator(".list li").nth(0);
 
-        await listItem.locator("a").click();
+        await (await listItem.locator("a")).click();
+
+        await page.waitForSelector(".active");
 
         await expect(await listItem.getAttribute("class")).toEqual("active");
         await expect(await guidance.locator(".document")).not.toHaveText(
@@ -45,6 +47,8 @@ test.describe("Guidance", () => {
 
         const filter = await guidance.locator("input");
         await filter.fill("bb");
+
+        await page.waitForSelector(".filtered");
 
         await expect(await listItem.count()).toEqual(2);
     });
