@@ -54,7 +54,7 @@ export class Guidance extends FASTElement {
 
     private updateFilteredDocuments(): void {
         this.filteredDocuments = this.documents.filter(document => {
-            return document.title.includes(this.filterText);
+            return document.title.toLowerCase().includes(this.filterText.toLowerCase());
         });
     }
 
