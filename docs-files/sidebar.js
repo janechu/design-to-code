@@ -30,6 +30,13 @@ module.exports = {
                     label: "Draft 2019-09 (formerly known as Draft 8)",
                     path: "json-schema/2019-09",
                 },
+                {
+                    type: "doc",
+                    label: "Form generation",
+                    path: "json-schema/form",
+                    scripts: ["../../../formguidance.min.js"],
+                    stylesheets: ["../../../global.css-variables.css"],
+                },
             ],
         },
         {
