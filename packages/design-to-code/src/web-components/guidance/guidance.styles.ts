@@ -4,7 +4,7 @@ export const guidanceStyles = css`
     .root {
         display: flex;
         flex-direction: row;
-        column-gap: 12px;
+        column-gap: 24px;
         height: 100%;
         background: var(--dtc-l4-color);
     }
