@@ -33,6 +33,11 @@ export interface AjvValidatorConfig {
     ajvOptions?: Options;
 }
 
+const SchemaAdded = {
+    success: "success",
+    errorInvalidSchema: "errorInvalidSchema",
+} as const;
+
 export class AjvValidator {
     private activeDictionaryId: string;
     private navigationDictionary: NavigationConfigDictionary;
@@ -194,6 +199,18 @@ export class AjvValidator {
     }
 
     /**
+     * Add a JSON schema to AJV
+     */
+    private addSchemaToAjv(schema: any): keyof typeof SchemaAdded {
+        if (typeof schema.$id === "string" && this.ajv.validateSchema(schema) === true) {
+            this.ajv.addSchema(schema, schema.$id);
+            return SchemaAdded.success;
+        }
+
+        return SchemaAdded.errorInvalidSchema;
+    }
+
+    /**
      * Validates the data and schema
      */
     private validate = (data: any, schema: any): ValidationConfig => {
@@ -215,11 +232,9 @@ export class AjvValidator {
         if (this.schemaDictionary[schema.$id] === undefined) {
             this.schemaDictionary[schema.$id] = schema;
 
-            const ajvSchemaValidationObject = this.ajv.validateSchema(schema);
+            const schemaAdded = this.addSchemaToAjv(schema);
 
-            if (ajvSchemaValidationObject === true) {
-                this.ajv.addSchema(schema, schema.$id);
-            } else {
+            if (schemaAdded === SchemaAdded.errorInvalidSchema) {
                 return {
                     type: "schema",
                     errors: this.getErrors("schema", schema.$id),
@@ -267,7 +282,7 @@ export class AjvValidator {
             case "schema":
                 return [
                     {
-                        invalidMessage: `${schemaId} is an invalid schema`,
+                        invalidMessage: `${schemaId} is an invalid schema, or it may be missing an $id`,
                     },
                 ];
         }
