@@ -1165,7 +1165,7 @@ test.describe("AjvValidator", () => {
 
         expect(JSON.parse(mappedData)).toMatchObject([
             {
-                invalidMessage: "foo is an invalid schema",
+                invalidMessage: "foo is an invalid schema, or it may be missing an $id",
             },
         ]);
     });
