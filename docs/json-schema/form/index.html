@@ -375,6 +375,10 @@
 </style>
 
         
+            <script src="../../../formguidance.min.js"></script>
+        
+        
+            <link href="../../../global.css-variables.css" rel="stylesheet">
         
     </head>
     <body class="static-docs">
@@ -492,7 +496,7 @@
                     
                     <li>
                         <a
-                            class=""
+                            class="sd-active"
                             href="https://janechu.github.io/design-to-code/docs/json-schema/form"
                         >
                             Form generation
@@ -505,7 +509,7 @@
             
             <li>
                 <a
-                    class="sd-active"
+                    class=""
                     href="https://janechu.github.io/design-to-code/docs/message-system"
                 >
                     Message System
@@ -716,18 +720,12 @@
 </div>
                 <div class="sd-container">
                     
-                    <div class="sd-content"></div>
-                    <div class="sd-index"><h1>Message System</h1>
-<p>A web worker that serves as the fundamental backbone to the FAST tooling project.</p>
-<ul class="sd-category">
-    
-    <li><a href="https://janechu.github.io/design-to-code/docs/design-to-code/1.x/message-system/introduction">Introduction</a></li>
-    
-    <li><a href="https://janechu.github.io/design-to-code/docs/design-to-code/1.x/message-system/messages">Messages</a></li>
-    
-    <li><a href="https://janechu.github.io/design-to-code/docs/design-to-code/1.x/message-system/data-format">Data Format</a></li>
-    
-</ul></div>
+                    <div class="sd-content"><h1 id="form">Form</h1>
+<p>When generating a <code>&lt;form&gt;</code> the JSON schema is interpreted to create <code>&lt;form&gt;</code>, <code>&lt;input /&gt;</code> and other form elements.</p>
+<!-- the webpack.guidance.config.cjs must point to the form.guidance.ts file as an entry as well as copying the global css variables -->
+<p><dtc-form-guidance></dtc-formguidance></p>
+</div>
+                    <div class="sd-index"></div>
                 </div>
             </main>
         </div>
