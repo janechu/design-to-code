@@ -69,6 +69,8 @@ test.describe("Guidance", () => {
         const clearFilterButton = await guidance.locator("button");
         await clearFilterButton.click();
 
+        await page.waitForSelector(".filtered", { state: "detached" });
+
         await expect(await filter.inputValue()).toEqual("");
     });
 });
