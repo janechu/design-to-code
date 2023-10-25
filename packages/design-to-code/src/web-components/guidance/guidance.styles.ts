@@ -3,8 +3,8 @@ import { css } from "@microsoft/fast-element";
 export const guidanceStyles = css`
     .root {
         display: flex;
-        flex-direction: row;
-        column-gap: 24px;
+        flex-direction: column;
+        align-items: center;
         height: 100%;
         background: var(--dtc-l4-color);
     }
@@ -17,26 +17,81 @@ export const guidanceStyles = css`
         justify-content: center;
     }
 
+    .filter-region {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        background: var(--dtc-l3-color);
+    }
+
     .filter {
-        padding: 0 12px;
+        display: flex;
+        position: relative;
+        padding: 12px 0;
+        width: 250px;
+        align-items: center;
+    }
+
+    .filter button {
+        position: relative;
+        background: none;
+        border: 2px solid transparent;
+        border-radius: var(--dtc-border-radius);
+        outline: none;
+        padding: 4px 6px;
+        cursor: pointer;
+        margin-inline-start: 4px;
+        width: 24px;
+        height: 100%;
+    }
+
+    .filter button:before,
+    .filter button:after {
+        content: "";
+        position: absolute;
+        border-left: 2px solid var(--dtc-text-color);
+        display: block;
+        width: 17px;
+        height: 17px;
+    }
+
+    .filter button:before {
+        top: 7px;
+        transform: rotate(45deg);
+    }
+
+    .filter button:after {
+        top: -5px;
+        transform: rotate(-45deg);
     }
 
     .list,
     .document {
         padding: 12px 0;
-        height: 100%;
     }
 
     .list {
+        display: none;
         width: 250px;
         background: var(--dtc-l3-color);
     }
 
     .document {
         width: calc(100% - 250px);
+        height: 100%;
     }
 
-    .list ul {
+    .list.active {
+        display: block;
+    }
+
+    .list {
+        top: 50px;
+        position: absolute;
+    }
+
+    .list ul,
+    .list span {
         margin: 0;
         padding: 0;
         margin-block-start: 12px;
@@ -76,6 +131,7 @@ export const guidanceStyles = css`
         border-radius: var(--dtc-border-radius);
         color: var(--dtc-text-color);
         background-color: var(--dtc-l1-color);
+        flex-grow: 1;
     }
 
     input:focus,

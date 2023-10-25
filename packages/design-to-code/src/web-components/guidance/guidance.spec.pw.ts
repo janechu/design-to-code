@@ -25,6 +25,9 @@ test.describe("Guidance", () => {
 
     test("should show a document if a document has been selected", async ({ page }) => {
         const guidance = await page.locator("#guidance");
+
+        await guidance.locator("input").focus();
+
         const listItem = await guidance.locator(".list li").nth(0);
 
         await (await listItem.locator("a")).click();
@@ -51,5 +54,21 @@ test.describe("Guidance", () => {
         await page.waitForSelector(".filtered");
 
         await expect(await listItem.count()).toEqual(2);
+    });
+
+    test("should clear the filter if the clear filter button has been clicked", async ({
+        page,
+    }) => {
+        const guidance = await page.locator("#guidance");
+
+        const filter = await guidance.locator("input");
+        await filter.fill("bb");
+
+        await page.waitForSelector(".filtered");
+
+        const clearFilterButton = await guidance.locator("button");
+        await clearFilterButton.click();
+
+        await expect(await filter.inputValue()).toEqual("");
     });
 });
