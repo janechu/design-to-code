@@ -3,6 +3,7 @@ import { css } from "@microsoft/fast-element";
 export const guidanceStyles = css`
     .root {
         display: flex;
+        position: relative;
         flex-direction: column;
         align-items: center;
         height: 100%;
