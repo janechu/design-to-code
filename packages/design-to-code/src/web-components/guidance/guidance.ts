@@ -7,7 +7,14 @@ interface Document {
 }
 
 export class Guidance extends FASTElement {
+    @observable
+    public listVisibility: boolean = false;
+
+    @observable
     public filterText: string = "";
+    filterTextChanged(oldValue: string, newValue: string): void {
+        this.updateFilteredDocuments();
+    }
 
     @observable
     public activeDocument: Document | null = null;
@@ -45,15 +52,33 @@ export class Guidance extends FASTElement {
 
         this.activeDocument = x;
         this.activeDocument.html.classList.add("active");
+        // this.handleHideDocumentList();
     }
 
     public handleDocumentFilter(e: InputEvent): void {
         this.filterText = (e.target as HTMLInputElement).value;
-        this.updateFilteredDocuments();
+    }
+
+    public handleClearFilter(): void {
+        this.filterText = "";
+    }
+
+    public handleHideDocumentList(e: FocusEvent): void {
+        if (
+            !(e.relatedTarget instanceof HTMLElement) ||
+            (e.relatedTarget instanceof HTMLElement &&
+                e.relatedTarget.dataset?.type !== "dtc-guidance-item")
+        ) {
+            this.listVisibility = false;
+        }
+    }
+
+    public handleShowDocumentList(): void {
+        this.listVisibility = true;
     }
 
     private updateFilteredDocuments(): void {
-        this.filteredDocuments = this.documents.filter(document => {
+        this.filteredDocuments = (this.documents || []).filter(document => {
             return document.title.toLowerCase().includes(this.filterText.toLowerCase());
         });
     }
