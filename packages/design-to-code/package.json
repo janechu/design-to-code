@@ -2,7 +2,7 @@
   "name": "design-to-code",
   "description": "A set of utilities to assist in creating web UI",
   "sideEffects": false,
-  "version": "1.0.0-alpha.10",
+  "version": "1.0.0-alpha.11",
   "type": "module",
   "author": "Jane Chu",
   "license": "MIT",
