@@ -114,9 +114,6 @@ export const guidanceStyles = css`
         display: block;
         padding: 6px;
         cursor: pointer;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
     }
 
     label {
