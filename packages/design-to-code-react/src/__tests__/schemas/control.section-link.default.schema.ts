@@ -7,7 +7,7 @@ export default {
         nestedObject: {
             title: "Nested object",
             type: "object",
-            default: {}
-        }
-    }
+            default: {},
+        },
+    },
 };

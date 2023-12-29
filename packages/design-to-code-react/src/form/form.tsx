@@ -9,6 +9,10 @@ import {
     SectionLinkControl,
     SelectControl,
     TextareaControl,
+    DateControl,
+    TimeControl,
+    DateTimeControl,
+    EmailControl,
 } from "./controls";
 import {
     BareControlPlugin,
@@ -35,7 +39,6 @@ import {
     MessageSystemDataTypeAction,
     MessageSystemNavigationTypeAction,
     MessageSystemType,
-    NavigationConfig,
     NavigationConfigDictionary,
     Register,
     SchemaDictionary,
@@ -83,6 +86,10 @@ const Form: React.FC<FormProps> = (
     let textareaControl: StandardControlPlugin;
     let arrayControl: StandardControlPlugin;
     let buttonControl: StandardControlPlugin;
+    let dateControl: StandardControlPlugin;
+    let timeControl: StandardControlPlugin;
+    let dateTimeControl: StandardControlPlugin;
+    let emailControl: StandardControlPlugin;
 
     /**
      * The default form components as a dictionary
@@ -286,6 +293,30 @@ const Form: React.FC<FormProps> = (
                     component: ButtonControl,
                     context: ControlContext.fill,
                 };
+            case ControlType.date:
+                return {
+                    plugin: StandardControlPlugin,
+                    component: DateControl,
+                    context: ControlContext.fill,
+                };
+            case ControlType.time:
+                return {
+                    plugin: StandardControlPlugin,
+                    component: TimeControl,
+                    context: ControlContext.fill,
+                };
+            case ControlType.dateTime:
+                return {
+                    plugin: StandardControlPlugin,
+                    component: DateTimeControl,
+                    context: ControlContext.fill,
+                };
+            case ControlType.email:
+                return {
+                    plugin: StandardControlPlugin,
+                    component: EmailControl,
+                    context: ControlContext.fill,
+                };
             default:
                 return {
                     plugin: BareControlPlugin,
@@ -323,6 +354,13 @@ const Form: React.FC<FormProps> = (
         displayControl = findControlPlugin(hasCustomControlPlugins, ControlType.display);
         buttonControl = findControlPlugin(hasCustomControlPlugins, ControlType.button);
         sectionControl = findControlPlugin(hasCustomControlPlugins, ControlType.section);
+        dateControl = findControlPlugin(hasCustomControlPlugins, ControlType.date);
+        timeControl = findControlPlugin(hasCustomControlPlugins, ControlType.time);
+        dateTimeControl = findControlPlugin(
+            hasCustomControlPlugins,
+            ControlType.dateTime
+        );
+        emailControl = findControlPlugin(hasCustomControlPlugins, ControlType.email);
     }
 
     /**
@@ -408,6 +446,10 @@ const Form: React.FC<FormProps> = (
                 section: sectionControl,
                 sectionLink: sectionLinkControl,
                 numberField: numberFieldControl,
+                date: dateControl,
+                time: timeControl,
+                dateTime: dateTimeControl,
+                email: emailControl,
             },
             controlPlugins: props.controls,
             controlComponents: controlComponents,

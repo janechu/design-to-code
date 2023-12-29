@@ -6,44 +6,33 @@ export default {
     properties: {
         first_name: {
             title: "First Name",
-            type: "string"
+            type: "string",
         },
         last_name: {
             title: "Last Name",
-            type: "string"
+            type: "string",
         },
         street_address: {
             title: "Street",
-            type: "string"
+            type: "string",
         },
         city: {
             title: "City",
-            type: "string"
+            type: "string",
         },
         zip: {
             title: "Zip Code",
-            type: "number"
+            type: "number",
         },
         state: {
             title: "State",
             type: "string",
-            enum: [
-                "CA",
-                "PA",
-                "WA"
-            ]
+            enum: ["CA", "PA", "WA"],
         },
         gift_wrap: {
             title: "Wrap this item",
-            type: "boolean"
-        }
+            type: "boolean",
+        },
     },
-    required: [
-        "first_name",
-        "last_name",
-        "street_address",
-        "zip",
-        "city",
-        "state"
-    ]
-}
+    required: ["first_name", "last_name", "street_address", "zip", "city", "state"],
+};

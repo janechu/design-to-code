@@ -1,4 +1,5 @@
 import Ajv2019, { ErrorObject, Options } from "ajv";
+import addFormats from "ajv-formats";
 import {
     MessageSystem,
     MessageSystemDataTypeAction,
@@ -61,6 +62,7 @@ export class AjvValidator {
         const ajvOptions = config.ajvOptions ? config.ajvOptions : {};
 
         this.ajv = new Ajv2019({ allErrors: true, ...ajvOptions });
+        addFormats(this.ajv);
     }
 
     /**

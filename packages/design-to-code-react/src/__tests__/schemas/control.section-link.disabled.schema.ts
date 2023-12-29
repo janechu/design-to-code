@@ -8,6 +8,6 @@ export default {
             title: "Nested object",
             type: "object",
             disabled: true,
-        }
-    }
+        },
+    },
 };

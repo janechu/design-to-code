@@ -88,6 +88,16 @@ function ControlSwitch(props: ControlSwitchProps) {
                 return renderTextarea(
                     control !== undefined ? control : props.controls.textarea
                 );
+            case ControlType.date:
+                return renderDate(control !== undefined ? control : props.controls.date);
+            case ControlType.time:
+                return renderDate(control !== undefined ? control : props.controls.time);
+            case ControlType.dateTime:
+                return renderDate(
+                    control !== undefined ? control : props.controls.dateTime
+                );
+            case ControlType.email:
+                return renderDate(control !== undefined ? control : props.controls.email);
         }
 
         return null;
@@ -110,6 +120,17 @@ function ControlSwitch(props: ControlSwitchProps) {
 
         if (hasEnum) {
             return ControlType.select;
+        }
+
+        switch (props.schema.format) {
+            case "date":
+                return ControlType.date;
+            case "time":
+                return ControlType.time;
+            case "date-time":
+                return ControlType.dateTime;
+            case "email":
+                return ControlType.email;
         }
 
         switch (props.schema.type) {
@@ -228,6 +249,30 @@ function ControlSwitch(props: ControlSwitchProps) {
 
     function renderButton(control: StandardControlPlugin): React.ReactNode {
         control.updateProps(getCommonControlProps(ControlType.button));
+
+        return control.render();
+    }
+
+    function renderTime(control: StandardControlPlugin): React.ReactNode {
+        control.updateProps(getCommonControlProps(ControlType.time));
+
+        return control.render();
+    }
+
+    function renderDate(control: StandardControlPlugin): React.ReactNode {
+        control.updateProps(getCommonControlProps(ControlType.date));
+
+        return control.render();
+    }
+
+    function renderDateTime(control: StandardControlPlugin): React.ReactNode {
+        control.updateProps(getCommonControlProps(ControlType.dateTime));
+
+        return control.render();
+    }
+
+    function renderEmail(control: StandardControlPlugin): React.ReactNode {
+        control.updateProps(getCommonControlProps(ControlType.email));
 
         return control.render();
     }

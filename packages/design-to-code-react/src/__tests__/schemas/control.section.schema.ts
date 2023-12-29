@@ -3,5 +3,5 @@ export default {
     $id: "controlSection",
     title: "Section control",
     type: "object",
-    properties: {}
+    properties: {},
 };

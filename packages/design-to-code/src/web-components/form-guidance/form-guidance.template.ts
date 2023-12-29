@@ -283,6 +283,36 @@ export const formGuidanceTemplate = html<FormGuidance>`
                 , be sure to include a proposed solution and JSON schema example.
             </p>
         </dtc-guidance-document>
+        <dtc-guidance-document title="Format">
+            <!-- title: Format -->
+
+            <h1 id="format">Format</h1>
+            <p>
+                The
+                <code>format</code>
+                keyword is supported where they have a direct correlation to standard HTML
+                <code>input</code>
+                attribute
+                <code>type</code>
+                .
+            </p>
+            <p>The following are supported:</p>
+            <ul>
+                <li><code>date</code></li>
+                <li><code>time</code></li>
+                <li><code>date-time</code></li>
+                <li><code>email</code></li>
+            </ul>
+            <p>Example JSON schema:</p>
+            <pre><code class="language-json">{
+    &quot;$schema&quot;: &quot;http://json-schema.org/schema#&quot;,
+    &quot;$id&quot;: &quot;https://example.com/my-date.json&quot;,
+    &quot;title&quot;: &quot;Date&quot;,
+    &quot;type&quot;: &quot;string&quot;,
+    &quot;format&quot;: &quot;date&quot;
+}
+</code></pre>
+        </dtc-guidance-document>
         <dtc-guidance-document title="Dictionaries">
             <!-- title: Dictionaries -->
 

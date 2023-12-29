@@ -10,7 +10,7 @@ export default {
         },
         {
             title: "String",
-            type: "string"
-        }
-    ]
+            type: "string",
+        },
+    ],
 };

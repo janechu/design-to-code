@@ -1,0 +1,31 @@
+.dtc-time-control {
+    display: flex;
+    position: relative;
+}
+
+.dtc-time-control,
+.dtc-time-control input {
+    width: 100%;
+    color: var(--dtc-text-color);
+}
+
+.dtc-time-control input {
+    background: var(--dtc-l1-color);
+    box-sizing: border-box;
+}
+
+.dtc-time-control input:invalid {
+    border: 1px solid var(--dtc-error-color);
+}
+
+.dtc-time-control input::-webkit-calendar-picker-indicator {
+    background: none;
+    z-index: 1;
+}
+
+.dtc-time-control svg {
+    position: absolute;
+    pointer-events: none;
+    inset-inline-end: 4px;
+    margin-block-start: 4px;
+}

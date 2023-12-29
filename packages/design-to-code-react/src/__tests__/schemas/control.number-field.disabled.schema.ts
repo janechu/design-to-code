@@ -3,5 +3,5 @@ export default {
     $id: "controlNumberFieldDisabled",
     title: "NumberField control disabled",
     type: "number",
-    disabled: true
+    disabled: true,
 };
