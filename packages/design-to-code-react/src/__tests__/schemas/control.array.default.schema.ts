@@ -5,10 +5,7 @@ export default {
     type: "array",
     items: {
         title: "Array item",
-        type: "string"
+        type: "string",
     },
-    default: [
-        "foo",
-        "bar"
-    ]
+    default: ["foo", "bar"],
 };

@@ -3,5 +3,5 @@ export default {
     $id: "controlButtonDefault",
     title: "Button control with default",
     type: "null",
-    default: null
+    default: null,
 };

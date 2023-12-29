@@ -3,5 +3,5 @@ export default {
     $id: "controlButtonDisabled",
     title: "Button control disabled",
     type: "null",
-    disabled: true
+    disabled: true,
 };

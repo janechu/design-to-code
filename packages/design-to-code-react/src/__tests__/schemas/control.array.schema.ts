@@ -5,6 +5,6 @@ export default {
     type: "array",
     items: {
         title: "Array item",
-        type: "string"
-    }
+        type: "string",
+    },
 };

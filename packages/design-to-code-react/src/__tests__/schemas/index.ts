@@ -34,7 +34,7 @@ import tooltipSchema from "./tooltip.schema";
 import shippingSchema from "./shipping.schema";
 
 /**
- * Controls
+ * Type Controls
  */
 import controlArraySchema from "./control.array.schema";
 import controlArrayDisabledSchema from "./control.array.disabled.schema";
@@ -64,6 +64,22 @@ import controlSectionLinkDisabledSchema from "./control.section-link.disabled.sc
 import controlSectionSchema from "./control.section.schema";
 import controlSectionOneOfSchema from "./control.section.one-of.schema";
 import controlSectionDisabledSchema from "./control.section.disabled.schema";
+
+/**
+ * Format Controls
+ */
+import controlFormatDateSchema from "./control.format.date.schema";
+import controlFormatDateDisabledSchema from "./control.format.date.disabled.schema";
+import controlFormatDateDefaultSchema from "./control.format.date.default.schema";
+import controlFormatDateTimeSchema from "./control.format.date-time.schema";
+import controlFormatDateTimeDisabledSchema from "./control.format.date-time.disabled.schema";
+import controlFormatDateTimeDefaultSchema from "./control.format.date-time.default.schema";
+import controlFormatEmailSchema from "./control.format.email.schema";
+import controlFormatEmailDisabledSchema from "./control.format.email.disabled.schema";
+import controlFormatEmailDefaultSchema from "./control.format.email.default.schema";
+import controlFormatTimeSchema from "./control.format.time.schema";
+import controlFormatTimeDisabledSchema from "./control.format.time.disabled.schema";
+import controlFormatTimeDefaultSchema from "./control.format.time.default.schema";
 
 /**
  * Invalid schema
@@ -114,6 +130,18 @@ export {
     controlSectionSchema,
     controlSectionOneOfSchema,
     controlSectionDisabledSchema,
+    controlFormatDateSchema,
+    controlFormatDateDisabledSchema,
+    controlFormatDateDefaultSchema,
+    controlFormatDateTimeSchema,
+    controlFormatDateTimeDisabledSchema,
+    controlFormatDateTimeDefaultSchema,
+    controlFormatEmailSchema,
+    controlFormatEmailDisabledSchema,
+    controlFormatEmailDefaultSchema,
+    controlFormatTimeSchema,
+    controlFormatTimeDisabledSchema,
+    controlFormatTimeDefaultSchema,
     defaultsSchema,
     definitionsSchema,
     dictionarySchema,

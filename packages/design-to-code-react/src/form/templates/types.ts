@@ -9,6 +9,10 @@ export enum ControlType {
     display = "display",
     button = "button",
     textarea = "textarea",
+    date = "date",
+    time = "time",
+    dateTime = "date-time",
+    email = "email",
 }
 
 /**

@@ -6,8 +6,8 @@ export default {
     properties: {
         nestedObject: {
             title: "Nested object",
-            type: "object"
-        }
+            type: "object",
+        },
     },
-    required: ["nestedObject"]
+    required: ["nestedObject"],
 };

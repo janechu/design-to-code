@@ -3,5 +3,5 @@ export default {
     $id: "controlNumberFieldDefault",
     title: "NumberField control with default",
     type: "number",
-    default: 42
+    default: 42,
 };

@@ -51,6 +51,26 @@ export interface Controls {
      * The number field control
      */
     numberField: StandardControlPlugin;
+
+    /**
+     * The date control
+     */
+    date: StandardControlPlugin;
+
+    /**
+     * The time control
+     */
+    time: StandardControlPlugin;
+
+    /**
+     * The date-time control
+     */
+    dateTime: StandardControlPlugin;
+
+    /**
+     * The email control
+     */
+    email: StandardControlPlugin;
 }
 
 export type AddExampleData = (

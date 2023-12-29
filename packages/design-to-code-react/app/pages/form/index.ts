@@ -25,6 +25,18 @@ import {
     controlDisplayDefaultSchema,
     controlDisplayDisabledSchema,
     controlDisplaySchema,
+    controlFormatDateDefaultSchema,
+    controlFormatDateDisabledSchema,
+    controlFormatDateSchema,
+    controlFormatDateTimeDefaultSchema,
+    controlFormatDateTimeDisabledSchema,
+    controlFormatDateTimeSchema,
+    controlFormatEmailDefaultSchema,
+    controlFormatEmailDisabledSchema,
+    controlFormatEmailSchema,
+    controlFormatTimeDefaultSchema,
+    controlFormatTimeDisabledSchema,
+    controlFormatTimeSchema,
     controlNumberFieldDefaultSchema,
     controlNumberFieldDisabledSchema,
     controlNumberFieldSchema,
@@ -326,6 +338,50 @@ export const controlSectionOneOf: ExampleComponent = {
 };
 export const controlSectionInvalid: ExampleComponent = {
     schema: controlSectionSchema,
+};
+// Date
+export const controlDate: ExampleComponent = {
+    schema: controlFormatDateSchema,
+};
+export const controlDateDisabled: ExampleComponent = {
+    schema: controlFormatDateDisabledSchema,
+};
+export const controlDateDefault: ExampleComponent = {
+    schema: controlFormatDateDefaultSchema,
+    data: undefined,
+};
+// Time
+export const controlTime: ExampleComponent = {
+    schema: controlFormatTimeSchema,
+};
+export const controlTimeDisabled: ExampleComponent = {
+    schema: controlFormatTimeDisabledSchema,
+};
+export const controlTimeDefault: ExampleComponent = {
+    schema: controlFormatTimeDefaultSchema,
+    data: undefined,
+};
+// DateTime
+export const controlDateTime: ExampleComponent = {
+    schema: controlFormatDateTimeSchema,
+};
+export const controlDateTimeDisabled: ExampleComponent = {
+    schema: controlFormatDateTimeDisabledSchema,
+};
+export const controlDateTimeDefault: ExampleComponent = {
+    schema: controlFormatDateTimeDefaultSchema,
+    data: undefined,
+};
+// Email
+export const controlEmail: ExampleComponent = {
+    schema: controlFormatEmailSchema,
+};
+export const controlEmailDisabled: ExampleComponent = {
+    schema: controlFormatEmailDisabledSchema,
+};
+export const controlEmailDefault: ExampleComponent = {
+    schema: controlFormatEmailDefaultSchema,
+    data: undefined,
 };
 
 /**

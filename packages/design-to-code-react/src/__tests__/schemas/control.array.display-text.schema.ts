@@ -12,12 +12,12 @@ export default {
         properties: {
             text: {
                 title: "Text",
-                type: "string"
+                type: "string",
             },
             number: {
                 title: "Number",
-                type: "number"
+                type: "number",
             },
-        }
-    }
+        },
+    },
 };

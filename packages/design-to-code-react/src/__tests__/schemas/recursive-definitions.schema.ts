@@ -13,7 +13,7 @@ export default {
             properties: {
                 q: {
                     title: "Question",
-                    type: "string"
+                    type: "string",
                 },
                 a: {
                     title: "Answer",
@@ -31,30 +31,30 @@ export default {
                                         properties: {
                                             value: {
                                                 title: "value",
-                                                type: "string"
+                                                type: "string",
                                             },
                                             q: {
-                                                $ref: "#/$defs/qs"
-                                            }
-                                        }
-                                    }
-                                }
-                            }
+                                                $ref: "#/$defs/qs",
+                                            },
+                                        },
+                                    },
+                                },
+                            },
                         },
                         {
                             title: "Answer string",
-                            type: "string"
-                        }
-                    ]
-                }
-            }
+                            type: "string",
+                        },
+                    ],
+                },
+            },
         },
         qs: {
             title: "Qs",
             type: "array",
             items: {
-                $ref: "#/$defs/q"
-            }
-        }
+                $ref: "#/$defs/q",
+            },
+        },
     },
 };

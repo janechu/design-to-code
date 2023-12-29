@@ -4,5 +4,5 @@ export default {
     title: "Section control disabled",
     type: "object",
     properties: {},
-    disabled: true
+    disabled: true,
 };
