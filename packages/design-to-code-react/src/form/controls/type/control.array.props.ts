@@ -1,4 +1,4 @@
-import { ArrayControlConfig, DragState } from "../templates";
+import { ArrayControlConfig, DragState } from "../../templates";
 
 export type ArrayControlProps = ArrayControlConfig;
 

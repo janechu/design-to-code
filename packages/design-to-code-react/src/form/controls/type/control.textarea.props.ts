@@ -1,3 +1,3 @@
-import { TextareaControlConfig } from "../templates";
+import { TextareaControlConfig } from "../../templates";
 
 export type TextareaControlProps = TextareaControlConfig;

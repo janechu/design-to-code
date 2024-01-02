@@ -7,14 +7,14 @@ import {
     getOneOfAnyOfSelectOptions,
     getUpdatedCategories,
     updateControlSectionState,
-} from "./utilities/form";
+} from "../utilities/form";
 import React, { useEffect, useState } from "react";
-import { get, uniqueId } from "lodash-es";
+import { get } from "lodash-es";
 import { CategoryState, SectionControlProps } from "./control.section.props";
-import SectionControlValidation from "./utilities/section.validation";
-import FormControlSwitch from "./utilities/control-switch";
-import FormOneOfAnyOf from "./utilities/section.one-of-any-of";
-import FormDictionary from "./utilities/dictionary";
+import SectionControlValidation from "../utilities/section.validation";
+import FormControlSwitch from "../utilities/control-switch";
+import FormOneOfAnyOf from "../utilities/section.one-of-any-of";
+import FormDictionary from "../utilities/dictionary";
 import { classNames } from "@microsoft/fast-web-utilities";
 import {
     CombiningKeyword,

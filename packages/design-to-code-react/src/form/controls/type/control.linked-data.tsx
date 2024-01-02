@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { keyEnter, keyTab } from "@microsoft/fast-web-utilities";
 import { getDataFromSchema } from "design-to-code";
-import { DragItem, ItemType } from "../templates";
-import { ArrayAction, LinkedDataActionType } from "../templates/types";
+import { DragItem, ItemType } from "../../templates";
+import { ArrayAction, LinkedDataActionType } from "../../templates/types";
 import { LinkedDataControlProps } from "./control.linked-data.props";
 import cssVariables from "design-to-code/dist/stylesheets/web-components/style/global.css-variables.css";
 import cleanListStyle from "design-to-code/dist/stylesheets/web-components/style/common.clean-list.css";

@@ -1,7 +1,7 @@
 import React from "react";
 import { classNames, format } from "@microsoft/fast-web-utilities";
 import { SectionLinkControlProps } from "./control.section-link.props";
-import { isDefault } from "./utilities/form";
+import { isDefault } from "../utilities/form";
 import cssVariables from "design-to-code/dist/stylesheets/web-components/style/global.css-variables.css";
 import defaultFontStyle from "design-to-code/dist/stylesheets/web-components/style/common.default-font.css";
 import dtcClassName from "design-to-code/dist/esm/web-components/style/class-names";

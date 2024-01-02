@@ -1,4 +1,4 @@
-import { LinkedDataControlConfig } from "../templates";
+import { LinkedDataControlConfig } from "../../templates";
 
 export interface ChildComponentDataMapping {
     [T: string]: any;

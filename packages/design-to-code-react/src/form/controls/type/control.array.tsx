@@ -1,9 +1,9 @@
 import { uniqueId } from "lodash-es";
 import React, { useState } from "react";
-import { getArrayLinks, isRootLocation } from "./utilities/form";
-import { ArrayControlProps, ArrayControlState } from "./control.array.props";
-import { DragItem, ItemType } from "../templates";
-import { ArrayAction } from "../templates/types";
+import { getArrayLinks } from "../utilities/form";
+import { ArrayControlProps } from "./control.array.props";
+import { DragItem, ItemType } from "../../templates";
+import { ArrayAction } from "../../templates/types";
 import { classNames } from "@microsoft/fast-web-utilities";
 import cssVariables from "design-to-code/dist/stylesheets/web-components/style/global.css-variables.css";
 import addItemStyle from "design-to-code/dist/stylesheets/web-components/style/common.add-item.css";
