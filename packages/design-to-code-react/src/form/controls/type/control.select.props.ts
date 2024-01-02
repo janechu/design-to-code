@@ -1,4 +1,4 @@
-import { ListControlConfig } from "../templates";
+import { ListControlConfig } from "../../templates";
 
 /**
  * Select state interface

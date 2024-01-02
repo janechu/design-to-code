@@ -1,7 +1,7 @@
 import React from "react";
 import { SelectControlProps } from "./control.select.props";
 import { classNames } from "@microsoft/fast-web-utilities";
-import { isDefault } from "./utilities/form";
+import { isDefault } from "../utilities/form";
 import cssVariables from "design-to-code/dist/stylesheets/web-components/style/global.css-variables.css";
 import selectSpanStyle from "design-to-code/dist/stylesheets/web-components/style/common.select-span.css";
 import defaultFontStyle from "design-to-code/dist/stylesheets/web-components/style/common.default-font.css";

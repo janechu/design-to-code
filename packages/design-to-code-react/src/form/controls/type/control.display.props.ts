@@ -1,3 +1,3 @@
-import { CommonControlConfig } from "../templates";
+import { CommonControlConfig } from "../../templates";
 
 export type DisplayControlProps = CommonControlConfig;

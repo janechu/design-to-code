@@ -1,3 +1,3 @@
-import { NumberFieldTypeControlConfig } from "../templates";
+import { NumberFieldTypeControlConfig } from "../../templates";
 
 export type NumberFieldControlProps = NumberFieldTypeControlConfig;

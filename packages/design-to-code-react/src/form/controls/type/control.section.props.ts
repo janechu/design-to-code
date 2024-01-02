@@ -1,6 +1,6 @@
 import { CombiningKeyword } from "design-to-code";
-import { FormStrings } from "../form.props";
-import { SectionControlConfig } from "../templates";
+import { FormStrings } from "../../form.props";
+import { SectionControlConfig } from "../../templates";
 
 export interface InitialOneOfAnyOfState {
     /**

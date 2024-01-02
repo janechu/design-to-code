@@ -1,3 +1,3 @@
-import { SectionLinkControlConfig } from "../templates";
+import { SectionLinkControlConfig } from "../../templates";
 
 export type SectionLinkControlProps = SectionLinkControlConfig;
