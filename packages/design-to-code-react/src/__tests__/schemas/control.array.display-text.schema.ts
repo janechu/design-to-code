@@ -1,4 +1,4 @@
-import { displayTextDataLocationKey } from "../../form/controls/control.array";
+import { displayTextDataLocationKey } from "../../form/controls/type/control.array";
 
 export default {
     $schema: "http://json-schema.org/schema#",

@@ -8,14 +8,12 @@ import {
     CategoryState,
     SectionControlProps,
     SectionControlState,
-} from "../control.section.props";
-import { cloneDeep, get, isEmpty, mergeWith, omit, set, unset } from "lodash-es";
+} from "../type/control.section.props";
+import { get, omit } from "lodash-es";
 import {
     CombiningKeyword,
     DataDictionary,
     getDataFromSchema,
-    MessageSystem,
-    MessageSystemType,
     normalizeDataLocationToDotNotation,
     ValidationError,
 } from "design-to-code";
