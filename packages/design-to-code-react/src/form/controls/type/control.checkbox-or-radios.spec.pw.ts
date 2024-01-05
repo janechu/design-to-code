@@ -4,7 +4,7 @@ test.describe("CheckboxControl", () => {
     test("should generate an HTML input element with type 'checkbox'", async ({
         page,
     }) => {
-        await page.goto("/form?schema=controlCheckbox");
+        await page.goto("/form?schema=controlCheckboxDefault");
 
         await page.waitForSelector("input");
 
@@ -14,14 +14,23 @@ test.describe("CheckboxControl", () => {
 
         await expect(await checkbox.getAttribute("type")).toEqual("checkbox");
     });
+    test("should generate HTML input elements with type 'radio'", async ({ page }) => {
+        await page.goto("/form?schema=controlCheckbox");
+
+        await page.waitForSelector("input");
+
+        const checkbox = await page.locator("input[type='radio']");
+
+        await expect(await checkbox.count()).toEqual(2);
+    });
     test("should be disabled when disabled props is passed", async ({ page }) => {
         await page.goto("/form?schema=controlCheckboxDisabled");
 
         await page.waitForSelector("input");
 
-        const textarea = await page.locator("input");
+        const radio = await page.locator("input").nth(0);
 
-        await expect(await textarea.getAttribute("disabled")).toEqual("");
+        await expect(await radio.getAttribute("disabled")).toEqual("");
     });
     test("should have the default class when default prop is passed", async ({
         page,
@@ -45,9 +54,9 @@ test.describe("CheckboxControl", () => {
 
         await page.waitForSelector("input");
 
-        const checkbox = await page.locator("input");
+        const radio = await page.locator("input").nth(0);
 
-        await checkbox.click();
+        await radio.click();
 
         const pre = await page.locator("pre");
 

@@ -1,6 +1,6 @@
 import ArrayControl from "./control.array";
 import ButtonControl from "./control.button";
-import CheckboxControl from "./control.checkbox";
+import CheckboxControl from "./control.checkbox-or-radios";
 import DisplayControl from "./control.display";
 import NumberFieldControl from "./control.number-field";
 import SectionControl from "./control.section";

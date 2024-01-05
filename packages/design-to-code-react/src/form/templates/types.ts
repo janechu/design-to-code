@@ -2,7 +2,7 @@ export enum ControlType {
     select = "select",
     array = "array",
     linkedData = "linkedData",
-    checkbox = "checkbox",
+    checkboxOrRadios = "checkboxOrRadios",
     numberField = "numberField",
     section = "section",
     sectionLink = "sectionLink",
