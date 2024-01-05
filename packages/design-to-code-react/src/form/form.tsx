@@ -263,9 +263,9 @@ const Form: React.FC<FormProps> = (
                     component: NumberFieldControl,
                     context: ControlContext.fill,
                 };
-            case ControlType.checkbox:
+            case ControlType.checkboxOrRadios:
                 return {
-                    plugin: SingleLineControlPlugin,
+                    plugin: StandardControlPlugin,
                     component: CheckboxControl,
                     context: ControlContext.default,
                 };
@@ -341,7 +341,7 @@ const Form: React.FC<FormProps> = (
         );
         checkboxControl = findControlPlugin(
             hasCustomControlPlugins,
-            ControlType.checkbox
+            ControlType.checkboxOrRadios
         );
         sectionLinkControl = findControlPlugin(
             hasCustomControlPlugins,

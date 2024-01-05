@@ -22,8 +22,9 @@ test.describe("checkbox", () => {
             test("blur", async ({ page }) => {
                 await page.goto("/form?schema=controlCheckboxInvalid");
                 await page.waitForSelector("input");
-                await page.locator("input").focus();
-                await page.locator("input").blur();
+                const radio = await page.locator("input[type='radio']").nth(0);
+                await radio.focus();
+                await radio.blur();
                 await expect(page).toHaveScreenshot();
             });
             test("inline", async ({ page }) => {

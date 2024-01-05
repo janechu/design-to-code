@@ -59,8 +59,8 @@ function ControlSwitch(props: ControlSwitchProps) {
                 return renderButton(
                     control !== undefined ? control : props.controls.button
                 );
-            case ControlType.checkbox:
-                return renderCheckbox(
+            case ControlType.checkboxOrRadios:
+                return renderCheckboxOrRadios(
                     control !== undefined ? control : props.controls.checkbox
                 );
             case ControlType.display:
@@ -91,13 +91,15 @@ function ControlSwitch(props: ControlSwitchProps) {
             case ControlType.date:
                 return renderDate(control !== undefined ? control : props.controls.date);
             case ControlType.time:
-                return renderDate(control !== undefined ? control : props.controls.time);
+                return renderTime(control !== undefined ? control : props.controls.time);
             case ControlType.dateTime:
-                return renderDate(
+                return renderDateTime(
                     control !== undefined ? control : props.controls.dateTime
                 );
             case ControlType.email:
-                return renderDate(control !== undefined ? control : props.controls.email);
+                return renderEmail(
+                    control !== undefined ? control : props.controls.email
+                );
         }
 
         return null;
@@ -135,7 +137,7 @@ function ControlSwitch(props: ControlSwitchProps) {
 
         switch (props.schema.type) {
             case "boolean":
-                return ControlType.checkbox;
+                return ControlType.checkboxOrRadios;
             case "number":
                 return ControlType.numberField;
             case "string":
@@ -186,10 +188,10 @@ function ControlSwitch(props: ControlSwitchProps) {
     }
 
     /**
-     * Renders the checkbox form item
+     * Renders the checkbox/radios form item
      */
-    function renderCheckbox(control: SingleLineControlPlugin): React.ReactNode {
-        control.updateProps(getCommonControlProps(ControlType.checkbox));
+    function renderCheckboxOrRadios(control: SingleLineControlPlugin): React.ReactNode {
+        control.updateProps(getCommonControlProps(ControlType.checkboxOrRadios));
 
         return control.render();
     }
@@ -344,7 +346,7 @@ function ControlSwitch(props: ControlSwitchProps) {
     function shouldBeSoftRemovable(type: ControlType): boolean {
         return ![
             ControlType.button,
-            ControlType.checkbox,
+            ControlType.checkboxOrRadios,
             ControlType.display,
             ControlType.select,
         ].includes(type);
