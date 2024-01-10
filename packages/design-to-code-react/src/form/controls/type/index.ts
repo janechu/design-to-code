@@ -8,6 +8,7 @@ import SectionLinkControl from "./control.section-link";
 import SelectControl from "./control.select";
 import TextareaControl from "./control.textarea";
 import LinkedDataControl from "./control.linked-data";
+import UntypedControl from "./control.untyped";
 
 export {
     ArrayControl,
@@ -20,4 +21,5 @@ export {
     SectionLinkControl,
     SelectControl,
     TextareaControl,
+    UntypedControl,
 };

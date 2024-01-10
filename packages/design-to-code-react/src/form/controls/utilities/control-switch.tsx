@@ -100,6 +100,10 @@ function ControlSwitch(props: ControlSwitchProps) {
                 return renderEmail(
                     control !== undefined ? control : props.controls.email
                 );
+            case ControlType.untyped:
+                return renderUntyped(
+                    control !== undefined ? control : props.controls.untyped
+                );
         }
 
         return null;
@@ -146,13 +150,30 @@ function ControlSwitch(props: ControlSwitchProps) {
                 return ControlType.array;
             case "null":
                 return ControlType.button;
-            default:
+            case "object":
                 return ControlType.sectionLink;
+            default:
+                return ControlType.untyped;
         }
     }
 
     function renderDataLink(control: StandardControlPlugin): React.ReactNode {
         control.updateProps(getCommonControlProps(ControlType.linkedData));
+
+        return control.render();
+    }
+
+    /**
+     * Renders an untyped form control
+     */
+    function renderUntyped(control: StandardControlPlugin): React.ReactNode {
+        const rows: number | undefined = props.schema.rows || void 0;
+
+        control.updateProps(
+            Object.assign(getCommonControlProps(ControlType.untyped), {
+                rows,
+            })
+        );
 
         return control.render();
     }

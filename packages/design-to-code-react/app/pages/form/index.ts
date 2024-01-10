@@ -54,6 +54,9 @@ import {
     controlTextareaDefaultSchema,
     controlTextareaDisabledSchema,
     controlTextareaSchema,
+    controlUntypedDefaultSchema,
+    controlUntypedDisabledSchema,
+    controlUntypedSchema,
     controlPluginSchema as customControlSchema,
     defaultsSchema,
     definitionsSchema,
@@ -338,6 +341,17 @@ export const controlSectionOneOf: ExampleComponent = {
 };
 export const controlSectionInvalid: ExampleComponent = {
     schema: controlSectionSchema,
+};
+// Untyped
+export const controlUntyped: ExampleComponent = {
+    schema: controlUntypedSchema,
+};
+export const controlUntypedDisabled: ExampleComponent = {
+    schema: controlUntypedDisabledSchema,
+};
+export const controlUntypedDefault: ExampleComponent = {
+    schema: controlUntypedDefaultSchema,
+    data: undefined,
 };
 // Date
 export const controlDate: ExampleComponent = {

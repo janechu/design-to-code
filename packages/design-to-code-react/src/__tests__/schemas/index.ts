@@ -64,6 +64,9 @@ import controlSectionLinkDisabledSchema from "./control.section-link.disabled.sc
 import controlSectionSchema from "./control.section.schema";
 import controlSectionOneOfSchema from "./control.section.one-of.schema";
 import controlSectionDisabledSchema from "./control.section.disabled.schema";
+import controlUntypedSchema from "./control.untyped.schema";
+import controlUntypedDefaultSchema from "./control.untyped.default.schema";
+import controlUntypedDisabledSchema from "./control.untyped.disabled.schema";
 
 /**
  * Format Controls
@@ -142,6 +145,9 @@ export {
     controlFormatTimeSchema,
     controlFormatTimeDisabledSchema,
     controlFormatTimeDefaultSchema,
+    controlUntypedSchema,
+    controlUntypedDefaultSchema,
+    controlUntypedDisabledSchema,
     defaultsSchema,
     definitionsSchema,
     dictionarySchema,

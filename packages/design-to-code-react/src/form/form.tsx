@@ -13,6 +13,7 @@ import {
     TimeControl,
     DateTimeControl,
     EmailControl,
+    UntypedControl,
 } from "./controls";
 import {
     BareControlPlugin,
@@ -81,7 +82,7 @@ const Form: React.FC<FormProps> = (
     let linkedDataControl: StandardControlPlugin;
     let sectionLinkControl: StandardControlPlugin;
     let sectionControl: BareControlPlugin;
-    let checkboxControl: SingleLineControlPlugin;
+    let checkboxControl: StandardControlPlugin;
     let numberFieldControl: StandardControlPlugin;
     let textareaControl: StandardControlPlugin;
     let arrayControl: StandardControlPlugin;
@@ -90,6 +91,7 @@ const Form: React.FC<FormProps> = (
     let timeControl: StandardControlPlugin;
     let dateTimeControl: StandardControlPlugin;
     let emailControl: StandardControlPlugin;
+    let untypedControl: StandardControlPlugin;
 
     /**
      * The default form components as a dictionary
@@ -317,10 +319,16 @@ const Form: React.FC<FormProps> = (
                     component: EmailControl,
                     context: ControlContext.fill,
                 };
-            default:
+            case ControlType.section:
                 return {
                     plugin: BareControlPlugin,
                     component: SectionControl,
+                    context: ControlContext.default,
+                };
+            default:
+                return {
+                    plugin: StandardControlPlugin,
+                    component: UntypedControl,
                     context: ControlContext.default,
                 };
         }
@@ -361,6 +369,7 @@ const Form: React.FC<FormProps> = (
             ControlType.dateTime
         );
         emailControl = findControlPlugin(hasCustomControlPlugins, ControlType.email);
+        untypedControl = findControlPlugin(hasCustomControlPlugins, ControlType.untyped);
     }
 
     /**
@@ -450,6 +459,7 @@ const Form: React.FC<FormProps> = (
                 time: timeControl,
                 dateTime: dateTimeControl,
                 email: emailControl,
+                untyped: untypedControl,
             },
             controlPlugins: props.controls,
             controlComponents: controlComponents,
