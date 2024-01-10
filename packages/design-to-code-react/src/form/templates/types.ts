@@ -13,6 +13,7 @@ export enum ControlType {
     time = "time",
     dateTime = "date-time",
     email = "email",
+    untyped = "untyped",
 }
 
 /**

@@ -2,7 +2,7 @@
     color: var(--dtc-text-color);
     width: 100%;
     border: none;
-    resize: none;
+    resize: vertical;
     padding: 3px 5px 2px 5px;
     outline: none;
     font-size: var(--dtc-text-size-default);

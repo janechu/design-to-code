@@ -1,5 +1,4 @@
 import { StandardControlPlugin } from "../../templates";
-import { SingleLineControlPlugin } from "../../templates/plugin.control.single-line";
 
 export interface Controls {
     /**
@@ -20,7 +19,7 @@ export interface Controls {
     /**
      * The checkbox control
      */
-    checkbox: SingleLineControlPlugin;
+    checkbox: StandardControlPlugin;
 
     /**
      * The display control
@@ -71,6 +70,11 @@ export interface Controls {
      * The email control
      */
     email: StandardControlPlugin;
+
+    /**
+     * The untyped control
+     */
+    untyped: StandardControlPlugin;
 }
 
 export type AddExampleData = (

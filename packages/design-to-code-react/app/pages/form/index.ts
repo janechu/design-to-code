@@ -73,6 +73,9 @@ import {
     textareaSchema,
     textSchema,
     tooltipSchema,
+    controlUntypedSchema,
+    controlUntypedDisabledSchema,
+    controlUntypedDefaultSchema,
 } from "../../../src/__tests__/schemas";
 
 export const category: ExampleComponent = {
@@ -338,6 +341,17 @@ export const controlSectionOneOf: ExampleComponent = {
 };
 export const controlSectionInvalid: ExampleComponent = {
     schema: controlSectionSchema,
+};
+// Untyped
+export const controlUntyped: ExampleComponent = {
+    schema: controlUntypedSchema,
+};
+export const controlUntypedDisabled: ExampleComponent = {
+    schema: controlUntypedDisabledSchema,
+};
+export const controlUntypedDefault: ExampleComponent = {
+    schema: controlUntypedDefaultSchema,
+    data: undefined,
 };
 // Date
 export const controlDate: ExampleComponent = {
