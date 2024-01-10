@@ -54,6 +54,9 @@ import {
     controlTextareaDefaultSchema,
     controlTextareaDisabledSchema,
     controlTextareaSchema,
+    controlUntypedDefaultSchema,
+    controlUntypedDisabledSchema,
+    controlUntypedSchema,
     controlPluginSchema as customControlSchema,
     defaultsSchema,
     definitionsSchema,
@@ -73,9 +76,6 @@ import {
     textareaSchema,
     textSchema,
     tooltipSchema,
-    controlUntypedSchema,
-    controlUntypedDisabledSchema,
-    controlUntypedDefaultSchema,
 } from "../../../src/__tests__/schemas";
 
 export const category: ExampleComponent = {
