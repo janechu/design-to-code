@@ -52,7 +52,7 @@ function getDefaultOrExample(schema: any): any | void {
  * Resolves a schema from a $ref
  */
 function getSchemaFromRef(baseSchema: any, schema: any): any {
-    if ((schema.$ref as string).startsWith("#/")) {
+    if ((schema.$ref as string).startsWith("#")) {
         return get(baseSchema, normalizeURIToDotNotation(schema.$ref));
     }
 

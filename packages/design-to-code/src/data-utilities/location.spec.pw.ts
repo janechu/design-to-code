@@ -24,6 +24,9 @@ test.describe("normalizeDataLocationToDotLocation", () => {
 });
 
 test.describe("normalizeURIToDotNotation", () => {
+    test("should convert a root level fragment URI to dot location", () => {
+        expect(normalizeURIToDotNotation("#")).toEqual("");
+    });
     test("should convert a fragment URI to dot location", () => {
         expect(normalizeURIToDotNotation("#/foo/bar")).toEqual("foo.bar");
     });

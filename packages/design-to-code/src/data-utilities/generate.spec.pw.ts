@@ -220,6 +220,31 @@ test.describe("getDataFromSchema", () => {
 
         expect(getDataFromSchema(schemaWithNestedOneOfs)).toMatchObject({});
     });
+    test("should return data when the schema references a root definition", () => {
+        const schemaWithDefinition: any = {
+            $schema: "http://json-schema.org/schema#",
+            $id: "https://example.com/schemas/customer",
+            id: "definitions",
+            title: "A schema with definitions",
+            type: "object",
+            properties: {
+                a: {
+                    type: "string",
+                },
+                b: {
+                    type: "array",
+                    items: {
+                        $ref: "#",
+                    },
+                },
+            },
+            required: ["a"],
+        };
+
+        expect(
+            getDataFromSchema(schemaWithDefinition, schemaWithDefinition.properties.a)
+        ).toEqual("");
+    });
     test("should return data when the schema references a definition", () => {
         const schemaWithDefinition: any = {
             $schema: "http://json-schema.org/schema#",
