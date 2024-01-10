@@ -238,7 +238,8 @@ function getNavigationItems(
         default:
         case DataType.unknown:
             if (schema.$ref) {
-                if (schema.$ref.startsWith("#/")) {
+                // relative $ref
+                if (schema.$ref.startsWith("#")) {
                     return [
                         getNavigationRecursive(
                             get(
@@ -252,7 +253,7 @@ function getNavigationItems(
                             data,
                             undefined,
                             dataLocation,
-                            schema.$ref.slice(2).split("/").join("."),
+                            normalizeURIToDotNotation(schema.$ref),
                             parent
                         ),
                     ];
