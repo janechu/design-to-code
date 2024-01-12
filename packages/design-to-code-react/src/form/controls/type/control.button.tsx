@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ButtonControlProps } from "./control.button.props";
 import { classNames } from "@microsoft/fast-web-utilities";
 import { isDefault } from "../utilities/form";
@@ -35,6 +35,13 @@ function ButtonControl(props: ButtonControlProps & React.PropsWithChildren) {
      */
     function handleInputChange(): void {}
 
+    useEffect(() => {
+        if (props.validate) {
+            props.updateValidity();
+            props.reportValidity();
+        }
+    }, [props.validate]);
+
     return (
         <React.Fragment>
             <button
@@ -47,8 +54,8 @@ function ButtonControl(props: ButtonControlProps & React.PropsWithChildren) {
                     ]
                 )}
                 ref={props.elementRef as React.Ref<HTMLButtonElement>}
-                onBlur={props.updateValidity}
-                onFocus={props.reportValidity}
+                onBlur={() => props.updateValidity()}
+                onFocus={() => props.reportValidity()}
                 onClick={handleButtonClick()}
                 disabled={props.disabled}
             >

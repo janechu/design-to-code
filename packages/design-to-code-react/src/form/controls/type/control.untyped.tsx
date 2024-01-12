@@ -21,6 +21,13 @@ function UntypedControl(props: UntypedControlProps) {
         setDetectedType(getType());
     }, [props.value]);
 
+    useEffect(() => {
+        if (props.validate) {
+            props.updateValidity();
+            props.reportValidity();
+        }
+    }, [props.validate]);
+
     function getType(): DataType {
         const typeofValue = typeof props.value;
         return Array.isArray(props.value)

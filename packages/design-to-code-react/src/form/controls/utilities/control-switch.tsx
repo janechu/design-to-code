@@ -357,6 +357,7 @@ function ControlSwitch(props: ControlSwitchProps) {
             strings: props.strings,
             messageSystemOptions: props.messageSystemOptions,
             categories: props.categories,
+            validate: props.validate,
         };
     }
 

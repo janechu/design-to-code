@@ -200,6 +200,11 @@ export interface ControlTemplateUtilitiesProps
      * Localized strings for default controls.
      */
     strings: FormStrings;
+
+    /**
+     * Validate the component
+     */
+    validate: boolean;
 }
 
 export interface CommonControlConfig {
@@ -264,6 +269,11 @@ export interface CommonControlConfig {
     validationErrors: ValidationError[];
 
     /**
+     * The invalid message
+     */
+    invalidMessage: string;
+
+    /**
      * Display the validation inline
      */
     displayValidationInline?: boolean;
@@ -284,7 +294,7 @@ export interface CommonControlConfig {
      * Callback for updating validity on
      * the element that is assigned the ref
      */
-    updateValidity: () => void;
+    updateValidity: (refs?: React.RefObject<HTMLElement>[]) => void;
 
     /**
      * Callback for handling the updating of the value
@@ -305,6 +315,11 @@ export interface CommonControlConfig {
      * Localized strings for default controls.
      */
     strings: FormStrings;
+
+    /**
+     * Validate controls
+     */
+    validate: boolean;
 }
 
 export interface NumberFieldTypeControlOptions {

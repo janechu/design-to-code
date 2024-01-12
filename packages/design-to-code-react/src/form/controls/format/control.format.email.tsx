@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { EmailControlProps } from "./control.format.email.props";
 import { classNames } from "@microsoft/fast-web-utilities";
 import { isDefault } from "../utilities/form";
@@ -32,6 +32,13 @@ function EmailControl(props: EmailControlProps) {
         };
     }
 
+    useEffect(() => {
+        if (props.validate) {
+            props.updateValidity();
+            props.reportValidity();
+        }
+    }, [props.validate]);
+
     return (
         <input
             className={classNames(
@@ -47,8 +54,8 @@ function EmailControl(props: EmailControlProps) {
             onChange={handleChange()}
             disabled={props.disabled}
             ref={props.elementRef as React.MutableRefObject<HTMLInputElement>}
-            onBlur={props.updateValidity}
-            onFocus={props.reportValidity}
+            onBlur={() => props.updateValidity()}
+            onFocus={() => props.reportValidity()}
         />
     );
 }

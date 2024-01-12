@@ -6,9 +6,9 @@ test.describe("CheckboxControl", () => {
     }) => {
         await page.goto("/form?schema=controlCheckboxDefault");
 
-        await page.waitForSelector("input");
+        await page.waitForSelector("input[type='checkbox']");
 
-        const checkbox = await page.locator("input");
+        const checkbox = await page.locator("input[type='checkbox']");
 
         await expect(await checkbox.count()).toEqual(1);
 
@@ -37,7 +37,7 @@ test.describe("CheckboxControl", () => {
     }) => {
         await page.goto("/form?schema=controlCheckboxDefault");
 
-        await page.waitForSelector("input");
+        await page.waitForSelector("input[type='checkbox']");
 
         const checkboxContainer = await page.locator(".dtc-checkbox-control");
 
@@ -76,9 +76,9 @@ test.describe("CheckboxControl", () => {
     test("should not show default values if data exists", async ({ page }) => {
         await page.goto("/form?schema=controlCheckboxDefault");
 
-        await page.waitForSelector("input");
+        await page.waitForSelector("input[type='checkbox']");
 
-        const checkbox = await page.locator("input");
+        const checkbox = await page.locator("input[type='checkbox']");
 
         await checkbox.click();
 

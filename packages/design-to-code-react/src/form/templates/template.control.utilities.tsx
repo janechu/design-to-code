@@ -244,12 +244,20 @@ export interface UpdateValidityProps {
  *    updateValidity();
  * });
  */
-export function updateValidity(props: UpdateValidityProps): () => void {
-    return function (): void {
+export function updateValidity(
+    props: UpdateValidityProps
+): (refs?: React.RefObject<HTMLInputElement>[]) => void {
+    return function (refs?: React.RefObject<HTMLInputElement>[]): void {
         const formControlElement: HTMLElement = props.ref.current;
 
         if (formControlElement !== null && typeof formControlElement !== "undefined") {
             props.ref.current.setCustomValidity(props.invalidMessage);
+        }
+
+        if (Array.isArray(refs)) {
+            refs.forEach(ref => {
+                ref.current.setCustomValidity(props.invalidMessage);
+            });
         }
     };
 }
@@ -334,6 +342,7 @@ export function getConfig(props: GetConfigProps): ControlConfig {
         strings: props.strings,
         messageSystemOptions: props.messageSystemOptions,
         categories: props.categories,
+        validate: props.validate,
     };
 }
 

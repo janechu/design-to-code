@@ -194,6 +194,7 @@ function SectionControl(props: SectionControlProps) {
                 type={props.type}
                 categories={props.categories}
                 index={index}
+                validate={props.validate}
             />
         );
     }
@@ -385,6 +386,7 @@ function SectionControl(props: SectionControlProps) {
                     strings={props.strings}
                     messageSystemOptions={props.messageSystemOptions}
                     categories={props.categories}
+                    validate={props.validate}
                 />
             );
         }

@@ -160,6 +160,7 @@ function Dictionary(props: DictionaryProps) {
                                     schemaDictionary={props.schemaDictionary}
                                     messageSystem={props.messageSystem}
                                     messageSystemOptions={props.messageSystemOptions}
+                                    validate={props.validate}
                                 />
                             </div>
                         </React.Fragment>

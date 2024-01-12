@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { DateControlProps } from "./control.format.date.props";
 import { classNames } from "@microsoft/fast-web-utilities";
 import { isDefault } from "../utilities/form";
@@ -32,6 +32,13 @@ function DateControl(props: DateControlProps) {
         };
     }
 
+    useEffect(() => {
+        if (props.validate) {
+            props.updateValidity();
+            props.reportValidity();
+        }
+    }, [props.validate]);
+
     return (
         <span
             className={classNames(
@@ -50,8 +57,8 @@ function DateControl(props: DateControlProps) {
                 onChange={handleChange()}
                 disabled={props.disabled}
                 ref={props.elementRef as React.MutableRefObject<HTMLInputElement>}
-                onBlur={props.updateValidity}
-                onFocus={props.reportValidity}
+                onBlur={() => props.updateValidity()}
+                onFocus={() => props.reportValidity()}
             />
             <svg
                 xmlns="http://www.w3.org/2000/svg"
