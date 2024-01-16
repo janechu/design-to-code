@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { DateTimeControlProps } from "./control.format.date-time.props";
 import { classNames } from "@microsoft/fast-web-utilities";
 import { isDefault } from "../utilities/form";
@@ -35,6 +35,13 @@ function DateTimeControl(props: DateTimeControlProps) {
         };
     }
 
+    useEffect(() => {
+        if (props.validate) {
+            props.updateValidity();
+            props.reportValidity();
+        }
+    }, [props.validate]);
+
     return (
         <span
             className={classNames(
@@ -53,8 +60,8 @@ function DateTimeControl(props: DateTimeControlProps) {
                 onChange={handleChange()}
                 disabled={props.disabled}
                 ref={props.elementRef as React.MutableRefObject<HTMLInputElement>}
-                onBlur={props.updateValidity}
-                onFocus={props.reportValidity}
+                onBlur={() => props.updateValidity()}
+                onFocus={() => props.reportValidity()}
             />
             <svg
                 xmlns="http://www.w3.org/2000/svg"

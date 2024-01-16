@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { CheckboxControlProps } from "./control.checkbox-or-radios.props";
 import { classNames } from "@microsoft/fast-web-utilities";
 import { isDefault } from "../utilities/form";
@@ -21,9 +21,11 @@ function CheckboxOrRadiosControl(props: CheckboxControlProps) {
     const value: boolean =
         typeof props.value === "boolean"
             ? props.value
-            : containsDefault
+            : typeof props.value === "undefined" && containsDefault
             ? props.default
             : false;
+    const radioTrueRef = useRef(null);
+    const radioFalseRef = useRef(null);
 
     function handleChange(): (e: React.ChangeEvent<HTMLInputElement>) => void {
         return (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -37,6 +39,25 @@ function CheckboxOrRadiosControl(props: CheckboxControlProps) {
             });
         };
     }
+
+    function updateRadioValidity() {
+        props.updateValidity([radioTrueRef, radioFalseRef]);
+    }
+
+    useEffect(() => {
+        if (props.validate && containsDefault) {
+            props.updateValidity();
+            props.reportValidity();
+        } else if (!containsDefault) {
+            updateRadioValidity();
+        }
+    }, [props.validate]);
+
+    useEffect(() => {
+        if (!containsDefault) {
+            updateRadioValidity();
+        }
+    }, [props.value]);
 
     function renderCheckbox() {
         return (
@@ -59,8 +80,8 @@ function CheckboxOrRadiosControl(props: CheckboxControlProps) {
                     checked={value}
                     disabled={props.disabled}
                     ref={props.elementRef as React.Ref<HTMLInputElement>}
-                    onFocus={props.reportValidity}
-                    onBlur={props.updateValidity}
+                    onFocus={() => props.reportValidity()}
+                    onBlur={() => props.updateValidity()}
                 />
                 <span className={"dtc-checkbox-control_checkmark"} />
             </div>
@@ -85,9 +106,9 @@ function CheckboxOrRadiosControl(props: CheckboxControlProps) {
                         value={"true"}
                         onChange={handleChange()}
                         checked={value.toString() === "true"}
-                        ref={props.elementRef as React.Ref<HTMLInputElement>}
-                        onFocus={props.reportValidity}
-                        onBlur={props.updateValidity}
+                        ref={radioTrueRef}
+                        onFocus={() => props.reportValidity()}
+                        onBlur={updateRadioValidity}
                         disabled={props.disabled}
                     />
                     True
@@ -100,10 +121,14 @@ function CheckboxOrRadiosControl(props: CheckboxControlProps) {
                         name={props.dataLocation}
                         value={"false"}
                         onChange={handleChange()}
-                        checked={value.toString() === "false"}
-                        ref={props.elementRef as React.Ref<HTMLInputElement>}
-                        onFocus={props.reportValidity}
-                        onBlur={props.updateValidity}
+                        checked={
+                            props.invalidMessage !== ""
+                                ? false
+                                : value.toString() === "false"
+                        }
+                        ref={radioFalseRef}
+                        onFocus={() => props.reportValidity()}
+                        onBlur={updateRadioValidity}
                         disabled={props.disabled}
                     />
                     False

@@ -96,6 +96,11 @@
     border-radius: 50%;
     display: grid;
     place-content: center;
+    border: 1px solid transparent;
+}
+
+.dtc-radio-control input:invalid {
+    border-color: var(--dtc-error-color);
 }
 
 .dtc-radio-control input::before {

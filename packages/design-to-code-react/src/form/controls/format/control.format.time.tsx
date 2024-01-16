@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { TimeControlProps } from "./control.format.time.props";
 import { classNames } from "@microsoft/fast-web-utilities";
 import { isDefault } from "../utilities/form";
@@ -35,6 +35,13 @@ function TimeControl(props: TimeControlProps) {
         };
     }
 
+    useEffect(() => {
+        if (props.validate) {
+            props.updateValidity();
+            props.reportValidity();
+        }
+    }, [props.validate]);
+
     return (
         <span
             className={classNames(
@@ -53,8 +60,8 @@ function TimeControl(props: TimeControlProps) {
                 onChange={handleChange()}
                 disabled={props.disabled}
                 ref={props.elementRef as React.MutableRefObject<HTMLInputElement>}
-                onBlur={props.updateValidity}
-                onFocus={props.reportValidity}
+                onBlur={() => props.updateValidity()}
+                onFocus={() => props.reportValidity()}
             />
             {/* !Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc. */}
             <svg

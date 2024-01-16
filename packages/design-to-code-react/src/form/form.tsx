@@ -19,7 +19,6 @@ import {
     BareControlPlugin,
     ControlConfig,
     ControlType,
-    SingleLineControlPlugin,
     StandardControlPlugin,
 } from "./templates";
 import { ControlContext, LinkedDataActionType, OnChangeConfig } from "./templates/types";
@@ -485,6 +484,7 @@ const Form: React.FC<FormProps> = (
             strings: strings,
             messageSystemOptions: options,
             categories: props.categories || {},
+            validate: props.showValidation,
         });
 
         return control.render();

@@ -70,6 +70,7 @@ export function FormTestPage() {
     const [searchParams, setSearchParams] = useSearchParams();
     const [displayValidationInline, setDisplayValidationInline] = useState(false);
     const [displayValidationErrorList, setDisplayValidationErrorList] = useState(false);
+    const [showValidation, setShowValidation] = useState(false);
 
     const handleMessageSystem = e => {
         switch (e.data?.type) {
@@ -101,6 +102,7 @@ export function FormTestPage() {
 
         const displayValidationInline = searchParams.get("displayValidationInline");
         const displayValidationErrorList = searchParams.get("displayValidationErrorList");
+        const showValidation = searchParams.get("showValidation");
 
         if (displayValidationInline) {
             setDisplayValidationInline(!!displayValidationInline);
@@ -108,6 +110,10 @@ export function FormTestPage() {
 
         if (displayValidationErrorList) {
             setDisplayValidationErrorList(!!displayValidationErrorList);
+        }
+
+        if (showValidation) {
+            setShowValidation(!!showValidation);
         }
     }, [ready]);
 
@@ -134,6 +140,7 @@ export function FormTestPage() {
                 messageSystem={messageSystem}
                 displayValidationInline={displayValidationInline}
                 displayValidationErrorList={displayValidationErrorList}
+                showValidation={showValidation}
             />
             <pre>{JSON.stringify(data, null, 2)}</pre>
         </div>

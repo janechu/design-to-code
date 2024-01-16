@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { SelectControlProps } from "./control.select.props";
 import { classNames } from "@microsoft/fast-web-utilities";
 import { isDefault } from "../utilities/form";
@@ -65,6 +65,13 @@ function SelectControl(props: SelectControlProps) {
         });
     }
 
+    useEffect(() => {
+        if (props.validate) {
+            props.updateValidity();
+            props.reportValidity();
+        }
+    }, [props.validate]);
+
     return (
         <span
             className={classNames(
@@ -82,8 +89,8 @@ function SelectControl(props: SelectControlProps) {
                 value={getValue()}
                 disabled={props.disabled}
                 ref={props.elementRef as React.Ref<HTMLSelectElement>}
-                onBlur={props.updateValidity}
-                onFocus={props.reportValidity}
+                onBlur={() => props.updateValidity()}
+                onFocus={() => props.reportValidity()}
             >
                 {renderOptions()}
             </select>

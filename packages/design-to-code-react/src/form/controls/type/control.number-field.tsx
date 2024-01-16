@@ -82,6 +82,13 @@ function NumberFieldControl(props: NumberFieldControlProps) {
         };
     });
 
+    useEffect(() => {
+        if (props.validate) {
+            props.updateValidity();
+            props.reportValidity();
+        }
+    }, [props.validate]);
+
     return (
         <input
             className={classNames(

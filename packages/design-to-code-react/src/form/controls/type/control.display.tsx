@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { DisplayControlProps } from "./control.display.props";
 import { classNames } from "@microsoft/fast-web-utilities";
 import { isDefault } from "../utilities/form";
@@ -47,6 +47,13 @@ function DisplayControl(props: DisplayControlProps) {
         }
     }
 
+    useEffect(() => {
+        if (props.validate) {
+            props.updateValidity();
+            props.reportValidity();
+        }
+    }, [props.validate]);
+
     return (
         <input
             className={classNames(
@@ -59,8 +66,8 @@ function DisplayControl(props: DisplayControlProps) {
             )}
             type={"text"}
             ref={props.elementRef as React.Ref<HTMLInputElement>}
-            onBlur={props.updateValidity}
-            onFocus={props.reportValidity}
+            onBlur={() => props.updateValidity()}
+            onFocus={() => props.reportValidity()}
             value={getDisplayValue(props.value)}
             onChange={handleInputChange}
             disabled={props.disabled}

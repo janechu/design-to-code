@@ -100,6 +100,11 @@ export interface FormProps {
      * Category configurations
      */
     categories?: FormCategoryDictionary;
+
+    /**
+     * Show validation against all visible controls
+     */
+    showValidation?: boolean;
 }
 
 /**

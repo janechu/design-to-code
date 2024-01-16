@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TextareaControlProps } from "./control.textarea.props";
 import { classNames } from "@microsoft/fast-web-utilities";
 import { isDefault } from "../utilities/form";
@@ -50,6 +50,13 @@ function TextareaControl(props: TextareaControlProps) {
             props.onChange({ value: e.target.value });
         };
     }
+
+    useEffect(() => {
+        if (props.validate) {
+            props.updateValidity();
+            props.reportValidity();
+        }
+    }, [props.validate]);
 
     return (
         <textarea
