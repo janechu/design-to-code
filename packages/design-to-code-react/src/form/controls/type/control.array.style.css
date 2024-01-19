@@ -9,6 +9,8 @@
 
 .dtc-array-control_add-item {
     position: relative;
+    height: 30px;
+    padding-bottom: 5px;
 }
 
 .dtc-array-control_add-item-label {
