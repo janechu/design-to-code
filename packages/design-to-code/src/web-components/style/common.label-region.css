@@ -1,6 +1,6 @@
 .dtc-common-label-region {
     display: flex;
-    max-width: 100%;
-    padding-bottom: 10px;
+    column-gap: 8px;
+    width: 100%;
     height: 16px;
 }

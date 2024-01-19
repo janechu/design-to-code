@@ -268,7 +268,7 @@ const Form: React.FC<FormProps> = (
                 return {
                     plugin: StandardControlPlugin,
                     component: CheckboxControl,
-                    context: ControlContext.default,
+                    context: ControlContext.fill,
                 };
             case ControlType.sectionLink:
                 return {
@@ -328,7 +328,7 @@ const Form: React.FC<FormProps> = (
                 return {
                     plugin: StandardControlPlugin,
                     component: UntypedControl,
-                    context: ControlContext.default,
+                    context: ControlContext.fill,
                 };
         }
     }

@@ -1,6 +1,8 @@
-.dtc-common-soft-remove-input {
+.dtc-common-remove-input {
     appearance: none;
+    cursor: pointer;
     background: none;
+    padding: 2px;
     position: absolute;
     border: none;
     width: 18px;
@@ -10,15 +12,15 @@
     border-radius: var(--dtc-border-radius);
 }
 
-.dtc-common-soft-remove-input:focus-visible {
+.dtc-common-remove-input:focus-visible {
     box-shadow: inset 0 0 0 1px var(--dtc-accent-color);
     outline: none;
 }
 
-.dtc-common-soft-remove-input + svg {
+.dtc-common-remove-input + svg {
     fill: var(--dtc-text-color);
 }
 
-.dtc-common-soft-remove-input:disabled + svg {
+.dtc-common-remove-input:disabled + svg {
     opacity: var(--dtc-disable-opacity);
 }

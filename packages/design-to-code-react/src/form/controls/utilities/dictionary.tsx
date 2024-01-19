@@ -141,7 +141,7 @@ function Dictionary(props: DictionaryProps) {
                                     onUpdateSection={props.onUpdateSection}
                                     required={isRequired(currentKey)}
                                     invalidMessage={invalidMessage}
-                                    softRemove={false}
+                                    remove={false}
                                     displayValidationInline={
                                         props.displayValidationInline
                                     }
