@@ -1,3 +1,6 @@
 .dtc-common-control {
+    display: flex;
+    align-items: center;
+    padding-top: 4px;
     width: calc(100% - var(--dtc-gutter));
 }

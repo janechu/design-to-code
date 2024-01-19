@@ -5,7 +5,7 @@ import {
     NavigationConfigDictionary,
     Validation,
 } from "design-to-code";
-import { SingleLineControlPlugin, StandardControlPlugin } from "./templates";
+import { StandardControlPlugin } from "./templates";
 import { ControlContext } from "./templates/types";
 
 /**
@@ -163,12 +163,14 @@ export interface FormState {
 }
 
 export interface ControlPluginConfig {
-    plugin: typeof StandardControlPlugin | typeof SingleLineControlPlugin;
+    plugin: typeof StandardControlPlugin;
     component: React.ComponentClass | React.FC;
     context: ControlContext;
 }
 
 export interface FormStrings {
+    applyConst: string;
+    applyDefault: string;
     arrayAddItemTip: string;
     arrayAddItemLabel: string;
     linkedDataPlaceholder: string;

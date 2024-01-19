@@ -6,7 +6,7 @@ import {
     renderDefaultValueIndicator,
     renderInvalidMessage,
     renderRequired,
-    renderSoftRemove,
+    renderRemove,
 } from "./template.control.utilities";
 import { StandardControlTemplateProps } from "./template.control.standard.props";
 import { ControlContext } from "./types";
@@ -14,8 +14,8 @@ import { classNames } from "@microsoft/fast-web-utilities";
 import cssVariables from "design-to-code/dist/stylesheets/web-components/style/global.css-variables.css";
 import interactiveFormControlIndicatorStyle from "design-to-code/dist/stylesheets/web-components/style/common.interactive-form-control-indicator.css";
 import requiredStyle from "design-to-code/dist/stylesheets/web-components/style/common.required.css";
-import softRemoveStyle from "design-to-code/dist/stylesheets/web-components/style/common.soft-remove.css";
-import softRemoveInputStyle from "design-to-code/dist/stylesheets/web-components/style/common.soft-remove-input.css";
+import removeStyle from "design-to-code/dist/stylesheets/web-components/style/common.remove.css";
+import removeInputStyle from "design-to-code/dist/stylesheets/web-components/style/common.remove-input.css";
 import controlWrapperStyle from "design-to-code/dist/stylesheets/web-components/style/common.control-wrapper.css";
 import formControlDisabledStyle from "design-to-code/dist/stylesheets/web-components/style/common.form-control-disabled.css";
 import controlRegionStyle from "design-to-code/dist/stylesheets/web-components/style/common.control-region.css";
@@ -31,8 +31,8 @@ import { FormHTMLElement } from "./template.control.utilities.props";
 // tree-shaking
 cssVariables;
 interactiveFormControlIndicatorStyle;
-softRemoveStyle;
-softRemoveInputStyle;
+removeStyle;
+removeInputStyle;
 requiredStyle;
 controlWrapperStyle;
 formControlDisabledStyle;
@@ -49,17 +49,10 @@ style;
  */
 function StandardControlTemplate(props: StandardControlTemplateProps) {
     const ref: React.MutableRefObject<null> = React.createRef<null>();
-    let cache: any = undefined;
-
-    function setCache(updatedCache: any): void {
-        cache = updatedCache;
-    }
 
     const aggregateProps = {
         ...props,
         ref,
-        cache,
-        setCache,
     };
 
     function renderControl(context: ControlContext): React.ReactNode {
@@ -114,10 +107,10 @@ function StandardControlTemplate(props: StandardControlTemplateProps) {
                     {renderControl(ControlContext.default)}
                 </div>
                 <div
-                    className={`dtc-standard-control-template_soft-remove ${dtcClassName.commonSoftRemove}`}
+                    className={`dtc-standard-control-template_remove ${dtcClassName.commonRemove}`}
                 >
-                    {renderSoftRemove({
-                        className: `dtc-standard-control-template_soft-remove-input ${dtcClassName.commonSoftRemoveInput}`,
+                    {renderRemove({
+                        className: `dtc-standard-control-template_remove-input ${dtcClassName.commonRemoveInput}`,
                         ...aggregateProps,
                     })}
                 </div>

@@ -8,7 +8,6 @@ import {
 } from "../../templates";
 import { generateExampleData, isConst, isSelect } from "./form";
 import { ItemConstraints } from "design-to-code";
-import { SingleLineControlPlugin } from "../../templates/plugin.control.single-line";
 import ControlPluginUtilities, {
     ControlPluginUtilitiesProps,
 } from "../../templates/plugin.control.utilities";
@@ -211,7 +210,7 @@ function ControlSwitch(props: ControlSwitchProps) {
     /**
      * Renders the checkbox/radios form item
      */
-    function renderCheckboxOrRadios(control: SingleLineControlPlugin): React.ReactNode {
+    function renderCheckboxOrRadios(control: StandardControlPlugin): React.ReactNode {
         control.updateProps(getCommonControlProps(ControlType.checkboxOrRadios));
 
         return control.render();
@@ -347,7 +346,7 @@ function ControlSwitch(props: ControlSwitchProps) {
             displayValidationBrowserDefault: props.displayValidationBrowserDefault,
             displayValidationInline: props.displayValidationInline,
             onUpdateSection: props.onUpdateSection,
-            softRemove: shouldBeSoftRemovable(type),
+            remove: shouldBeSoftRemovable(type),
             component: props.controlComponents[type],
             controls: props.controls,
             controlComponents: props.controlComponents,
@@ -362,7 +361,7 @@ function ControlSwitch(props: ControlSwitchProps) {
     }
 
     /**
-     * Determine whether this control can be soft-removed
+     * Determine whether this control can be removed
      * which allows undo/redo for the last stored value
      */
     function shouldBeSoftRemovable(type: ControlType): boolean {

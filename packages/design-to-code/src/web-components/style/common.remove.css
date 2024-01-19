@@ -1,4 +1,4 @@
-.dtc-common-soft-remove {
+.dtc-common-remove {
     display: flex;
     height: 18px;
     min-width: var(--dtc-gutter);

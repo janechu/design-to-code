@@ -3,7 +3,7 @@ import { isEqual } from "lodash-es";
 import Badge from "./badge";
 import DefaultValue from "./default-value";
 import ConstValue from "./const-value";
-import SoftRemove from "./soft-remove";
+import Remove from "./remove";
 import {
     ControlConfig,
     FormHTMLElement,
@@ -16,32 +16,30 @@ import { FormStrings } from "../form.props";
  * Custom templates can make use of the available utility functions
  */
 
-export interface RenderSoftRemoveProps {
+export interface RenderRemoveProps {
     className: string;
     required: boolean;
-    softRemove?: boolean;
+    remove?: boolean;
     type: ControlType;
     disabled?: boolean;
     data: boolean;
-    cache: string;
     dataLocation: string;
     dictionaryId: string;
-    setCache: (cache: any) => void;
     onChange: (config: OnChangeConfig) => void;
 }
 
-export function renderSoftRemove(props: RenderSoftRemoveProps): JSX.Element {
-    if (!props.required && props.softRemove && props.type !== ControlType.linkedData) {
+export function renderRemove(props: RenderRemoveProps): JSX.Element {
+    if (
+        !props.required &&
+        props.remove &&
+        props.data !== undefined &&
+        props.type !== ControlType.linkedData
+    ) {
         return (
-            <SoftRemove
+            <Remove
                 className={props.className}
-                checked={props.data !== undefined}
-                onChange={handleSoftRemove(props)}
-                disabled={
-                    props.disabled &&
-                    props.data === undefined &&
-                    props.cache === undefined
-                }
+                onChange={handleRemove(props)}
+                disabled={props.disabled && props.data === undefined}
             />
         );
     }
@@ -175,32 +173,20 @@ export function handleSetConstValue(props: HandleSetConstValueProps): () => void
     };
 }
 
-export interface HandleSoftRemoveProps {
+export interface HandleRemoveProps {
     onChange: (config: OnChangeConfig) => void;
     dataLocation: string;
     dictionaryId: string;
     data: any;
-    cache: any;
-    setCache: (cache: any) => void;
 }
 
-function handleSoftRemove(props: HandleSoftRemoveProps): () => void {
+function handleRemove(props: HandleRemoveProps): () => void {
     return function (): void {
-        if (typeof props.data !== "undefined") {
-            props.setCache(props.data);
-
-            return props.onChange({
-                dataLocation: props.dataLocation,
-                dictionaryId: props.dictionaryId,
-                value: undefined,
-            });
-        } else {
-            return props.onChange({
-                dataLocation: props.dataLocation,
-                dictionaryId: props.dictionaryId,
-                value: props.cache,
-            });
-        }
+        return props.onChange({
+            dataLocation: props.dataLocation,
+            dictionaryId: props.dictionaryId,
+            value: undefined,
+        });
     };
 }
 
@@ -282,16 +268,6 @@ function reportValidity(props: ReportValidityProps): () => void {
 }
 
 export interface GetConfigProps extends ControlTemplateUtilitiesProps {
-    /**
-     * The cache for soft removing data
-     */
-    cache: string;
-
-    /**
-     * The callback for updating the cache
-     */
-    setCache: (cache: string) => void;
-
     /**
      * The form element React ref
      */

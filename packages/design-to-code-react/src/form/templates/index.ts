@@ -2,8 +2,6 @@ import { ControlType } from "./types";
 import * as ControlTemplateUtilities from "./template.control.utilities";
 import StandardControlTemplate from "./template.control.standard";
 import { StandardControlPlugin } from "./plugin.control.standard";
-import SingleLineControlTemplate from "./template.control.single-line";
-import { SingleLineControlPlugin } from "./plugin.control.single-line";
 import BareControlTemplate from "./template.control.bare";
 import { BareControlPlugin } from "./plugin.control.bare";
 
@@ -12,14 +10,11 @@ export {
     ControlType,
     StandardControlTemplate,
     StandardControlPlugin,
-    SingleLineControlTemplate,
-    SingleLineControlPlugin,
     BareControlTemplate,
     BareControlPlugin,
 };
 
 export * from "./template.control.utilities.props";
-export * from "./template.control.single-line.props";
 export * from "./template.control.standard.props";
 
 import DragItem from "./drag-item";

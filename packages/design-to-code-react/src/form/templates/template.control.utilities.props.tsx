@@ -155,10 +155,10 @@ export interface ControlTemplateUtilitiesProps
     displayValidationErrorList?: boolean;
 
     /**
-     * Enable soft remove
+     * Enable remove
      * defaults to true
      */
-    softRemove?: boolean;
+    remove?: boolean;
 
     /**
      * Control plugins

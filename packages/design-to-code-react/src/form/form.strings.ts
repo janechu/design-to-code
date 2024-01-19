@@ -1,6 +1,8 @@
 import { FormStrings } from "./form.props";
 
 const defaultStrings: FormStrings = {
+    applyConst: "Apply const value",
+    applyDefault: "Apply default value",
     arrayAddItemTip: "Select to add item",
     arrayAddItemLabel: "Add item",
     linkedDataPlaceholder: "Add",
