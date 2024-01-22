@@ -1,5 +1,5 @@
 import { set } from "lodash-es";
-import { expect, test } from "@playwright/test";
+import { expect, test } from "../__test__/base-fixtures";
 import { DataDictionary } from "../message-system/index.js";
 import { linkedDataSchema } from "../schemas/index.js";
 import {

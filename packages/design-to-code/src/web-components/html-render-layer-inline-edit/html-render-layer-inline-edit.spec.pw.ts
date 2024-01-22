@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "../../__test__/base-fixtures";
 import { getMessage, getMessageAll } from "../html-render/__tests__/helpers.js";
 
 test.describe("HTML Render Layer Inline Edit", () => {

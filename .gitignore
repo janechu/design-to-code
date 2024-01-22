@@ -8,6 +8,8 @@ yarn-error.log*
 # Coverage directory used by tools like istanbul
 coverage
 cc-test-reporter
+packages/*/.nyc_output/*
+!packages/*/.nyc_output/README.md
 
 # Dependency directories
 node_modules/

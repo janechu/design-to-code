@@ -29,6 +29,7 @@
         "app",
         "node_modules",
         "src/message-system/webworker.ts",
-        "**/*.spec.ts"
+        "**/*.spec.ts",
+        "**/*.spec.pw.ts"
     ]
 }

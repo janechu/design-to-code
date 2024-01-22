@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "../__test__/base-fixtures";
 import mdnData from "mdn-data";
 const { css: mdnCSS } = mdnData;
 import {

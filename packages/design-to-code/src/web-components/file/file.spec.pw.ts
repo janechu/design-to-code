@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "../../__test__/base-fixtures";
 import { File as DTCFile } from "./file.js";
 
 test.describe("File", () => {

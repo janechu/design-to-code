@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "../__test__/base-fixtures";
 import type { Register } from "./message-system.props.js";
 
 /* eslint-disable @typescript-eslint/no-empty-function */

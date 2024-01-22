@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "../../__test__/base-fixtures";
 import { UnitsTextField as DTCUnitsTextField } from "./units-text-field.js";
 
 test.describe("Units text-field", () => {

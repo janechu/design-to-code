@@ -1,5 +1,5 @@
 import Ajv, { ValidateFunction } from "ajv";
-import { expect, test } from "@playwright/test";
+import { expect, test } from "../__test__/base-fixtures";
 import { webComponentSchema } from "./index.js";
 
 const validator: Ajv = new Ajv({ allErrors: true });

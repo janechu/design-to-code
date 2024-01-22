@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "../../__test__/base-fixtures";
 import dtcClassName from "../style/class-names.js";
 
 test.describe("CSSLayout", () => {

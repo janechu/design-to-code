@@ -1,5 +1,5 @@
 import type { Dictionary } from "lodash";
-import { expect, test } from "@playwright/test";
+import { expect, test } from "../__test__/base-fixtures";
 import {
     getDataUpdatedWithoutSourceData,
     getDataUpdatedWithSourceData,

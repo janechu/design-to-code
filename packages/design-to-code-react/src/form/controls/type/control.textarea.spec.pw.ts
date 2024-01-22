@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "../../../__tests__/base-fixtures";
 
 test.describe("TextareaControl", () => {
     test("should generate an HTML textarea element", async ({ page }) => {

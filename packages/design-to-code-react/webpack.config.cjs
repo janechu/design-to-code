@@ -40,6 +40,12 @@ module.exports = {
                 test: /.tsx?$/,
                 use: [
                     {
+                        loader: "babel-loader",
+                        options: {
+                            plugins: ["istanbul"]
+                        }
+                    },
+                    {
                         loader: "ts-loader",
                         options: {
                             compilerOptions: {
