@@ -1,4 +1,4 @@
-import { expect, test } from "../../__test__/base-fixtures";
+import { expect, test } from "../../__test__/base-fixtures.js";
 import { getMessage, getMessageAll } from "./__tests__/helpers.js";
 
 test.describe("HTML Render", () => {

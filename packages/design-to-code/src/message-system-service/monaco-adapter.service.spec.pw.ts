@@ -1,4 +1,4 @@
-import { expect, test } from "../__test__/base-fixtures";
+import { expect, test } from "../__test__/base-fixtures.js";
 import { DataDictionary, MessageSystemType, Register } from "../message-system/index.js";
 import { MessageSystemSchemaDictionaryTypeAction } from "../message-system/message-system.utilities.props.js";
 import {

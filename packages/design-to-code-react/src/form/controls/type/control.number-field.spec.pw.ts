@@ -1,4 +1,4 @@
-import { expect, test } from "../../../__tests__/base-fixtures";
+import { expect, test } from "../../../__tests__/base-fixtures.js";
 
 test.describe("NumberFieldControl", () => {
     test("should generate an HTML input element with type number", async ({ page }) => {

@@ -1,4 +1,4 @@
-import { expect, test } from "../../../__tests__/base-fixtures";
+import { expect, test } from "../../../__tests__/base-fixtures.js";
 
 test.describe("select", () => {
     test.describe("snapshot", () => {

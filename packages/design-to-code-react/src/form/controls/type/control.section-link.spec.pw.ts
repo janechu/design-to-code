@@ -1,4 +1,4 @@
-import { expect, test } from "../../../__tests__/base-fixtures";
+import { expect, test } from "../../../__tests__/base-fixtures.js";
 
 test.describe("SectionLinkControl", () => {
     test("should generate an HTML anchor element", async ({ page }) => {

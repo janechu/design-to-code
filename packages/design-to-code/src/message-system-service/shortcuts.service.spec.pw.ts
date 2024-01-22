@@ -1,4 +1,4 @@
-import { expect, test } from "../__test__/base-fixtures";
+import { expect, test } from "../__test__/base-fixtures.js";
 import { MessageSystemType, Register } from "../message-system/index.js";
 import { ShortcutsConfig, shortcutsId } from "./shortcuts.service.js";
 

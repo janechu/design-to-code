@@ -1,4 +1,4 @@
-import { expect, test } from "../../__test__/base-fixtures";
+import { expect, test } from "../../__test__/base-fixtures.js";
 import { Register } from "../../message-system/message-system.props.js";
 import {
     MessageSystemDataTypeAction,

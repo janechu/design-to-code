@@ -1,4 +1,4 @@
-import { expect, test } from "../../../__tests__/base-fixtures";
+import { expect, test } from "../../../__tests__/base-fixtures.js";
 
 test.describe("DateControl", () => {
     test("should generate an HTML input element with type 'date'", async ({ page }) => {

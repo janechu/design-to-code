@@ -1,4 +1,4 @@
-import { expect, test } from "../__test__/base-fixtures";
+import { expect, test } from "../__test__/base-fixtures.js";
 import { MessageSystemType } from "../message-system/index.js";
 import { MonacoAdapterAction } from "./monaco-adapter.service-action.js";
 

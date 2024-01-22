@@ -1,4 +1,4 @@
-import { expect, test } from "../__test__/base-fixtures";
+import { expect, test } from "../__test__/base-fixtures.js";
 import { DataType } from "../data-utilities/types.js";
 import { dictionaryLink } from "../schemas/index.js";
 import { getNavigation, getNavigationDictionary } from "./navigation.js";

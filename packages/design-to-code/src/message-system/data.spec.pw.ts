@@ -1,4 +1,4 @@
-import { expect, test } from "../__test__/base-fixtures";
+import { expect, test } from "../__test__/base-fixtures.js";
 import { getLinkedData, getLinkedDataDictionary, getLinkedDataList } from "./data.js";
 import { LinkedDataPromise } from "./data.props.js";
 
