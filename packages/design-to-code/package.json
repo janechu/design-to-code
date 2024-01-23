@@ -26,7 +26,7 @@
     "convert:mdn-data": "node -r esm ./build/generate-mdn-data-files",
     "copy:css": "copyfiles -u 1 'src/**/*.css' dist/stylesheets/",
     "test:mdn-data": "node -r esm ./build/generate-mdn-data-files-test",
-    "prepare": "npm run clean:dist && npm run build",
+    "prepublishOnly": "npm run clean:dist && npm run build",
     "prettier": "prettier --config ../../.prettierrc --write \"**/*.ts\"",
     "prettier:diff": "prettier --config ../../.prettierrc \"**/*.ts\" --list-different",
     "start:test": "node ./www/server.cjs",
