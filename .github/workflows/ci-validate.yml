@@ -59,8 +59,24 @@ jobs:
     - name: Test design to code package
       run: npm run test --workspace=design-to-code
     
+    - name: Create test report for design to code package
+      run: npm run test:report --workspace=design-to-code
+
+    - name: Publish design to code package report
+    - uses: romeovs/lcov-reporter-action@v0.2.16
+      with:
+        lcov-file: ./packages/design-to-code/coverage/lcov.info
+
     - name: Test design to code react package
       run: npm run test --workspace=design-to-code-react
+
+    - name: Create test report for design to code package
+      run: npm run test:report --workspace=design-to-code-react
+
+    - name: Publish design to code react package report
+    - uses: romeovs/lcov-reporter-action@v0.2.16
+      with:
+        lcov-file: ./packages/design-to-code-react/coverage/lcov.info
 
     - name: Build docs site
       run: npm run build:gh-pages
