@@ -1,5 +1,5 @@
 import Ajv, { ValidateFunction } from "ajv";
-import { expect, test } from "@playwright/test";
+import { expect, test } from "../__test__/base-fixtures.js";
 import { linkedDataSchema } from "./index.js";
 
 const validator: Ajv = new Ajv({ allErrors: true, strict: false });

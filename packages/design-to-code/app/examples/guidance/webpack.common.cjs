@@ -5,6 +5,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ResolveTypeScriptPlugin = require("resolve-typescript-plugin");
+const { commonRules } = require("../webpack.utilities.cjs");
 
 const appDir = path.resolve(__dirname, "./");
 const outDir = path.resolve(__dirname, "./www");
@@ -25,36 +26,7 @@ module.exports = {
     devtool: "source-map",
     module: {
         // where we defined file patterns and their loaders
-        rules: [
-            {
-                test: /.ts$/,
-                use: [
-                    {
-                        loader: "ts-loader",
-                    },
-                ],
-            },
-            {
-                test: /\.(svg|png|jpe?g|gif|ttf)$/i,
-                use: {
-                    loader: "file-loader",
-                    options: {
-                        esModule: false,
-                    },
-                },
-            },
-            {
-                test: /\.css$/,
-                use: [
-                    {
-                        loader: MiniCssExtractPlugin.loader,
-                    },
-                    {
-                        loader: "css-loader",
-                    },
-                ],
-            },
-        ],
+        rules: commonRules,
     },
     plugins: [
         new CleanWebpackPlugin(),

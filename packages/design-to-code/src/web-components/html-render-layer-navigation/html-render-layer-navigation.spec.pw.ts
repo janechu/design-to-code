@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "../../__test__/base-fixtures.js";
 import { getMessageAll } from "../html-render/__tests__/helpers.js";
 
 test.describe("HTML Render Layer Navigation", () => {

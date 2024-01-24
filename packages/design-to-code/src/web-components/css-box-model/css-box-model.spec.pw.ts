@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "../../__test__/base-fixtures.js";
 
 test.describe("CSS Box Model", () => {
     test.beforeEach(async ({ page }) => {

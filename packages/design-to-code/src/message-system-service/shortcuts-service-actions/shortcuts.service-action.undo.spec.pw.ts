@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "../../__test__/base-fixtures.js";
 import { Register } from "../../message-system/message-system.props.js";
 import { MessageSystemNavigationTypeAction } from "../../message-system/message-system.utilities.props.js";
 import { MessageSystemType } from "../../message-system/types.js";

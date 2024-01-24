@@ -1,5 +1,5 @@
-import { expect, test } from "@playwright/test";
 import mdnData from "mdn-data";
+import { expect, test } from "../__test__/base-fixtures.js";
 const { css: mdnCSS } = mdnData;
 import {
     CombinatorType,

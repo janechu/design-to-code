@@ -18,7 +18,7 @@
   "scripts": {
     "build": "npm run build:esm && npm run build:cjs && npm run build:message-system && npm run copy:css",
     "build:app": "npm run build:message-system && npm run build:examples",
-    "build:examples": "cross-env NODE_OPTIONS=--max_old_space_size=4096 webpack --progress --mode=production",
+    "build:examples": "cross-env NODE_OPTIONS=--max_old_space_size=8192 webpack --progress --mode=production",
     "build:esm": "tsc --project ./tsconfig.esm.json",
     "build:cjs": "tsc --project ./tsconfig.cjs.json",
     "build:message-system": "webpack --config webpack.message-system.config.cjs",
@@ -26,7 +26,7 @@
     "convert:mdn-data": "node -r esm ./build/generate-mdn-data-files",
     "copy:css": "copyfiles -u 1 'src/**/*.css' dist/stylesheets/",
     "test:mdn-data": "node -r esm ./build/generate-mdn-data-files-test",
-    "prepare": "npm run clean:dist && npm run build",
+    "prepublishOnly": "npm run clean:dist && npm run build",
     "prettier": "prettier --config ../../.prettierrc --write \"**/*.ts\"",
     "prettier:diff": "prettier --config ../../.prettierrc \"**/*.ts\" --list-different",
     "start:test": "node ./www/server.cjs",
@@ -38,6 +38,7 @@
     "test:playwright": "npx playwright test",
     "test:snapshots": "npx playwright test --config=playwright-snapshot.config.ts",
     "test:snapshots:update": "npx playwright test --config=playwright-snapshot.config.ts --update-snapshots",
+    "test:report": "npx nyc report --reporter=html",
     "eslint": "eslint . --ext .ts",
     "eslint:fix": "eslint . --ext .ts --fix",
     "watch": "npm run build -- -w --preserveWatchOutput"

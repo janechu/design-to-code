@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "../../../__tests__/base-fixtures.js";
 
 test.describe("untyped", () => {
     test.describe("snapshot", () => {
