@@ -28,7 +28,7 @@
     "test:playwright": "npx playwright test",
     "test:snapshots": "npx playwright test --config=playwright-snapshot.config.ts",
     "test:snapshots:update": "npx playwright test --update-snapshots --config=playwright-snapshot.config.ts",
-    "test:report": "npx nyc report --reporter=html",
+    "test:report": "npx nyc report --reporter=html --reporter=lcov",
     "eslint": "eslint . --ext .ts",
     "eslint:fix": "eslint . --ext .ts --fix",
     "watch": "npm run build -- -w --preserveWatchOutput"
