@@ -63,7 +63,7 @@ jobs:
       run: npm run test:report --workspace=design-to-code
 
     - name: Publish design to code package report
-    - uses: romeovs/lcov-reporter-action@v0.2.16
+      uses: romeovs/lcov-reporter-action@v0.2.16
       with:
         lcov-file: ./packages/design-to-code/coverage/lcov.info
 
@@ -74,7 +74,7 @@ jobs:
       run: npm run test:report --workspace=design-to-code-react
 
     - name: Publish design to code react package report
-    - uses: romeovs/lcov-reporter-action@v0.2.16
+      uses: romeovs/lcov-reporter-action@v0.2.16
       with:
         lcov-file: ./packages/design-to-code-react/coverage/lcov.info
 
