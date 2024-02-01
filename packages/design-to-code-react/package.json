@@ -2,7 +2,7 @@
   "name": "design-to-code-react",
   "description": "A React-specific set of components and utilities to assist in creating web UI",
   "sideEffects": false,
-  "version": "1.0.0-alpha.14",
+  "version": "1.0.0-alpha.15",
   "author": "Jane Chu",
   "license": "MIT",
   "repository": {
@@ -18,7 +18,7 @@
     "build": "tsc --project ./tsconfig.json && npm run copy:css",
     "build:app": "webpack --progress --mode=production",
     "clean:dist": "node ../../build/clean.js dist",
-    "copy:css": "copyfiles -u 1 'src/**/*.css' dist/",
+    "copy:css": "copyfiles -u 1 src/**/*.css dist/",
     "prepublishOnly": "npm run clean:dist && npm run build",
     "prettier": "prettier --config ../../.prettierrc --write \"**/*.{ts,tsx,html}\"",
     "prettier:diff": "prettier --config ../../.prettierrc \"**/*.{ts,tsx,html}\" --list-different",
@@ -72,7 +72,7 @@
     "@microsoft/fast-foundation": "^2.13.1",
     "@microsoft/fast-web-utilities": "^4.8.1",
     "@skatejs/val": "^0.5.0",
-    "design-to-code": "^1.0.0-alpha.14",
+    "design-to-code": "^1.0.0-alpha.15",
     "exenv-es6": "^1.0.0",
     "raf-throttle": "^2.0.3",
     "react-dnd": "^16.0.0"
