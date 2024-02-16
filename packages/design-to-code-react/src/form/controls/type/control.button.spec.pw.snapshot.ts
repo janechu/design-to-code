@@ -3,25 +3,25 @@ import { expect, test } from "../../../__tests__/base-fixtures.js";
 test.describe("button", () => {
     test.describe("snapshot", () => {
         test("base", async ({ page }) => {
-            await page.goto("/form?schema=controlButton.html");
+            await page.goto("/form?schema=controlButton");
             await expect(page).toHaveScreenshot();
         });
         test.skip("default", async ({ page }) => {
             // build gate is failing on this
-            await page.goto("/form?schema=controlButtonDefault.html");
+            await page.goto("/form?schema=controlButtonDefault");
             await expect(page).toHaveScreenshot();
         });
         test("disabled", async ({ page }) => {
-            await page.goto("/form?schema=controlButtonDisabled.html");
+            await page.goto("/form?schema=controlButtonDisabled");
             await expect(page).toHaveScreenshot();
         });
         test.describe("invalid", () => {
             test("default", async ({ page }) => {
-                await page.goto("/form?schema=controlButtonInvalid.html");
+                await page.goto("/form?schema=controlButtonInvalid");
                 await expect(page).toHaveScreenshot();
             });
             test("blur", async ({ page }) => {
-                await page.goto("/form?schema=controlButtonInvalid.html");
+                await page.goto("/form?schema=controlButtonInvalid");
                 await page.waitForSelector(".dtc-form .dtc-button-control");
                 await page.locator(".dtc-form .dtc-button-control").focus();
                 await page.locator(".dtc-form .dtc-button-control").blur();

@@ -2,7 +2,7 @@ import { expect, test } from "../../../__tests__/base-fixtures.js";
 
 test.describe("EmailControl", () => {
     test("should generate an HTML input element with type 'email'", async ({ page }) => {
-        await page.goto("/form?schema=controlEmail.html");
+        await page.goto("/form?schema=controlEmail");
 
         await page.waitForSelector("input[type='email']");
 
@@ -11,7 +11,7 @@ test.describe("EmailControl", () => {
         await expect(await email.count()).toEqual(1);
     });
     test("should be disabled when disabled props is passed", async ({ page }) => {
-        await page.goto("/form?schema=controlEmailDisabled.html");
+        await page.goto("/form?schema=controlEmailDisabled");
 
         await page.waitForSelector("input[type='email']");
 
@@ -22,7 +22,7 @@ test.describe("EmailControl", () => {
     test("should have the default class when default prop is passed", async ({
         page,
     }) => {
-        await page.goto("/form?schema=controlEmailDefault.html");
+        await page.goto("/form?schema=controlEmailDefault");
 
         await page.waitForSelector("input[type='email']");
 
@@ -37,7 +37,7 @@ test.describe("EmailControl", () => {
     test("should send a message to the Message System when the input is changed", async ({
         page,
     }) => {
-        await page.goto("/form?schema=controlEmail.html");
+        await page.goto("/form?schema=controlEmail");
 
         await page.waitForSelector("input[type='email']");
 
@@ -52,7 +52,7 @@ test.describe("EmailControl", () => {
     test("should show default values if they exist and no data is available", async ({
         page,
     }) => {
-        await page.goto("/form?schema=controlEmailDefault.html");
+        await page.goto("/form?schema=controlEmailDefault");
 
         await page.waitForSelector("input[type='email']");
 
@@ -61,7 +61,7 @@ test.describe("EmailControl", () => {
         await expect(await email.inputValue()).toEqual("foo@bar.com");
     });
     test("should not show default values if data exists", async ({ page }) => {
-        await page.goto("/form?schema=controlEmailDefault.html");
+        await page.goto("/form?schema=controlEmailDefault");
 
         await page.waitForSelector("input[type='email']");
 

@@ -2,7 +2,7 @@ import { expect, test } from "../../../__tests__/base-fixtures.js";
 
 test.describe("NumberFieldControl", () => {
     test("should generate an HTML input element with type number", async ({ page }) => {
-        await page.goto("/form?schema=controlNumberField.html");
+        await page.goto("/form?schema=controlNumberField");
 
         await page.waitForSelector("input[type='number']");
 
@@ -11,7 +11,7 @@ test.describe("NumberFieldControl", () => {
         await expect(await numberField.count()).toEqual(1);
     });
     test("should be disabled when disabled props is passed", async ({ page }) => {
-        await page.goto("/form?schema=controlNumberFieldDisabled.html");
+        await page.goto("/form?schema=controlNumberFieldDisabled");
 
         await page.waitForSelector("input[type='number']");
 
@@ -22,7 +22,7 @@ test.describe("NumberFieldControl", () => {
     test("should have the default class when default prop is passed", async ({
         page,
     }) => {
-        await page.goto("/form?schema=controlNumberFieldDefault.html");
+        await page.goto("/form?schema=controlNumberFieldDefault");
 
         await page.waitForSelector("input[type='number']");
 
@@ -37,7 +37,7 @@ test.describe("NumberFieldControl", () => {
     test("should send a message to the Message System when the input is changed", async ({
         page,
     }) => {
-        await page.goto("/form?schema=controlNumberField.html");
+        await page.goto("/form?schema=controlNumberField");
 
         await page.waitForSelector("input[type='number']");
 
@@ -52,7 +52,7 @@ test.describe("NumberFieldControl", () => {
     test("should show default values if they exist and no data is available", async ({
         page,
     }) => {
-        await page.goto("/form?schema=controlNumberFieldDefault.html");
+        await page.goto("/form?schema=controlNumberFieldDefault");
 
         await page.waitForSelector("input[type='number']");
 
@@ -61,7 +61,7 @@ test.describe("NumberFieldControl", () => {
         await expect(await numberField.inputValue()).toEqual("42");
     });
     test("should not show default values if data exists", async ({ page }) => {
-        await page.goto("/form?schema=controlNumberFieldDefault.html");
+        await page.goto("/form?schema=controlNumberFieldDefault");
 
         await page.waitForSelector("input[type='number']");
 

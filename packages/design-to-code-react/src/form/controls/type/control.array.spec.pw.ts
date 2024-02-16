@@ -4,7 +4,7 @@ test.describe("ArrayControl", () => {
     test("should not have any list items if there are no array items", async ({
         page,
     }) => {
-        await page.goto("/form?schema=controlArray.html");
+        await page.goto("/form?schema=controlArray");
 
         await page.waitForSelector(".dtc-array-control");
 
@@ -13,7 +13,7 @@ test.describe("ArrayControl", () => {
         await expect(await listItems.count()).toEqual(0);
     });
     test("should generate a button for adding a list item", async ({ page }) => {
-        await page.goto("/form?schema=controlArray.html");
+        await page.goto("/form?schema=controlArray");
 
         await page.waitForSelector(".dtc-array-control");
 
@@ -24,7 +24,7 @@ test.describe("ArrayControl", () => {
     test("should add an array item if the add array item button is clicked", async ({
         page,
     }) => {
-        await page.goto("/form?schema=controlArray.html");
+        await page.goto("/form?schema=controlArray");
 
         await page.waitForSelector(".dtc-array-control");
 
@@ -38,7 +38,7 @@ test.describe("ArrayControl", () => {
     test("should remove an array item if the remove array items button has been clicked", async ({
         page,
     }) => {
-        await page.goto("/form?schema=controlArray.html");
+        await page.goto("/form?schema=controlArray");
 
         await page.waitForSelector(".dtc-array-control");
 
@@ -58,7 +58,7 @@ test.describe("ArrayControl", () => {
     test("should navigate to an array item if the array item has been clicked", async ({
         page,
     }) => {
-        await page.goto("/form?schema=controlArray.html");
+        await page.goto("/form?schema=controlArray");
 
         await page.waitForSelector(".dtc-array-control");
 
@@ -76,7 +76,7 @@ test.describe("ArrayControl", () => {
         await expect(await breadcrumbs.count()).toEqual(2);
     });
     test("should show default items if default items are available", async ({ page }) => {
-        await page.goto("/form?schema=controlArrayDefault.html");
+        await page.goto("/form?schema=controlArrayDefault");
 
         await page.waitForSelector(".dtc-array-control");
 
@@ -85,7 +85,7 @@ test.describe("ArrayControl", () => {
         await expect(await listItems.count()).toEqual(2);
     });
     test("should show as disabled if the array has been disabled", async ({ page }) => {
-        await page.goto("/form?schema=controlArrayDisabled.html");
+        await page.goto("/form?schema=controlArrayDisabled");
 
         await page.waitForSelector(".dtc-array-control");
 
@@ -96,7 +96,7 @@ test.describe("ArrayControl", () => {
     test("should map to an arrays value if the location of the value has been added to the JSON schema", async ({
         page,
     }) => {
-        await page.goto("/form?schema=controlArrayDisplayText.html");
+        await page.goto("/form?schema=controlArrayDisplayText");
 
         await page.waitForSelector(".dtc-array-control");
 

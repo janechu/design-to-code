@@ -4,7 +4,7 @@ test.describe("DateTimeControl", () => {
     test("should generate an HTML input element with type 'datetime-local'", async ({
         page,
     }) => {
-        await page.goto("/form?schema=controlDateTime.html");
+        await page.goto("/form?schema=controlDateTime");
 
         await page.waitForSelector("input[type='datetime-local']");
 
@@ -13,7 +13,7 @@ test.describe("DateTimeControl", () => {
         await expect(await date.count()).toEqual(1);
     });
     test("should be disabled when disabled props is passed", async ({ page }) => {
-        await page.goto("/form?schema=controlDateTimeDisabled.html");
+        await page.goto("/form?schema=controlDateTimeDisabled");
 
         await page.waitForSelector("input[type='datetime-local']");
 
@@ -24,7 +24,7 @@ test.describe("DateTimeControl", () => {
     test("should have the default class when default prop is passed", async ({
         page,
     }) => {
-        await page.goto("/form?schema=controlDateTimeDefault.html");
+        await page.goto("/form?schema=controlDateTimeDefault");
 
         await page.waitForSelector("input[type='datetime-local']");
 
@@ -39,7 +39,7 @@ test.describe("DateTimeControl", () => {
     test("should send a message to the Message System when the input is changed", async ({
         page,
     }) => {
-        await page.goto("/form?schema=controlDateTime.html");
+        await page.goto("/form?schema=controlDateTime");
 
         await page.waitForSelector("input[type='datetime-local']");
 
@@ -54,7 +54,7 @@ test.describe("DateTimeControl", () => {
     test("should show default values if they exist and no data is available", async ({
         page,
     }) => {
-        await page.goto("/form?schema=controlDateTimeDefault.html");
+        await page.goto("/form?schema=controlDateTimeDefault");
 
         await page.waitForSelector("input[type='datetime-local']");
 
@@ -64,7 +64,7 @@ test.describe("DateTimeControl", () => {
     });
     // This fails but passes when manually tested -- potentially an issue with playwright
     test.skip("should not show default values if data exists", async ({ page }) => {
-        await page.goto("/form?schema=controlDateTimeDefault.html");
+        await page.goto("/form?schema=controlDateTimeDefault");
 
         await page.waitForSelector("input[type='datetime-local']");
 

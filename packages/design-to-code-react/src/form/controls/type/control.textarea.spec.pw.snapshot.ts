@@ -3,24 +3,24 @@ import { expect, test } from "../../../__tests__/base-fixtures.js";
 test.describe("textarea", () => {
     test.describe("snapshot", () => {
         test("base", async ({ page }) => {
-            await page.goto("/form?schema=controlTextarea.html");
+            await page.goto("/form?schema=controlTextarea");
             await expect(page).toHaveScreenshot();
         });
         test("default", async ({ page }) => {
-            await page.goto("/form?schema=controlTextareaDefault.html");
+            await page.goto("/form?schema=controlTextareaDefault");
             await expect(page).toHaveScreenshot();
         });
         test("disabled", async ({ page }) => {
-            await page.goto("/form?schema=controlTextareaDisabled.html");
+            await page.goto("/form?schema=controlTextareaDisabled");
             await expect(page).toHaveScreenshot();
         });
         test.describe("invalid", () => {
             test("default", async ({ page }) => {
-                await page.goto("/form?schema=controlTextareaInvalid.html");
+                await page.goto("/form?schema=controlTextareaInvalid");
                 await expect(page).toHaveScreenshot();
             });
             test("blur", async ({ page }) => {
-                await page.goto("/form?schema=controlTextareaInvalid.html");
+                await page.goto("/form?schema=controlTextareaInvalid");
                 await page.waitForSelector("textarea");
                 await page.locator("textarea").focus();
                 await page.locator("textarea").blur();
