@@ -2,7 +2,7 @@ import { expect, test } from "../../../__tests__/base-fixtures.js";
 
 test.describe("SelectControl", () => {
     test("should generate an HTML select element", async ({ page }) => {
-        await page.goto("/form?schema=controlSelect");
+        await page.goto("/form?schema=controlSelect.html");
 
         await page.waitForSelector(".dtc-form select");
 
@@ -11,7 +11,7 @@ test.describe("SelectControl", () => {
         await expect(await select.count()).toEqual(1);
     });
     test("should be disabled when disabled props is passed", async ({ page }) => {
-        await page.goto("/form?schema=controlSelectDisabled");
+        await page.goto("/form?schema=controlSelectDisabled.html");
 
         await page.waitForSelector(".dtc-form select");
 
@@ -22,7 +22,7 @@ test.describe("SelectControl", () => {
     test("should have the default class when default prop is passed", async ({
         page,
     }) => {
-        await page.goto("/form?schema=controlSelectDefault");
+        await page.goto("/form?schema=controlSelectDefault.html");
 
         await page.waitForSelector(".dtc-form select");
 
@@ -37,7 +37,7 @@ test.describe("SelectControl", () => {
     test("should send a message to the Message System when the input is changed", async ({
         page,
     }) => {
-        await page.goto("/form?schema=controlSelect");
+        await page.goto("/form?schema=controlSelect.html");
 
         await page.waitForSelector(".dtc-form select");
 
@@ -52,7 +52,7 @@ test.describe("SelectControl", () => {
     test("should show default values if they exist and no data is available", async ({
         page,
     }) => {
-        await page.goto("/form?schema=controlSelectDefault");
+        await page.goto("/form?schema=controlSelectDefault.html");
 
         await page.waitForSelector(".dtc-form select");
 
@@ -61,7 +61,7 @@ test.describe("SelectControl", () => {
         await expect(await select.inputValue()).toEqual("bar");
     });
     test("should not show default values if data exists", async ({ page }) => {
-        await page.goto("/form?schema=controlSelectDefault");
+        await page.goto("/form?schema=controlSelectDefault.html");
 
         await page.waitForSelector(".dtc-form select");
 
@@ -72,7 +72,7 @@ test.describe("SelectControl", () => {
         await expect(await select.inputValue()).toEqual("foo");
     });
     test("should show values for each potential value", async ({ page }) => {
-        await page.goto("/form?schema=controlSelect");
+        await page.goto("/form?schema=controlSelect.html");
 
         await page.waitForSelector(".dtc-form select");
 

@@ -2,7 +2,7 @@ import { expect, test } from "../../../__tests__/base-fixtures.js";
 
 test.describe("UntypedControl", () => {
     test("should generate an HTML textarea element", async ({ page }) => {
-        await page.goto("/form?schema=controlUntyped");
+        await page.goto("/form?schema=controlUntyped.html");
 
         await page.waitForSelector("textarea");
 
@@ -11,7 +11,7 @@ test.describe("UntypedControl", () => {
         await expect(await textarea.count()).toEqual(1);
     });
     test("should be disabled when disabled props is passed", async ({ page }) => {
-        await page.goto("/form?schema=controlUntypedDisabled");
+        await page.goto("/form?schema=controlUntypedDisabled.html");
 
         await page.waitForSelector("textarea");
 
@@ -22,7 +22,7 @@ test.describe("UntypedControl", () => {
     test("should have the default class when default prop is passed", async ({
         page,
     }) => {
-        await page.goto("/form?schema=controlUntypedDefault");
+        await page.goto("/form?schema=controlUntypedDefault.html");
 
         await page.waitForSelector(".dtc-untyped-control");
 
@@ -37,7 +37,7 @@ test.describe("UntypedControl", () => {
     test("should send a message to the Message System when the input is changed", async ({
         page,
     }) => {
-        await page.goto("/form?schema=controlUntyped");
+        await page.goto("/form?schema=controlUntyped.html");
 
         await page.waitForSelector("textarea");
 
@@ -52,7 +52,7 @@ test.describe("UntypedControl", () => {
     test("should show default values if they exist and no data is available", async ({
         page,
     }) => {
-        await page.goto("/form?schema=controlUntypedDefault");
+        await page.goto("/form?schema=controlUntypedDefault.html");
 
         await page.waitForSelector("textarea");
 
@@ -61,7 +61,7 @@ test.describe("UntypedControl", () => {
         await expect(await textarea.inputValue()).toEqual('"foo"');
     });
     test("should not show default values if data exists", async ({ page }) => {
-        await page.goto("/form?schema=controlUntypedDefault");
+        await page.goto("/form?schema=controlUntypedDefault.html");
 
         await page.waitForSelector("textarea");
 
@@ -72,7 +72,7 @@ test.describe("UntypedControl", () => {
         await expect(await textarea.inputValue()).toEqual("foo");
     });
     test("should show value if value is empty string", async ({ page }) => {
-        await page.goto("/form?schema=controlUntyped");
+        await page.goto("/form?schema=controlUntyped.html");
 
         await page.waitForSelector("textarea");
 

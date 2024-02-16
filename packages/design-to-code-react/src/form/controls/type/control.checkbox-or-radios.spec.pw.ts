@@ -4,7 +4,7 @@ test.describe("CheckboxControl", () => {
     test("should generate an HTML input element with type 'checkbox'", async ({
         page,
     }) => {
-        await page.goto("/form?schema=controlCheckboxDefault");
+        await page.goto("/form?schema=controlCheckboxDefault.html");
 
         await page.waitForSelector("input[type='checkbox']");
 
@@ -15,7 +15,7 @@ test.describe("CheckboxControl", () => {
         await expect(await checkbox.getAttribute("type")).toEqual("checkbox");
     });
     test("should generate HTML input elements with type 'radio'", async ({ page }) => {
-        await page.goto("/form?schema=controlCheckbox");
+        await page.goto("/form?schema=controlCheckbox.html");
 
         await page.waitForSelector("input");
 
@@ -24,7 +24,7 @@ test.describe("CheckboxControl", () => {
         await expect(await checkbox.count()).toEqual(2);
     });
     test("should be disabled when disabled props is passed", async ({ page }) => {
-        await page.goto("/form?schema=controlCheckboxDisabled");
+        await page.goto("/form?schema=controlCheckboxDisabled.html");
 
         await page.waitForSelector("input");
 
@@ -35,7 +35,7 @@ test.describe("CheckboxControl", () => {
     test("should have the default class when default prop is passed", async ({
         page,
     }) => {
-        await page.goto("/form?schema=controlCheckboxDefault");
+        await page.goto("/form?schema=controlCheckboxDefault.html");
 
         await page.waitForSelector("input[type='checkbox']");
 
@@ -50,7 +50,7 @@ test.describe("CheckboxControl", () => {
     test("should send a message to the Message System when the input is changed", async ({
         page,
     }) => {
-        await page.goto("/form?schema=controlCheckbox");
+        await page.goto("/form?schema=controlCheckbox.html");
 
         await page.waitForSelector("input");
 
@@ -65,7 +65,7 @@ test.describe("CheckboxControl", () => {
     test("should show default values if they exist and no data is available", async ({
         page,
     }) => {
-        await page.goto("/form?schema=controlCheckboxDefault");
+        await page.goto("/form?schema=controlCheckboxDefault.html");
 
         await page.waitForSelector("input");
 
@@ -74,7 +74,7 @@ test.describe("CheckboxControl", () => {
         await expect(await checkbox.inputValue()).toEqual("true");
     });
     test("should not show default values if data exists", async ({ page }) => {
-        await page.goto("/form?schema=controlCheckboxDefault");
+        await page.goto("/form?schema=controlCheckboxDefault.html");
 
         await page.waitForSelector("input[type='checkbox']");
 

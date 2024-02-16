@@ -2,7 +2,7 @@ import { expect, test } from "../../../__tests__/base-fixtures.js";
 
 test.describe("DateControl", () => {
     test("should generate an HTML input element with type 'date'", async ({ page }) => {
-        await page.goto("/form?schema=controlDate");
+        await page.goto("/form?schema=controlDate.html");
 
         await page.waitForSelector("input[type='date']");
 
@@ -11,7 +11,7 @@ test.describe("DateControl", () => {
         await expect(await date.count()).toEqual(1);
     });
     test("should be disabled when disabled props is passed", async ({ page }) => {
-        await page.goto("/form?schema=controlDateDisabled");
+        await page.goto("/form?schema=controlDateDisabled.html");
 
         await page.waitForSelector("input[type='date']");
 
@@ -22,7 +22,7 @@ test.describe("DateControl", () => {
     test("should have the default class when default prop is passed", async ({
         page,
     }) => {
-        await page.goto("/form?schema=controlDateDefault");
+        await page.goto("/form?schema=controlDateDefault.html");
 
         await page.waitForSelector("input[type='date']");
 
@@ -37,7 +37,7 @@ test.describe("DateControl", () => {
     test("should send a message to the Message System when the input is changed", async ({
         page,
     }) => {
-        await page.goto("/form?schema=controlDate");
+        await page.goto("/form?schema=controlDate.html");
 
         await page.waitForSelector("input[type='date']");
 
@@ -52,7 +52,7 @@ test.describe("DateControl", () => {
     test("should show default values if they exist and no data is available", async ({
         page,
     }) => {
-        await page.goto("/form?schema=controlDateDefault");
+        await page.goto("/form?schema=controlDateDefault.html");
 
         await page.waitForSelector("input[type='date']");
 
@@ -61,7 +61,7 @@ test.describe("DateControl", () => {
         await expect(await date.inputValue()).toEqual("1985-01-01");
     });
     test("should not show default values if data exists", async ({ page }) => {
-        await page.goto("/form?schema=controlDateDefault");
+        await page.goto("/form?schema=controlDateDefault.html");
 
         await page.waitForSelector("input[type='date']");
 

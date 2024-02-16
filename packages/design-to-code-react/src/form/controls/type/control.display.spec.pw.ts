@@ -2,7 +2,7 @@ import { expect, test } from "../../../__tests__/base-fixtures.js";
 
 test.describe("DisplayControl", () => {
     test("should generate an HTML input element", async ({ page }) => {
-        await page.goto("/form?schema=controlDisplay");
+        await page.goto("/form?schema=controlDisplay.html");
 
         await page.waitForSelector(".dtc-display-control");
 
@@ -11,7 +11,7 @@ test.describe("DisplayControl", () => {
         await expect(await display.count()).toEqual(1);
     });
     test("should be disabled when disabled props is passed", async ({ page }) => {
-        await page.goto("/form?schema=controlDisplayDisabled");
+        await page.goto("/form?schema=controlDisplayDisabled.html");
 
         await page.waitForSelector(".dtc-display-control");
 
@@ -22,7 +22,7 @@ test.describe("DisplayControl", () => {
     test("should have the default class when default prop is passed", async ({
         page,
     }) => {
-        await page.goto("/form?schema=controlDisplayDefault");
+        await page.goto("/form?schema=controlDisplayDefault.html");
 
         await page.waitForSelector(".dtc-display-control");
 
@@ -35,7 +35,7 @@ test.describe("DisplayControl", () => {
     test("should send a message to the Message System when the input is changed", async ({
         page,
     }) => {
-        await page.goto("/form?schema=controlDisplayDefault");
+        await page.goto("/form?schema=controlDisplayDefault.html");
 
         await page.waitForSelector(
             ".dtc-standard-control-template_const-value-indicator"
@@ -53,7 +53,7 @@ test.describe("DisplayControl", () => {
     test("should show default values if they exist and no data is available", async ({
         page,
     }) => {
-        await page.goto("/form?schema=controlDisplayDefault");
+        await page.goto("/form?schema=controlDisplayDefault.html");
 
         await page.waitForSelector(".dtc-display-control");
 

@@ -108,6 +108,10 @@ module.exports = {
         new CopyWebpackPlugin({
             patterns: [
                 {
+                    from: path.resolve(appDir, "./server.cjs"),
+                    to: outDir,
+                },
+                {
                     from: path.resolve(srcDir, "web-components", "style", "*.css"),
                     to: (context, absoluteFilename) => {
                         return path.resolve(outDir, "[name][ext]");
