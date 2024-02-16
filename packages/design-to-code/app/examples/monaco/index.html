@@ -4,6 +4,8 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title><%= htmlWebpackPlugin.options.title %></title>
+        <%= htmlWebpackPlugin .tags .headTags .filter((tag) => (tag.attributes.src ||
+        "").includes('monaco')) .join('') %>
     </head>
     <body>
         <form id="form">
@@ -24,9 +26,7 @@
                 <option>middle</option>
                 <option>bottom</option>
             </select>
-            <button id="setPosition">
-                Set position
-            </button>
+            <button id="setPosition">Set position</button>
         </div>
         <div id="root"></div>
     </body>

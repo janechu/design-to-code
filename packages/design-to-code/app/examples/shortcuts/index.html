@@ -20,6 +20,8 @@
                 color: #fff;
             }
         </style>
+        <%= htmlWebpackPlugin .tags .headTags .filter((tag) => (tag.attributes.src ||
+        "").includes('shortcuts')) .join('') %>
     </head>
     <body>
         <div id="root">

@@ -40,6 +40,8 @@
             rel="stylesheet"
             href="<%= htmlWebpackPlugin.options.globalCssVariableStylesheet %>"
         />
+        <%= htmlWebpackPlugin .tags .headTags .filter((tag) => (tag.attributes.src ||
+        "").includes('ajv-validator-messages')) .join('') %>
     </head>
     <body>
         <div id="root">

@@ -17,6 +17,8 @@
             rel="stylesheet"
             href="<%= htmlWebpackPlugin.options.globalCssVariableStylesheet %>"
         />
+        <%= htmlWebpackPlugin .tags .headTags .filter((tag) => (tag.attributes.src ||
+        "").includes('units-text-field')) .join('') %>
     </head>
     <body>
         <div id="root">

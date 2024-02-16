@@ -53,6 +53,8 @@
             href="<%= htmlWebpackPlugin.options.globalCssVariableStylesheet %>"
         />
         <style id="custom"></style>
+        <%= htmlWebpackPlugin .tags .headTags .filter((tag) => (tag.attributes.src ||
+        "").includes('css-layout')) .join('') %>
     </head>
     <body>
         <div id="root">

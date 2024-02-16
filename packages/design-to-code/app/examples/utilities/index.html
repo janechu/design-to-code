@@ -4,6 +4,8 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title><%= htmlWebpackPlugin.options.title %></title>
+        <%= htmlWebpackPlugin .tags .headTags .filter((tag) => (tag.attributes.src ||
+        "").includes('utilities')) .join('') %>
     </head>
     <body>
         <div id="root">
