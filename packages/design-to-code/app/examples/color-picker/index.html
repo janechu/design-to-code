@@ -20,6 +20,8 @@
             rel="stylesheet"
             href="<%= htmlWebpackPlugin.options.globalCssVariableStylesheet %>"
         />
+        <%= htmlWebpackPlugin .tags .headTags .filter((tag) => (tag.attributes.src ||
+        "").includes('color-picker')) .join('') %>
     </head>
     <body>
         <div id="root">

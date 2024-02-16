@@ -5,7 +5,7 @@ import { ShortcutsConfig, shortcutsId } from "./shortcuts.service.js";
 /* eslint-disable @typescript-eslint/no-empty-function */
 test.describe("Shortcuts", async () => {
     test.beforeEach(async ({ page }) => {
-        await page.goto("/message-system");
+        await page.goto("/message-system.html");
     });
     test("should not throw", async ({ page }) => {
         const shouldNotError = await page.evaluate(() => {

@@ -6,7 +6,7 @@ import { MessageSystemType } from "../../message-system/types.js";
 /* eslint-disable @typescript-eslint/no-empty-function */
 test.describe("ShortcutsActionUndo", () => {
     test.beforeEach(async ({ page }) => {
-        await page.goto("/message-system");
+        await page.goto("/message-system.html");
     });
     test("should return an instance of a ShortcutAction", async ({ page }) => {
         const instanceOfShortcutsAction = await page.evaluate(() => {
