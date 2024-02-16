@@ -19,7 +19,7 @@ import { ajvValidationId, AjvValidator } from "./ajv-validator.service.js";
 /* eslint-disable @typescript-eslint/no-empty-function */
 test.describe("AjvValidator", () => {
     test.beforeEach(async ({ page }) => {
-        await page.goto("/message-system");
+        await page.goto("/message-system.html");
     });
     test("should not throw", async ({ page }) => {
         const didNotError = await page.evaluate(() => {

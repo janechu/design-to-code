@@ -15,7 +15,7 @@ const textSchema = {
 
 test.describe("mapDataDictionaryToMonacoEditorHTML", async () => {
     test.beforeEach(async ({ page }) => {
-        await page.goto("/utilities");
+        await page.goto("/utilities.html");
     });
     test("should not map a data dictionary if no schema dictionaries conform to entries", async ({
         page,
@@ -736,7 +736,7 @@ test.describe("mapDataDictionaryToMonacoEditorHTML", async () => {
 
 test.describe("findMonacoEditorHTMLPositionByDictionaryId", async () => {
     test.beforeEach(async ({ page }) => {
-        await page.goto("/utilities");
+        await page.goto("/utilities.html");
     });
     test("should find the root dictionary ID", async ({ page }) => {
         const position = JSON.parse(
@@ -1110,7 +1110,7 @@ test.describe("findMonacoEditorHTMLPositionByDictionaryId", async () => {
 
 test.describe("findDictionaryIdByMonacoEditorHTMLPosition", async () => {
     test.beforeEach(async ({ page }) => {
-        await page.goto("/utilities");
+        await page.goto("/utilities.html");
     });
     test("should find the root dictionary ID", async ({ page }) => {
         const dictionaryId = await page.evaluate(

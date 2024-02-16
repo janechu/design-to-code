@@ -64,7 +64,7 @@ const customSchema = {
 
 test.describe("mapVSCodeParsedHTMLToDataDictionary", () => {
     test.beforeEach(async ({ page }) => {
-        await page.goto("/utilities");
+        await page.goto("/utilities.html");
     });
     test("should not throw an error if the HTML array is empty", async ({ page }) => {
         const mappedValue = await page.evaluate(() => {
@@ -666,7 +666,7 @@ test.describe("mapVSCodeParsedHTMLToDataDictionary", () => {
 
 test.describe("mapVSCodeHTMLAndDataDictionaryToDataDictionary", () => {
     test.beforeEach(async ({ page }) => {
-        await page.goto("/utilities");
+        await page.goto("/utilities.html");
     });
     test("should map a parsed HTML value to a data dictionary", async ({ page }) => {
         const htmlAsString = await page.evaluate(() => {

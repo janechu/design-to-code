@@ -18,7 +18,6 @@
   "scripts": {
     "build": "npm run build:esm && npm run build:cjs && npm run build:message-system && npm run copy:css",
     "build:app": "npm run build:message-system && webpack --progress --mode=production",
-    "build:examples": "cross-env NODE_OPTIONS=--max_old_space_size=8192 webpack --progress --mode=production",
     "build:esm": "tsc --project ./tsconfig.esm.json",
     "build:cjs": "tsc --project ./tsconfig.cjs.json",
     "build:message-system": "webpack --config webpack.message-system.config.cjs",

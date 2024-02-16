@@ -4,7 +4,7 @@ test.describe("CSS Box Model", () => {
     test.beforeEach(async ({ page }) => {
         // Playwright is configured to use http://localhost:7001 as the base URL for all tests
         // so you can use a relative URL to navigate to a different page.
-        await page.goto("/css-box-model");
+        await page.goto("/css-box-model.html");
         await page.reload();
     });
 

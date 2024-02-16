@@ -198,7 +198,7 @@ test.describe("mapDataDictionary", () => {
 
 test.describe("htmlMapper", async () => {
     test.beforeEach(async ({ page }) => {
-        await page.goto("/utilities");
+        await page.goto("/utilities.html");
     });
     test("should map a string to data", async ({ page }) => {
         const textString = "Hello world";

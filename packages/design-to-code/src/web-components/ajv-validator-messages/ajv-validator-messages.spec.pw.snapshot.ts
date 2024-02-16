@@ -3,12 +3,12 @@ import { expect, test } from "../../__test__/base-fixtures.js";
 test.describe.skip("ajv-validator-messages", () => {
     test.describe("snapshot", () => {
         test("error", async ({ page }) => {
-            await page.goto("/ajv-validator-messages");
+            await page.goto("/ajv-validator-messages.html");
             await page.locator("#validator").waitFor({ state: "visible" });
             await expect(page).toHaveScreenshot();
         });
         test("success", async ({ page }) => {
-            await page.goto("/ajv-validator-messages");
+            await page.goto("/ajv-validator-messages.html");
             await page.locator("#validator").waitFor({ state: "visible" });
 
             const showSuccessButton = await page.locator("#showSuccess");
@@ -20,7 +20,7 @@ test.describe.skip("ajv-validator-messages", () => {
             await expect(page).toHaveScreenshot();
         });
         test("schema error", async ({ page }) => {
-            await page.goto("/ajv-validator-messages");
+            await page.goto("/ajv-validator-messages.html");
             await page.locator("#validator").waitFor({ state: "visible" });
 
             const setInvalidSchemaButton = await page.locator("#setInvalidSchema");

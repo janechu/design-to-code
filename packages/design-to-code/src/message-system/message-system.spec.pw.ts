@@ -4,7 +4,7 @@ import type { Register } from "./message-system.props.js";
 /* eslint-disable @typescript-eslint/no-empty-function */
 test.describe("MessageSystem", async () => {
     test.beforeEach(async ({ page }) => {
-        await page.goto("/message-system");
+        await page.goto("/message-system.html");
     });
     test("should not throw when Workers are not available", async ({ page }) => {
         const didNotError = await page.evaluate(() => {

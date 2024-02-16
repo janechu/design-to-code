@@ -3,12 +3,12 @@ import { expect, test } from "../../__test__/base-fixtures.js";
 test.describe("guidance", () => {
     test.describe("snapshot", () => {
         test("no document selected", async ({ page }) => {
-            await page.goto("/guidance");
+            await page.goto("/guidance.html");
             await page.locator("#guidance").waitFor({ state: "visible" });
             await expect(page).toHaveScreenshot();
         });
         test("document selected", async ({ page }) => {
-            await page.goto("/guidance");
+            await page.goto("/guidance.html");
             await page.locator("#guidance").waitFor({ state: "visible" });
 
             const filter = await page.locator("#guidance input");
@@ -20,7 +20,7 @@ test.describe("guidance", () => {
             await expect(page).toHaveScreenshot();
         });
         test("documents filtered", async ({ page }) => {
-            await page.goto("/guidance");
+            await page.goto("/guidance.html");
             await page.locator("#guidance").waitFor({ state: "visible" });
 
             const filter = await page.locator("#guidance input");

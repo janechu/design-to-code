@@ -5,7 +5,7 @@ test.describe("CSSLayout", () => {
     test.beforeEach(async ({ page }) => {
         // Playwright is configured to use http://localhost:7001 as the base URL for all tests
         // so you can use a relative URL to navigate to a different page.
-        await page.goto("/css-layout");
+        await page.goto("/css-layout.html");
         await page.reload();
     });
 
