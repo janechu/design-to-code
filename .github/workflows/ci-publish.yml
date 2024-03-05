@@ -57,6 +57,12 @@ jobs:
     - name: Testing diffs
       run: npm run test:diff
 
+    - name: Build package files
+      run: npm run build --workspace=design-to-code --workspace=design-to-code-react
+
+    - name: Build test app
+      run: npm run build:app --workspace=design-to-code --workspace=design-to-code-react
+
     - name: Install playwright browsers
       run: npx playwright install
 
