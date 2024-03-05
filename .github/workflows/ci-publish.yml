@@ -52,7 +52,7 @@ jobs:
       run: npm run build --workspace=design-to-code --workspace=design-to-code-react
 
     - name: Check for the presence of changed files inside ./change
-      run: npm check
+      run: npm run check
 
     - name: Testing diffs
       run: npm run test:diff
