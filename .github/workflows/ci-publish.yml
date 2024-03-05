@@ -1,0 +1,74 @@
+name: Release NPM Packages
+
+on:
+  workflow_dispatch:
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GITHUB_SERVICE_USER: "Jane Chu"
+  GITHUB_SERVICE_EMAIL: "7559015+janechu@users.noreply.github.com"
+
+jobs:
+  runs-on: ubuntu-latest
+  strategy:
+    matrix:
+      node: [16.x]
+  
+  steps:
+  - uses: actions/checkout@v2
+    with:
+        fetch-depth: 0
+
+  - name: Set Git User
+    run: |
+      git config --global user.name "${{ env.GITHUB_SERVICE_USER }}"
+      git config --global user.email "${{ env.GITHUB_SERVICE_EMAIL }}"
+
+  - name: Cache multiple paths
+    uses: actions/cache@v2
+    env:
+      cache-name: cache-node-modules
+    with:
+      path: ~/.npm
+      key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+      restore-keys: |
+        ${{ runner.os }}-build-${{ env.cache-name }}-
+        ${{ runner.os }}-build-
+        ${{ runner.os }}-
+
+  - name: Use Node.js ${{ matrix.node }}
+    uses: actions/setup-node@v1
+    with:
+      node-version: ${{ matrix.node }}
+
+  - name: Install wasm-pack
+    run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+
+  - name: Install Dependencies
+    run: npm ci
+
+  - name: Build package files
+    run: npm run build --workspace=design-to-code --workspace=design-to-code-react
+
+  - name: Check for the presence of changed files inside ./change
+    run: npm check
+
+  - name: Testing diffs
+    run: npm run test:diff
+
+  - name: Install playwright browsers
+    run: npx playwright install
+
+  - name: Test design to code package
+    run: npm run test --workspace=design-to-code
+
+  - name: Test design to code react package
+    run: npm run test --workspace=design-to-code-react
+
+  - name: Build docs site
+    run: npm run build:gh-pages
+
+  - name: Publish NPM packages
+    env:
+      NPM_SECRET_TOKEN: ${{ secrets.NPM_TOKEN }}
+    run: npm run publish-ci -n $NPM_SECRET_TOKEN
