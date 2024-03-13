@@ -141,7 +141,7 @@ function isParentAnArray(
     data: unknown,
     lastSegmentAsNumber: number
 ): boolean {
-    return isNaN(lastSegmentAsNumber) && parentDataLocation === ""
+    return parentDataLocation === ""
         ? Array.isArray(data)
         : Array.isArray(get(data, parentDataLocation));
 }
@@ -157,11 +157,9 @@ function isTargetInArray(dataLocation: string, data: unknown): RelocatedDataConf
             arrayIndex = index;
         }
     );
-
     if (!isParentAnArray(parentDataLocation, data, arrayIndex)) {
         return getItemObjectConfig(dataLocation);
     }
-
     return getItemArrayConfig(parentDataLocation, arrayIndex);
 }
 
@@ -184,13 +182,19 @@ export function getDataUpdatedWithoutSourceData(
             unset(clonedData, config.sourceDataLocation);
         }
     } else {
-        const newTargetArray: unknown = get(
-            clonedData,
-            sourceDataConfig.dataLocationOfArray
-        );
+        const newTargetArray: unknown =
+            sourceDataConfig.dataLocationOfArray === ""
+                ? clonedData
+                : get(clonedData, sourceDataConfig.dataLocationOfArray);
 
         (newTargetArray as unknown[]).splice(sourceDataConfig.index, 1);
-        set(clonedData as object, sourceDataConfig.dataLocationOfArray, newTargetArray);
+        sourceDataConfig.dataLocationOfArray === ""
+            ? (clonedData = newTargetArray)
+            : set(
+                  clonedData as object,
+                  sourceDataConfig.dataLocationOfArray,
+                  newTargetArray
+              );
     }
 
     return clonedData;

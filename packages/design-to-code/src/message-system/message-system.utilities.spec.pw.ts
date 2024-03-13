@@ -1021,6 +1021,38 @@ test.describe("getMessage", () => {
 
             expect(message[0].data).toMatchObject({});
         });
+        test("should return a data blob without removed values if the values are in an array", () => {
+            getMessage([
+                {
+                    type: MessageSystemType.initialize,
+                    data: [
+                        {
+                            data: {
+                                schemaId: "foo",
+                                data: ["foo"],
+                            },
+                        },
+                        "data",
+                    ],
+                    schemaDictionary: {
+                        foo: { $id: "foo", type: "array", items: { type: "string" } },
+                    },
+                },
+                "",
+            ]);
+            const message: InternalOutgoingMessage<UpdateDataMessageOutgoing> =
+                getMessage([
+                    {
+                        type: MessageSystemType.data,
+                        action: MessageSystemDataTypeAction.remove,
+                        dataLocation: "[0]",
+                    },
+                    "",
+                ])[0] as InternalOutgoingMessage<UpdateDataMessageOutgoing>;
+
+            expect(message[0].data).toMatchObject([]);
+            expect(message[0].data).toHaveLength(0);
+        });
         test("should return a data blob without removed values from a specified dictionary ID", () => {
             getMessage([
                 {

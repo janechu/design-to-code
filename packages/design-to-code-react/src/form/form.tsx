@@ -36,6 +36,8 @@ import { classNames } from "@microsoft/fast-web-utilities";
 import {
     DataDictionary,
     dataSetName,
+    getNextActiveParentDictionaryId,
+    isInArray,
     MessageSystemDataTypeAction,
     MessageSystemNavigationTypeAction,
     MessageSystemType,
@@ -562,6 +564,15 @@ const Form: React.FC<FormProps> = (
                 });
             } else {
                 if (config.value === undefined) {
+                    if (
+                        isInArray(
+                            dataDictionary[0][config.dictionaryId].data,
+                            config.dataLocation
+                        )
+                    ) {
+                        handleUpdateActiveSection(config.dictionaryId);
+                    }
+
                     props.messageSystem.postMessage({
                         type: MessageSystemType.data,
                         action: MessageSystemDataTypeAction.remove,

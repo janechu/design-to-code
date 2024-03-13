@@ -16,6 +16,7 @@ import {
     controlArrayDisabledSchema,
     controlArrayDisplayTextSchema,
     controlArraySchema,
+    controlArrayWithEnumSchema,
     controlButtonDefaultSchema,
     controlButtonDisabledSchema,
     controlButtonSchema,
@@ -266,6 +267,10 @@ export const controlArrayDisplayText: ExampleComponent = {
             text: "foo",
         },
     ],
+};
+export const controlArrayWithEnum: ExampleComponent = {
+    schema: controlArrayWithEnumSchema,
+    data: undefined,
 };
 // Number-field control
 export const controlNumberField: ExampleComponent = {

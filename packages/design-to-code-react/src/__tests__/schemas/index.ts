@@ -40,6 +40,7 @@ import controlArraySchema from "./control.array.schema";
 import controlArrayDisabledSchema from "./control.array.disabled.schema";
 import controlArrayDefaultSchema from "./control.array.default.schema";
 import controlArrayDisplayTextSchema from "./control.array.display-text.schema";
+import controlArrayWithEnumSchema from "./control.array.enum.schema";
 import controlButtonSchema from "./control.button.schema";
 import controlButtonDisabledSchema from "./control.button.disabled.schema";
 import controlButtonDefaultSchema from "./control.button.default.schema";
@@ -109,6 +110,7 @@ export {
     controlArrayDefaultSchema,
     controlArrayDisabledSchema,
     controlArrayDisplayTextSchema,
+    controlArrayWithEnumSchema,
     controlButtonSchema,
     controlButtonDefaultSchema,
     controlButtonDisabledSchema,
