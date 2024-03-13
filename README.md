@@ -1,3 +1,5 @@
+[![Validate](https://github.com/janechu/design-to-code/actions/workflows/ci-validate.yml/badge.svg)](https://github.com/janechu/design-to-code/actions/workflows/ci-validate.yml)
+
 # Design to Code
 
 This is the Design to Code project, containing a set of packages that can be combined to create complex workflows. The goal of these workflows is to allow users to create and modify their own web based experiences, from individual web components to completed web sites.
