@@ -71,7 +71,7 @@ jobs:
       uses: romeovs/lcov-reporter-action@v0.3.1
       with:
         lcov-file: ./packages/design-to-code/coverage/lcov.info
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+        github-token: ${{ secrets.CI_PAT }}
 
     - name: Test design to code react package
       run: npm run test --workspace=design-to-code-react
@@ -83,7 +83,7 @@ jobs:
       uses: romeovs/lcov-reporter-action@v0.3.1
       with:
         lcov-file: ./packages/design-to-code-react/coverage/lcov.info
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+        github-token: ${{ secrets.CI_PAT }}
 
     - name: Build docs site
       run: npm run build:gh-pages
