@@ -51,6 +51,9 @@ jobs:
     - name: Install Dependencies
       run: npm ci
 
+    - name: Setup LCOV
+      uses: hrishikesh-kadam/setup-lcov@v1
+
     - name: Check for the presence of changed files inside ./change
       run: npm run check
 
@@ -65,7 +68,7 @@ jobs:
 
     - name: Test design to code package
       run: npm run test --workspace=design-to-code
-    
+
     - name: Create test report for design to code package
       run: npm run test:report --workspace=design-to-code
 
@@ -74,7 +77,7 @@ jobs:
       with:
         coverage-files: ./packages/design-to-code/coverage/lcov.info
         github-token: ${{ secrets.GITHUB_TOKEN }}
-        working-directory: ./packages/design-to-code/
+        working-directory: ./packages/design-to-code/src/
         update-comment: true
 
     - name: Test design to code react package
@@ -88,7 +91,7 @@ jobs:
       with:
         coverage-files: ./packages/design-to-code-react/coverage/lcov.info
         github-token: ${{ secrets.GITHUB_TOKEN }}
-        working-directory: ./packages/design-to-code-react/
+        working-directory: ./packages/design-to-code-react/src/
         update-comment: true
 
     - name: Build docs site
