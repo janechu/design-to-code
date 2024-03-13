@@ -74,6 +74,7 @@ jobs:
       with:
         coverage-files: ./packages/design-to-code/coverage/lcov.info
         github-token: ${{ secrets.GITHUB_TOKEN }}
+        working-directory: ./packages/design-to-code/
         update-comment: true
 
     - name: Test design to code react package
@@ -87,6 +88,7 @@ jobs:
       with:
         coverage-files: ./packages/design-to-code-react/coverage/lcov.info
         github-token: ${{ secrets.GITHUB_TOKEN }}
+        working-directory: ./packages/design-to-code-react/
         update-comment: true
 
     - name: Build docs site
