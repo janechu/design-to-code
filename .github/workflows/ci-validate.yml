@@ -68,7 +68,7 @@ jobs:
       run: npm run test:report --workspace=design-to-code
 
     - name: Publish design to code package report
-      uses: romeovs/lcov-reporter-action@v0.3.1
+      uses: romeovs/lcov-reporter-action@v0.2.11
       with:
         lcov-file: ./packages/design-to-code/coverage/lcov.info
         github-token: ${{ secrets.CI_PAT }}
@@ -80,7 +80,7 @@ jobs:
       run: npm run test:report --workspace=design-to-code-react
 
     - name: Publish design to code react package report
-      uses: romeovs/lcov-reporter-action@v0.3.1
+      uses: romeovs/lcov-reporter-action@v0.2.11
       with:
         lcov-file: ./packages/design-to-code-react/coverage/lcov.info
         github-token: ${{ secrets.CI_PAT }}
