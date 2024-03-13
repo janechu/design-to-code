@@ -70,10 +70,11 @@ jobs:
       run: npm run test:report --workspace=design-to-code
 
     - name: Publish design to code package report
-      uses: romeovs/lcov-reporter-action@v0.3.1
+      uses: zgosalvez/github-actions-report-lcov@v3
       with:
-        lcov-file: ./packages/design-to-code/coverage/lcov.info
+        coverage-files: ./packages/design-to-code/coverage/lcov.info
         github-token: ${{ secrets.GITHUB_TOKEN }}
+        update-comment: true
 
     - name: Test design to code react package
       run: npm run test --workspace=design-to-code-react
@@ -82,10 +83,11 @@ jobs:
       run: npm run test:report --workspace=design-to-code-react
 
     - name: Publish design to code react package report
-      uses: romeovs/lcov-reporter-action@v0.3.1
+      uses: zgosalvez/github-actions-report-lcov@v3
       with:
-        lcov-file: ./packages/design-to-code-react/coverage/lcov.info
+        coverage-files: ./packages/design-to-code-react/coverage/lcov.info
         github-token: ${{ secrets.GITHUB_TOKEN }}
+        update-comment: true
 
     - name: Build docs site
       run: npm run build:gh-pages
