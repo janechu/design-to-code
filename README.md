@@ -1,4 +1,3 @@
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/janechu/design-to-code/blob/main/LICENSE)
 [![Validate](https://github.com/janechu/design-to-code/actions/workflows/ci-validate.yml/badge.svg)](https://github.com/janechu/design-to-code/actions/workflows/ci-validate.yml)
 
 # Design to Code
