@@ -78,7 +78,7 @@ jobs:
         coverage-files: ./packages/design-to-code/coverage/lcov.info
         github-token: ${{ secrets.GITHUB_TOKEN }}
         working-directory: ${{github.workspace}}/packages/design-to-code/
-        update-comment: true
+        additional-message: design-to-code
 
     - name: Test design to code react package
       run: npm run test --workspace=design-to-code-react
@@ -92,7 +92,7 @@ jobs:
         coverage-files: ./packages/design-to-code-react/coverage/lcov.info
         github-token: ${{ secrets.GITHUB_TOKEN }}
         working-directory: ${{github.workspace}}/packages/design-to-code-react/
-        update-comment: true
+        additional-message: design-to-code-react
 
     - name: Build docs site
       run: npm run build:gh-pages
