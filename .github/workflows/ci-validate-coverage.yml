@@ -1,4 +1,4 @@
-name: Validate Snapshots
+name: Validate Coverage
 
 on:
   push:
@@ -12,9 +12,13 @@ on:
       - gh-pages
       - 'features/**'
 
+permissions:
+  contents: read
+  pull-requests: write
+
 jobs:
-  validate-snapshots:
-    runs-on: macos-latest
+  validate-coverage:
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         node: [16.x]
@@ -47,6 +51,9 @@ jobs:
     - name: Install Dependencies
       run: npm ci
 
+    - name: Setup LCOV
+      uses: hrishikesh-kadam/setup-lcov@v1
+
     - name: Build package files
       run: npm run build --workspace=design-to-code --workspace=design-to-code-react
 
@@ -57,12 +64,30 @@ jobs:
       run: npx playwright install
 
     - name: Test design to code package
-      run: npm run test:snapshots --workspace=design-to-code
+      run: npm run test --workspace=design-to-code
+
+    - name: Create test report for design to code package
+      run: npm run test:report --workspace=design-to-code
+
+    - name: Publish design to code package report
+      uses: zgosalvez/github-actions-report-lcov@v3
+      with:
+        coverage-files: ./packages/design-to-code/coverage/lcov.info
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        working-directory: ${{github.workspace}}/packages/design-to-code/
+        additional-message: design-to-code
 
     - name: Test design to code react package
-      run: npm run test:snapshots --workspace=design-to-code-react
+      run: npm run test --workspace=design-to-code-react
 
-    - name: Build docs site
-      run: npm run build:gh-pages
+    - name: Create test report for design to code package
+      run: npm run test:report --workspace=design-to-code-react
 
+    - name: Publish design to code react package report
+      uses: zgosalvez/github-actions-report-lcov@v3
+      with:
+        coverage-files: ./packages/design-to-code-react/coverage/lcov.info
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        working-directory: ${{github.workspace}}/packages/design-to-code-react/
+        additional-message: design-to-code-react
        
