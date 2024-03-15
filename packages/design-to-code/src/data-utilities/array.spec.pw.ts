@@ -18,7 +18,10 @@ test.describe("isInArray", () => {
             )
         ).toEqual(false);
     });
-    test("should return true when data is an array and the data location is in a sub location", () => {
-        expect(isInArray(["foo"], "[0]")).toEqual(false);
+    test("should return true when data is an array and the data location is in a root level array", () => {
+        expect(isInArray(["foo"], "[0]")).toEqual(true);
+    });
+    test("should return true when data is an array and the data location is in an array sub location", () => {
+        expect(isInArray({ foo: ["foo"] }, "foo[0]")).toEqual(true);
     });
 });
