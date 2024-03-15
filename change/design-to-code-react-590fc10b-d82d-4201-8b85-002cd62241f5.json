@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Array items when set to undefined has been changed to remove the array item instead of creating an empty slot",
+  "packageName": "design-to-code-react",
+  "email": "7559015+janechu@users.noreply.github.com",
+  "dependentChangeType": "patch"
+}
