@@ -25,3 +25,5 @@ The `design-to-code-react` package contains various React components that work w
 ## Contact
 
 * Submit requests and issues on [GitHub](https://github.com/janechu/design-to-code/issues/new/choose).
+
+To join in on the conversation, use our discussions tab or join our [discord server](https://discord.com/invite/HXRvkWbDPd).
