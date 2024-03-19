@@ -81,4 +81,4 @@ jobs:
     - name: Publish NPM packages
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      run: npm run publish -y
+      run: npm run publish-ci
