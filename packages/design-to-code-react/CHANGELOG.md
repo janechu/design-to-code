@@ -1,8 +1,17 @@
 # Change Log - design-to-code-react
 
-This log was last generated on Wed, 13 Jul 2022 07:07:28 GMT and should not be manually modified.
+This log was last generated on Tue, 19 Mar 2024 21:45:40 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.0.1
+
+Tue, 19 Mar 2024 21:45:40 GMT
+
+### Patches
+
+- Array items when set to undefined has been changed to remove the array item instead of creating an empty slot (7559015+janechu@users.noreply.github.com)
+- Bump design-to-code to v1.0.1
 
 ## 2.13.13
 

@@ -2,6 +2,21 @@
   "name": "design-to-code",
   "entries": [
     {
+      "date": "Tue, 19 Mar 2024 21:45:40 GMT",
+      "tag": "design-to-code_v1.0.1",
+      "version": "1.0.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "7559015+janechu@users.noreply.github.com",
+            "package": "design-to-code",
+            "commit": "1b709d3f291f8b6bdec480163f17423d7804a06b",
+            "comment": "Array items when set to undefined now navigates up the tree as this deletes the array item"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 04 Mar 2024 22:12:49 GMT",
       "tag": "design-to-code_v1.0.0",
       "version": "1.0.0",
