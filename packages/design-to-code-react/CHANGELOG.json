@@ -2,6 +2,27 @@
   "name": "design-to-code-react",
   "entries": [
     {
+      "date": "Wed, 20 Mar 2024 17:04:35 GMT",
+      "tag": "design-to-code-react_v1.0.1",
+      "version": "1.0.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "7559015+janechu@users.noreply.github.com",
+            "package": "design-to-code-react",
+            "commit": "1b709d3f291f8b6bdec480163f17423d7804a06b",
+            "comment": "Array items when set to undefined has been changed to remove the array item instead of creating an empty slot"
+          },
+          {
+            "author": "beachball",
+            "package": "design-to-code-react",
+            "comment": "Bump design-to-code to v1.0.1",
+            "commit": "d00abd18b678f9e8b50a235a8076a31eb4268931"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 04 Oct 2022 07:14:24 GMT",
       "tag": "design-to-code-react_v2.13.13",
       "version": "2.13.13",
