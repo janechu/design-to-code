@@ -86,6 +86,13 @@ import controlFormatTimeDisabledSchema from "./control.format.time.disabled.sche
 import controlFormatTimeDefaultSchema from "./control.format.time.default.schema";
 
 /**
+ * Keyword Schemas
+ */
+import keywordAdditionalPropertiesAsFalseSchema from "./keyword.additional-properties.as-false.schema";
+import keywordAdditionalPropertiesAsTrueSchema from "./keyword.additional-properties.as-true.schema";
+import keywordAdditionalPropertiesAsObjectSchema from "./keyword.additional-properties.as-object.schema";
+
+/**
  * Invalid schema
  */
 import invalidSchema from "./invalid.schema";
@@ -150,6 +157,9 @@ export {
     controlUntypedSchema,
     controlUntypedDefaultSchema,
     controlUntypedDisabledSchema,
+    keywordAdditionalPropertiesAsFalseSchema,
+    keywordAdditionalPropertiesAsTrueSchema,
+    keywordAdditionalPropertiesAsObjectSchema,
     defaultsSchema,
     definitionsSchema,
     dictionarySchema,

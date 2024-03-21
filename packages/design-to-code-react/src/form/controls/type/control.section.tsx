@@ -343,7 +343,7 @@ function SectionControl(props: SectionControlProps) {
 
         if (
             typeof navigationItem.schema.additionalProperties === "object" ||
-            navigationItem.schema.additionalProperties === false
+            navigationItem.schema.additionalProperties === true
         ) {
             return (
                 <FormDictionary
@@ -387,6 +387,7 @@ function SectionControl(props: SectionControlProps) {
                     messageSystemOptions={props.messageSystemOptions}
                     categories={props.categories}
                     validate={props.validate}
+                    untitled={props.untitled}
                 />
             );
         }

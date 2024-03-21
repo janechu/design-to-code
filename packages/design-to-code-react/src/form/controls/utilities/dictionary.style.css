@@ -17,8 +17,18 @@
 }
 
 .dtc-dictionary_item-control-remove-trigger {
-    bottom: 6px;
+    bottom: 16px;
     top: unset;
+}
+
+.dtc-dictionary_control {
+    flex-grow: 1;
+}
+
+.dtc-dictionary_control-region {
+    position: relative;
+    height: 30px;
+    padding-bottom: 5px;
 }
 
 .dtc-dictionary_control-label {

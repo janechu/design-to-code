@@ -65,6 +65,9 @@ import {
     disabledSchema,
     generalSchema,
     invalidDataSchema,
+    keywordAdditionalPropertiesAsFalseSchema,
+    keywordAdditionalPropertiesAsObjectSchema,
+    keywordAdditionalPropertiesAsTrueSchema,
     mergedOneOfSchema,
     nestedOneOfSchema,
     nullSchema as nullKeywordSchema,
@@ -401,6 +404,18 @@ export const controlEmailDisabled: ExampleComponent = {
 export const controlEmailDefault: ExampleComponent = {
     schema: controlFormatEmailDefaultSchema,
     data: undefined,
+};
+// Additional Properties As Object
+export const keywordAdditionalPropertiesAsObject: ExampleComponent = {
+    schema: keywordAdditionalPropertiesAsObjectSchema,
+};
+// Additional Properties As True
+export const keywordAdditionalPropertiesAsTrue: ExampleComponent = {
+    schema: keywordAdditionalPropertiesAsTrueSchema,
+};
+// Additional Properties As False
+export const keywordAdditionalPropertiesAsFalse: ExampleComponent = {
+    schema: keywordAdditionalPropertiesAsFalseSchema,
 };
 
 /**

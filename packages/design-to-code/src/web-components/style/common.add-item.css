@@ -1,4 +1,5 @@
 .dtc-common-add-item {
+    cursor: pointer;
     position: relative;
     appearance: none;
     background: none;
