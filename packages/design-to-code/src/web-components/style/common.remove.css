@@ -2,6 +2,6 @@
     display: flex;
     height: 18px;
     min-width: var(--dtc-gutter);
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
 }

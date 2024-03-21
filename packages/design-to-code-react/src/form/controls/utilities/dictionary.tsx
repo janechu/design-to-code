@@ -50,26 +50,24 @@ function Dictionary(props: DictionaryProps) {
     }
 
     function renderControl(): React.ReactNode {
-        if (isPlainObject(props.additionalProperties)) {
-            return (
-                <div
-                    className={`dtc-dictionary_control-region ${dtcClassName.commonControlRegion}`}
-                >
-                    <div className={`dtc-dictionary_control`}>
-                        <label
-                            className={`dtc-dictionary_control-label ${dtcClassName.commonLabel}`}
-                        >
-                            {props.label}
-                        </label>
-                    </div>
-                    <button
-                        className={`dtc-dictionary_control-add-trigger ${dtcClassName.commonAddItem}`}
-                        aria-label={"Select to add item"}
-                        onClick={handleOnAddItem}
-                    />
+        return (
+            <div
+                className={`dtc-dictionary_control-region ${dtcClassName.commonLabelRegion}`}
+            >
+                <div className={`dtc-dictionary_control`}>
+                    <label
+                        className={`dtc-dictionary_control-label ${dtcClassName.commonLabel}`}
+                    >
+                        {props.label}
+                    </label>
                 </div>
-            );
-        }
+                <button
+                    className={`dtc-dictionary_control-add-trigger ${dtcClassName.commonAddItem}`}
+                    aria-label={"Select to add item"}
+                    onClick={handleOnAddItem}
+                />
+            </div>
+        );
     }
 
     function renderItemControl(propertyName: string): React.ReactNode {
@@ -201,7 +199,9 @@ function Dictionary(props: DictionaryProps) {
                     props.schemaDictionary[
                         props.dataDictionary[0][props.dictionaryId].schemaId
                     ],
-                    props.additionalProperties,
+                    props.additionalProperties === true
+                        ? { title: props.untitled, type: "string" }
+                        : props.additionalProperties,
                     ""
                 ),
             });

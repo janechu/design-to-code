@@ -1,7 +1,8 @@
 .dtc-common-remove-item {
+    cursor: pointer;
     position: absolute;
     top: 5px;
-    right: 2px;
+    right: 0;
     appearance: none;
     background: none;
     border: none;
