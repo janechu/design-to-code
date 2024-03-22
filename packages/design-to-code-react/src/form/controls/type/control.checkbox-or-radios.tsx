@@ -18,12 +18,12 @@ const falseRadioId = `dtc-${uniqueId()}`;
  */
 function CheckboxOrRadiosControl(props: CheckboxControlProps) {
     const containsDefault: boolean = typeof props.default === "boolean";
-    const value: boolean =
+    const value: boolean | void =
         typeof props.value === "boolean"
             ? props.value
             : typeof props.value === "undefined" && containsDefault
             ? props.default
-            : false;
+            : undefined;
     const radioTrueRef = useRef(null);
     const radioFalseRef = useRef(null);
 
@@ -59,6 +59,16 @@ function CheckboxOrRadiosControl(props: CheckboxControlProps) {
         }
     }, [props.value]);
 
+    function getCheckedValue(value: boolean | void): "true" | "false" | "undefined" {
+        return isBoolean(value)
+            ? ((value as boolean).toString() as "true" | "false")
+            : "undefined";
+    }
+
+    function isBoolean(value: boolean | void): boolean {
+        return value === true || value === false;
+    }
+
     function renderCheckbox() {
         return (
             <div
@@ -75,9 +85,9 @@ function CheckboxOrRadiosControl(props: CheckboxControlProps) {
                     className={"dtc-checkbox-control_input"}
                     id={props.dataLocation}
                     type={"checkbox"}
-                    value={value.toString()}
+                    value={getCheckedValue(value)}
                     onChange={handleChange()}
-                    checked={value}
+                    checked={value || false}
                     disabled={props.disabled}
                     ref={props.elementRef as React.Ref<HTMLInputElement>}
                     onFocus={() => props.reportValidity()}
@@ -105,7 +115,7 @@ function CheckboxOrRadiosControl(props: CheckboxControlProps) {
                         name={props.dataLocation}
                         value={"true"}
                         onChange={handleChange()}
-                        checked={value.toString() === "true"}
+                        checked={getCheckedValue(value) === "true"}
                         ref={radioTrueRef}
                         onFocus={() => props.reportValidity()}
                         onBlur={updateRadioValidity}
@@ -124,7 +134,7 @@ function CheckboxOrRadiosControl(props: CheckboxControlProps) {
                         checked={
                             props.invalidMessage !== ""
                                 ? false
-                                : value.toString() === "false"
+                                : getCheckedValue(value) === "false"
                         }
                         ref={radioFalseRef}
                         onFocus={() => props.reportValidity()}

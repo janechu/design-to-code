@@ -95,14 +95,20 @@ export function FormTestPage() {
 
     useEffect(() => {
         // run when ready (second load)
-        initializeMessageSystem(
-            searchParams.get("schema"),
-            getExampleData(searchParams.get("schema"))
-        );
 
+        /**
+         * To use search params, add to the URL:
+         * &<search-param>=true
+         */
         const displayValidationInline = searchParams.get("displayValidationInline");
         const displayValidationErrorList = searchParams.get("displayValidationErrorList");
         const showValidation = searchParams.get("showValidation");
+        const dataIsUndefined = searchParams.get("dataIsUndefined");
+
+        initializeMessageSystem(
+            searchParams.get("schema"),
+            dataIsUndefined ? undefined : getExampleData(searchParams.get("schema"))
+        );
 
         if (displayValidationInline) {
             setDisplayValidationInline(!!displayValidationInline);
