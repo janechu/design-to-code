@@ -64,7 +64,10 @@ module.exports = {
         new CopyWebpackPlugin({
             patterns: [
                 {
-                    from: path.resolve("../design-to-code/dist/stylesheets/**/*.css"),
+                    from: path.posix.join(
+                        path.resolve(__dirname, "../design-to-code/dist/stylesheets/**").replace(/\\/g, "/"),
+                        "*.css"
+                    ),
                     to: "public/[name][ext]"
                 },
             ],
