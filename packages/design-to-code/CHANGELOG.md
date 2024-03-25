@@ -1,8 +1,16 @@
 # Change Log - design-to-code
 
-This log was last generated on Wed, 20 Mar 2024 17:04:35 GMT and should not be manually modified.
+This log was last generated on Mon, 25 Mar 2024 06:12:41 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.0.2
+
+Mon, 25 Mar 2024 06:12:41 GMT
+
+### Patches
+
+- Styling alignment fixes for the form additionalProperties keyword (7559015+janechu@users.noreply.github.com)
 
 ## 1.0.1
 
