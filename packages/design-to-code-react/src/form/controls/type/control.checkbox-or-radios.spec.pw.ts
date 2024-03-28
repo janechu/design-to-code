@@ -78,12 +78,14 @@ test.describe("CheckboxControl", () => {
     }) => {
         await page.goto("/form?schema=controlCheckbox&dataIsUndefined=true");
 
+        await page.waitForSelector("input");
+
         const radios = await page.locator("input[type='radio']");
 
         await expect(await radios.count()).toEqual(2);
 
-        await expect(radios.nth(0).inputValue()).toEqual(false);
-        await expect(radios.nth(1).inputValue()).toEqual(false);
+        await expect(await radios.nth(0).isChecked()).toEqual(false);
+        await expect(await radios.nth(1).isChecked()).toEqual(false);
     });
     test("should not show default values if data exists", async ({ page }) => {
         await page.goto("/form?schema=controlCheckboxDefault");
