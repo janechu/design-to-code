@@ -11,7 +11,7 @@ List and link relevant issues here using the keyword "closes"
 if this PR will close an issue, eg. closes #411
 -->
 
-## 👩‍💻 Reviewer Notes
+## 👩‍💻 Notes
 
 <!---
 Provide some notes for reviewers to help them provide targeted feedback and testing.
@@ -23,8 +23,10 @@ Provide some notes for reviewers to help them provide targeted feedback and test
 
 <!--- Review the list and put an x in the boxes that apply. -->
 
-- [ ] I have added tests for my changes.
-- [ ] I have tested my changes.
+- [ ] I have added tests which has increased test coverage.
+- [ ] I have made visual changes.
+    - [ ] I am on MacOS and have added or updated snapshots.
+    - [ ] I am not on MacOS and have provided a screenshot in the notes section.
 - [ ] I have updated the project documentation to reflect my changes.
 
 ## ⏭ Next Steps
