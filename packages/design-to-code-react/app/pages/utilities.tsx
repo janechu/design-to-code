@@ -1,24 +1,26 @@
-import React from "react";
-import "../__tests__/mocks/match-media";
+import React, { useEffect, useState } from "react";
 import {
     DataType,
-    dictionaryLink,
     linkedDataSchema,
     mapDataDictionary,
     pluginIdKeyword,
 } from "design-to-code";
-import { ComponentDictionary, reactMapper, reactResolver } from "./mapping";
+import {
+    ComponentDictionary,
+    reactMapper,
+    reactResolver,
+} from "../../src/data-utilities/mapping";
 
-class Foo extends React.Component<{}, {}> {
-    public render(): React.ReactNode {
-        return <div>{this.props.children}</div>;
-    }
+function Foo(props: { children: string; text: string; number: number }) {
+    return (
+        <div id="foo" data-text={props.text} data-number={props.number}>
+            {props.children}
+        </div>
+    );
 }
 
-class Bar extends React.Component<{}, {}> {
-    public render(): React.ReactNode {
-        return <div>{this.props.children}</div>;
-    }
+function Bar(props: { children: string }) {
+    return <div id="bar">{props.children}</div>;
 }
 
 const componentDictionary: ComponentDictionary = {
@@ -26,9 +28,11 @@ const componentDictionary: ComponentDictionary = {
     bar: Bar,
 };
 
-describe("reactMapper", () => {
-    test("should map data to a React component as props", () => {
-        const resolvedData: any = mapDataDictionary({
+export function UtilitiesPage() {
+    const [content, setContent] = useState(<div>Hello world</div>);
+
+    function mapDataAsProps() {
+        const resolvedData = mapDataDictionary({
             dataDictionary: [
                 {
                     foo: {
@@ -58,15 +62,11 @@ describe("reactMapper", () => {
                 },
             },
         });
-        const mappedData: any = mount(resolvedData);
-        const mappedComponent: any = mappedData.find("Foo");
+        setContent(resolvedData);
+    }
 
-        expect(mappedComponent).toHaveLength(1);
-        expect(mappedComponent.prop("text")).toEqual("Hello");
-        expect(mappedComponent.prop("number")).toEqual(42);
-    });
-    test("should map data to a React component as children", () => {
-        const resolvedData: any = mapDataDictionary({
+    function mapDataAsChildren() {
+        const resolvedData = mapDataDictionary({
             dataDictionary: [
                 {
                     foo: {
@@ -119,86 +119,80 @@ describe("reactMapper", () => {
                 },
             },
         });
-        const mappedData: any = mount(resolvedData);
+        setContent(resolvedData);
+    }
 
-        expect(mappedData.find("Foo")).toHaveLength(1);
-        expect(mappedData.text()).toEqual("FooHello world");
-    });
-    test("should map data to nested React components", () => {
-        const mappedData: any = mount(
-            mapDataDictionary({
-                dataDictionary: [
-                    {
-                        foo: {
-                            schemaId: "foo",
-                            data: {
-                                children: [
-                                    {
-                                        id: "bar",
-                                        dataLocation: "children",
-                                    },
-                                ],
-                            },
-                        },
-                        bar: {
-                            schemaId: "bar",
-                            parent: {
-                                id: "foo",
-                                dataLocation: "children",
-                            },
-                            data: {
-                                children: [
-                                    {
-                                        id: "bat",
-                                    },
-                                ],
-                            },
-                        },
-                        bat: {
-                            schemaId: "bat",
-                            parent: {
-                                id: "bar",
-                                dataLocation: "children",
-                            },
-                            data: "Hello world",
-                        },
-                    },
-                    "foo",
-                ],
-                mapper: reactMapper(componentDictionary),
-                resolver: reactResolver,
-                schemaDictionary: {
+    function mapDataNested() {
+        const resolvedData = mapDataDictionary({
+            dataDictionary: [
+                {
                     foo: {
-                        $id: "foo",
-                        type: "object",
-                        properties: {
-                            children: {
-                                ...linkedDataSchema,
-                            },
+                        schemaId: "foo",
+                        data: {
+                            children: [
+                                {
+                                    id: "bar",
+                                    dataLocation: "children",
+                                },
+                            ],
                         },
                     },
                     bar: {
-                        $id: "bar",
-                        type: "object",
-                        properties: {
-                            children: {
-                                ...linkedDataSchema,
-                            },
+                        schemaId: "bar",
+                        parent: {
+                            id: "foo",
+                            dataLocation: "children",
+                        },
+                        data: {
+                            children: [
+                                {
+                                    id: "bat",
+                                },
+                            ],
                         },
                     },
                     bat: {
-                        $id: "bat",
-                        type: DataType.string,
+                        schemaId: "bat",
+                        parent: {
+                            id: "bar",
+                            dataLocation: "children",
+                        },
+                        data: "Hello world",
                     },
                 },
-            })
-        );
+                "foo",
+            ],
+            mapper: reactMapper(componentDictionary),
+            resolver: reactResolver,
+            schemaDictionary: {
+                foo: {
+                    $id: "foo",
+                    type: "object",
+                    properties: {
+                        children: {
+                            ...linkedDataSchema,
+                        },
+                    },
+                },
+                bar: {
+                    $id: "bar",
+                    type: "object",
+                    properties: {
+                        children: {
+                            ...linkedDataSchema,
+                        },
+                    },
+                },
+                bat: {
+                    $id: "bat",
+                    type: DataType.string,
+                },
+            },
+        });
+        setContent(resolvedData);
+    }
 
-        expect(mappedData.find("Foo")).toHaveLength(1);
-        expect(mappedData.find("Bar")).toHaveLength(1);
-        expect(mappedData.text()).toEqual("Hello world");
-    });
-    test("should map data with a plugin", () => {
+    function mapDataAsPlugin() {
         const pluginId: string = "foobarbat";
         function mapperPlugin(data: any): any {
             return "Hello world, " + data;
@@ -237,18 +231,14 @@ describe("reactMapper", () => {
                 {
                     ids: [pluginId],
                     mapper: mapperPlugin,
-                    resolver: undefined,
+                    resolver: () => {},
                 },
             ],
         });
-        const mappedData: any = mount(resolvedData);
-        const mappedComponent: any = mappedData.find("Foo");
+        setContent(resolvedData);
+    }
 
-        expect(mappedComponent).toHaveLength(1);
-        expect(mappedComponent.prop("text")).toEqual("Hello world, !");
-        expect(mappedComponent.prop("number")).toEqual(42);
-    });
-    test("should resolve data with a plugin", () => {
+    function resolveDataAsPlugin() {
         const pluginId: string = "foobarbat";
         function resolverPlugin(data: any): any {
             return "Hello world";
@@ -295,15 +285,45 @@ describe("reactMapper", () => {
             plugins: [
                 {
                     ids: [pluginId],
-                    mapper: undefined,
+                    mapper: () => {},
                     resolver: resolverPlugin,
                 },
             ],
         });
-        const mappedData: any = mount(resolvedData);
-        const mappedComponent: any = mappedData.find("Foo");
 
-        expect(mappedComponent).toHaveLength(1);
-        expect(mappedComponent.prop("children")).toEqual(["Hello world"]);
-    });
-});
+        setContent(resolvedData);
+    }
+
+    function detectTest(e) {
+        switch (e.detail) {
+            case "mapDataAsProps":
+                mapDataAsProps();
+                break;
+            case "mapDataAsChildren":
+                mapDataAsChildren();
+                break;
+            case "mapDataNested":
+                mapDataNested();
+                break;
+            case "mapDataAsPlugin":
+                mapDataAsPlugin();
+                break;
+            case "resolveDataAsPlugin":
+                resolveDataAsPlugin();
+                break;
+            default:
+                return null;
+        }
+    }
+
+    useEffect(() => {
+        // run on first load
+        window.addEventListener("test", detectTest);
+
+        return () => {
+            window.removeEventListener("test", detectTest);
+        };
+    }, []);
+
+    return content;
+}

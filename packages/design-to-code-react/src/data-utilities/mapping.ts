@@ -83,7 +83,7 @@ export function reactMapper(
                         })
                         .includes(potentialProp);
                 })
-                .reduce((previousValue: {}, currentValue: string) => {
+                .reduce((previousValue: object, currentValue: string) => {
                     const plugin = getPluginResolver(
                         config.mapperPlugins,
                         config.schema[PropertyKeyword.properties][currentValue][
