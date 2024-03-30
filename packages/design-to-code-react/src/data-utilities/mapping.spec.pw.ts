@@ -1,9 +1,6 @@
-import React from "react";
 import { expect, test } from "../__tests__/base-fixtures.js";
-import { DataType, mapDataDictionary, pluginIdKeyword } from "design-to-code";
-import { ComponentDictionary, reactMapper, reactResolver } from "./mapping";
 
-test.describe.only("reactMapper", () => {
+test.describe("reactMapper", () => {
     test("should map data to a React component as props", async ({ page }) => {
         await page.goto("/utilities");
 
