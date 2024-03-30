@@ -21,6 +21,9 @@ export function IndexPage() {
                     <li>
                         <Link to="/web-components">Web Components</Link>
                     </li>
+                    <li>
+                        <Link to="/utilities">Utilities</Link>
+                    </li>
                 </ul>
             </nav>
         );

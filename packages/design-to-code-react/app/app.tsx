@@ -8,6 +8,7 @@ import { WebComponentTestPage } from "./pages/web-components";
 import WebComponentViewerContent from "./pages/web-components/web-component-viewer-content";
 import { FormTestPage } from "./pages/form";
 import { IndexPage } from "./pages/index";
+import { UtilitiesPage } from "./pages/utilities";
 
 class App extends React.Component<{}, {}> {
     public render(): React.ReactNode {
@@ -28,6 +29,7 @@ class App extends React.Component<{}, {}> {
                         path={"/web-components/content"}
                         element={<WebComponentViewerContent />}
                     />
+                    <Route path={"/utilities"} element={<UtilitiesPage />} />
                     <Route path={"/"} element={<Navigate to={"/form"} />} />
                 </Routes>
             </BrowserRouter>
