@@ -1,11 +1,6 @@
 name: Validate Snapshots
 
 on:
-  push:
-    branches: 
-      - main
-      - gh-pages
-      - 'features/**'
   pull_request:
     branches: 
       - main
