@@ -2,6 +2,35 @@
   "name": "design-to-code-react",
   "entries": [
     {
+      "date": "Mon, 01 Apr 2024 19:33:43 GMT",
+      "tag": "design-to-code-react_v1.0.3",
+      "version": "1.0.3",
+      "comments": {
+        "none": [
+          {
+            "author": "7559015+janechu@users.noreply.github.com",
+            "package": "design-to-code-react",
+            "commit": "d86312f1681ea795b213eafa657595e0b941fbdf",
+            "comment": "Test updates"
+          },
+          {
+            "author": "7559015+janechu@users.noreply.github.com",
+            "package": "design-to-code-react",
+            "commit": "7364b4a5b6184d224afec2583a27b7434372fbf0",
+            "comment": "Previously bumped package update"
+          }
+        ],
+        "patch": [
+          {
+            "author": "7559015+janechu@users.noreply.github.com",
+            "package": "design-to-code-react",
+            "commit": "1a184f5b99aeaba60329bfd61e6fa8c4c6c60475",
+            "comment": "Fixes an issue where undefined would show as false for radios"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 25 Mar 2024 19:15:05 GMT",
       "tag": "design-to-code-react_v1.0.2",
       "version": "1.0.2",
