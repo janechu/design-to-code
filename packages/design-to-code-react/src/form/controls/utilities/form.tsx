@@ -1,10 +1,6 @@
 import React from "react";
 import { FormCategoryDictionary, FormState } from "../../form.props";
 import {
-    AttributeSettingsMappingToPropertyNames,
-    FormChildOptionItem,
-} from "../../types";
-import {
     CategoryState,
     SectionControlProps,
     SectionControlState,
@@ -46,80 +42,6 @@ export function getArrayLinks(data: any, displayTextDataLocation?: string): stri
     } else {
         return [];
     }
-}
-
-/**
- * Get the string value of a number
- */
-function getStringFromData(data: string | number): string {
-    if (typeof data === "number") {
-        return data.toString();
-    }
-
-    return data || "";
-}
-
-export function getStringValue(
-    data: string | number,
-    defaultData: string | number
-): string {
-    return typeof data === "string" || typeof data === "number"
-        ? getStringFromData(data)
-        : getStringFromData(defaultData);
-}
-
-/**
- * Determine if an item is required
- */
-export function getIsRequired(item: any, required: string[]): boolean {
-    let isRequired: boolean = false;
-
-    if (Array.isArray(required)) {
-        required.forEach((requiredItem: string): void => {
-            if (requiredItem === item) {
-                isRequired = true;
-            }
-        });
-    }
-
-    return isRequired;
-}
-
-/**
- * Determine if an item is not required
- */
-export function getIsNotRequired(item: any, not?: string[]): boolean {
-    let notRequired: boolean = false;
-
-    if (Array.isArray(not)) {
-        not.forEach((notRequiredItem: any) => {
-            if (notRequiredItem === item) {
-                notRequired = true;
-            }
-        });
-    }
-
-    return notRequired;
-}
-
-/**
- * Normalizes a location for getting and setting values
- */
-export function getNormalizedLocation(
-    location: string,
-    property: string,
-    schema: any
-): string {
-    let normalizedProperty: string = "";
-    let normalizedLocation: string =
-        location === "" || property === "" ? location : `${location}.`;
-    normalizedProperty = property.split(".").join(`.${PropertyKeyword.properties}.`);
-    normalizedLocation =
-        typeof property !== "undefined"
-            ? `${normalizedLocation}${normalizedProperty}`
-            : normalizedLocation;
-
-    return normalizedLocation;
 }
 
 function getArrayExample(baseSchema: any, schemaSection: any): any[] {
@@ -177,71 +99,8 @@ export function generateExampleData(
     return getDataFromSchema(baseSchema, schemaSection);
 }
 
-/**
- * Get the array location
- */
-export function getArraySchemaLocation(
-    schemaLocation: string,
-    propertyName: string,
-    schema: any,
-    oneOfAnyOf: any
-): string {
-    let arraySchemaLocation: string = "";
-
-    if (oneOfAnyOf) {
-        arraySchemaLocation += `${oneOfAnyOf.type}[${oneOfAnyOf.activeIndex}]`;
-    }
-
-    if (propertyName !== "") {
-        arraySchemaLocation += `${arraySchemaLocation === "" ? "" : "."}${
-            PropertyKeyword.properties
-        }.${propertyName}`;
-    }
-
-    return arraySchemaLocation;
-}
-
-/**
- * Assigns an attribute value based on property names
- */
-export function formControlAttributeMapping(
-    config: AttributeSettingsMappingToPropertyNames,
-    propertyName: string
-): number | null {
-    let itemAttributeValue: any = null;
-
-    Object.keys(config).forEach((attributeName: string): void => {
-        for (const attributeConfig of config[attributeName]) {
-            for (const property of attributeConfig.propertyNames) {
-                if (property === propertyName) {
-                    itemAttributeValue = attributeConfig.value;
-                }
-            }
-        }
-    });
-
-    return itemAttributeValue;
-}
-
-export function checkHasOneOfAnyOf(oneOf: any, anyOf: any): boolean {
-    return oneOf || anyOf;
-}
-
 export function checkIsDifferentSchema(currentSchema: any, nextSchema: any): boolean {
     return JSON.stringify(nextSchema) !== JSON.stringify(currentSchema);
-}
-
-export function checkIsDifferentData(currentData: any, nextData: any): boolean {
-    return currentData !== nextData;
-}
-
-export function getDataLocationRelativeToRoot(
-    location: string,
-    dataLocation: string
-): string {
-    return isRootLocation(dataLocation) || isRootLocation(location)
-        ? `${dataLocation}${location}`
-        : `${dataLocation}.${location}`;
 }
 
 export function getData(location: string, data: any): any {
@@ -254,18 +113,6 @@ export function isSelect(property: any): boolean {
 
 export function isConst(property: any): boolean {
     return typeof property.const !== "undefined";
-}
-
-export function checkIsObject(property: any, schema: any): boolean {
-    return (property.properties || property.type === "object") && property === schema;
-}
-
-export function handleToggleClick(value: any, id: string, updateRequested: any): any {
-    return (e: React.MouseEvent<MouseEvent>): void => {
-        e.preventDefault();
-
-        updateRequested(value, id);
-    };
 }
 
 export function getLabel(label: string, title: string): string {
@@ -287,87 +134,10 @@ export interface NavigationItemConfig {
 }
 
 /**
- * Determines the navigation from
- * - section links
- * - child components
- * - array items
- * - breadcrumb links
- */
-export function getActiveComponentAndSection(dataLocation: string): Partial<FormState> {
-    const state: Partial<FormState> = {};
-
-    state.activeNavigationConfigId = dataLocation;
-
-    return state;
-}
-
-/**
- * Gets locations from individual location segments
- * Example:
- * getLocationsFromSegments(["children[0].props.object"])
- * output: ["children[0]", "children[0].props", "children[0].props.object"]
- */
-export function getLocationsFromSegments(segments: string[]): string[] {
-    return segments.map((location: string, index: number) => {
-        return segments.slice(0, index + 1).join(".");
-    });
-}
-
-/**
- * Gets the data location from the current component
- */
-export function getCurrentComponentDataLocation(
-    dataLocation: string,
-    lastComponentDataLocation: string
-): string {
-    return dataLocation.replace(lastComponentDataLocation, "").replace(/^\./, "");
-}
-
-/**
  * Check to see if we are on the root location
  */
 export function isRootLocation(location: string): boolean {
     return location === "";
-}
-
-/**
- * Check to see if this schema is the same as another schema
- */
-export function isDifferentSchema(oldSchema: any, newSchema: any): boolean {
-    return stringify(oldSchema) !== stringify(newSchema);
-}
-
-/**
- * Check to see if this schema has been modified
- */
-export function isModifiedSchema(oldSchema: any, newSchema: any): boolean {
-    return stringify(oldSchema) !== stringify(newSchema);
-}
-
-/**
- * Finds the schema using the data location
- */
-export function getSchemaByDataLocation(
-    currentSchema: any,
-    data: any,
-    dataLocation: string,
-    childOptions: FormChildOptionItem[]
-): any {
-    if (dataLocation === "") {
-        return currentSchema;
-    }
-
-    const subData: any = get(data, dataLocation);
-    const id: string | undefined = subData ? subData.id : void 0;
-    const childOptionWithMatchingSchemaId: any = childOptions.find(
-        (childOption: FormChildOptionItem) => {
-            return childOption.schema.$id === id;
-        }
-    );
-
-    return childOptionWithMatchingSchemaId
-        ? childOptionWithMatchingSchemaId.schema
-        : currentSchema;
 }
 
 /**
