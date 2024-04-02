@@ -1,8 +1,16 @@
 # Change Log - design-to-code-react
 
-This log was last generated on Mon, 25 Mar 2024 19:15:05 GMT and should not be manually modified.
+This log was last generated on Mon, 01 Apr 2024 19:33:43 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.0.3
+
+Mon, 01 Apr 2024 19:33:43 GMT
+
+### Patches
+
+- Fixes an issue where undefined would show as false for radios (7559015+janechu@users.noreply.github.com)
 
 ## 1.0.2
 
